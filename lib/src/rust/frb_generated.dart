@@ -4,40 +4,11 @@
 // ignore_for_file: unused_import, unused_element, unnecessary_import, duplicate_ignore, invalid_use_of_internal_member, annotate_overrides, non_constant_identifier_names, curly_braces_in_flow_control_structures, prefer_const_literals_to_create_immutables, unused_field
 
 import '../web_audio_api.dart';
-import '../web_audio_api/buffer.dart';
-import '../web_audio_api/capacity.dart';
 import '../web_audio_api/context.dart';
-import '../web_audio_api/context/concrete_base.dart';
-import '../web_audio_api/context/offline.dart';
-import '../web_audio_api/context/online.dart';
-import '../web_audio_api/events.dart';
 import '../web_audio_api/media_devices.dart';
 import '../web_audio_api/media_recorder.dart';
 import '../web_audio_api/media_streams.dart';
-import '../web_audio_api/node/analyser.dart';
-import '../web_audio_api/node/audio_buffer_source.dart';
-import '../web_audio_api/node/audio_node.dart';
-import '../web_audio_api/node/biquad_filter.dart';
-import '../web_audio_api/node/channel_merger.dart';
-import '../web_audio_api/node/channel_splitter.dart';
-import '../web_audio_api/node/constant_source.dart';
-import '../web_audio_api/node/convolver.dart';
-import '../web_audio_api/node/delay.dart';
-import '../web_audio_api/node/destination.dart';
-import '../web_audio_api/node/dynamics_compressor.dart';
-import '../web_audio_api/node/gain.dart';
-import '../web_audio_api/node/iir_filter.dart';
-import '../web_audio_api/node/media_element_source.dart';
-import '../web_audio_api/node/media_stream_destination.dart';
-import '../web_audio_api/node/media_stream_source.dart';
-import '../web_audio_api/node/media_stream_track_source.dart';
-import '../web_audio_api/node/oscillator.dart';
-import '../web_audio_api/node/panner.dart';
-import '../web_audio_api/node/script_processor.dart';
-import '../web_audio_api/node/stereo_panner.dart';
-import '../web_audio_api/node/waveshaper.dart';
-import '../web_audio_api/param.dart';
-import '../web_audio_api/periodic_wave.dart';
+import '../web_audio_api/node.dart';
 import '../web_audio_api/worklet.dart';
 import 'api/simple.dart';
 import 'dart:async';
@@ -45,40 +16,11 @@ import 'dart:convert';
 import 'frb_generated.io.dart' if (dart.library.html) 'frb_generated.web.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 import 'web_audio_api.dart';
-import 'web_audio_api/buffer.dart';
-import 'web_audio_api/capacity.dart';
 import 'web_audio_api/context.dart';
-import 'web_audio_api/context/concrete_base.dart';
-import 'web_audio_api/context/offline.dart';
-import 'web_audio_api/context/online.dart';
-import 'web_audio_api/events.dart';
 import 'web_audio_api/media_devices.dart';
 import 'web_audio_api/media_recorder.dart';
 import 'web_audio_api/media_streams.dart';
-import 'web_audio_api/node/analyser.dart';
-import 'web_audio_api/node/audio_buffer_source.dart';
-import 'web_audio_api/node/audio_node.dart';
-import 'web_audio_api/node/biquad_filter.dart';
-import 'web_audio_api/node/channel_merger.dart';
-import 'web_audio_api/node/channel_splitter.dart';
-import 'web_audio_api/node/constant_source.dart';
-import 'web_audio_api/node/convolver.dart';
-import 'web_audio_api/node/delay.dart';
-import 'web_audio_api/node/destination.dart';
-import 'web_audio_api/node/dynamics_compressor.dart';
-import 'web_audio_api/node/gain.dart';
-import 'web_audio_api/node/iir_filter.dart';
-import 'web_audio_api/node/media_element_source.dart';
-import 'web_audio_api/node/media_stream_destination.dart';
-import 'web_audio_api/node/media_stream_source.dart';
-import 'web_audio_api/node/media_stream_track_source.dart';
-import 'web_audio_api/node/oscillator.dart';
-import 'web_audio_api/node/panner.dart';
-import 'web_audio_api/node/script_processor.dart';
-import 'web_audio_api/node/stereo_panner.dart';
-import 'web_audio_api/node/waveshaper.dart';
-import 'web_audio_api/param.dart';
-import 'web_audio_api/periodic_wave.dart';
+import 'web_audio_api/node.dart';
 import 'web_audio_api/worklet.dart';
 
 /// Main entrypoint of the Rust API
@@ -128,7 +70,7 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
   String get codegenVersion => '2.0.0-dev.37';
 
   @override
-  int get rustContentHash => -1823387984;
+  int get rustContentHash => 853404976;
 
   static const kDefaultExternalLibraryLoaderConfig =
       ExternalLibraryLoaderConfig(
@@ -163,282 +105,326 @@ abstract class RustLibApi extends BaseApi {
       required double value,
       required Ordering ordering});
 
-  Future<F32> webAudioApiBufferChannelDataAsMutSlice(
-      {required ChannelData that});
+  Future<AutomationRate> webAudioApiAudioParamAutomationRate(
+      {required AudioParam that});
 
-  Future<F32> webAudioApiBufferChannelDataAsSlice({required ChannelData that});
+  Future<Self> webAudioApiAudioParamCancelAndHoldAtTime(
+      {required AudioParam that, required double cancelTime});
 
-  Future<ChannelData> webAudioApiBufferChannelDataFrom(
-      {required List<double> data});
+  Future<Self> webAudioApiAudioParamCancelScheduledValues(
+      {required AudioParam that, required double cancelTime});
 
-  Future<bool> webAudioApiBufferChannelDataIsEmpty({required ChannelData that});
+  Future<double> webAudioApiAudioParamDefaultValue({required AudioParam that});
 
-  Future<BigInt> webAudioApiBufferChannelDataLen({required ChannelData that});
+  Future<Self> webAudioApiAudioParamExponentialRampToValueAtTime(
+      {required AudioParam that,
+      required double value,
+      required double endTime});
 
-  Future<ChannelData> webAudioApiBufferChannelDataNew({required BigInt length});
+  Future<Self> webAudioApiAudioParamLinearRampToValueAtTime(
+      {required AudioParam that,
+      required double value,
+      required double endTime});
 
-  Future<void> webAudioApiBufferAudioBufferCopyFromChannel(
-      {required AudioBuffer that,
-      required F32 destination,
-      required BigInt channelNumber});
+  Future<double> webAudioApiAudioParamMaxValue({required AudioParam that});
 
-  Future<void> webAudioApiBufferAudioBufferCopyFromChannelWithOffset(
-      {required AudioBuffer that,
-      required F32 destination,
-      required BigInt channelNumber,
-      required BigInt offset});
+  Future<double> webAudioApiAudioParamMinValue({required AudioParam that});
 
-  Future<void> webAudioApiBufferAudioBufferCopyToChannel(
-      {required AudioBuffer that,
-      required F32 source,
-      required BigInt channelNumber});
+  Future<void> webAudioApiAudioParamSetAutomationRate(
+      {required AudioParam that, required AutomationRate value});
 
-  Future<void> webAudioApiBufferAudioBufferCopyToChannelWithOffset(
-      {required AudioBuffer that,
-      required F32 source,
-      required BigInt channelNumber,
-      required BigInt offset});
+  Future<Self> webAudioApiAudioParamSetTargetAtTime(
+      {required AudioParam that,
+      required double value,
+      required double startTime,
+      required double timeConstant});
 
-  Future<double> webAudioApiBufferAudioBufferDuration(
-      {required AudioBuffer that});
+  Future<Self> webAudioApiAudioParamSetValue(
+      {required AudioParam that, required double value});
 
-  Future<AudioBuffer> webAudioApiBufferAudioBufferFrom(
-      {required List<Float32List> samples, required double sampleRate});
+  Future<Self> webAudioApiAudioParamSetValueAtTime(
+      {required AudioParam that,
+      required double value,
+      required double startTime});
 
-  Future<F32> webAudioApiBufferAudioBufferGetChannelData(
-      {required AudioBuffer that, required BigInt channelNumber});
+  Future<Self> webAudioApiAudioParamSetValueCurveAtTime(
+      {required AudioParam that,
+      required F32 values,
+      required double startTime,
+      required double duration});
 
-  Future<F32> webAudioApiBufferAudioBufferGetChannelDataMut(
-      {required AudioBuffer that, required BigInt channelNumber});
+  Future<double> webAudioApiAudioParamValue({required AudioParam that});
 
-  Future<BigInt> webAudioApiBufferAudioBufferLength(
-      {required AudioBuffer that});
-
-  Future<AudioBuffer> webAudioApiBufferAudioBufferNew(
-      {required AudioBufferOptions options});
-
-  Future<BigInt> webAudioApiBufferAudioBufferNumberOfChannels(
-      {required AudioBuffer that});
-
-  Future<double> webAudioApiBufferAudioBufferSampleRate(
-      {required AudioBuffer that});
-
-  double webAudioApiCapacityAudioRenderCapacityEventGetAverageLoad(
+  double webAudioApiAudioRenderCapacityEventGetAverageLoad(
       {required AudioRenderCapacityEvent that});
 
-  Event webAudioApiCapacityAudioRenderCapacityEventGetEvent(
+  Event webAudioApiAudioRenderCapacityEventGetEvent(
       {required AudioRenderCapacityEvent that});
 
-  double webAudioApiCapacityAudioRenderCapacityEventGetPeakLoad(
+  double webAudioApiAudioRenderCapacityEventGetPeakLoad(
       {required AudioRenderCapacityEvent that});
 
-  double webAudioApiCapacityAudioRenderCapacityEventGetTimestamp(
+  double webAudioApiAudioRenderCapacityEventGetTimestamp(
       {required AudioRenderCapacityEvent that});
 
-  double webAudioApiCapacityAudioRenderCapacityEventGetUnderrunRatio(
+  double webAudioApiAudioRenderCapacityEventGetUnderrunRatio(
       {required AudioRenderCapacityEvent that});
 
-  void webAudioApiCapacityAudioRenderCapacityEventSetAverageLoad(
+  void webAudioApiAudioRenderCapacityEventSetAverageLoad(
       {required AudioRenderCapacityEvent that, required double averageLoad});
 
-  void webAudioApiCapacityAudioRenderCapacityEventSetEvent(
+  void webAudioApiAudioRenderCapacityEventSetEvent(
       {required AudioRenderCapacityEvent that, required Event event});
 
-  void webAudioApiCapacityAudioRenderCapacityEventSetPeakLoad(
+  void webAudioApiAudioRenderCapacityEventSetPeakLoad(
       {required AudioRenderCapacityEvent that, required double peakLoad});
 
-  void webAudioApiCapacityAudioRenderCapacityEventSetTimestamp(
+  void webAudioApiAudioRenderCapacityEventSetTimestamp(
       {required AudioRenderCapacityEvent that, required double timestamp});
 
-  void webAudioApiCapacityAudioRenderCapacityEventSetUnderrunRatio(
+  void webAudioApiAudioRenderCapacityEventSetUnderrunRatio(
       {required AudioRenderCapacityEvent that, required double underrunRatio});
 
-  Future<void> webAudioApiCapacityAudioRenderCapacityClearOnupdate(
+  Future<void> webAudioApiAudioRenderCapacityClearOnupdate(
       {required AudioRenderCapacity that});
 
-  Future<void> webAudioApiCapacityAudioRenderCapacitySetOnupdate(
+  Future<void> webAudioApiAudioRenderCapacitySetOnupdate(
       {required AudioRenderCapacity that, required F callback});
 
-  Future<void> webAudioApiCapacityAudioRenderCapacityStart(
+  Future<void> webAudioApiAudioRenderCapacityStart(
       {required AudioRenderCapacity that,
       required AudioRenderCapacityOptions options});
 
-  Future<void> webAudioApiCapacityAudioRenderCapacityStop(
+  Future<void> webAudioApiAudioRenderCapacityStop(
       {required AudioRenderCapacity that});
 
-  Future<void>
-      webAudioApiContextConcreteBaseConcreteBaseAudioContextMarkCycleBreaker(
-          {required ConcreteBaseAudioContext that,
-          required AudioContextRegistration reg});
+  Future<F32> webAudioApiChannelDataAsMutSlice({required ChannelData that});
 
-  Future<void> webAudioApiContextOfflineOfflineAudioContextClearOncomplete(
-      {required OfflineAudioContext that});
+  Future<F32> webAudioApiChannelDataAsSlice({required ChannelData that});
 
-  Future<BigInt> webAudioApiContextOfflineOfflineAudioContextLength(
-      {required OfflineAudioContext that});
+  Future<ChannelData> webAudioApiChannelDataFrom({required List<double> data});
 
-  Future<OfflineAudioContext> webAudioApiContextOfflineOfflineAudioContextNew(
-      {required BigInt numberOfChannels,
-      required BigInt length,
-      required double sampleRate});
+  Future<bool> webAudioApiChannelDataIsEmpty({required ChannelData that});
 
-  Future<void> webAudioApiContextOfflineOfflineAudioContextResume(
-      {required OfflineAudioContext that});
+  Future<BigInt> webAudioApiChannelDataLen({required ChannelData that});
 
-  Future<void> webAudioApiContextOfflineOfflineAudioContextSetOncomplete(
-      {required OfflineAudioContext that, required F callback});
+  Future<ChannelData> webAudioApiChannelDataNew({required BigInt length});
 
-  Future<AudioBuffer>
-      webAudioApiContextOfflineOfflineAudioContextStartRendering(
-          {required OfflineAudioContext that});
+  BoxAny webAudioApiErrorEventGetError({required ErrorEvent that});
 
-  Future<AudioBuffer>
-      webAudioApiContextOfflineOfflineAudioContextStartRenderingSync(
-          {required OfflineAudioContext that});
+  Event webAudioApiErrorEventGetEvent({required ErrorEvent that});
 
-  Future<void> webAudioApiContextOfflineOfflineAudioContextSuspend(
-      {required OfflineAudioContext that, required double suspendTime});
+  String webAudioApiErrorEventGetMessage({required ErrorEvent that});
 
-  Future<void> webAudioApiContextOfflineOfflineAudioContextSuspendSync(
-      {required OfflineAudioContext that,
-      required double suspendTime,
-      required F callback});
-
-  Future<double> webAudioApiContextOnlineAudioContextBaseLatency(
-      {required AudioContext that});
-
-  Future<void> webAudioApiContextOnlineAudioContextClearOnsinkchange(
-      {required AudioContext that});
-
-  Future<void> webAudioApiContextOnlineAudioContextClose(
-      {required AudioContext that});
-
-  Future<void> webAudioApiContextOnlineAudioContextCloseSync(
-      {required AudioContext that});
-
-  Future<MediaElementAudioSourceNode>
-      webAudioApiContextOnlineAudioContextCreateMediaElementSource(
-          {required AudioContext that, required MediaElement mediaElement});
-
-  Future<MediaStreamAudioDestinationNode>
-      webAudioApiContextOnlineAudioContextCreateMediaStreamDestination(
-          {required AudioContext that});
-
-  Future<MediaStreamAudioSourceNode>
-      webAudioApiContextOnlineAudioContextCreateMediaStreamSource(
-          {required AudioContext that, required MediaStream media});
-
-  Future<MediaStreamTrackAudioSourceNode>
-      webAudioApiContextOnlineAudioContextCreateMediaStreamTrackSource(
-          {required AudioContext that, required MediaStreamTrack media});
-
-  Future<AudioContext> webAudioApiContextOnlineAudioContextNew(
-      {required AudioContextOptions options});
-
-  Future<double> webAudioApiContextOnlineAudioContextOutputLatency(
-      {required AudioContext that});
-
-  Future<AudioRenderCapacity>
-      webAudioApiContextOnlineAudioContextRenderCapacity(
-          {required AudioContext that});
-
-  Future<void> webAudioApiContextOnlineAudioContextResume(
-      {required AudioContext that});
-
-  Future<void> webAudioApiContextOnlineAudioContextResumeSync(
-      {required AudioContext that});
-
-  Future<void> webAudioApiContextOnlineAudioContextRunDiagnostics(
-      {required AudioContext that, required F callback});
-
-  Future<void> webAudioApiContextOnlineAudioContextSetOnsinkchange(
-      {required AudioContext that, required F callback});
-
-  Future<void> webAudioApiContextOnlineAudioContextSetSinkIdSync(
-      {required AudioContext that, required String sinkId});
-
-  Future<String> webAudioApiContextOnlineAudioContextSinkId(
-      {required AudioContext that});
-
-  Future<void> webAudioApiContextOnlineAudioContextSuspend(
-      {required AudioContext that});
-
-  Future<void> webAudioApiContextOnlineAudioContextSuspendSync(
-      {required AudioContext that});
-
-  BoxAny webAudioApiEventsErrorEventGetError({required ErrorEvent that});
-
-  Event webAudioApiEventsErrorEventGetEvent({required ErrorEvent that});
-
-  String webAudioApiEventsErrorEventGetMessage({required ErrorEvent that});
-
-  void webAudioApiEventsErrorEventSetError(
+  void webAudioApiErrorEventSetError(
       {required ErrorEvent that, required BoxAny error});
 
-  void webAudioApiEventsErrorEventSetEvent(
+  void webAudioApiErrorEventSetEvent(
       {required ErrorEvent that, required Event event});
 
-  void webAudioApiEventsErrorEventSetMessage(
+  void webAudioApiErrorEventSetMessage(
       {required ErrorEvent that, required String message});
 
-  Future<EventDispatch> webAudioApiEventsEventDispatchAudioProcessing(
+  Future<EventDispatch> webAudioApiEventDispatchAudioProcessing(
       {required AudioNodeId id, required AudioProcessingEvent value});
 
-  Future<EventDispatch> webAudioApiEventsEventDispatchComplete(
+  Future<EventDispatch> webAudioApiEventDispatchComplete(
       {required AudioBuffer buffer});
 
-  Future<EventDispatch> webAudioApiEventsEventDispatchDiagnostics(
+  Future<EventDispatch> webAudioApiEventDispatchDiagnostics(
       {required List<int> value});
 
-  Future<EventDispatch> webAudioApiEventsEventDispatchEnded(
+  Future<EventDispatch> webAudioApiEventDispatchEnded(
       {required AudioNodeId id});
 
-  Future<EventDispatch> webAudioApiEventsEventDispatchMessage(
+  Future<EventDispatch> webAudioApiEventDispatchMessage(
       {required AudioNodeId id, required BoxAny value});
 
-  Future<EventDispatch> webAudioApiEventsEventDispatchProcessorError(
+  Future<EventDispatch> webAudioApiEventDispatchProcessorError(
       {required AudioNodeId id, required ErrorEvent value});
 
-  Future<EventDispatch> webAudioApiEventsEventDispatchRenderCapacity(
+  Future<EventDispatch> webAudioApiEventDispatchRenderCapacity(
       {required AudioRenderCapacityEvent value});
 
-  Future<EventDispatch> webAudioApiEventsEventDispatchSinkChange();
+  Future<EventDispatch> webAudioApiEventDispatchSinkChange();
 
-  Future<EventDispatch> webAudioApiEventsEventDispatchStateChange(
+  Future<EventDispatch> webAudioApiEventDispatchStateChange(
       {required AudioContextState state});
 
-  Future<void> webAudioApiEventsEventLoopClearHandler(
+  Future<void> webAudioApiEventLoopClearHandler(
       {required EventLoop that, required EventType event});
 
-  Future<bool> webAudioApiEventsEventLoopHandlePendingEvents(
+  Future<bool> webAudioApiEventLoopHandlePendingEvents(
       {required EventLoop that});
 
-  Future<EventLoop> webAudioApiEventsEventLoopNew(
+  Future<EventLoop> webAudioApiEventLoopNew(
       {required ReceiverEventDispatch eventRecv});
 
-  Future<void> webAudioApiEventsEventLoopRunInThread({required EventLoop that});
+  Future<void> webAudioApiEventLoopRunInThread({required EventLoop that});
 
-  Future<void> webAudioApiEventsEventLoopSetHandler(
+  Future<void> webAudioApiEventLoopSetHandler(
       {required EventLoop that,
       required EventType event,
       required EventHandler callback});
 
-  Str webAudioApiEventsEventGetType({required Event that});
+  Str webAudioApiEventGetType({required Event that});
 
-  void webAudioApiEventsEventSetType({required Event that, required Str type});
+  void webAudioApiEventSetType({required Event that, required Str type});
 
-  Event webAudioApiEventsOfflineAudioCompletionEventGetEvent(
+  Event webAudioApiOfflineAudioCompletionEventGetEvent(
       {required OfflineAudioCompletionEvent that});
 
-  AudioBuffer webAudioApiEventsOfflineAudioCompletionEventGetRenderedBuffer(
+  AudioBuffer webAudioApiOfflineAudioCompletionEventGetRenderedBuffer(
       {required OfflineAudioCompletionEvent that});
 
-  void webAudioApiEventsOfflineAudioCompletionEventSetEvent(
+  void webAudioApiOfflineAudioCompletionEventSetEvent(
       {required OfflineAudioCompletionEvent that, required Event event});
 
-  void webAudioApiEventsOfflineAudioCompletionEventSetRenderedBuffer(
+  void webAudioApiOfflineAudioCompletionEventSetRenderedBuffer(
       {required OfflineAudioCompletionEvent that,
       required AudioBuffer renderedBuffer});
+
+  Future<PeriodicWave> webAudioApiPeriodicWaveNew(
+      {required C context, required PeriodicWaveOptions options});
+
+  Future<void> webAudioApiAudioBufferCopyFromChannel(
+      {required AudioBuffer that,
+      required F32 destination,
+      required BigInt channelNumber});
+
+  Future<void> webAudioApiAudioBufferCopyFromChannelWithOffset(
+      {required AudioBuffer that,
+      required F32 destination,
+      required BigInt channelNumber,
+      required BigInt offset});
+
+  Future<void> webAudioApiAudioBufferCopyToChannel(
+      {required AudioBuffer that,
+      required F32 source,
+      required BigInt channelNumber});
+
+  Future<void> webAudioApiAudioBufferCopyToChannelWithOffset(
+      {required AudioBuffer that,
+      required F32 source,
+      required BigInt channelNumber,
+      required BigInt offset});
+
+  Future<double> webAudioApiAudioBufferDuration({required AudioBuffer that});
+
+  Future<AudioBuffer> webAudioApiAudioBufferFrom(
+      {required List<Float32List> samples, required double sampleRate});
+
+  Future<F32> webAudioApiAudioBufferGetChannelData(
+      {required AudioBuffer that, required BigInt channelNumber});
+
+  Future<F32> webAudioApiAudioBufferGetChannelDataMut(
+      {required AudioBuffer that, required BigInt channelNumber});
+
+  Future<BigInt> webAudioApiAudioBufferLength({required AudioBuffer that});
+
+  Future<AudioBuffer> webAudioApiAudioBufferNew(
+      {required AudioBufferOptions options});
+
+  Future<BigInt> webAudioApiAudioBufferNumberOfChannels(
+      {required AudioBuffer that});
+
+  Future<double> webAudioApiAudioBufferSampleRate({required AudioBuffer that});
+
+  Future<double> webAudioApiContextAudioContextBaseLatency(
+      {required AudioContext that});
+
+  Future<void> webAudioApiContextAudioContextClearOnsinkchange(
+      {required AudioContext that});
+
+  Future<void> webAudioApiContextAudioContextClose(
+      {required AudioContext that});
+
+  Future<void> webAudioApiContextAudioContextCloseSync(
+      {required AudioContext that});
+
+  Future<MediaElementAudioSourceNode>
+      webAudioApiContextAudioContextCreateMediaElementSource(
+          {required AudioContext that, required MediaElement mediaElement});
+
+  Future<MediaStreamAudioDestinationNode>
+      webAudioApiContextAudioContextCreateMediaStreamDestination(
+          {required AudioContext that});
+
+  Future<MediaStreamAudioSourceNode>
+      webAudioApiContextAudioContextCreateMediaStreamSource(
+          {required AudioContext that, required MediaStream media});
+
+  Future<MediaStreamTrackAudioSourceNode>
+      webAudioApiContextAudioContextCreateMediaStreamTrackSource(
+          {required AudioContext that, required MediaStreamTrack media});
+
+  Future<AudioContext> webAudioApiContextAudioContextNew(
+      {required AudioContextOptions options});
+
+  Future<double> webAudioApiContextAudioContextOutputLatency(
+      {required AudioContext that});
+
+  Future<AudioRenderCapacity> webAudioApiContextAudioContextRenderCapacity(
+      {required AudioContext that});
+
+  Future<void> webAudioApiContextAudioContextResume(
+      {required AudioContext that});
+
+  Future<void> webAudioApiContextAudioContextResumeSync(
+      {required AudioContext that});
+
+  Future<void> webAudioApiContextAudioContextRunDiagnostics(
+      {required AudioContext that, required F callback});
+
+  Future<void> webAudioApiContextAudioContextSetOnsinkchange(
+      {required AudioContext that, required F callback});
+
+  Future<void> webAudioApiContextAudioContextSetSinkIdSync(
+      {required AudioContext that, required String sinkId});
+
+  Future<String> webAudioApiContextAudioContextSinkId(
+      {required AudioContext that});
+
+  Future<void> webAudioApiContextAudioContextSuspend(
+      {required AudioContext that});
+
+  Future<void> webAudioApiContextAudioContextSuspendSync(
+      {required AudioContext that});
+
+  Future<void> webAudioApiContextConcreteBaseAudioContextMarkCycleBreaker(
+      {required ConcreteBaseAudioContext that,
+      required AudioContextRegistration reg});
+
+  Future<void> webAudioApiContextOfflineAudioContextClearOncomplete(
+      {required OfflineAudioContext that});
+
+  Future<BigInt> webAudioApiContextOfflineAudioContextLength(
+      {required OfflineAudioContext that});
+
+  Future<OfflineAudioContext> webAudioApiContextOfflineAudioContextNew(
+      {required BigInt numberOfChannels,
+      required BigInt length,
+      required double sampleRate});
+
+  Future<void> webAudioApiContextOfflineAudioContextResume(
+      {required OfflineAudioContext that});
+
+  Future<void> webAudioApiContextOfflineAudioContextSetOncomplete(
+      {required OfflineAudioContext that, required F callback});
+
+  Future<AudioBuffer> webAudioApiContextOfflineAudioContextStartRendering(
+      {required OfflineAudioContext that});
+
+  Future<AudioBuffer> webAudioApiContextOfflineAudioContextStartRenderingSync(
+      {required OfflineAudioContext that});
+
+  Future<void> webAudioApiContextOfflineAudioContextSuspend(
+      {required OfflineAudioContext that, required double suspendTime});
+
+  Future<void> webAudioApiContextOfflineAudioContextSuspendSync(
+      {required OfflineAudioContext that,
+      required double suspendTime,
+      required F callback});
 
   Future<Str> webAudioApiMediaDevicesMediaDeviceInfoDeviceId(
       {required MediaDeviceInfo that});
@@ -516,445 +502,367 @@ abstract class RustLibApi extends BaseApi {
   Future<MediaStreamTrack> webAudioApiMediaStreamsMediaStreamGetTracks(
       {required MediaStream that});
 
-  Future<BigInt> webAudioApiNodeAnalyserAnalyserNodeFftSize(
+  Future<BigInt> webAudioApiNodeAnalyserNodeFftSize(
       {required AnalyserNode that});
 
-  Future<BigInt> webAudioApiNodeAnalyserAnalyserNodeFrequencyBinCount(
+  Future<BigInt> webAudioApiNodeAnalyserNodeFrequencyBinCount(
       {required AnalyserNode that});
 
-  Future<void> webAudioApiNodeAnalyserAnalyserNodeGetByteFrequencyData(
+  Future<void> webAudioApiNodeAnalyserNodeGetByteFrequencyData(
       {required AnalyserNode that, required U8 buffer});
 
-  Future<void> webAudioApiNodeAnalyserAnalyserNodeGetByteTimeDomainData(
+  Future<void> webAudioApiNodeAnalyserNodeGetByteTimeDomainData(
       {required AnalyserNode that, required U8 buffer});
 
-  Future<void> webAudioApiNodeAnalyserAnalyserNodeGetFloatFrequencyData(
+  Future<void> webAudioApiNodeAnalyserNodeGetFloatFrequencyData(
       {required AnalyserNode that, required F32 buffer});
 
-  Future<void> webAudioApiNodeAnalyserAnalyserNodeGetFloatTimeDomainData(
+  Future<void> webAudioApiNodeAnalyserNodeGetFloatTimeDomainData(
       {required AnalyserNode that, required F32 buffer});
 
-  Future<double> webAudioApiNodeAnalyserAnalyserNodeMaxDecibels(
+  Future<double> webAudioApiNodeAnalyserNodeMaxDecibels(
       {required AnalyserNode that});
 
-  Future<double> webAudioApiNodeAnalyserAnalyserNodeMinDecibels(
+  Future<double> webAudioApiNodeAnalyserNodeMinDecibels(
       {required AnalyserNode that});
 
-  Future<AnalyserNode> webAudioApiNodeAnalyserAnalyserNodeNew(
+  Future<AnalyserNode> webAudioApiNodeAnalyserNodeNew(
       {required C context, required AnalyserOptions options});
 
-  Future<void> webAudioApiNodeAnalyserAnalyserNodeSetFftSize(
+  Future<void> webAudioApiNodeAnalyserNodeSetFftSize(
       {required AnalyserNode that, required BigInt fftSize});
 
-  Future<void> webAudioApiNodeAnalyserAnalyserNodeSetMaxDecibels(
+  Future<void> webAudioApiNodeAnalyserNodeSetMaxDecibels(
       {required AnalyserNode that, required double value});
 
-  Future<void> webAudioApiNodeAnalyserAnalyserNodeSetMinDecibels(
+  Future<void> webAudioApiNodeAnalyserNodeSetMinDecibels(
       {required AnalyserNode that, required double value});
 
-  Future<void> webAudioApiNodeAnalyserAnalyserNodeSetSmoothingTimeConstant(
+  Future<void> webAudioApiNodeAnalyserNodeSetSmoothingTimeConstant(
       {required AnalyserNode that, required double value});
 
-  Future<double> webAudioApiNodeAnalyserAnalyserNodeSmoothingTimeConstant(
+  Future<double> webAudioApiNodeAnalyserNodeSmoothingTimeConstant(
       {required AnalyserNode that});
 
-  Future<AudioBuffer?>
-      webAudioApiNodeAudioBufferSourceAudioBufferSourceNodeBuffer(
-          {required AudioBufferSourceNode that});
-
-  Future<AudioParam>
-      webAudioApiNodeAudioBufferSourceAudioBufferSourceNodeDetune(
-          {required AudioBufferSourceNode that});
-
-  Future<bool> webAudioApiNodeAudioBufferSourceAudioBufferSourceNodeLoop(
+  Future<AudioBuffer?> webAudioApiNodeAudioBufferSourceNodeBuffer(
       {required AudioBufferSourceNode that});
 
-  Future<double> webAudioApiNodeAudioBufferSourceAudioBufferSourceNodeLoopEnd(
+  Future<AudioParam> webAudioApiNodeAudioBufferSourceNodeDetune(
       {required AudioBufferSourceNode that});
 
-  Future<double> webAudioApiNodeAudioBufferSourceAudioBufferSourceNodeLoopStart(
+  Future<bool> webAudioApiNodeAudioBufferSourceNodeLoop(
       {required AudioBufferSourceNode that});
 
-  Future<AudioBufferSourceNode>
-      webAudioApiNodeAudioBufferSourceAudioBufferSourceNodeNew(
-          {required C context, required AudioBufferSourceOptions options});
-
-  Future<AudioParam>
-      webAudioApiNodeAudioBufferSourceAudioBufferSourceNodePlaybackRate(
-          {required AudioBufferSourceNode that});
-
-  Future<double> webAudioApiNodeAudioBufferSourceAudioBufferSourceNodePosition(
+  Future<double> webAudioApiNodeAudioBufferSourceNodeLoopEnd(
       {required AudioBufferSourceNode that});
 
-  Future<void> webAudioApiNodeAudioBufferSourceAudioBufferSourceNodeSetBuffer(
+  Future<double> webAudioApiNodeAudioBufferSourceNodeLoopStart(
+      {required AudioBufferSourceNode that});
+
+  Future<AudioBufferSourceNode> webAudioApiNodeAudioBufferSourceNodeNew(
+      {required C context, required AudioBufferSourceOptions options});
+
+  Future<AudioParam> webAudioApiNodeAudioBufferSourceNodePlaybackRate(
+      {required AudioBufferSourceNode that});
+
+  Future<double> webAudioApiNodeAudioBufferSourceNodePosition(
+      {required AudioBufferSourceNode that});
+
+  Future<void> webAudioApiNodeAudioBufferSourceNodeSetBuffer(
       {required AudioBufferSourceNode that, required AudioBuffer audioBuffer});
 
-  Future<void> webAudioApiNodeAudioBufferSourceAudioBufferSourceNodeSetLoop(
+  Future<void> webAudioApiNodeAudioBufferSourceNodeSetLoop(
       {required AudioBufferSourceNode that, required bool value});
 
-  Future<void> webAudioApiNodeAudioBufferSourceAudioBufferSourceNodeSetLoopEnd(
+  Future<void> webAudioApiNodeAudioBufferSourceNodeSetLoopEnd(
       {required AudioBufferSourceNode that, required double value});
 
-  Future<void>
-      webAudioApiNodeAudioBufferSourceAudioBufferSourceNodeSetLoopStart(
-          {required AudioBufferSourceNode that, required double value});
+  Future<void> webAudioApiNodeAudioBufferSourceNodeSetLoopStart(
+      {required AudioBufferSourceNode that, required double value});
 
-  Future<void>
-      webAudioApiNodeAudioBufferSourceAudioBufferSourceNodeStartAtWithOffset(
-          {required AudioBufferSourceNode that,
-          required double start,
-          required double offset});
+  Future<void> webAudioApiNodeAudioBufferSourceNodeStartAtWithOffset(
+      {required AudioBufferSourceNode that,
+      required double start,
+      required double offset});
 
-  Future<void>
-      webAudioApiNodeAudioBufferSourceAudioBufferSourceNodeStartAtWithOffsetAndDuration(
-          {required AudioBufferSourceNode that,
-          required double start,
-          required double offset,
-          required double duration});
+  Future<void> webAudioApiNodeAudioBufferSourceNodeStartAtWithOffsetAndDuration(
+      {required AudioBufferSourceNode that,
+      required double start,
+      required double offset,
+      required double duration});
 
-  Future<AudioParam> webAudioApiNodeBiquadFilterBiquadFilterNodeDetune(
+  Future<BigInt> webAudioApiNodeAudioDestinationNodeMaxChannelCount(
+      {required AudioDestinationNode that});
+
+  Future<AudioParam> webAudioApiNodeBiquadFilterNodeDetune(
       {required BiquadFilterNode that});
 
-  Future<AudioParam> webAudioApiNodeBiquadFilterBiquadFilterNodeFrequency(
+  Future<AudioParam> webAudioApiNodeBiquadFilterNodeFrequency(
       {required BiquadFilterNode that});
 
-  Future<AudioParam> webAudioApiNodeBiquadFilterBiquadFilterNodeGain(
+  Future<AudioParam> webAudioApiNodeBiquadFilterNodeGain(
       {required BiquadFilterNode that});
 
-  Future<void> webAudioApiNodeBiquadFilterBiquadFilterNodeGetFrequencyResponse(
+  Future<void> webAudioApiNodeBiquadFilterNodeGetFrequencyResponse(
       {required BiquadFilterNode that,
       required F32 frequencyHz,
       required F32 magResponse,
       required F32 phaseResponse});
 
-  Future<BiquadFilterNode> webAudioApiNodeBiquadFilterBiquadFilterNodeNew(
+  Future<BiquadFilterNode> webAudioApiNodeBiquadFilterNodeNew(
       {required C context, required BiquadFilterOptions options});
 
-  Future<AudioParam> webAudioApiNodeBiquadFilterBiquadFilterNodeQ(
+  Future<AudioParam> webAudioApiNodeBiquadFilterNodeQ(
       {required BiquadFilterNode that});
 
-  Future<void> webAudioApiNodeBiquadFilterBiquadFilterNodeSetType(
+  Future<void> webAudioApiNodeBiquadFilterNodeSetType(
       {required BiquadFilterNode that, required BiquadFilterType type});
 
-  Future<BiquadFilterType> webAudioApiNodeBiquadFilterBiquadFilterNodeType(
+  Future<BiquadFilterType> webAudioApiNodeBiquadFilterNodeType(
       {required BiquadFilterNode that});
 
-  Future<ChannelMergerNode> webAudioApiNodeChannelMergerChannelMergerNodeNew(
+  Future<ChannelMergerNode> webAudioApiNodeChannelMergerNodeNew(
       {required C context, required ChannelMergerOptions options});
 
-  Future<ChannelSplitterNode>
-      webAudioApiNodeChannelSplitterChannelSplitterNodeNew(
-          {required C context, required ChannelSplitterOptions options});
+  Future<ChannelSplitterNode> webAudioApiNodeChannelSplitterNodeNew(
+      {required C context, required ChannelSplitterOptions options});
 
-  Future<ConstantSourceNode> webAudioApiNodeConstantSourceConstantSourceNodeNew(
+  Future<ConstantSourceNode> webAudioApiNodeConstantSourceNodeNew(
       {required C context, required ConstantSourceOptions options});
 
-  Future<AudioParam> webAudioApiNodeConstantSourceConstantSourceNodeOffset(
+  Future<AudioParam> webAudioApiNodeConstantSourceNodeOffset(
       {required ConstantSourceNode that});
 
-  Future<AudioBuffer?> webAudioApiNodeConvolverConvolverNodeBuffer(
+  Future<AudioBuffer?> webAudioApiNodeConvolverNodeBuffer(
       {required ConvolverNode that});
 
-  Future<ConvolverNode> webAudioApiNodeConvolverConvolverNodeNew(
+  Future<ConvolverNode> webAudioApiNodeConvolverNodeNew(
       {required C context, required ConvolverOptions options});
 
-  Future<bool> webAudioApiNodeConvolverConvolverNodeNormalize(
+  Future<bool> webAudioApiNodeConvolverNodeNormalize(
       {required ConvolverNode that});
 
-  Future<void> webAudioApiNodeConvolverConvolverNodeSetBuffer(
+  Future<void> webAudioApiNodeConvolverNodeSetBuffer(
       {required ConvolverNode that, required AudioBuffer buffer});
 
-  Future<void> webAudioApiNodeConvolverConvolverNodeSetNormalize(
+  Future<void> webAudioApiNodeConvolverNodeSetNormalize(
       {required ConvolverNode that, required bool value});
 
-  Future<AudioParam> webAudioApiNodeDelayDelayNodeDelayTime(
+  Future<AudioParam> webAudioApiNodeDelayNodeDelayTime(
       {required DelayNode that});
 
-  Future<DelayNode> webAudioApiNodeDelayDelayNodeNew(
+  Future<DelayNode> webAudioApiNodeDelayNodeNew(
       {required C context, required DelayOptions options});
 
-  Future<BigInt> webAudioApiNodeDestinationAudioDestinationNodeMaxChannelCount(
-      {required AudioDestinationNode that});
+  Future<AudioParam> webAudioApiNodeDynamicsCompressorNodeAttack(
+      {required DynamicsCompressorNode that});
 
-  Future<AudioParam>
-      webAudioApiNodeDynamicsCompressorDynamicsCompressorNodeAttack(
-          {required DynamicsCompressorNode that});
+  Future<AudioParam> webAudioApiNodeDynamicsCompressorNodeKnee(
+      {required DynamicsCompressorNode that});
 
-  Future<AudioParam>
-      webAudioApiNodeDynamicsCompressorDynamicsCompressorNodeKnee(
-          {required DynamicsCompressorNode that});
+  Future<DynamicsCompressorNode> webAudioApiNodeDynamicsCompressorNodeNew(
+      {required C context, required DynamicsCompressorOptions options});
 
-  Future<DynamicsCompressorNode>
-      webAudioApiNodeDynamicsCompressorDynamicsCompressorNodeNew(
-          {required C context, required DynamicsCompressorOptions options});
+  Future<AudioParam> webAudioApiNodeDynamicsCompressorNodeRatio(
+      {required DynamicsCompressorNode that});
 
-  Future<AudioParam>
-      webAudioApiNodeDynamicsCompressorDynamicsCompressorNodeRatio(
-          {required DynamicsCompressorNode that});
+  Future<double> webAudioApiNodeDynamicsCompressorNodeReduction(
+      {required DynamicsCompressorNode that});
 
-  Future<double>
-      webAudioApiNodeDynamicsCompressorDynamicsCompressorNodeReduction(
-          {required DynamicsCompressorNode that});
+  Future<AudioParam> webAudioApiNodeDynamicsCompressorNodeRelease(
+      {required DynamicsCompressorNode that});
 
-  Future<AudioParam>
-      webAudioApiNodeDynamicsCompressorDynamicsCompressorNodeRelease(
-          {required DynamicsCompressorNode that});
+  Future<AudioParam> webAudioApiNodeDynamicsCompressorNodeThreshold(
+      {required DynamicsCompressorNode that});
 
-  Future<AudioParam>
-      webAudioApiNodeDynamicsCompressorDynamicsCompressorNodeThreshold(
-          {required DynamicsCompressorNode that});
+  Future<AudioParam> webAudioApiNodeGainNodeGain({required GainNode that});
 
-  Future<AudioParam> webAudioApiNodeGainGainNodeGain({required GainNode that});
-
-  Future<GainNode> webAudioApiNodeGainGainNodeNew(
+  Future<GainNode> webAudioApiNodeGainNodeNew(
       {required C context, required GainOptions options});
 
-  Future<void> webAudioApiNodeIirFilterIirFilterNodeGetFrequencyResponse(
+  Future<void> webAudioApiNodeIirFilterNodeGetFrequencyResponse(
       {required IirFilterNode that,
       required F32 frequencyHz,
       required F32 magResponse,
       required F32 phaseResponse});
 
-  Future<IirFilterNode> webAudioApiNodeIirFilterIirFilterNodeNew(
+  Future<IirFilterNode> webAudioApiNodeIirFilterNodeNew(
       {required C context, required IIRFilterOptions options});
 
   Future<MediaElementAudioSourceNode>
-      webAudioApiNodeMediaElementSourceMediaElementAudioSourceNodeNew(
+      webAudioApiNodeMediaElementAudioSourceNodeNew(
           {required C context,
           required MediaElementAudioSourceOptions options});
 
-  MediaElement
-      webAudioApiNodeMediaElementSourceMediaElementAudioSourceOptionsGetMediaElement(
-          {required MediaElementAudioSourceOptions that});
+  MediaElement webAudioApiNodeMediaElementAudioSourceOptionsGetMediaElement(
+      {required MediaElementAudioSourceOptions that});
 
-  void
-      webAudioApiNodeMediaElementSourceMediaElementAudioSourceOptionsSetMediaElement(
-          {required MediaElementAudioSourceOptions that,
-          required MediaElement mediaElement});
+  void webAudioApiNodeMediaElementAudioSourceOptionsSetMediaElement(
+      {required MediaElementAudioSourceOptions that,
+      required MediaElement mediaElement});
 
   Future<MediaStreamAudioDestinationNode>
-      webAudioApiNodeMediaStreamDestinationMediaStreamAudioDestinationNodeNew(
+      webAudioApiNodeMediaStreamAudioDestinationNodeNew(
           {required C context, required AudioNodeOptions options});
 
-  Future<MediaStream>
-      webAudioApiNodeMediaStreamDestinationMediaStreamAudioDestinationNodeStream(
-          {required MediaStreamAudioDestinationNode that});
+  Future<MediaStream> webAudioApiNodeMediaStreamAudioDestinationNodeStream(
+      {required MediaStreamAudioDestinationNode that});
 
   Future<MediaStreamAudioSourceNode>
-      webAudioApiNodeMediaStreamSourceMediaStreamAudioSourceNodeNew(
+      webAudioApiNodeMediaStreamAudioSourceNodeNew(
           {required C context, required MediaStreamAudioSourceOptions options});
 
-  MediaStream
-      webAudioApiNodeMediaStreamSourceMediaStreamAudioSourceOptionsGetMediaStream(
-          {required MediaStreamAudioSourceOptions that});
+  MediaStream webAudioApiNodeMediaStreamAudioSourceOptionsGetMediaStream(
+      {required MediaStreamAudioSourceOptions that});
 
-  void
-      webAudioApiNodeMediaStreamSourceMediaStreamAudioSourceOptionsSetMediaStream(
-          {required MediaStreamAudioSourceOptions that,
-          required MediaStream mediaStream});
+  void webAudioApiNodeMediaStreamAudioSourceOptionsSetMediaStream(
+      {required MediaStreamAudioSourceOptions that,
+      required MediaStream mediaStream});
 
   Future<MediaStreamTrackAudioSourceNode>
-      webAudioApiNodeMediaStreamTrackSourceMediaStreamTrackAudioSourceNodeNew(
+      webAudioApiNodeMediaStreamTrackAudioSourceNodeNew(
           {required C context,
           required MediaStreamTrackAudioSourceOptions options});
 
   MediaStreamTrack
-      webAudioApiNodeMediaStreamTrackSourceMediaStreamTrackAudioSourceOptionsGetMediaStreamTrack(
+      webAudioApiNodeMediaStreamTrackAudioSourceOptionsGetMediaStreamTrack(
           {required MediaStreamTrackAudioSourceOptions that});
 
-  void
-      webAudioApiNodeMediaStreamTrackSourceMediaStreamTrackAudioSourceOptionsSetMediaStreamTrack(
-          {required MediaStreamTrackAudioSourceOptions that,
-          required MediaStreamTrack mediaStreamTrack});
+  void webAudioApiNodeMediaStreamTrackAudioSourceOptionsSetMediaStreamTrack(
+      {required MediaStreamTrackAudioSourceOptions that,
+      required MediaStreamTrack mediaStreamTrack});
 
-  Future<AudioParam> webAudioApiNodeOscillatorOscillatorNodeDetune(
+  Future<AudioParam> webAudioApiNodeOscillatorNodeDetune(
       {required OscillatorNode that});
 
-  Future<AudioParam> webAudioApiNodeOscillatorOscillatorNodeFrequency(
+  Future<AudioParam> webAudioApiNodeOscillatorNodeFrequency(
       {required OscillatorNode that});
 
-  Future<OscillatorNode> webAudioApiNodeOscillatorOscillatorNodeNew(
+  Future<OscillatorNode> webAudioApiNodeOscillatorNodeNew(
       {required C context, required OscillatorOptions options});
 
-  Future<void> webAudioApiNodeOscillatorOscillatorNodeSetPeriodicWave(
+  Future<void> webAudioApiNodeOscillatorNodeSetPeriodicWave(
       {required OscillatorNode that, required PeriodicWave periodicWave});
 
-  Future<void> webAudioApiNodeOscillatorOscillatorNodeSetType(
+  Future<void> webAudioApiNodeOscillatorNodeSetType(
       {required OscillatorNode that, required OscillatorType type});
 
-  Future<OscillatorType> webAudioApiNodeOscillatorOscillatorNodeType(
+  Future<OscillatorType> webAudioApiNodeOscillatorNodeType(
       {required OscillatorNode that});
 
-  Future<double> webAudioApiNodePannerPannerNodeConeInnerAngle(
+  Future<double> webAudioApiNodePannerNodeConeInnerAngle(
       {required PannerNode that});
 
-  Future<double> webAudioApiNodePannerPannerNodeConeOuterAngle(
+  Future<double> webAudioApiNodePannerNodeConeOuterAngle(
       {required PannerNode that});
 
-  Future<double> webAudioApiNodePannerPannerNodeConeOuterGain(
+  Future<double> webAudioApiNodePannerNodeConeOuterGain(
       {required PannerNode that});
 
-  Future<DistanceModelType> webAudioApiNodePannerPannerNodeDistanceModel(
+  Future<DistanceModelType> webAudioApiNodePannerNodeDistanceModel(
       {required PannerNode that});
 
-  Future<double> webAudioApiNodePannerPannerNodeMaxDistance(
+  Future<double> webAudioApiNodePannerNodeMaxDistance(
       {required PannerNode that});
 
-  Future<PannerNode> webAudioApiNodePannerPannerNodeNew(
+  Future<PannerNode> webAudioApiNodePannerNodeNew(
       {required C context, required PannerOptions options});
 
-  Future<AudioParam> webAudioApiNodePannerPannerNodeOrientationX(
+  Future<AudioParam> webAudioApiNodePannerNodeOrientationX(
       {required PannerNode that});
 
-  Future<AudioParam> webAudioApiNodePannerPannerNodeOrientationY(
+  Future<AudioParam> webAudioApiNodePannerNodeOrientationY(
       {required PannerNode that});
 
-  Future<AudioParam> webAudioApiNodePannerPannerNodeOrientationZ(
+  Future<AudioParam> webAudioApiNodePannerNodeOrientationZ(
       {required PannerNode that});
 
-  Future<PanningModelType> webAudioApiNodePannerPannerNodePanningModel(
+  Future<PanningModelType> webAudioApiNodePannerNodePanningModel(
       {required PannerNode that});
 
-  Future<AudioParam> webAudioApiNodePannerPannerNodePositionX(
+  Future<AudioParam> webAudioApiNodePannerNodePositionX(
       {required PannerNode that});
 
-  Future<AudioParam> webAudioApiNodePannerPannerNodePositionY(
+  Future<AudioParam> webAudioApiNodePannerNodePositionY(
       {required PannerNode that});
 
-  Future<AudioParam> webAudioApiNodePannerPannerNodePositionZ(
+  Future<AudioParam> webAudioApiNodePannerNodePositionZ(
       {required PannerNode that});
 
-  Future<double> webAudioApiNodePannerPannerNodeRefDistance(
+  Future<double> webAudioApiNodePannerNodeRefDistance(
       {required PannerNode that});
 
-  Future<double> webAudioApiNodePannerPannerNodeRolloffFactor(
+  Future<double> webAudioApiNodePannerNodeRolloffFactor(
       {required PannerNode that});
 
-  Future<void> webAudioApiNodePannerPannerNodeSetConeInnerAngle(
+  Future<void> webAudioApiNodePannerNodeSetConeInnerAngle(
       {required PannerNode that, required double value});
 
-  Future<void> webAudioApiNodePannerPannerNodeSetConeOuterAngle(
+  Future<void> webAudioApiNodePannerNodeSetConeOuterAngle(
       {required PannerNode that, required double value});
 
-  Future<void> webAudioApiNodePannerPannerNodeSetConeOuterGain(
+  Future<void> webAudioApiNodePannerNodeSetConeOuterGain(
       {required PannerNode that, required double value});
 
-  Future<void> webAudioApiNodePannerPannerNodeSetDistanceModel(
+  Future<void> webAudioApiNodePannerNodeSetDistanceModel(
       {required PannerNode that, required DistanceModelType value});
 
-  Future<void> webAudioApiNodePannerPannerNodeSetMaxDistance(
+  Future<void> webAudioApiNodePannerNodeSetMaxDistance(
       {required PannerNode that, required double value});
 
-  Future<void> webAudioApiNodePannerPannerNodeSetOrientation(
+  Future<void> webAudioApiNodePannerNodeSetOrientation(
       {required PannerNode that,
       required double x,
       required double y,
       required double z});
 
-  Future<void> webAudioApiNodePannerPannerNodeSetPanningModel(
+  Future<void> webAudioApiNodePannerNodeSetPanningModel(
       {required PannerNode that, required PanningModelType value});
 
-  Future<void> webAudioApiNodePannerPannerNodeSetPosition(
+  Future<void> webAudioApiNodePannerNodeSetPosition(
       {required PannerNode that,
       required double x,
       required double y,
       required double z});
 
-  Future<void> webAudioApiNodePannerPannerNodeSetRefDistance(
+  Future<void> webAudioApiNodePannerNodeSetRefDistance(
       {required PannerNode that, required double value});
 
-  Future<void> webAudioApiNodePannerPannerNodeSetRolloffFactor(
+  Future<void> webAudioApiNodePannerNodeSetRolloffFactor(
       {required PannerNode that, required double value});
 
-  Future<BigInt> webAudioApiNodeScriptProcessorScriptProcessorNodeBufferSize(
+  Future<BigInt> webAudioApiNodeScriptProcessorNodeBufferSize(
       {required ScriptProcessorNode that});
 
-  Future<void>
-      webAudioApiNodeScriptProcessorScriptProcessorNodeClearOnaudioprocess(
-          {required ScriptProcessorNode that});
+  Future<void> webAudioApiNodeScriptProcessorNodeClearOnaudioprocess(
+      {required ScriptProcessorNode that});
 
-  Future<ScriptProcessorNode>
-      webAudioApiNodeScriptProcessorScriptProcessorNodeNew(
-          {required C context, required ScriptProcessorOptions options});
+  Future<ScriptProcessorNode> webAudioApiNodeScriptProcessorNodeNew(
+      {required C context, required ScriptProcessorOptions options});
 
-  Future<void>
-      webAudioApiNodeScriptProcessorScriptProcessorNodeSetOnaudioprocess(
-          {required ScriptProcessorNode that, required F callback});
+  Future<void> webAudioApiNodeScriptProcessorNodeSetOnaudioprocess(
+      {required ScriptProcessorNode that, required F callback});
 
-  Future<StereoPannerNode> webAudioApiNodeStereoPannerStereoPannerNodeNew(
+  Future<StereoPannerNode> webAudioApiNodeStereoPannerNodeNew(
       {required C context, required StereoPannerOptions options});
 
-  Future<AudioParam> webAudioApiNodeStereoPannerStereoPannerNodePan(
+  Future<AudioParam> webAudioApiNodeStereoPannerNodePan(
       {required StereoPannerNode that});
 
-  Future<F32?> webAudioApiNodeWaveshaperWaveShaperNodeCurve(
+  Future<F32?> webAudioApiNodeWaveShaperNodeCurve(
       {required WaveShaperNode that});
 
-  Future<WaveShaperNode> webAudioApiNodeWaveshaperWaveShaperNodeNew(
+  Future<WaveShaperNode> webAudioApiNodeWaveShaperNodeNew(
       {required C context, required WaveShaperOptions options});
 
-  Future<OverSampleType> webAudioApiNodeWaveshaperWaveShaperNodeOversample(
+  Future<OverSampleType> webAudioApiNodeWaveShaperNodeOversample(
       {required WaveShaperNode that});
 
-  Future<void> webAudioApiNodeWaveshaperWaveShaperNodeSetCurve(
+  Future<void> webAudioApiNodeWaveShaperNodeSetCurve(
       {required WaveShaperNode that, required List<double> curve});
 
-  Future<void> webAudioApiNodeWaveshaperWaveShaperNodeSetOversample(
+  Future<void> webAudioApiNodeWaveShaperNodeSetOversample(
       {required WaveShaperNode that, required OverSampleType oversample});
-
-  Future<AutomationRate> webAudioApiParamAudioParamAutomationRate(
-      {required AudioParam that});
-
-  Future<Self> webAudioApiParamAudioParamCancelAndHoldAtTime(
-      {required AudioParam that, required double cancelTime});
-
-  Future<Self> webAudioApiParamAudioParamCancelScheduledValues(
-      {required AudioParam that, required double cancelTime});
-
-  Future<double> webAudioApiParamAudioParamDefaultValue(
-      {required AudioParam that});
-
-  Future<Self> webAudioApiParamAudioParamExponentialRampToValueAtTime(
-      {required AudioParam that,
-      required double value,
-      required double endTime});
-
-  Future<Self> webAudioApiParamAudioParamLinearRampToValueAtTime(
-      {required AudioParam that,
-      required double value,
-      required double endTime});
-
-  Future<double> webAudioApiParamAudioParamMaxValue({required AudioParam that});
-
-  Future<double> webAudioApiParamAudioParamMinValue({required AudioParam that});
-
-  Future<void> webAudioApiParamAudioParamSetAutomationRate(
-      {required AudioParam that, required AutomationRate value});
-
-  Future<Self> webAudioApiParamAudioParamSetTargetAtTime(
-      {required AudioParam that,
-      required double value,
-      required double startTime,
-      required double timeConstant});
-
-  Future<Self> webAudioApiParamAudioParamSetValue(
-      {required AudioParam that, required double value});
-
-  Future<Self> webAudioApiParamAudioParamSetValueAtTime(
-      {required AudioParam that,
-      required double value,
-      required double startTime});
-
-  Future<Self> webAudioApiParamAudioParamSetValueCurveAtTime(
-      {required AudioParam that,
-      required F32 values,
-      required double startTime,
-      required double duration});
-
-  Future<double> webAudioApiParamAudioParamValue({required AudioParam that});
-
-  Future<PeriodicWave> webAudioApiPeriodicWavePeriodicWaveNew(
-      {required C context, required PeriodicWaveOptions options});
 
   AudioNodeOptions webAudioApiWorkletAudioWorkletNodeOptionsGetAudioNodeOptions(
       {required AudioWorkletNodeOptions that});
@@ -1751,246 +1659,242 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       );
 
   @override
-  Future<F32> webAudioApiBufferChannelDataAsMutSlice(
-      {required ChannelData that}) {
+  Future<AutomationRate> webAudioApiAudioParamAutomationRate(
+      {required AudioParam that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 9, port: port_);
       },
       codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32,
+        decodeSuccessData: sse_decode_automation_rate,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiBufferChannelDataAsMutSliceConstMeta,
+      constMeta: kWebAudioApiAudioParamAutomationRateConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiBufferChannelDataAsMutSliceConstMeta =>
+  TaskConstMeta get kWebAudioApiAudioParamAutomationRateConstMeta =>
       const TaskConstMeta(
-        debugName: "ChannelData_as_mut_slice",
+        debugName: "AudioParam_automation_rate",
         argNames: ["that"],
       );
 
   @override
-  Future<F32> webAudioApiBufferChannelDataAsSlice({required ChannelData that}) {
+  Future<Self> webAudioApiAudioParamCancelAndHoldAtTime(
+      {required AudioParam that, required double cancelTime}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
             that, serializer);
+        sse_encode_f_64(cancelTime, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 10, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
-            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32,
+            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSelf,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiBufferChannelDataAsSliceConstMeta,
-      argValues: [that],
+      constMeta: kWebAudioApiAudioParamCancelAndHoldAtTimeConstMeta,
+      argValues: [that, cancelTime],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiBufferChannelDataAsSliceConstMeta =>
+  TaskConstMeta get kWebAudioApiAudioParamCancelAndHoldAtTimeConstMeta =>
       const TaskConstMeta(
-        debugName: "ChannelData_as_slice",
-        argNames: ["that"],
+        debugName: "AudioParam_cancel_and_hold_at_time",
+        argNames: ["that", "cancelTime"],
       );
 
   @override
-  Future<ChannelData> webAudioApiBufferChannelDataFrom(
-      {required List<double> data}) {
+  Future<Self> webAudioApiAudioParamCancelScheduledValues(
+      {required AudioParam that, required double cancelTime}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_list_prim_f_32_loose(data, serializer);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
+            that, serializer);
+        sse_encode_f_64(cancelTime, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 11, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
-            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData,
+            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSelf,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiBufferChannelDataFromConstMeta,
-      argValues: [data],
+      constMeta: kWebAudioApiAudioParamCancelScheduledValuesConstMeta,
+      argValues: [that, cancelTime],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiBufferChannelDataFromConstMeta =>
+  TaskConstMeta get kWebAudioApiAudioParamCancelScheduledValuesConstMeta =>
       const TaskConstMeta(
-        debugName: "ChannelData_from",
-        argNames: ["data"],
+        debugName: "AudioParam_cancel_scheduled_values",
+        argNames: ["that", "cancelTime"],
       );
 
   @override
-  Future<bool> webAudioApiBufferChannelDataIsEmpty(
-      {required ChannelData that}) {
+  Future<double> webAudioApiAudioParamDefaultValue({required AudioParam that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 12, port: port_);
       },
       codec: SseCodec(
-        decodeSuccessData: sse_decode_bool,
+        decodeSuccessData: sse_decode_f_32,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiBufferChannelDataIsEmptyConstMeta,
+      constMeta: kWebAudioApiAudioParamDefaultValueConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiBufferChannelDataIsEmptyConstMeta =>
+  TaskConstMeta get kWebAudioApiAudioParamDefaultValueConstMeta =>
       const TaskConstMeta(
-        debugName: "ChannelData_is_empty",
+        debugName: "AudioParam_default_value",
         argNames: ["that"],
       );
 
   @override
-  Future<BigInt> webAudioApiBufferChannelDataLen({required ChannelData that}) {
+  Future<Self> webAudioApiAudioParamExponentialRampToValueAtTime(
+      {required AudioParam that,
+      required double value,
+      required double endTime}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
             that, serializer);
+        sse_encode_f_32(value, serializer);
+        sse_encode_f_64(endTime, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 13, port: port_);
       },
       codec: SseCodec(
-        decodeSuccessData: sse_decode_usize,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiBufferChannelDataLenConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiBufferChannelDataLenConstMeta =>
-      const TaskConstMeta(
-        debugName: "ChannelData_len",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<ChannelData> webAudioApiBufferChannelDataNew(
-      {required BigInt length}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_usize(length, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 14, port: port_);
-      },
-      codec: SseCodec(
         decodeSuccessData:
-            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData,
+            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSelf,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiBufferChannelDataNewConstMeta,
-      argValues: [length],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiBufferChannelDataNewConstMeta =>
-      const TaskConstMeta(
-        debugName: "ChannelData_new",
-        argNames: ["length"],
-      );
-
-  @override
-  Future<void> webAudioApiBufferAudioBufferCopyFromChannel(
-      {required AudioBuffer that,
-      required F32 destination,
-      required BigInt channelNumber}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_box_autoadd_audio_buffer(that, serializer);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
-            destination, serializer);
-        sse_encode_usize(channelNumber, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 15, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiBufferAudioBufferCopyFromChannelConstMeta,
-      argValues: [that, destination, channelNumber],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiBufferAudioBufferCopyFromChannelConstMeta =>
-      const TaskConstMeta(
-        debugName: "audio_buffer_copy_from_channel",
-        argNames: ["that", "destination", "channelNumber"],
-      );
-
-  @override
-  Future<void> webAudioApiBufferAudioBufferCopyFromChannelWithOffset(
-      {required AudioBuffer that,
-      required F32 destination,
-      required BigInt channelNumber,
-      required BigInt offset}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_box_autoadd_audio_buffer(that, serializer);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
-            destination, serializer);
-        sse_encode_usize(channelNumber, serializer);
-        sse_encode_usize(offset, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 16, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiBufferAudioBufferCopyFromChannelWithOffsetConstMeta,
-      argValues: [that, destination, channelNumber, offset],
+      constMeta: kWebAudioApiAudioParamExponentialRampToValueAtTimeConstMeta,
+      argValues: [that, value, endTime],
       apiImpl: this,
     ));
   }
 
   TaskConstMeta
-      get kWebAudioApiBufferAudioBufferCopyFromChannelWithOffsetConstMeta =>
+      get kWebAudioApiAudioParamExponentialRampToValueAtTimeConstMeta =>
           const TaskConstMeta(
-            debugName: "audio_buffer_copy_from_channel_with_offset",
-            argNames: ["that", "destination", "channelNumber", "offset"],
+            debugName: "AudioParam_exponential_ramp_to_value_at_time",
+            argNames: ["that", "value", "endTime"],
           );
 
   @override
-  Future<void> webAudioApiBufferAudioBufferCopyToChannel(
-      {required AudioBuffer that,
-      required F32 source,
-      required BigInt channelNumber}) {
+  Future<Self> webAudioApiAudioParamLinearRampToValueAtTime(
+      {required AudioParam that,
+      required double value,
+      required double endTime}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
             that, serializer);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
-            source, serializer);
-        sse_encode_usize(channelNumber, serializer);
+        sse_encode_f_32(value, serializer);
+        sse_encode_f_64(endTime, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 14, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSelf,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioParamLinearRampToValueAtTimeConstMeta,
+      argValues: [that, value, endTime],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioParamLinearRampToValueAtTimeConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioParam_linear_ramp_to_value_at_time",
+        argNames: ["that", "value", "endTime"],
+      );
+
+  @override
+  Future<double> webAudioApiAudioParamMaxValue({required AudioParam that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 15, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_f_32,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioParamMaxValueConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioParamMaxValueConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioParam_max_value",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<double> webAudioApiAudioParamMinValue({required AudioParam that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 16, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_f_32,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioParamMinValueConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioParamMinValueConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioParam_min_value",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<void> webAudioApiAudioParamSetAutomationRate(
+      {required AudioParam that, required AutomationRate value}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
+            that, serializer);
+        sse_encode_automation_rate(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 17, port: port_);
       },
@@ -1998,269 +1902,281 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiBufferAudioBufferCopyToChannelConstMeta,
-      argValues: [that, source, channelNumber],
+      constMeta: kWebAudioApiAudioParamSetAutomationRateConstMeta,
+      argValues: [that, value],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiBufferAudioBufferCopyToChannelConstMeta =>
+  TaskConstMeta get kWebAudioApiAudioParamSetAutomationRateConstMeta =>
       const TaskConstMeta(
-        debugName: "audio_buffer_copy_to_channel",
-        argNames: ["that", "source", "channelNumber"],
+        debugName: "AudioParam_set_automation_rate",
+        argNames: ["that", "value"],
       );
 
   @override
-  Future<void> webAudioApiBufferAudioBufferCopyToChannelWithOffset(
-      {required AudioBuffer that,
-      required F32 source,
-      required BigInt channelNumber,
-      required BigInt offset}) {
+  Future<Self> webAudioApiAudioParamSetTargetAtTime(
+      {required AudioParam that,
+      required double value,
+      required double startTime,
+      required double timeConstant}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
             that, serializer);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
-            source, serializer);
-        sse_encode_usize(channelNumber, serializer);
-        sse_encode_usize(offset, serializer);
+        sse_encode_f_32(value, serializer);
+        sse_encode_f_64(startTime, serializer);
+        sse_encode_f_64(timeConstant, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 18, port: port_);
       },
       codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
+        decodeSuccessData:
+            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSelf,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiBufferAudioBufferCopyToChannelWithOffsetConstMeta,
-      argValues: [that, source, channelNumber, offset],
+      constMeta: kWebAudioApiAudioParamSetTargetAtTimeConstMeta,
+      argValues: [that, value, startTime, timeConstant],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiBufferAudioBufferCopyToChannelWithOffsetConstMeta =>
-          const TaskConstMeta(
-            debugName: "audio_buffer_copy_to_channel_with_offset",
-            argNames: ["that", "source", "channelNumber", "offset"],
-          );
+  TaskConstMeta get kWebAudioApiAudioParamSetTargetAtTimeConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioParam_set_target_at_time",
+        argNames: ["that", "value", "startTime", "timeConstant"],
+      );
 
   @override
-  Future<double> webAudioApiBufferAudioBufferDuration(
-      {required AudioBuffer that}) {
+  Future<Self> webAudioApiAudioParamSetValue(
+      {required AudioParam that, required double value}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_box_autoadd_audio_buffer(that, serializer);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
+            that, serializer);
+        sse_encode_f_32(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 19, port: port_);
       },
       codec: SseCodec(
-        decodeSuccessData: sse_decode_f_64,
+        decodeSuccessData:
+            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSelf,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiBufferAudioBufferDurationConstMeta,
-      argValues: [that],
+      constMeta: kWebAudioApiAudioParamSetValueConstMeta,
+      argValues: [that, value],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiBufferAudioBufferDurationConstMeta =>
+  TaskConstMeta get kWebAudioApiAudioParamSetValueConstMeta =>
       const TaskConstMeta(
-        debugName: "audio_buffer_duration",
-        argNames: ["that"],
+        debugName: "AudioParam_set_value",
+        argNames: ["that", "value"],
       );
 
   @override
-  Future<AudioBuffer> webAudioApiBufferAudioBufferFrom(
-      {required List<Float32List> samples, required double sampleRate}) {
+  Future<Self> webAudioApiAudioParamSetValueAtTime(
+      {required AudioParam that,
+      required double value,
+      required double startTime}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_list_list_prim_f_32_strict(samples, serializer);
-        sse_encode_f_32(sampleRate, serializer);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
+            that, serializer);
+        sse_encode_f_32(value, serializer);
+        sse_encode_f_64(startTime, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 20, port: port_);
       },
       codec: SseCodec(
-        decodeSuccessData: sse_decode_audio_buffer,
+        decodeSuccessData:
+            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSelf,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiBufferAudioBufferFromConstMeta,
-      argValues: [samples, sampleRate],
+      constMeta: kWebAudioApiAudioParamSetValueAtTimeConstMeta,
+      argValues: [that, value, startTime],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiBufferAudioBufferFromConstMeta =>
+  TaskConstMeta get kWebAudioApiAudioParamSetValueAtTimeConstMeta =>
       const TaskConstMeta(
-        debugName: "audio_buffer_from",
-        argNames: ["samples", "sampleRate"],
+        debugName: "AudioParam_set_value_at_time",
+        argNames: ["that", "value", "startTime"],
       );
 
   @override
-  Future<F32> webAudioApiBufferAudioBufferGetChannelData(
-      {required AudioBuffer that, required BigInt channelNumber}) {
+  Future<Self> webAudioApiAudioParamSetValueCurveAtTime(
+      {required AudioParam that,
+      required F32 values,
+      required double startTime,
+      required double duration}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_box_autoadd_audio_buffer(that, serializer);
-        sse_encode_usize(channelNumber, serializer);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
+            that, serializer);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
+            values, serializer);
+        sse_encode_f_64(startTime, serializer);
+        sse_encode_f_64(duration, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 21, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
-            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32,
+            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSelf,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiBufferAudioBufferGetChannelDataConstMeta,
-      argValues: [that, channelNumber],
+      constMeta: kWebAudioApiAudioParamSetValueCurveAtTimeConstMeta,
+      argValues: [that, values, startTime, duration],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiBufferAudioBufferGetChannelDataConstMeta =>
+  TaskConstMeta get kWebAudioApiAudioParamSetValueCurveAtTimeConstMeta =>
       const TaskConstMeta(
-        debugName: "audio_buffer_get_channel_data",
-        argNames: ["that", "channelNumber"],
+        debugName: "AudioParam_set_value_curve_at_time",
+        argNames: ["that", "values", "startTime", "duration"],
       );
 
   @override
-  Future<F32> webAudioApiBufferAudioBufferGetChannelDataMut(
-      {required AudioBuffer that, required BigInt channelNumber}) {
+  Future<double> webAudioApiAudioParamValue({required AudioParam that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
             that, serializer);
-        sse_encode_usize(channelNumber, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 22, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiBufferAudioBufferGetChannelDataMutConstMeta,
-      argValues: [that, channelNumber],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiBufferAudioBufferGetChannelDataMutConstMeta =>
-      const TaskConstMeta(
-        debugName: "audio_buffer_get_channel_data_mut",
-        argNames: ["that", "channelNumber"],
-      );
-
-  @override
-  Future<BigInt> webAudioApiBufferAudioBufferLength(
-      {required AudioBuffer that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_box_autoadd_audio_buffer(that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 23, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_usize,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiBufferAudioBufferLengthConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiBufferAudioBufferLengthConstMeta =>
-      const TaskConstMeta(
-        debugName: "audio_buffer_length",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<AudioBuffer> webAudioApiBufferAudioBufferNew(
-      {required AudioBufferOptions options}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_box_autoadd_audio_buffer_options(options, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 24, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_audio_buffer,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiBufferAudioBufferNewConstMeta,
-      argValues: [options],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiBufferAudioBufferNewConstMeta =>
-      const TaskConstMeta(
-        debugName: "audio_buffer_new",
-        argNames: ["options"],
-      );
-
-  @override
-  Future<BigInt> webAudioApiBufferAudioBufferNumberOfChannels(
-      {required AudioBuffer that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_box_autoadd_audio_buffer(that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 25, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_usize,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiBufferAudioBufferNumberOfChannelsConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiBufferAudioBufferNumberOfChannelsConstMeta =>
-      const TaskConstMeta(
-        debugName: "audio_buffer_number_of_channels",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<double> webAudioApiBufferAudioBufferSampleRate(
-      {required AudioBuffer that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_box_autoadd_audio_buffer(that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 26, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_32,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiBufferAudioBufferSampleRateConstMeta,
+      constMeta: kWebAudioApiAudioParamValueConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiBufferAudioBufferSampleRateConstMeta =>
-      const TaskConstMeta(
-        debugName: "audio_buffer_sample_rate",
+  TaskConstMeta get kWebAudioApiAudioParamValueConstMeta => const TaskConstMeta(
+        debugName: "AudioParam_value",
         argNames: ["that"],
       );
 
   @override
-  double webAudioApiCapacityAudioRenderCapacityEventGetAverageLoad(
+  double webAudioApiAudioRenderCapacityEventGetAverageLoad(
+      {required AudioRenderCapacityEvent that}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacityEvent(
+            that, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 23)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_f_64,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioRenderCapacityEventGetAverageLoadConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiAudioRenderCapacityEventGetAverageLoadConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioRenderCapacityEvent_get_average_load",
+            argNames: ["that"],
+          );
+
+  @override
+  Event webAudioApiAudioRenderCapacityEventGetEvent(
+      {required AudioRenderCapacityEvent that}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacityEvent(
+            that, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 24)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerEvent,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioRenderCapacityEventGetEventConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioRenderCapacityEventGetEventConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioRenderCapacityEvent_get_event",
+        argNames: ["that"],
+      );
+
+  @override
+  double webAudioApiAudioRenderCapacityEventGetPeakLoad(
+      {required AudioRenderCapacityEvent that}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacityEvent(
+            that, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 25)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_f_64,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioRenderCapacityEventGetPeakLoadConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioRenderCapacityEventGetPeakLoadConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioRenderCapacityEvent_get_peak_load",
+        argNames: ["that"],
+      );
+
+  @override
+  double webAudioApiAudioRenderCapacityEventGetTimestamp(
+      {required AudioRenderCapacityEvent that}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacityEvent(
+            that, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 26)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_f_64,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioRenderCapacityEventGetTimestampConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioRenderCapacityEventGetTimestampConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioRenderCapacityEvent_get_timestamp",
+        argNames: ["that"],
+      );
+
+  @override
+  double webAudioApiAudioRenderCapacityEventGetUnderrunRatio(
       {required AudioRenderCapacityEvent that}) {
     return handler.executeSync(SyncTask(
       callFfi: () {
@@ -2273,134 +2189,21 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         decodeSuccessData: sse_decode_f_64,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiCapacityAudioRenderCapacityEventGetAverageLoadConstMeta,
+      constMeta: kWebAudioApiAudioRenderCapacityEventGetUnderrunRatioConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
   TaskConstMeta
-      get kWebAudioApiCapacityAudioRenderCapacityEventGetAverageLoadConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioRenderCapacityEvent_get_average_load",
-            argNames: ["that"],
-          );
-
-  @override
-  Event webAudioApiCapacityAudioRenderCapacityEventGetEvent(
-      {required AudioRenderCapacityEvent that}) {
-    return handler.executeSync(SyncTask(
-      callFfi: () {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacityEvent(
-            that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 28)!;
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerEvent,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiCapacityAudioRenderCapacityEventGetEventConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiCapacityAudioRenderCapacityEventGetEventConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioRenderCapacityEvent_get_event",
-            argNames: ["that"],
-          );
-
-  @override
-  double webAudioApiCapacityAudioRenderCapacityEventGetPeakLoad(
-      {required AudioRenderCapacityEvent that}) {
-    return handler.executeSync(SyncTask(
-      callFfi: () {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacityEvent(
-            that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 29)!;
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_f_64,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiCapacityAudioRenderCapacityEventGetPeakLoadConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiCapacityAudioRenderCapacityEventGetPeakLoadConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioRenderCapacityEvent_get_peak_load",
-            argNames: ["that"],
-          );
-
-  @override
-  double webAudioApiCapacityAudioRenderCapacityEventGetTimestamp(
-      {required AudioRenderCapacityEvent that}) {
-    return handler.executeSync(SyncTask(
-      callFfi: () {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacityEvent(
-            that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 30)!;
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_f_64,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiCapacityAudioRenderCapacityEventGetTimestampConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiCapacityAudioRenderCapacityEventGetTimestampConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioRenderCapacityEvent_get_timestamp",
-            argNames: ["that"],
-          );
-
-  @override
-  double webAudioApiCapacityAudioRenderCapacityEventGetUnderrunRatio(
-      {required AudioRenderCapacityEvent that}) {
-    return handler.executeSync(SyncTask(
-      callFfi: () {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacityEvent(
-            that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 31)!;
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_f_64,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiCapacityAudioRenderCapacityEventGetUnderrunRatioConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiCapacityAudioRenderCapacityEventGetUnderrunRatioConstMeta =>
+      get kWebAudioApiAudioRenderCapacityEventGetUnderrunRatioConstMeta =>
           const TaskConstMeta(
             debugName: "AudioRenderCapacityEvent_get_underrun_ratio",
             argNames: ["that"],
           );
 
   @override
-  void webAudioApiCapacityAudioRenderCapacityEventSetAverageLoad(
+  void webAudioApiAudioRenderCapacityEventSetAverageLoad(
       {required AudioRenderCapacityEvent that, required double averageLoad}) {
     return handler.executeSync(SyncTask(
       callFfi: () {
@@ -2408,28 +2211,27 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacityEvent(
             that, serializer);
         sse_encode_f_64(averageLoad, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 32)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 28)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiCapacityAudioRenderCapacityEventSetAverageLoadConstMeta,
+      constMeta: kWebAudioApiAudioRenderCapacityEventSetAverageLoadConstMeta,
       argValues: [that, averageLoad],
       apiImpl: this,
     ));
   }
 
   TaskConstMeta
-      get kWebAudioApiCapacityAudioRenderCapacityEventSetAverageLoadConstMeta =>
+      get kWebAudioApiAudioRenderCapacityEventSetAverageLoadConstMeta =>
           const TaskConstMeta(
             debugName: "AudioRenderCapacityEvent_set_average_load",
             argNames: ["that", "averageLoad"],
           );
 
   @override
-  void webAudioApiCapacityAudioRenderCapacityEventSetEvent(
+  void webAudioApiAudioRenderCapacityEventSetEvent(
       {required AudioRenderCapacityEvent that, required Event event}) {
     return handler.executeSync(SyncTask(
       callFfi: () {
@@ -2438,27 +2240,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerEvent(
             event, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 33)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 29)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiCapacityAudioRenderCapacityEventSetEventConstMeta,
+      constMeta: kWebAudioApiAudioRenderCapacityEventSetEventConstMeta,
       argValues: [that, event],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiCapacityAudioRenderCapacityEventSetEventConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioRenderCapacityEvent_set_event",
-            argNames: ["that", "event"],
-          );
+  TaskConstMeta get kWebAudioApiAudioRenderCapacityEventSetEventConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioRenderCapacityEvent_set_event",
+        argNames: ["that", "event"],
+      );
 
   @override
-  void webAudioApiCapacityAudioRenderCapacityEventSetPeakLoad(
+  void webAudioApiAudioRenderCapacityEventSetPeakLoad(
       {required AudioRenderCapacityEvent that, required double peakLoad}) {
     return handler.executeSync(SyncTask(
       callFfi: () {
@@ -2466,28 +2267,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacityEvent(
             that, serializer);
         sse_encode_f_64(peakLoad, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 34)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 30)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiCapacityAudioRenderCapacityEventSetPeakLoadConstMeta,
+      constMeta: kWebAudioApiAudioRenderCapacityEventSetPeakLoadConstMeta,
       argValues: [that, peakLoad],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiCapacityAudioRenderCapacityEventSetPeakLoadConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioRenderCapacityEvent_set_peak_load",
-            argNames: ["that", "peakLoad"],
-          );
+  TaskConstMeta get kWebAudioApiAudioRenderCapacityEventSetPeakLoadConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioRenderCapacityEvent_set_peak_load",
+        argNames: ["that", "peakLoad"],
+      );
 
   @override
-  void webAudioApiCapacityAudioRenderCapacityEventSetTimestamp(
+  void webAudioApiAudioRenderCapacityEventSetTimestamp(
       {required AudioRenderCapacityEvent that, required double timestamp}) {
     return handler.executeSync(SyncTask(
       callFfi: () {
@@ -2495,28 +2294,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacityEvent(
             that, serializer);
         sse_encode_f_64(timestamp, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 35)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 31)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiCapacityAudioRenderCapacityEventSetTimestampConstMeta,
+      constMeta: kWebAudioApiAudioRenderCapacityEventSetTimestampConstMeta,
       argValues: [that, timestamp],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiCapacityAudioRenderCapacityEventSetTimestampConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioRenderCapacityEvent_set_timestamp",
-            argNames: ["that", "timestamp"],
-          );
+  TaskConstMeta get kWebAudioApiAudioRenderCapacityEventSetTimestampConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioRenderCapacityEvent_set_timestamp",
+        argNames: ["that", "timestamp"],
+      );
 
   @override
-  void webAudioApiCapacityAudioRenderCapacityEventSetUnderrunRatio(
+  void webAudioApiAudioRenderCapacityEventSetUnderrunRatio(
       {required AudioRenderCapacityEvent that, required double underrunRatio}) {
     return handler.executeSync(SyncTask(
       callFfi: () {
@@ -2524,28 +2321,27 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacityEvent(
             that, serializer);
         sse_encode_f_64(underrunRatio, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 36)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 32)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiCapacityAudioRenderCapacityEventSetUnderrunRatioConstMeta,
+      constMeta: kWebAudioApiAudioRenderCapacityEventSetUnderrunRatioConstMeta,
       argValues: [that, underrunRatio],
       apiImpl: this,
     ));
   }
 
   TaskConstMeta
-      get kWebAudioApiCapacityAudioRenderCapacityEventSetUnderrunRatioConstMeta =>
+      get kWebAudioApiAudioRenderCapacityEventSetUnderrunRatioConstMeta =>
           const TaskConstMeta(
             debugName: "AudioRenderCapacityEvent_set_underrun_ratio",
             argNames: ["that", "underrunRatio"],
           );
 
   @override
-  Future<void> webAudioApiCapacityAudioRenderCapacityClearOnupdate(
+  Future<void> webAudioApiAudioRenderCapacityClearOnupdate(
       {required AudioRenderCapacity that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -2553,27 +2349,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacity(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 37, port: port_);
+            funcId: 33, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiCapacityAudioRenderCapacityClearOnupdateConstMeta,
+      constMeta: kWebAudioApiAudioRenderCapacityClearOnupdateConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiCapacityAudioRenderCapacityClearOnupdateConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioRenderCapacity_clear_onupdate",
-            argNames: ["that"],
-          );
+  TaskConstMeta get kWebAudioApiAudioRenderCapacityClearOnupdateConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioRenderCapacity_clear_onupdate",
+        argNames: ["that"],
+      );
 
   @override
-  Future<void> webAudioApiCapacityAudioRenderCapacitySetOnupdate(
+  Future<void> webAudioApiAudioRenderCapacitySetOnupdate(
       {required AudioRenderCapacity that, required F callback}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -2583,27 +2378,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerF(
             callback, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 38, port: port_);
+            funcId: 34, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiCapacityAudioRenderCapacitySetOnupdateConstMeta,
+      constMeta: kWebAudioApiAudioRenderCapacitySetOnupdateConstMeta,
       argValues: [that, callback],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiCapacityAudioRenderCapacitySetOnupdateConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioRenderCapacity_set_onupdate",
-            argNames: ["that", "callback"],
-          );
+  TaskConstMeta get kWebAudioApiAudioRenderCapacitySetOnupdateConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioRenderCapacity_set_onupdate",
+        argNames: ["that", "callback"],
+      );
 
   @override
-  Future<void> webAudioApiCapacityAudioRenderCapacityStart(
+  Future<void> webAudioApiAudioRenderCapacityStart(
       {required AudioRenderCapacity that,
       required AudioRenderCapacityOptions options}) {
     return handler.executeNormal(NormalTask(
@@ -2614,26 +2408,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_box_autoadd_audio_render_capacity_options(
             options, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 39, port: port_);
+            funcId: 35, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiCapacityAudioRenderCapacityStartConstMeta,
+      constMeta: kWebAudioApiAudioRenderCapacityStartConstMeta,
       argValues: [that, options],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiCapacityAudioRenderCapacityStartConstMeta =>
+  TaskConstMeta get kWebAudioApiAudioRenderCapacityStartConstMeta =>
       const TaskConstMeta(
         debugName: "AudioRenderCapacity_start",
         argNames: ["that", "options"],
       );
 
   @override
-  Future<void> webAudioApiCapacityAudioRenderCapacityStop(
+  Future<void> webAudioApiAudioRenderCapacityStop(
       {required AudioRenderCapacity that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -2641,955 +2435,258 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacity(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 40, port: port_);
+            funcId: 36, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiCapacityAudioRenderCapacityStopConstMeta,
+      constMeta: kWebAudioApiAudioRenderCapacityStopConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiCapacityAudioRenderCapacityStopConstMeta =>
+  TaskConstMeta get kWebAudioApiAudioRenderCapacityStopConstMeta =>
       const TaskConstMeta(
         debugName: "AudioRenderCapacity_stop",
         argNames: ["that"],
       );
 
   @override
-  Future<void>
-      webAudioApiContextConcreteBaseConcreteBaseAudioContextMarkCycleBreaker(
-          {required ConcreteBaseAudioContext that,
-          required AudioContextRegistration reg}) {
+  Future<F32> webAudioApiChannelDataAsMutSlice({required ChannelData that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConcreteBaseAudioContext(
-            that, serializer);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextRegistration(
-            reg, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 41, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiContextConcreteBaseConcreteBaseAudioContextMarkCycleBreakerConstMeta,
-      argValues: [that, reg],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiContextConcreteBaseConcreteBaseAudioContextMarkCycleBreakerConstMeta =>
-          const TaskConstMeta(
-            debugName: "ConcreteBaseAudioContext_mark_cycle_breaker",
-            argNames: ["that", "reg"],
-          );
-
-  @override
-  Future<void> webAudioApiContextOfflineOfflineAudioContextClearOncomplete(
-      {required OfflineAudioContext that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioContext(
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 42, port: port_);
+            funcId: 37, port: port_);
       },
       codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
+        decodeSuccessData:
+            sse_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiContextOfflineOfflineAudioContextClearOncompleteConstMeta,
+      constMeta: kWebAudioApiChannelDataAsMutSliceConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiContextOfflineOfflineAudioContextClearOncompleteConstMeta =>
-          const TaskConstMeta(
-            debugName: "OfflineAudioContext_clear_oncomplete",
-            argNames: ["that"],
-          );
+  TaskConstMeta get kWebAudioApiChannelDataAsMutSliceConstMeta =>
+      const TaskConstMeta(
+        debugName: "ChannelData_as_mut_slice",
+        argNames: ["that"],
+      );
 
   @override
-  Future<BigInt> webAudioApiContextOfflineOfflineAudioContextLength(
-      {required OfflineAudioContext that}) {
+  Future<F32> webAudioApiChannelDataAsSlice({required ChannelData that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioContext(
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 43, port: port_);
+            funcId: 38, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiChannelDataAsSliceConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiChannelDataAsSliceConstMeta =>
+      const TaskConstMeta(
+        debugName: "ChannelData_as_slice",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<ChannelData> webAudioApiChannelDataFrom({required List<double> data}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_list_prim_f_32_loose(data, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 39, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiChannelDataFromConstMeta,
+      argValues: [data],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiChannelDataFromConstMeta => const TaskConstMeta(
+        debugName: "ChannelData_from",
+        argNames: ["data"],
+      );
+
+  @override
+  Future<bool> webAudioApiChannelDataIsEmpty({required ChannelData that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 40, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_bool,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiChannelDataIsEmptyConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiChannelDataIsEmptyConstMeta =>
+      const TaskConstMeta(
+        debugName: "ChannelData_is_empty",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<BigInt> webAudioApiChannelDataLen({required ChannelData that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 41, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_usize,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiContextOfflineOfflineAudioContextLengthConstMeta,
+      constMeta: kWebAudioApiChannelDataLenConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiContextOfflineOfflineAudioContextLengthConstMeta =>
-          const TaskConstMeta(
-            debugName: "OfflineAudioContext_length",
-            argNames: ["that"],
-          );
+  TaskConstMeta get kWebAudioApiChannelDataLenConstMeta => const TaskConstMeta(
+        debugName: "ChannelData_len",
+        argNames: ["that"],
+      );
 
   @override
-  Future<OfflineAudioContext> webAudioApiContextOfflineOfflineAudioContextNew(
-      {required BigInt numberOfChannels,
-      required BigInt length,
-      required double sampleRate}) {
+  Future<ChannelData> webAudioApiChannelDataNew({required BigInt length}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_usize(numberOfChannels, serializer);
         sse_encode_usize(length, serializer);
-        sse_encode_f_32(sampleRate, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 44, port: port_);
+            funcId: 42, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
-            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioContext,
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiContextOfflineOfflineAudioContextNewConstMeta,
-      argValues: [numberOfChannels, length, sampleRate],
+      constMeta: kWebAudioApiChannelDataNewConstMeta,
+      argValues: [length],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiContextOfflineOfflineAudioContextNewConstMeta =>
-      const TaskConstMeta(
-        debugName: "OfflineAudioContext_new",
-        argNames: ["numberOfChannels", "length", "sampleRate"],
+  TaskConstMeta get kWebAudioApiChannelDataNewConstMeta => const TaskConstMeta(
+        debugName: "ChannelData_new",
+        argNames: ["length"],
       );
 
   @override
-  Future<void> webAudioApiContextOfflineOfflineAudioContextResume(
-      {required OfflineAudioContext that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioContext(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 45, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiContextOfflineOfflineAudioContextResumeConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiContextOfflineOfflineAudioContextResumeConstMeta =>
-          const TaskConstMeta(
-            debugName: "OfflineAudioContext_resume",
-            argNames: ["that"],
-          );
-
-  @override
-  Future<void> webAudioApiContextOfflineOfflineAudioContextSetOncomplete(
-      {required OfflineAudioContext that, required F callback}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioContext(
-            that, serializer);
-        sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerF(
-            callback, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 46, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiContextOfflineOfflineAudioContextSetOncompleteConstMeta,
-      argValues: [that, callback],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiContextOfflineOfflineAudioContextSetOncompleteConstMeta =>
-          const TaskConstMeta(
-            debugName: "OfflineAudioContext_set_oncomplete",
-            argNames: ["that", "callback"],
-          );
-
-  @override
-  Future<AudioBuffer>
-      webAudioApiContextOfflineOfflineAudioContextStartRendering(
-          {required OfflineAudioContext that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioContext(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 47, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_audio_buffer,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiContextOfflineOfflineAudioContextStartRenderingConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiContextOfflineOfflineAudioContextStartRenderingConstMeta =>
-          const TaskConstMeta(
-            debugName: "OfflineAudioContext_start_rendering",
-            argNames: ["that"],
-          );
-
-  @override
-  Future<AudioBuffer>
-      webAudioApiContextOfflineOfflineAudioContextStartRenderingSync(
-          {required OfflineAudioContext that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioContext(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 48, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_audio_buffer,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiContextOfflineOfflineAudioContextStartRenderingSyncConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiContextOfflineOfflineAudioContextStartRenderingSyncConstMeta =>
-          const TaskConstMeta(
-            debugName: "OfflineAudioContext_start_rendering_sync",
-            argNames: ["that"],
-          );
-
-  @override
-  Future<void> webAudioApiContextOfflineOfflineAudioContextSuspend(
-      {required OfflineAudioContext that, required double suspendTime}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioContext(
-            that, serializer);
-        sse_encode_f_64(suspendTime, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 49, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiContextOfflineOfflineAudioContextSuspendConstMeta,
-      argValues: [that, suspendTime],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiContextOfflineOfflineAudioContextSuspendConstMeta =>
-          const TaskConstMeta(
-            debugName: "OfflineAudioContext_suspend",
-            argNames: ["that", "suspendTime"],
-          );
-
-  @override
-  Future<void> webAudioApiContextOfflineOfflineAudioContextSuspendSync(
-      {required OfflineAudioContext that,
-      required double suspendTime,
-      required F callback}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioContext(
-            that, serializer);
-        sse_encode_f_64(suspendTime, serializer);
-        sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerF(
-            callback, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 50, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiContextOfflineOfflineAudioContextSuspendSyncConstMeta,
-      argValues: [that, suspendTime, callback],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiContextOfflineOfflineAudioContextSuspendSyncConstMeta =>
-          const TaskConstMeta(
-            debugName: "OfflineAudioContext_suspend_sync",
-            argNames: ["that", "suspendTime", "callback"],
-          );
-
-  @override
-  Future<double> webAudioApiContextOnlineAudioContextBaseLatency(
-      {required AudioContext that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 51, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_f_64,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiContextOnlineAudioContextBaseLatencyConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiContextOnlineAudioContextBaseLatencyConstMeta =>
-      const TaskConstMeta(
-        debugName: "AudioContext_base_latency",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<void> webAudioApiContextOnlineAudioContextClearOnsinkchange(
-      {required AudioContext that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 52, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiContextOnlineAudioContextClearOnsinkchangeConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiContextOnlineAudioContextClearOnsinkchangeConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioContext_clear_onsinkchange",
-            argNames: ["that"],
-          );
-
-  @override
-  Future<void> webAudioApiContextOnlineAudioContextClose(
-      {required AudioContext that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 53, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiContextOnlineAudioContextCloseConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiContextOnlineAudioContextCloseConstMeta =>
-      const TaskConstMeta(
-        debugName: "AudioContext_close",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<void> webAudioApiContextOnlineAudioContextCloseSync(
-      {required AudioContext that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 54, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiContextOnlineAudioContextCloseSyncConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiContextOnlineAudioContextCloseSyncConstMeta =>
-      const TaskConstMeta(
-        debugName: "AudioContext_close_sync",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<MediaElementAudioSourceNode>
-      webAudioApiContextOnlineAudioContextCreateMediaElementSource(
-          {required AudioContext that, required MediaElement mediaElement}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
-            that, serializer);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaElement(
-            mediaElement, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 55, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaElementAudioSourceNode,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiContextOnlineAudioContextCreateMediaElementSourceConstMeta,
-      argValues: [that, mediaElement],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiContextOnlineAudioContextCreateMediaElementSourceConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioContext_create_media_element_source",
-            argNames: ["that", "mediaElement"],
-          );
-
-  @override
-  Future<MediaStreamAudioDestinationNode>
-      webAudioApiContextOnlineAudioContextCreateMediaStreamDestination(
-          {required AudioContext that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 56, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamAudioDestinationNode,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiContextOnlineAudioContextCreateMediaStreamDestinationConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiContextOnlineAudioContextCreateMediaStreamDestinationConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioContext_create_media_stream_destination",
-            argNames: ["that"],
-          );
-
-  @override
-  Future<MediaStreamAudioSourceNode>
-      webAudioApiContextOnlineAudioContextCreateMediaStreamSource(
-          {required AudioContext that, required MediaStream media}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
-            that, serializer);
-        sse_encode_box_autoadd_media_stream(media, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 57, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamAudioSourceNode,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiContextOnlineAudioContextCreateMediaStreamSourceConstMeta,
-      argValues: [that, media],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiContextOnlineAudioContextCreateMediaStreamSourceConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioContext_create_media_stream_source",
-            argNames: ["that", "media"],
-          );
-
-  @override
-  Future<MediaStreamTrackAudioSourceNode>
-      webAudioApiContextOnlineAudioContextCreateMediaStreamTrackSource(
-          {required AudioContext that, required MediaStreamTrack media}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
-            that, serializer);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrack(
-            media, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 58, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrackAudioSourceNode,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiContextOnlineAudioContextCreateMediaStreamTrackSourceConstMeta,
-      argValues: [that, media],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiContextOnlineAudioContextCreateMediaStreamTrackSourceConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioContext_create_media_stream_track_source",
-            argNames: ["that", "media"],
-          );
-
-  @override
-  Future<AudioContext> webAudioApiContextOnlineAudioContextNew(
-      {required AudioContextOptions options}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_box_autoadd_audio_context_options(options, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 59, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiContextOnlineAudioContextNewConstMeta,
-      argValues: [options],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiContextOnlineAudioContextNewConstMeta =>
-      const TaskConstMeta(
-        debugName: "AudioContext_new",
-        argNames: ["options"],
-      );
-
-  @override
-  Future<double> webAudioApiContextOnlineAudioContextOutputLatency(
-      {required AudioContext that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 60, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_f_64,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiContextOnlineAudioContextOutputLatencyConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiContextOnlineAudioContextOutputLatencyConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioContext_output_latency",
-            argNames: ["that"],
-          );
-
-  @override
-  Future<AudioRenderCapacity>
-      webAudioApiContextOnlineAudioContextRenderCapacity(
-          {required AudioContext that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 61, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacity,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiContextOnlineAudioContextRenderCapacityConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiContextOnlineAudioContextRenderCapacityConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioContext_render_capacity",
-            argNames: ["that"],
-          );
-
-  @override
-  Future<void> webAudioApiContextOnlineAudioContextResume(
-      {required AudioContext that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 62, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiContextOnlineAudioContextResumeConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiContextOnlineAudioContextResumeConstMeta =>
-      const TaskConstMeta(
-        debugName: "AudioContext_resume",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<void> webAudioApiContextOnlineAudioContextResumeSync(
-      {required AudioContext that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 63, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiContextOnlineAudioContextResumeSyncConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiContextOnlineAudioContextResumeSyncConstMeta =>
-      const TaskConstMeta(
-        debugName: "AudioContext_resume_sync",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<void> webAudioApiContextOnlineAudioContextRunDiagnostics(
-      {required AudioContext that, required F callback}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
-            that, serializer);
-        sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerF(
-            callback, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 64, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiContextOnlineAudioContextRunDiagnosticsConstMeta,
-      argValues: [that, callback],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiContextOnlineAudioContextRunDiagnosticsConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioContext_run_diagnostics",
-            argNames: ["that", "callback"],
-          );
-
-  @override
-  Future<void> webAudioApiContextOnlineAudioContextSetOnsinkchange(
-      {required AudioContext that, required F callback}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
-            that, serializer);
-        sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerF(
-            callback, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 65, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiContextOnlineAudioContextSetOnsinkchangeConstMeta,
-      argValues: [that, callback],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiContextOnlineAudioContextSetOnsinkchangeConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioContext_set_onsinkchange",
-            argNames: ["that", "callback"],
-          );
-
-  @override
-  Future<void> webAudioApiContextOnlineAudioContextSetSinkIdSync(
-      {required AudioContext that, required String sinkId}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
-            that, serializer);
-        sse_encode_String(sinkId, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 66, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData:
-            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynError,
-      ),
-      constMeta: kWebAudioApiContextOnlineAudioContextSetSinkIdSyncConstMeta,
-      argValues: [that, sinkId],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiContextOnlineAudioContextSetSinkIdSyncConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioContext_set_sink_id_sync",
-            argNames: ["that", "sinkId"],
-          );
-
-  @override
-  Future<String> webAudioApiContextOnlineAudioContextSinkId(
-      {required AudioContext that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 67, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_String,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiContextOnlineAudioContextSinkIdConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiContextOnlineAudioContextSinkIdConstMeta =>
-      const TaskConstMeta(
-        debugName: "AudioContext_sink_id",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<void> webAudioApiContextOnlineAudioContextSuspend(
-      {required AudioContext that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 68, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiContextOnlineAudioContextSuspendConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiContextOnlineAudioContextSuspendConstMeta =>
-      const TaskConstMeta(
-        debugName: "AudioContext_suspend",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<void> webAudioApiContextOnlineAudioContextSuspendSync(
-      {required AudioContext that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 69, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiContextOnlineAudioContextSuspendSyncConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiContextOnlineAudioContextSuspendSyncConstMeta =>
-      const TaskConstMeta(
-        debugName: "AudioContext_suspend_sync",
-        argNames: ["that"],
-      );
-
-  @override
-  BoxAny webAudioApiEventsErrorEventGetError({required ErrorEvent that}) {
+  BoxAny webAudioApiErrorEventGetError({required ErrorEvent that}) {
     return handler.executeSync(SyncTask(
       callFfi: () {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerErrorEvent(
             that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 70)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 43)!;
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySend,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiEventsErrorEventGetErrorConstMeta,
+      constMeta: kWebAudioApiErrorEventGetErrorConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiEventsErrorEventGetErrorConstMeta =>
+  TaskConstMeta get kWebAudioApiErrorEventGetErrorConstMeta =>
       const TaskConstMeta(
         debugName: "ErrorEvent_get_error",
         argNames: ["that"],
       );
 
   @override
-  Event webAudioApiEventsErrorEventGetEvent({required ErrorEvent that}) {
+  Event webAudioApiErrorEventGetEvent({required ErrorEvent that}) {
     return handler.executeSync(SyncTask(
       callFfi: () {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerErrorEvent(
             that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 71)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 44)!;
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerEvent,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiEventsErrorEventGetEventConstMeta,
+      constMeta: kWebAudioApiErrorEventGetEventConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiEventsErrorEventGetEventConstMeta =>
+  TaskConstMeta get kWebAudioApiErrorEventGetEventConstMeta =>
       const TaskConstMeta(
         debugName: "ErrorEvent_get_event",
         argNames: ["that"],
       );
 
   @override
-  String webAudioApiEventsErrorEventGetMessage({required ErrorEvent that}) {
+  String webAudioApiErrorEventGetMessage({required ErrorEvent that}) {
     return handler.executeSync(SyncTask(
       callFfi: () {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerErrorEvent(
             that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 72)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 45)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_String,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiEventsErrorEventGetMessageConstMeta,
+      constMeta: kWebAudioApiErrorEventGetMessageConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiEventsErrorEventGetMessageConstMeta =>
+  TaskConstMeta get kWebAudioApiErrorEventGetMessageConstMeta =>
       const TaskConstMeta(
         debugName: "ErrorEvent_get_message",
         argNames: ["that"],
       );
 
   @override
-  void webAudioApiEventsErrorEventSetError(
+  void webAudioApiErrorEventSetError(
       {required ErrorEvent that, required BoxAny error}) {
     return handler.executeSync(SyncTask(
       callFfi: () {
@@ -3598,26 +2695,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySend(
             error, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 73)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 46)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiEventsErrorEventSetErrorConstMeta,
+      constMeta: kWebAudioApiErrorEventSetErrorConstMeta,
       argValues: [that, error],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiEventsErrorEventSetErrorConstMeta =>
+  TaskConstMeta get kWebAudioApiErrorEventSetErrorConstMeta =>
       const TaskConstMeta(
         debugName: "ErrorEvent_set_error",
         argNames: ["that", "error"],
       );
 
   @override
-  void webAudioApiEventsErrorEventSetEvent(
+  void webAudioApiErrorEventSetEvent(
       {required ErrorEvent that, required Event event}) {
     return handler.executeSync(SyncTask(
       callFfi: () {
@@ -3626,26 +2723,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerEvent(
             event, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 74)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 47)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiEventsErrorEventSetEventConstMeta,
+      constMeta: kWebAudioApiErrorEventSetEventConstMeta,
       argValues: [that, event],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiEventsErrorEventSetEventConstMeta =>
+  TaskConstMeta get kWebAudioApiErrorEventSetEventConstMeta =>
       const TaskConstMeta(
         debugName: "ErrorEvent_set_event",
         argNames: ["that", "event"],
       );
 
   @override
-  void webAudioApiEventsErrorEventSetMessage(
+  void webAudioApiErrorEventSetMessage(
       {required ErrorEvent that, required String message}) {
     return handler.executeSync(SyncTask(
       callFfi: () {
@@ -3653,26 +2750,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerErrorEvent(
             that, serializer);
         sse_encode_String(message, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 75)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 48)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiEventsErrorEventSetMessageConstMeta,
+      constMeta: kWebAudioApiErrorEventSetMessageConstMeta,
       argValues: [that, message],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiEventsErrorEventSetMessageConstMeta =>
+  TaskConstMeta get kWebAudioApiErrorEventSetMessageConstMeta =>
       const TaskConstMeta(
         debugName: "ErrorEvent_set_message",
         argNames: ["that", "message"],
       );
 
   @override
-  Future<EventDispatch> webAudioApiEventsEventDispatchAudioProcessing(
+  Future<EventDispatch> webAudioApiEventDispatchAudioProcessing(
       {required AudioNodeId id, required AudioProcessingEvent value}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -3680,108 +2777,108 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_box_autoadd_audio_node_id(id, serializer);
         sse_encode_box_autoadd_audio_processing_event(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 76, port: port_);
+            funcId: 49, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerEventDispatch,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiEventsEventDispatchAudioProcessingConstMeta,
+      constMeta: kWebAudioApiEventDispatchAudioProcessingConstMeta,
       argValues: [id, value],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiEventsEventDispatchAudioProcessingConstMeta =>
+  TaskConstMeta get kWebAudioApiEventDispatchAudioProcessingConstMeta =>
       const TaskConstMeta(
         debugName: "EventDispatch_audio_processing",
         argNames: ["id", "value"],
       );
 
   @override
-  Future<EventDispatch> webAudioApiEventsEventDispatchComplete(
+  Future<EventDispatch> webAudioApiEventDispatchComplete(
       {required AudioBuffer buffer}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_box_autoadd_audio_buffer(buffer, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 77, port: port_);
+            funcId: 50, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerEventDispatch,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiEventsEventDispatchCompleteConstMeta,
+      constMeta: kWebAudioApiEventDispatchCompleteConstMeta,
       argValues: [buffer],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiEventsEventDispatchCompleteConstMeta =>
+  TaskConstMeta get kWebAudioApiEventDispatchCompleteConstMeta =>
       const TaskConstMeta(
         debugName: "EventDispatch_complete",
         argNames: ["buffer"],
       );
 
   @override
-  Future<EventDispatch> webAudioApiEventsEventDispatchDiagnostics(
+  Future<EventDispatch> webAudioApiEventDispatchDiagnostics(
       {required List<int> value}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_list_prim_u_8_loose(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 78, port: port_);
+            funcId: 51, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerEventDispatch,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiEventsEventDispatchDiagnosticsConstMeta,
+      constMeta: kWebAudioApiEventDispatchDiagnosticsConstMeta,
       argValues: [value],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiEventsEventDispatchDiagnosticsConstMeta =>
+  TaskConstMeta get kWebAudioApiEventDispatchDiagnosticsConstMeta =>
       const TaskConstMeta(
         debugName: "EventDispatch_diagnostics",
         argNames: ["value"],
       );
 
   @override
-  Future<EventDispatch> webAudioApiEventsEventDispatchEnded(
+  Future<EventDispatch> webAudioApiEventDispatchEnded(
       {required AudioNodeId id}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_box_autoadd_audio_node_id(id, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 79, port: port_);
+            funcId: 52, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerEventDispatch,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiEventsEventDispatchEndedConstMeta,
+      constMeta: kWebAudioApiEventDispatchEndedConstMeta,
       argValues: [id],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiEventsEventDispatchEndedConstMeta =>
+  TaskConstMeta get kWebAudioApiEventDispatchEndedConstMeta =>
       const TaskConstMeta(
         debugName: "EventDispatch_ended",
         argNames: ["id"],
       );
 
   @override
-  Future<EventDispatch> webAudioApiEventsEventDispatchMessage(
+  Future<EventDispatch> webAudioApiEventDispatchMessage(
       {required AudioNodeId id, required BoxAny value}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -3790,27 +2887,27 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySendstatic(
             value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 80, port: port_);
+            funcId: 53, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerEventDispatch,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiEventsEventDispatchMessageConstMeta,
+      constMeta: kWebAudioApiEventDispatchMessageConstMeta,
       argValues: [id, value],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiEventsEventDispatchMessageConstMeta =>
+  TaskConstMeta get kWebAudioApiEventDispatchMessageConstMeta =>
       const TaskConstMeta(
         debugName: "EventDispatch_message",
         argNames: ["id", "value"],
       );
 
   @override
-  Future<EventDispatch> webAudioApiEventsEventDispatchProcessorError(
+  Future<EventDispatch> webAudioApiEventDispatchProcessorError(
       {required AudioNodeId id, required ErrorEvent value}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -3819,27 +2916,27 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerErrorEvent(
             value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 81, port: port_);
+            funcId: 54, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerEventDispatch,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiEventsEventDispatchProcessorErrorConstMeta,
+      constMeta: kWebAudioApiEventDispatchProcessorErrorConstMeta,
       argValues: [id, value],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiEventsEventDispatchProcessorErrorConstMeta =>
+  TaskConstMeta get kWebAudioApiEventDispatchProcessorErrorConstMeta =>
       const TaskConstMeta(
         debugName: "EventDispatch_processor_error",
         argNames: ["id", "value"],
       );
 
   @override
-  Future<EventDispatch> webAudioApiEventsEventDispatchRenderCapacity(
+  Future<EventDispatch> webAudioApiEventDispatchRenderCapacity(
       {required AudioRenderCapacityEvent value}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -3847,79 +2944,79 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacityEvent(
             value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 82, port: port_);
+            funcId: 55, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerEventDispatch,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiEventsEventDispatchRenderCapacityConstMeta,
+      constMeta: kWebAudioApiEventDispatchRenderCapacityConstMeta,
       argValues: [value],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiEventsEventDispatchRenderCapacityConstMeta =>
+  TaskConstMeta get kWebAudioApiEventDispatchRenderCapacityConstMeta =>
       const TaskConstMeta(
         debugName: "EventDispatch_render_capacity",
         argNames: ["value"],
       );
 
   @override
-  Future<EventDispatch> webAudioApiEventsEventDispatchSinkChange() {
+  Future<EventDispatch> webAudioApiEventDispatchSinkChange() {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 83, port: port_);
+            funcId: 56, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerEventDispatch,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiEventsEventDispatchSinkChangeConstMeta,
+      constMeta: kWebAudioApiEventDispatchSinkChangeConstMeta,
       argValues: [],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiEventsEventDispatchSinkChangeConstMeta =>
+  TaskConstMeta get kWebAudioApiEventDispatchSinkChangeConstMeta =>
       const TaskConstMeta(
         debugName: "EventDispatch_sink_change",
         argNames: [],
       );
 
   @override
-  Future<EventDispatch> webAudioApiEventsEventDispatchStateChange(
+  Future<EventDispatch> webAudioApiEventDispatchStateChange(
       {required AudioContextState state}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_audio_context_state(state, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 84, port: port_);
+            funcId: 57, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerEventDispatch,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiEventsEventDispatchStateChangeConstMeta,
+      constMeta: kWebAudioApiEventDispatchStateChangeConstMeta,
       argValues: [state],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiEventsEventDispatchStateChangeConstMeta =>
+  TaskConstMeta get kWebAudioApiEventDispatchStateChangeConstMeta =>
       const TaskConstMeta(
         debugName: "EventDispatch_state_change",
         argNames: ["state"],
       );
 
   @override
-  Future<void> webAudioApiEventsEventLoopClearHandler(
+  Future<void> webAudioApiEventLoopClearHandler(
       {required EventLoop that, required EventType event}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -3928,26 +3025,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_box_autoadd_event_type(event, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 85, port: port_);
+            funcId: 58, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiEventsEventLoopClearHandlerConstMeta,
+      constMeta: kWebAudioApiEventLoopClearHandlerConstMeta,
       argValues: [that, event],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiEventsEventLoopClearHandlerConstMeta =>
+  TaskConstMeta get kWebAudioApiEventLoopClearHandlerConstMeta =>
       const TaskConstMeta(
         debugName: "EventLoop_clear_handler",
         argNames: ["that", "event"],
       );
 
   @override
-  Future<bool> webAudioApiEventsEventLoopHandlePendingEvents(
+  Future<bool> webAudioApiEventLoopHandlePendingEvents(
       {required EventLoop that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -3955,26 +3052,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerEventLoop(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 86, port: port_);
+            funcId: 59, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_bool,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiEventsEventLoopHandlePendingEventsConstMeta,
+      constMeta: kWebAudioApiEventLoopHandlePendingEventsConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiEventsEventLoopHandlePendingEventsConstMeta =>
+  TaskConstMeta get kWebAudioApiEventLoopHandlePendingEventsConstMeta =>
       const TaskConstMeta(
         debugName: "EventLoop_handle_pending_events",
         argNames: ["that"],
       );
 
   @override
-  Future<EventLoop> webAudioApiEventsEventLoopNew(
+  Future<EventLoop> webAudioApiEventLoopNew(
       {required ReceiverEventDispatch eventRecv}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -3982,54 +3079,52 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerReceiverEventDispatch(
             eventRecv, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 87, port: port_);
+            funcId: 60, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerEventLoop,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiEventsEventLoopNewConstMeta,
+      constMeta: kWebAudioApiEventLoopNewConstMeta,
       argValues: [eventRecv],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiEventsEventLoopNewConstMeta =>
-      const TaskConstMeta(
+  TaskConstMeta get kWebAudioApiEventLoopNewConstMeta => const TaskConstMeta(
         debugName: "EventLoop_new",
         argNames: ["eventRecv"],
       );
 
   @override
-  Future<void> webAudioApiEventsEventLoopRunInThread(
-      {required EventLoop that}) {
+  Future<void> webAudioApiEventLoopRunInThread({required EventLoop that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerEventLoop(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 88, port: port_);
+            funcId: 61, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiEventsEventLoopRunInThreadConstMeta,
+      constMeta: kWebAudioApiEventLoopRunInThreadConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiEventsEventLoopRunInThreadConstMeta =>
+  TaskConstMeta get kWebAudioApiEventLoopRunInThreadConstMeta =>
       const TaskConstMeta(
         debugName: "EventLoop_run_in_thread",
         argNames: ["that"],
       );
 
   @override
-  Future<void> webAudioApiEventsEventLoopSetHandler(
+  Future<void> webAudioApiEventLoopSetHandler(
       {required EventLoop that,
       required EventType event,
       required EventHandler callback}) {
@@ -4042,52 +3137,51 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerEventHandler(
             callback, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 89, port: port_);
+            funcId: 62, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiEventsEventLoopSetHandlerConstMeta,
+      constMeta: kWebAudioApiEventLoopSetHandlerConstMeta,
       argValues: [that, event, callback],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiEventsEventLoopSetHandlerConstMeta =>
+  TaskConstMeta get kWebAudioApiEventLoopSetHandlerConstMeta =>
       const TaskConstMeta(
         debugName: "EventLoop_set_handler",
         argNames: ["that", "event", "callback"],
       );
 
   @override
-  Str webAudioApiEventsEventGetType({required Event that}) {
+  Str webAudioApiEventGetType({required Event that}) {
     return handler.executeSync(SyncTask(
       callFfi: () {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerEvent(
             that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 90)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 63)!;
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerstr,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiEventsEventGetTypeConstMeta,
+      constMeta: kWebAudioApiEventGetTypeConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiEventsEventGetTypeConstMeta =>
-      const TaskConstMeta(
+  TaskConstMeta get kWebAudioApiEventGetTypeConstMeta => const TaskConstMeta(
         debugName: "Event_get_type_",
         argNames: ["that"],
       );
 
   @override
-  void webAudioApiEventsEventSetType({required Event that, required Str type}) {
+  void webAudioApiEventSetType({required Event that, required Str type}) {
     return handler.executeSync(SyncTask(
       callFfi: () {
         final serializer = SseSerializer(generalizedFrbRustBinding);
@@ -4095,82 +3189,80 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerstr(
             type, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 91)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 64)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiEventsEventSetTypeConstMeta,
+      constMeta: kWebAudioApiEventSetTypeConstMeta,
       argValues: [that, type],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiEventsEventSetTypeConstMeta =>
-      const TaskConstMeta(
+  TaskConstMeta get kWebAudioApiEventSetTypeConstMeta => const TaskConstMeta(
         debugName: "Event_set_type_",
         argNames: ["that", "type"],
       );
 
   @override
-  Event webAudioApiEventsOfflineAudioCompletionEventGetEvent(
+  Event webAudioApiOfflineAudioCompletionEventGetEvent(
       {required OfflineAudioCompletionEvent that}) {
     return handler.executeSync(SyncTask(
       callFfi: () {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioCompletionEvent(
             that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 92)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 65)!;
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerEvent,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiEventsOfflineAudioCompletionEventGetEventConstMeta,
+      constMeta: kWebAudioApiOfflineAudioCompletionEventGetEventConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiEventsOfflineAudioCompletionEventGetEventConstMeta =>
-          const TaskConstMeta(
-            debugName: "OfflineAudioCompletionEvent_get_event",
-            argNames: ["that"],
-          );
+  TaskConstMeta get kWebAudioApiOfflineAudioCompletionEventGetEventConstMeta =>
+      const TaskConstMeta(
+        debugName: "OfflineAudioCompletionEvent_get_event",
+        argNames: ["that"],
+      );
 
   @override
-  AudioBuffer webAudioApiEventsOfflineAudioCompletionEventGetRenderedBuffer(
+  AudioBuffer webAudioApiOfflineAudioCompletionEventGetRenderedBuffer(
       {required OfflineAudioCompletionEvent that}) {
     return handler.executeSync(SyncTask(
       callFfi: () {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioCompletionEvent(
             that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 93)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 66)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_audio_buffer,
         decodeErrorData: null,
       ),
       constMeta:
-          kWebAudioApiEventsOfflineAudioCompletionEventGetRenderedBufferConstMeta,
+          kWebAudioApiOfflineAudioCompletionEventGetRenderedBufferConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
   TaskConstMeta
-      get kWebAudioApiEventsOfflineAudioCompletionEventGetRenderedBufferConstMeta =>
+      get kWebAudioApiOfflineAudioCompletionEventGetRenderedBufferConstMeta =>
           const TaskConstMeta(
             debugName: "OfflineAudioCompletionEvent_get_rendered_buffer",
             argNames: ["that"],
           );
 
   @override
-  void webAudioApiEventsOfflineAudioCompletionEventSetEvent(
+  void webAudioApiOfflineAudioCompletionEventSetEvent(
       {required OfflineAudioCompletionEvent that, required Event event}) {
     return handler.executeSync(SyncTask(
       callFfi: () {
@@ -4179,27 +3271,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerEvent(
             event, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 94)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 67)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiEventsOfflineAudioCompletionEventSetEventConstMeta,
+      constMeta: kWebAudioApiOfflineAudioCompletionEventSetEventConstMeta,
       argValues: [that, event],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiEventsOfflineAudioCompletionEventSetEventConstMeta =>
-          const TaskConstMeta(
-            debugName: "OfflineAudioCompletionEvent_set_event",
-            argNames: ["that", "event"],
-          );
+  TaskConstMeta get kWebAudioApiOfflineAudioCompletionEventSetEventConstMeta =>
+      const TaskConstMeta(
+        debugName: "OfflineAudioCompletionEvent_set_event",
+        argNames: ["that", "event"],
+      );
 
   @override
-  void webAudioApiEventsOfflineAudioCompletionEventSetRenderedBuffer(
+  void webAudioApiOfflineAudioCompletionEventSetRenderedBuffer(
       {required OfflineAudioCompletionEvent that,
       required AudioBuffer renderedBuffer}) {
     return handler.executeSync(SyncTask(
@@ -4208,24 +3299,1225 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioCompletionEvent(
             that, serializer);
         sse_encode_audio_buffer(renderedBuffer, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 95)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 68)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
       constMeta:
-          kWebAudioApiEventsOfflineAudioCompletionEventSetRenderedBufferConstMeta,
+          kWebAudioApiOfflineAudioCompletionEventSetRenderedBufferConstMeta,
       argValues: [that, renderedBuffer],
       apiImpl: this,
     ));
   }
 
   TaskConstMeta
-      get kWebAudioApiEventsOfflineAudioCompletionEventSetRenderedBufferConstMeta =>
+      get kWebAudioApiOfflineAudioCompletionEventSetRenderedBufferConstMeta =>
           const TaskConstMeta(
             debugName: "OfflineAudioCompletionEvent_set_rendered_buffer",
             argNames: ["that", "renderedBuffer"],
+          );
+
+  @override
+  Future<PeriodicWave> webAudioApiPeriodicWaveNew(
+      {required C context, required PeriodicWaveOptions options}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerC(
+            context, serializer);
+        sse_encode_box_autoadd_periodic_wave_options(options, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 69, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPeriodicWave,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiPeriodicWaveNewConstMeta,
+      argValues: [context, options],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiPeriodicWaveNewConstMeta => const TaskConstMeta(
+        debugName: "PeriodicWave_new",
+        argNames: ["context", "options"],
+      );
+
+  @override
+  Future<void> webAudioApiAudioBufferCopyFromChannel(
+      {required AudioBuffer that,
+      required F32 destination,
+      required BigInt channelNumber}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_box_autoadd_audio_buffer(that, serializer);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
+            destination, serializer);
+        sse_encode_usize(channelNumber, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 70, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioBufferCopyFromChannelConstMeta,
+      argValues: [that, destination, channelNumber],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioBufferCopyFromChannelConstMeta =>
+      const TaskConstMeta(
+        debugName: "audio_buffer_copy_from_channel",
+        argNames: ["that", "destination", "channelNumber"],
+      );
+
+  @override
+  Future<void> webAudioApiAudioBufferCopyFromChannelWithOffset(
+      {required AudioBuffer that,
+      required F32 destination,
+      required BigInt channelNumber,
+      required BigInt offset}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_box_autoadd_audio_buffer(that, serializer);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
+            destination, serializer);
+        sse_encode_usize(channelNumber, serializer);
+        sse_encode_usize(offset, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 71, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioBufferCopyFromChannelWithOffsetConstMeta,
+      argValues: [that, destination, channelNumber, offset],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioBufferCopyFromChannelWithOffsetConstMeta =>
+      const TaskConstMeta(
+        debugName: "audio_buffer_copy_from_channel_with_offset",
+        argNames: ["that", "destination", "channelNumber", "offset"],
+      );
+
+  @override
+  Future<void> webAudioApiAudioBufferCopyToChannel(
+      {required AudioBuffer that,
+      required F32 source,
+      required BigInt channelNumber}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+            that, serializer);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
+            source, serializer);
+        sse_encode_usize(channelNumber, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 72, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioBufferCopyToChannelConstMeta,
+      argValues: [that, source, channelNumber],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioBufferCopyToChannelConstMeta =>
+      const TaskConstMeta(
+        debugName: "audio_buffer_copy_to_channel",
+        argNames: ["that", "source", "channelNumber"],
+      );
+
+  @override
+  Future<void> webAudioApiAudioBufferCopyToChannelWithOffset(
+      {required AudioBuffer that,
+      required F32 source,
+      required BigInt channelNumber,
+      required BigInt offset}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+            that, serializer);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
+            source, serializer);
+        sse_encode_usize(channelNumber, serializer);
+        sse_encode_usize(offset, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 73, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioBufferCopyToChannelWithOffsetConstMeta,
+      argValues: [that, source, channelNumber, offset],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioBufferCopyToChannelWithOffsetConstMeta =>
+      const TaskConstMeta(
+        debugName: "audio_buffer_copy_to_channel_with_offset",
+        argNames: ["that", "source", "channelNumber", "offset"],
+      );
+
+  @override
+  Future<double> webAudioApiAudioBufferDuration({required AudioBuffer that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_box_autoadd_audio_buffer(that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 74, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_f_64,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioBufferDurationConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioBufferDurationConstMeta =>
+      const TaskConstMeta(
+        debugName: "audio_buffer_duration",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<AudioBuffer> webAudioApiAudioBufferFrom(
+      {required List<Float32List> samples, required double sampleRate}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_list_list_prim_f_32_strict(samples, serializer);
+        sse_encode_f_32(sampleRate, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 75, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_audio_buffer,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioBufferFromConstMeta,
+      argValues: [samples, sampleRate],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioBufferFromConstMeta => const TaskConstMeta(
+        debugName: "audio_buffer_from",
+        argNames: ["samples", "sampleRate"],
+      );
+
+  @override
+  Future<F32> webAudioApiAudioBufferGetChannelData(
+      {required AudioBuffer that, required BigInt channelNumber}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_box_autoadd_audio_buffer(that, serializer);
+        sse_encode_usize(channelNumber, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 76, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioBufferGetChannelDataConstMeta,
+      argValues: [that, channelNumber],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioBufferGetChannelDataConstMeta =>
+      const TaskConstMeta(
+        debugName: "audio_buffer_get_channel_data",
+        argNames: ["that", "channelNumber"],
+      );
+
+  @override
+  Future<F32> webAudioApiAudioBufferGetChannelDataMut(
+      {required AudioBuffer that, required BigInt channelNumber}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+            that, serializer);
+        sse_encode_usize(channelNumber, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 77, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioBufferGetChannelDataMutConstMeta,
+      argValues: [that, channelNumber],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioBufferGetChannelDataMutConstMeta =>
+      const TaskConstMeta(
+        debugName: "audio_buffer_get_channel_data_mut",
+        argNames: ["that", "channelNumber"],
+      );
+
+  @override
+  Future<BigInt> webAudioApiAudioBufferLength({required AudioBuffer that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_box_autoadd_audio_buffer(that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 78, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_usize,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioBufferLengthConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioBufferLengthConstMeta =>
+      const TaskConstMeta(
+        debugName: "audio_buffer_length",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<AudioBuffer> webAudioApiAudioBufferNew(
+      {required AudioBufferOptions options}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_box_autoadd_audio_buffer_options(options, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 79, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_audio_buffer,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioBufferNewConstMeta,
+      argValues: [options],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioBufferNewConstMeta => const TaskConstMeta(
+        debugName: "audio_buffer_new",
+        argNames: ["options"],
+      );
+
+  @override
+  Future<BigInt> webAudioApiAudioBufferNumberOfChannels(
+      {required AudioBuffer that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_box_autoadd_audio_buffer(that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 80, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_usize,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioBufferNumberOfChannelsConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioBufferNumberOfChannelsConstMeta =>
+      const TaskConstMeta(
+        debugName: "audio_buffer_number_of_channels",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<double> webAudioApiAudioBufferSampleRate({required AudioBuffer that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_box_autoadd_audio_buffer(that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 81, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_f_32,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioBufferSampleRateConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioBufferSampleRateConstMeta =>
+      const TaskConstMeta(
+        debugName: "audio_buffer_sample_rate",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<double> webAudioApiContextAudioContextBaseLatency(
+      {required AudioContext that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 82, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_f_64,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiContextAudioContextBaseLatencyConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiContextAudioContextBaseLatencyConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioContext_base_latency",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<void> webAudioApiContextAudioContextClearOnsinkchange(
+      {required AudioContext that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 83, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiContextAudioContextClearOnsinkchangeConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiContextAudioContextClearOnsinkchangeConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioContext_clear_onsinkchange",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<void> webAudioApiContextAudioContextClose(
+      {required AudioContext that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 84, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiContextAudioContextCloseConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiContextAudioContextCloseConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioContext_close",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<void> webAudioApiContextAudioContextCloseSync(
+      {required AudioContext that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 85, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiContextAudioContextCloseSyncConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiContextAudioContextCloseSyncConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioContext_close_sync",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<MediaElementAudioSourceNode>
+      webAudioApiContextAudioContextCreateMediaElementSource(
+          {required AudioContext that, required MediaElement mediaElement}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
+            that, serializer);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaElement(
+            mediaElement, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 86, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaElementAudioSourceNode,
+        decodeErrorData: null,
+      ),
+      constMeta:
+          kWebAudioApiContextAudioContextCreateMediaElementSourceConstMeta,
+      argValues: [that, mediaElement],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiContextAudioContextCreateMediaElementSourceConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioContext_create_media_element_source",
+            argNames: ["that", "mediaElement"],
+          );
+
+  @override
+  Future<MediaStreamAudioDestinationNode>
+      webAudioApiContextAudioContextCreateMediaStreamDestination(
+          {required AudioContext that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 87, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamAudioDestinationNode,
+        decodeErrorData: null,
+      ),
+      constMeta:
+          kWebAudioApiContextAudioContextCreateMediaStreamDestinationConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiContextAudioContextCreateMediaStreamDestinationConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioContext_create_media_stream_destination",
+            argNames: ["that"],
+          );
+
+  @override
+  Future<MediaStreamAudioSourceNode>
+      webAudioApiContextAudioContextCreateMediaStreamSource(
+          {required AudioContext that, required MediaStream media}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
+            that, serializer);
+        sse_encode_box_autoadd_media_stream(media, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 88, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamAudioSourceNode,
+        decodeErrorData: null,
+      ),
+      constMeta:
+          kWebAudioApiContextAudioContextCreateMediaStreamSourceConstMeta,
+      argValues: [that, media],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiContextAudioContextCreateMediaStreamSourceConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioContext_create_media_stream_source",
+            argNames: ["that", "media"],
+          );
+
+  @override
+  Future<MediaStreamTrackAudioSourceNode>
+      webAudioApiContextAudioContextCreateMediaStreamTrackSource(
+          {required AudioContext that, required MediaStreamTrack media}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
+            that, serializer);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrack(
+            media, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 89, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrackAudioSourceNode,
+        decodeErrorData: null,
+      ),
+      constMeta:
+          kWebAudioApiContextAudioContextCreateMediaStreamTrackSourceConstMeta,
+      argValues: [that, media],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiContextAudioContextCreateMediaStreamTrackSourceConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioContext_create_media_stream_track_source",
+            argNames: ["that", "media"],
+          );
+
+  @override
+  Future<AudioContext> webAudioApiContextAudioContextNew(
+      {required AudioContextOptions options}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_box_autoadd_audio_context_options(options, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 90, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiContextAudioContextNewConstMeta,
+      argValues: [options],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiContextAudioContextNewConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioContext_new",
+        argNames: ["options"],
+      );
+
+  @override
+  Future<double> webAudioApiContextAudioContextOutputLatency(
+      {required AudioContext that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 91, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_f_64,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiContextAudioContextOutputLatencyConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiContextAudioContextOutputLatencyConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioContext_output_latency",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<AudioRenderCapacity> webAudioApiContextAudioContextRenderCapacity(
+      {required AudioContext that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 92, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacity,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiContextAudioContextRenderCapacityConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiContextAudioContextRenderCapacityConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioContext_render_capacity",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<void> webAudioApiContextAudioContextResume(
+      {required AudioContext that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 93, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiContextAudioContextResumeConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiContextAudioContextResumeConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioContext_resume",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<void> webAudioApiContextAudioContextResumeSync(
+      {required AudioContext that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 94, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiContextAudioContextResumeSyncConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiContextAudioContextResumeSyncConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioContext_resume_sync",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<void> webAudioApiContextAudioContextRunDiagnostics(
+      {required AudioContext that, required F callback}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
+            that, serializer);
+        sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerF(
+            callback, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 95, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiContextAudioContextRunDiagnosticsConstMeta,
+      argValues: [that, callback],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiContextAudioContextRunDiagnosticsConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioContext_run_diagnostics",
+        argNames: ["that", "callback"],
+      );
+
+  @override
+  Future<void> webAudioApiContextAudioContextSetOnsinkchange(
+      {required AudioContext that, required F callback}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
+            that, serializer);
+        sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerF(
+            callback, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 96, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiContextAudioContextSetOnsinkchangeConstMeta,
+      argValues: [that, callback],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiContextAudioContextSetOnsinkchangeConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioContext_set_onsinkchange",
+        argNames: ["that", "callback"],
+      );
+
+  @override
+  Future<void> webAudioApiContextAudioContextSetSinkIdSync(
+      {required AudioContext that, required String sinkId}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
+            that, serializer);
+        sse_encode_String(sinkId, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 97, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynError,
+      ),
+      constMeta: kWebAudioApiContextAudioContextSetSinkIdSyncConstMeta,
+      argValues: [that, sinkId],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiContextAudioContextSetSinkIdSyncConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioContext_set_sink_id_sync",
+        argNames: ["that", "sinkId"],
+      );
+
+  @override
+  Future<String> webAudioApiContextAudioContextSinkId(
+      {required AudioContext that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 98, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_String,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiContextAudioContextSinkIdConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiContextAudioContextSinkIdConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioContext_sink_id",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<void> webAudioApiContextAudioContextSuspend(
+      {required AudioContext that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 99, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiContextAudioContextSuspendConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiContextAudioContextSuspendConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioContext_suspend",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<void> webAudioApiContextAudioContextSuspendSync(
+      {required AudioContext that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 100, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiContextAudioContextSuspendSyncConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiContextAudioContextSuspendSyncConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioContext_suspend_sync",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<void> webAudioApiContextConcreteBaseAudioContextMarkCycleBreaker(
+      {required ConcreteBaseAudioContext that,
+      required AudioContextRegistration reg}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConcreteBaseAudioContext(
+            that, serializer);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextRegistration(
+            reg, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 101, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta:
+          kWebAudioApiContextConcreteBaseAudioContextMarkCycleBreakerConstMeta,
+      argValues: [that, reg],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiContextConcreteBaseAudioContextMarkCycleBreakerConstMeta =>
+          const TaskConstMeta(
+            debugName: "ConcreteBaseAudioContext_mark_cycle_breaker",
+            argNames: ["that", "reg"],
+          );
+
+  @override
+  Future<void> webAudioApiContextOfflineAudioContextClearOncomplete(
+      {required OfflineAudioContext that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioContext(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 102, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiContextOfflineAudioContextClearOncompleteConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiContextOfflineAudioContextClearOncompleteConstMeta =>
+          const TaskConstMeta(
+            debugName: "OfflineAudioContext_clear_oncomplete",
+            argNames: ["that"],
+          );
+
+  @override
+  Future<BigInt> webAudioApiContextOfflineAudioContextLength(
+      {required OfflineAudioContext that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioContext(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 103, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_usize,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiContextOfflineAudioContextLengthConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiContextOfflineAudioContextLengthConstMeta =>
+      const TaskConstMeta(
+        debugName: "OfflineAudioContext_length",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<OfflineAudioContext> webAudioApiContextOfflineAudioContextNew(
+      {required BigInt numberOfChannels,
+      required BigInt length,
+      required double sampleRate}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_usize(numberOfChannels, serializer);
+        sse_encode_usize(length, serializer);
+        sse_encode_f_32(sampleRate, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 104, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioContext,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiContextOfflineAudioContextNewConstMeta,
+      argValues: [numberOfChannels, length, sampleRate],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiContextOfflineAudioContextNewConstMeta =>
+      const TaskConstMeta(
+        debugName: "OfflineAudioContext_new",
+        argNames: ["numberOfChannels", "length", "sampleRate"],
+      );
+
+  @override
+  Future<void> webAudioApiContextOfflineAudioContextResume(
+      {required OfflineAudioContext that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioContext(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 105, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiContextOfflineAudioContextResumeConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiContextOfflineAudioContextResumeConstMeta =>
+      const TaskConstMeta(
+        debugName: "OfflineAudioContext_resume",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<void> webAudioApiContextOfflineAudioContextSetOncomplete(
+      {required OfflineAudioContext that, required F callback}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioContext(
+            that, serializer);
+        sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerF(
+            callback, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 106, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiContextOfflineAudioContextSetOncompleteConstMeta,
+      argValues: [that, callback],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiContextOfflineAudioContextSetOncompleteConstMeta =>
+          const TaskConstMeta(
+            debugName: "OfflineAudioContext_set_oncomplete",
+            argNames: ["that", "callback"],
+          );
+
+  @override
+  Future<AudioBuffer> webAudioApiContextOfflineAudioContextStartRendering(
+      {required OfflineAudioContext that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioContext(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 107, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_audio_buffer,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiContextOfflineAudioContextStartRenderingConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiContextOfflineAudioContextStartRenderingConstMeta =>
+          const TaskConstMeta(
+            debugName: "OfflineAudioContext_start_rendering",
+            argNames: ["that"],
+          );
+
+  @override
+  Future<AudioBuffer> webAudioApiContextOfflineAudioContextStartRenderingSync(
+      {required OfflineAudioContext that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioContext(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 108, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_audio_buffer,
+        decodeErrorData: null,
+      ),
+      constMeta:
+          kWebAudioApiContextOfflineAudioContextStartRenderingSyncConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiContextOfflineAudioContextStartRenderingSyncConstMeta =>
+          const TaskConstMeta(
+            debugName: "OfflineAudioContext_start_rendering_sync",
+            argNames: ["that"],
+          );
+
+  @override
+  Future<void> webAudioApiContextOfflineAudioContextSuspend(
+      {required OfflineAudioContext that, required double suspendTime}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioContext(
+            that, serializer);
+        sse_encode_f_64(suspendTime, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 109, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiContextOfflineAudioContextSuspendConstMeta,
+      argValues: [that, suspendTime],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiContextOfflineAudioContextSuspendConstMeta =>
+      const TaskConstMeta(
+        debugName: "OfflineAudioContext_suspend",
+        argNames: ["that", "suspendTime"],
+      );
+
+  @override
+  Future<void> webAudioApiContextOfflineAudioContextSuspendSync(
+      {required OfflineAudioContext that,
+      required double suspendTime,
+      required F callback}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioContext(
+            that, serializer);
+        sse_encode_f_64(suspendTime, serializer);
+        sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerF(
+            callback, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 110, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiContextOfflineAudioContextSuspendSyncConstMeta,
+      argValues: [that, suspendTime, callback],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiContextOfflineAudioContextSuspendSyncConstMeta =>
+          const TaskConstMeta(
+            debugName: "OfflineAudioContext_suspend_sync",
+            argNames: ["that", "suspendTime", "callback"],
           );
 
   @override
@@ -4237,7 +4529,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaDeviceInfo(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 96, port: port_);
+            funcId: 111, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -4265,7 +4557,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaDeviceInfo(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 97, port: port_);
+            funcId: 112, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -4293,7 +4585,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaDeviceInfo(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 98, port: port_);
+            funcId: 113, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_media_device_info_kind,
@@ -4320,7 +4612,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaDeviceInfo(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 99, port: port_);
+            funcId: 114, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -4345,7 +4637,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 100, port: port_);
+            funcId: 115, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -4373,7 +4665,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_box_autoadd_media_stream_constraints(
             constraints, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 101, port: port_);
+            funcId: 116, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_media_stream,
@@ -4399,7 +4691,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBlobEvent(
             that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 102)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 117)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_list_prim_u_8_strict,
@@ -4424,7 +4716,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBlobEvent(
             that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 103)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 118)!;
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -4451,7 +4743,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBlobEvent(
             that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 104)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 119)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_64,
@@ -4478,7 +4770,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBlobEvent(
             that, serializer);
         sse_encode_list_prim_u_8_strict(blob, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 105)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 120)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4506,7 +4798,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerEvent(
             event, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 106)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 121)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4533,7 +4825,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBlobEvent(
             that, serializer);
         sse_encode_f_64(timecode, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 107)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 122)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4560,7 +4852,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaRecorder(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 108, port: port_);
+            funcId: 123, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4589,7 +4881,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaRecorder(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 109, port: port_);
+            funcId: 124, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4617,7 +4909,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaRecorder(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 110, port: port_);
+            funcId: 125, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4644,7 +4936,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_box_autoadd_media_stream(stream, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 111, port: port_);
+            funcId: 126, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -4674,7 +4966,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerF(
             callback, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 112, port: port_);
+            funcId: 127, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4705,7 +4997,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerF(
             callback, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 113, port: port_);
+            funcId: 128, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4734,7 +5026,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerF(
             callback, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 114, port: port_);
+            funcId: 129, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4761,7 +5053,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaRecorder(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 115, port: port_);
+            funcId: 130, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4788,7 +5080,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaRecorder(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 116, port: port_);
+            funcId: 131, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4815,7 +5107,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrack(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 117, port: port_);
+            funcId: 132, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4842,7 +5134,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerT(
             iter, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 118, port: port_);
+            funcId: 133, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -4871,7 +5163,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrack(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 119, port: port_);
+            funcId: 134, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_media_stream_track_state,
@@ -4899,7 +5191,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_list_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrack(
             tracks, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 120, port: port_);
+            funcId: 135, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_media_stream,
@@ -4925,7 +5217,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_box_autoadd_media_stream(that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 121, port: port_);
+            funcId: 136, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -4945,7 +5237,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       );
 
   @override
-  Future<BigInt> webAudioApiNodeAnalyserAnalyserNodeFftSize(
+  Future<BigInt> webAudioApiNodeAnalyserNodeFftSize(
       {required AnalyserNode that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -4953,26 +5245,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAnalyserNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 122, port: port_);
+            funcId: 137, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_usize,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodeAnalyserAnalyserNodeFftSizeConstMeta,
+      constMeta: kWebAudioApiNodeAnalyserNodeFftSizeConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiNodeAnalyserAnalyserNodeFftSizeConstMeta =>
+  TaskConstMeta get kWebAudioApiNodeAnalyserNodeFftSizeConstMeta =>
       const TaskConstMeta(
         debugName: "AnalyserNode_fft_size",
         argNames: ["that"],
       );
 
   @override
-  Future<BigInt> webAudioApiNodeAnalyserAnalyserNodeFrequencyBinCount(
+  Future<BigInt> webAudioApiNodeAnalyserNodeFrequencyBinCount(
       {required AnalyserNode that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -4980,27 +5272,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAnalyserNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 123, port: port_);
+            funcId: 138, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_usize,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodeAnalyserAnalyserNodeFrequencyBinCountConstMeta,
+      constMeta: kWebAudioApiNodeAnalyserNodeFrequencyBinCountConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiNodeAnalyserAnalyserNodeFrequencyBinCountConstMeta =>
-          const TaskConstMeta(
-            debugName: "AnalyserNode_frequency_bin_count",
-            argNames: ["that"],
-          );
+  TaskConstMeta get kWebAudioApiNodeAnalyserNodeFrequencyBinCountConstMeta =>
+      const TaskConstMeta(
+        debugName: "AnalyserNode_frequency_bin_count",
+        argNames: ["that"],
+      );
 
   @override
-  Future<void> webAudioApiNodeAnalyserAnalyserNodeGetByteFrequencyData(
+  Future<void> webAudioApiNodeAnalyserNodeGetByteFrequencyData(
       {required AnalyserNode that, required U8 buffer}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -5010,28 +5301,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
             buffer, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 124, port: port_);
+            funcId: 139, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiNodeAnalyserAnalyserNodeGetByteFrequencyDataConstMeta,
+      constMeta: kWebAudioApiNodeAnalyserNodeGetByteFrequencyDataConstMeta,
       argValues: [that, buffer],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiNodeAnalyserAnalyserNodeGetByteFrequencyDataConstMeta =>
-          const TaskConstMeta(
-            debugName: "AnalyserNode_get_byte_frequency_data",
-            argNames: ["that", "buffer"],
-          );
+  TaskConstMeta get kWebAudioApiNodeAnalyserNodeGetByteFrequencyDataConstMeta =>
+      const TaskConstMeta(
+        debugName: "AnalyserNode_get_byte_frequency_data",
+        argNames: ["that", "buffer"],
+      );
 
   @override
-  Future<void> webAudioApiNodeAnalyserAnalyserNodeGetByteTimeDomainData(
+  Future<void> webAudioApiNodeAnalyserNodeGetByteTimeDomainData(
       {required AnalyserNode that, required U8 buffer}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -5041,28 +5330,27 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
             buffer, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 125, port: port_);
+            funcId: 140, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiNodeAnalyserAnalyserNodeGetByteTimeDomainDataConstMeta,
+      constMeta: kWebAudioApiNodeAnalyserNodeGetByteTimeDomainDataConstMeta,
       argValues: [that, buffer],
       apiImpl: this,
     ));
   }
 
   TaskConstMeta
-      get kWebAudioApiNodeAnalyserAnalyserNodeGetByteTimeDomainDataConstMeta =>
+      get kWebAudioApiNodeAnalyserNodeGetByteTimeDomainDataConstMeta =>
           const TaskConstMeta(
             debugName: "AnalyserNode_get_byte_time_domain_data",
             argNames: ["that", "buffer"],
           );
 
   @override
-  Future<void> webAudioApiNodeAnalyserAnalyserNodeGetFloatFrequencyData(
+  Future<void> webAudioApiNodeAnalyserNodeGetFloatFrequencyData(
       {required AnalyserNode that, required F32 buffer}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -5072,28 +5360,27 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
             buffer, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 126, port: port_);
+            funcId: 141, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiNodeAnalyserAnalyserNodeGetFloatFrequencyDataConstMeta,
+      constMeta: kWebAudioApiNodeAnalyserNodeGetFloatFrequencyDataConstMeta,
       argValues: [that, buffer],
       apiImpl: this,
     ));
   }
 
   TaskConstMeta
-      get kWebAudioApiNodeAnalyserAnalyserNodeGetFloatFrequencyDataConstMeta =>
+      get kWebAudioApiNodeAnalyserNodeGetFloatFrequencyDataConstMeta =>
           const TaskConstMeta(
             debugName: "AnalyserNode_get_float_frequency_data",
             argNames: ["that", "buffer"],
           );
 
   @override
-  Future<void> webAudioApiNodeAnalyserAnalyserNodeGetFloatTimeDomainData(
+  Future<void> webAudioApiNodeAnalyserNodeGetFloatTimeDomainData(
       {required AnalyserNode that, required F32 buffer}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -5103,473 +5390,32 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
             buffer, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 127, port: port_);
+            funcId: 142, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiNodeAnalyserAnalyserNodeGetFloatTimeDomainDataConstMeta,
+      constMeta: kWebAudioApiNodeAnalyserNodeGetFloatTimeDomainDataConstMeta,
       argValues: [that, buffer],
       apiImpl: this,
     ));
   }
 
   TaskConstMeta
-      get kWebAudioApiNodeAnalyserAnalyserNodeGetFloatTimeDomainDataConstMeta =>
+      get kWebAudioApiNodeAnalyserNodeGetFloatTimeDomainDataConstMeta =>
           const TaskConstMeta(
             debugName: "AnalyserNode_get_float_time_domain_data",
             argNames: ["that", "buffer"],
           );
 
   @override
-  Future<double> webAudioApiNodeAnalyserAnalyserNodeMaxDecibels(
+  Future<double> webAudioApiNodeAnalyserNodeMaxDecibels(
       {required AnalyserNode that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAnalyserNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 128, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_f_64,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodeAnalyserAnalyserNodeMaxDecibelsConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiNodeAnalyserAnalyserNodeMaxDecibelsConstMeta =>
-      const TaskConstMeta(
-        debugName: "AnalyserNode_max_decibels",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<double> webAudioApiNodeAnalyserAnalyserNodeMinDecibels(
-      {required AnalyserNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAnalyserNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 129, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_f_64,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodeAnalyserAnalyserNodeMinDecibelsConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiNodeAnalyserAnalyserNodeMinDecibelsConstMeta =>
-      const TaskConstMeta(
-        debugName: "AnalyserNode_min_decibels",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<AnalyserNode> webAudioApiNodeAnalyserAnalyserNodeNew(
-      {required C context, required AnalyserOptions options}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerC(
-            context, serializer);
-        sse_encode_box_autoadd_analyser_options(options, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 130, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAnalyserNode,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodeAnalyserAnalyserNodeNewConstMeta,
-      argValues: [context, options],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiNodeAnalyserAnalyserNodeNewConstMeta =>
-      const TaskConstMeta(
-        debugName: "AnalyserNode_new",
-        argNames: ["context", "options"],
-      );
-
-  @override
-  Future<void> webAudioApiNodeAnalyserAnalyserNodeSetFftSize(
-      {required AnalyserNode that, required BigInt fftSize}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAnalyserNode(
-            that, serializer);
-        sse_encode_usize(fftSize, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 131, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodeAnalyserAnalyserNodeSetFftSizeConstMeta,
-      argValues: [that, fftSize],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiNodeAnalyserAnalyserNodeSetFftSizeConstMeta =>
-      const TaskConstMeta(
-        debugName: "AnalyserNode_set_fft_size",
-        argNames: ["that", "fftSize"],
-      );
-
-  @override
-  Future<void> webAudioApiNodeAnalyserAnalyserNodeSetMaxDecibels(
-      {required AnalyserNode that, required double value}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAnalyserNode(
-            that, serializer);
-        sse_encode_f_64(value, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 132, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodeAnalyserAnalyserNodeSetMaxDecibelsConstMeta,
-      argValues: [that, value],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiNodeAnalyserAnalyserNodeSetMaxDecibelsConstMeta =>
-          const TaskConstMeta(
-            debugName: "AnalyserNode_set_max_decibels",
-            argNames: ["that", "value"],
-          );
-
-  @override
-  Future<void> webAudioApiNodeAnalyserAnalyserNodeSetMinDecibels(
-      {required AnalyserNode that, required double value}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAnalyserNode(
-            that, serializer);
-        sse_encode_f_64(value, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 133, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodeAnalyserAnalyserNodeSetMinDecibelsConstMeta,
-      argValues: [that, value],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiNodeAnalyserAnalyserNodeSetMinDecibelsConstMeta =>
-          const TaskConstMeta(
-            debugName: "AnalyserNode_set_min_decibels",
-            argNames: ["that", "value"],
-          );
-
-  @override
-  Future<void> webAudioApiNodeAnalyserAnalyserNodeSetSmoothingTimeConstant(
-      {required AnalyserNode that, required double value}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAnalyserNode(
-            that, serializer);
-        sse_encode_f_64(value, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 134, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiNodeAnalyserAnalyserNodeSetSmoothingTimeConstantConstMeta,
-      argValues: [that, value],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiNodeAnalyserAnalyserNodeSetSmoothingTimeConstantConstMeta =>
-          const TaskConstMeta(
-            debugName: "AnalyserNode_set_smoothing_time_constant",
-            argNames: ["that", "value"],
-          );
-
-  @override
-  Future<double> webAudioApiNodeAnalyserAnalyserNodeSmoothingTimeConstant(
-      {required AnalyserNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAnalyserNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 135, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_f_64,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiNodeAnalyserAnalyserNodeSmoothingTimeConstantConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiNodeAnalyserAnalyserNodeSmoothingTimeConstantConstMeta =>
-          const TaskConstMeta(
-            debugName: "AnalyserNode_smoothing_time_constant",
-            argNames: ["that"],
-          );
-
-  @override
-  Future<AudioBuffer?>
-      webAudioApiNodeAudioBufferSourceAudioBufferSourceNodeBuffer(
-          {required AudioBufferSourceNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 136, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_opt_box_autoadd_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodeBufferConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodeBufferConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioBufferSourceNode_buffer",
-            argNames: ["that"],
-          );
-
-  @override
-  Future<AudioParam>
-      webAudioApiNodeAudioBufferSourceAudioBufferSourceNodeDetune(
-          {required AudioBufferSourceNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 137, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodeDetuneConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodeDetuneConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioBufferSourceNode_detune",
-            argNames: ["that"],
-          );
-
-  @override
-  Future<bool> webAudioApiNodeAudioBufferSourceAudioBufferSourceNodeLoop(
-      {required AudioBufferSourceNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 138, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_bool,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodeLoopConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodeLoopConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioBufferSourceNode_loop_",
-            argNames: ["that"],
-          );
-
-  @override
-  Future<double> webAudioApiNodeAudioBufferSourceAudioBufferSourceNodeLoopEnd(
-      {required AudioBufferSourceNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 139, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_f_64,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodeLoopEndConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodeLoopEndConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioBufferSourceNode_loop_end",
-            argNames: ["that"],
-          );
-
-  @override
-  Future<double> webAudioApiNodeAudioBufferSourceAudioBufferSourceNodeLoopStart(
-      {required AudioBufferSourceNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 140, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_f_64,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodeLoopStartConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodeLoopStartConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioBufferSourceNode_loop_start",
-            argNames: ["that"],
-          );
-
-  @override
-  Future<AudioBufferSourceNode>
-      webAudioApiNodeAudioBufferSourceAudioBufferSourceNodeNew(
-          {required C context, required AudioBufferSourceOptions options}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerC(
-            context, serializer);
-        sse_encode_box_autoadd_audio_buffer_source_options(options, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 141, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodeNewConstMeta,
-      argValues: [context, options],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodeNewConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioBufferSourceNode_new",
-            argNames: ["context", "options"],
-          );
-
-  @override
-  Future<AudioParam>
-      webAudioApiNodeAudioBufferSourceAudioBufferSourceNodePlaybackRate(
-          {required AudioBufferSourceNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 142, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodePlaybackRateConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodePlaybackRateConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioBufferSourceNode_playback_rate",
-            argNames: ["that"],
-          );
-
-  @override
-  Future<double> webAudioApiNodeAudioBufferSourceAudioBufferSourceNodePosition(
-      {required AudioBufferSourceNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 143, port: port_);
@@ -5578,89 +5424,83 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         decodeSuccessData: sse_decode_f_64,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodePositionConstMeta,
+      constMeta: kWebAudioApiNodeAnalyserNodeMaxDecibelsConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodePositionConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioBufferSourceNode_position",
-            argNames: ["that"],
-          );
+  TaskConstMeta get kWebAudioApiNodeAnalyserNodeMaxDecibelsConstMeta =>
+      const TaskConstMeta(
+        debugName: "AnalyserNode_max_decibels",
+        argNames: ["that"],
+      );
 
   @override
-  Future<void> webAudioApiNodeAudioBufferSourceAudioBufferSourceNodeSetBuffer(
-      {required AudioBufferSourceNode that, required AudioBuffer audioBuffer}) {
+  Future<double> webAudioApiNodeAnalyserNodeMinDecibels(
+      {required AnalyserNode that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAnalyserNode(
             that, serializer);
-        sse_encode_box_autoadd_audio_buffer(audioBuffer, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 144, port: port_);
       },
       codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
+        decodeSuccessData: sse_decode_f_64,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodeSetBufferConstMeta,
-      argValues: [that, audioBuffer],
+      constMeta: kWebAudioApiNodeAnalyserNodeMinDecibelsConstMeta,
+      argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodeSetBufferConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioBufferSourceNode_set_buffer",
-            argNames: ["that", "audioBuffer"],
-          );
+  TaskConstMeta get kWebAudioApiNodeAnalyserNodeMinDecibelsConstMeta =>
+      const TaskConstMeta(
+        debugName: "AnalyserNode_min_decibels",
+        argNames: ["that"],
+      );
 
   @override
-  Future<void> webAudioApiNodeAudioBufferSourceAudioBufferSourceNodeSetLoop(
-      {required AudioBufferSourceNode that, required bool value}) {
+  Future<AnalyserNode> webAudioApiNodeAnalyserNodeNew(
+      {required C context, required AnalyserOptions options}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
-            that, serializer);
-        sse_encode_bool(value, serializer);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerC(
+            context, serializer);
+        sse_encode_box_autoadd_analyser_options(options, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 145, port: port_);
       },
       codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAnalyserNode,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodeSetLoopConstMeta,
-      argValues: [that, value],
+      constMeta: kWebAudioApiNodeAnalyserNodeNewConstMeta,
+      argValues: [context, options],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodeSetLoopConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioBufferSourceNode_set_loop",
-            argNames: ["that", "value"],
-          );
+  TaskConstMeta get kWebAudioApiNodeAnalyserNodeNewConstMeta =>
+      const TaskConstMeta(
+        debugName: "AnalyserNode_new",
+        argNames: ["context", "options"],
+      );
 
   @override
-  Future<void> webAudioApiNodeAudioBufferSourceAudioBufferSourceNodeSetLoopEnd(
-      {required AudioBufferSourceNode that, required double value}) {
+  Future<void> webAudioApiNodeAnalyserNodeSetFftSize(
+      {required AnalyserNode that, required BigInt fftSize}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAnalyserNode(
             that, serializer);
-        sse_encode_f_64(value, serializer);
+        sse_encode_usize(fftSize, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 146, port: port_);
       },
@@ -5668,28 +5508,25 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodeSetLoopEndConstMeta,
-      argValues: [that, value],
+      constMeta: kWebAudioApiNodeAnalyserNodeSetFftSizeConstMeta,
+      argValues: [that, fftSize],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodeSetLoopEndConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioBufferSourceNode_set_loop_end",
-            argNames: ["that", "value"],
-          );
+  TaskConstMeta get kWebAudioApiNodeAnalyserNodeSetFftSizeConstMeta =>
+      const TaskConstMeta(
+        debugName: "AnalyserNode_set_fft_size",
+        argNames: ["that", "fftSize"],
+      );
 
   @override
-  Future<void>
-      webAudioApiNodeAudioBufferSourceAudioBufferSourceNodeSetLoopStart(
-          {required AudioBufferSourceNode that, required double value}) {
+  Future<void> webAudioApiNodeAnalyserNodeSetMaxDecibels(
+      {required AnalyserNode that, required double value}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAnalyserNode(
             that, serializer);
         sse_encode_f_64(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
@@ -5699,33 +5536,27 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodeSetLoopStartConstMeta,
+      constMeta: kWebAudioApiNodeAnalyserNodeSetMaxDecibelsConstMeta,
       argValues: [that, value],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodeSetLoopStartConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioBufferSourceNode_set_loop_start",
-            argNames: ["that", "value"],
-          );
+  TaskConstMeta get kWebAudioApiNodeAnalyserNodeSetMaxDecibelsConstMeta =>
+      const TaskConstMeta(
+        debugName: "AnalyserNode_set_max_decibels",
+        argNames: ["that", "value"],
+      );
 
   @override
-  Future<void>
-      webAudioApiNodeAudioBufferSourceAudioBufferSourceNodeStartAtWithOffset(
-          {required AudioBufferSourceNode that,
-          required double start,
-          required double offset}) {
+  Future<void> webAudioApiNodeAnalyserNodeSetMinDecibels(
+      {required AnalyserNode that, required double value}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAnalyserNode(
             that, serializer);
-        sse_encode_f_64(start, serializer);
-        sse_encode_f_64(offset, serializer);
+        sse_encode_f_64(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 148, port: port_);
       },
@@ -5733,35 +5564,27 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodeStartAtWithOffsetConstMeta,
-      argValues: [that, start, offset],
+      constMeta: kWebAudioApiNodeAnalyserNodeSetMinDecibelsConstMeta,
+      argValues: [that, value],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodeStartAtWithOffsetConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioBufferSourceNode_start_at_with_offset",
-            argNames: ["that", "start", "offset"],
-          );
+  TaskConstMeta get kWebAudioApiNodeAnalyserNodeSetMinDecibelsConstMeta =>
+      const TaskConstMeta(
+        debugName: "AnalyserNode_set_min_decibels",
+        argNames: ["that", "value"],
+      );
 
   @override
-  Future<void>
-      webAudioApiNodeAudioBufferSourceAudioBufferSourceNodeStartAtWithOffsetAndDuration(
-          {required AudioBufferSourceNode that,
-          required double start,
-          required double offset,
-          required double duration}) {
+  Future<void> webAudioApiNodeAnalyserNodeSetSmoothingTimeConstant(
+      {required AnalyserNode that, required double value}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAnalyserNode(
             that, serializer);
-        sse_encode_f_64(start, serializer);
-        sse_encode_f_64(offset, serializer);
-        sse_encode_f_64(duration, serializer);
+        sse_encode_f_64(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 149, port: port_);
       },
@@ -5769,86 +5592,82 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodeStartAtWithOffsetAndDurationConstMeta,
-      argValues: [that, start, offset, duration],
+      constMeta: kWebAudioApiNodeAnalyserNodeSetSmoothingTimeConstantConstMeta,
+      argValues: [that, value],
       apiImpl: this,
     ));
   }
 
   TaskConstMeta
-      get kWebAudioApiNodeAudioBufferSourceAudioBufferSourceNodeStartAtWithOffsetAndDurationConstMeta =>
+      get kWebAudioApiNodeAnalyserNodeSetSmoothingTimeConstantConstMeta =>
           const TaskConstMeta(
-            debugName:
-                "AudioBufferSourceNode_start_at_with_offset_and_duration",
-            argNames: ["that", "start", "offset", "duration"],
+            debugName: "AnalyserNode_set_smoothing_time_constant",
+            argNames: ["that", "value"],
           );
 
   @override
-  Future<AudioParam> webAudioApiNodeBiquadFilterBiquadFilterNodeDetune(
-      {required BiquadFilterNode that}) {
+  Future<double> webAudioApiNodeAnalyserNodeSmoothingTimeConstant(
+      {required AnalyserNode that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBiquadFilterNode(
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAnalyserNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 150, port: port_);
       },
       codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
+        decodeSuccessData: sse_decode_f_64,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodeBiquadFilterBiquadFilterNodeDetuneConstMeta,
+      constMeta: kWebAudioApiNodeAnalyserNodeSmoothingTimeConstantConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
   TaskConstMeta
-      get kWebAudioApiNodeBiquadFilterBiquadFilterNodeDetuneConstMeta =>
+      get kWebAudioApiNodeAnalyserNodeSmoothingTimeConstantConstMeta =>
           const TaskConstMeta(
-            debugName: "BiquadFilterNode_detune",
+            debugName: "AnalyserNode_smoothing_time_constant",
             argNames: ["that"],
           );
 
   @override
-  Future<AudioParam> webAudioApiNodeBiquadFilterBiquadFilterNodeFrequency(
-      {required BiquadFilterNode that}) {
+  Future<AudioBuffer?> webAudioApiNodeAudioBufferSourceNodeBuffer(
+      {required AudioBufferSourceNode that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBiquadFilterNode(
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 151, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
-            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
+            sse_decode_opt_box_autoadd_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodeBiquadFilterBiquadFilterNodeFrequencyConstMeta,
+      constMeta: kWebAudioApiNodeAudioBufferSourceNodeBufferConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiNodeBiquadFilterBiquadFilterNodeFrequencyConstMeta =>
-          const TaskConstMeta(
-            debugName: "BiquadFilterNode_frequency",
-            argNames: ["that"],
-          );
+  TaskConstMeta get kWebAudioApiNodeAudioBufferSourceNodeBufferConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioBufferSourceNode_buffer",
+        argNames: ["that"],
+      );
 
   @override
-  Future<AudioParam> webAudioApiNodeBiquadFilterBiquadFilterNodeGain(
-      {required BiquadFilterNode that}) {
+  Future<AudioParam> webAudioApiNodeAudioBufferSourceNodeDetune(
+      {required AudioBufferSourceNode that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBiquadFilterNode(
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 152, port: port_);
@@ -5858,20 +5677,480 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodeBiquadFilterBiquadFilterNodeGainConstMeta,
+      constMeta: kWebAudioApiNodeAudioBufferSourceNodeDetuneConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiNodeBiquadFilterBiquadFilterNodeGainConstMeta =>
+  TaskConstMeta get kWebAudioApiNodeAudioBufferSourceNodeDetuneConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioBufferSourceNode_detune",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<bool> webAudioApiNodeAudioBufferSourceNodeLoop(
+      {required AudioBufferSourceNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 153, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_bool,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeAudioBufferSourceNodeLoopConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeAudioBufferSourceNodeLoopConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioBufferSourceNode_loop_",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<double> webAudioApiNodeAudioBufferSourceNodeLoopEnd(
+      {required AudioBufferSourceNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 154, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_f_64,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeAudioBufferSourceNodeLoopEndConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeAudioBufferSourceNodeLoopEndConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioBufferSourceNode_loop_end",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<double> webAudioApiNodeAudioBufferSourceNodeLoopStart(
+      {required AudioBufferSourceNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 155, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_f_64,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeAudioBufferSourceNodeLoopStartConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeAudioBufferSourceNodeLoopStartConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioBufferSourceNode_loop_start",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<AudioBufferSourceNode> webAudioApiNodeAudioBufferSourceNodeNew(
+      {required C context, required AudioBufferSourceOptions options}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerC(
+            context, serializer);
+        sse_encode_box_autoadd_audio_buffer_source_options(options, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 156, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeAudioBufferSourceNodeNewConstMeta,
+      argValues: [context, options],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeAudioBufferSourceNodeNewConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioBufferSourceNode_new",
+        argNames: ["context", "options"],
+      );
+
+  @override
+  Future<AudioParam> webAudioApiNodeAudioBufferSourceNodePlaybackRate(
+      {required AudioBufferSourceNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 157, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeAudioBufferSourceNodePlaybackRateConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiNodeAudioBufferSourceNodePlaybackRateConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioBufferSourceNode_playback_rate",
+            argNames: ["that"],
+          );
+
+  @override
+  Future<double> webAudioApiNodeAudioBufferSourceNodePosition(
+      {required AudioBufferSourceNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 158, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_f_64,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeAudioBufferSourceNodePositionConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeAudioBufferSourceNodePositionConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioBufferSourceNode_position",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<void> webAudioApiNodeAudioBufferSourceNodeSetBuffer(
+      {required AudioBufferSourceNode that, required AudioBuffer audioBuffer}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
+            that, serializer);
+        sse_encode_box_autoadd_audio_buffer(audioBuffer, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 159, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeAudioBufferSourceNodeSetBufferConstMeta,
+      argValues: [that, audioBuffer],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeAudioBufferSourceNodeSetBufferConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioBufferSourceNode_set_buffer",
+        argNames: ["that", "audioBuffer"],
+      );
+
+  @override
+  Future<void> webAudioApiNodeAudioBufferSourceNodeSetLoop(
+      {required AudioBufferSourceNode that, required bool value}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
+            that, serializer);
+        sse_encode_bool(value, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 160, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeAudioBufferSourceNodeSetLoopConstMeta,
+      argValues: [that, value],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeAudioBufferSourceNodeSetLoopConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioBufferSourceNode_set_loop",
+        argNames: ["that", "value"],
+      );
+
+  @override
+  Future<void> webAudioApiNodeAudioBufferSourceNodeSetLoopEnd(
+      {required AudioBufferSourceNode that, required double value}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
+            that, serializer);
+        sse_encode_f_64(value, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 161, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeAudioBufferSourceNodeSetLoopEndConstMeta,
+      argValues: [that, value],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeAudioBufferSourceNodeSetLoopEndConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioBufferSourceNode_set_loop_end",
+        argNames: ["that", "value"],
+      );
+
+  @override
+  Future<void> webAudioApiNodeAudioBufferSourceNodeSetLoopStart(
+      {required AudioBufferSourceNode that, required double value}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
+            that, serializer);
+        sse_encode_f_64(value, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 162, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeAudioBufferSourceNodeSetLoopStartConstMeta,
+      argValues: [that, value],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiNodeAudioBufferSourceNodeSetLoopStartConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioBufferSourceNode_set_loop_start",
+            argNames: ["that", "value"],
+          );
+
+  @override
+  Future<void> webAudioApiNodeAudioBufferSourceNodeStartAtWithOffset(
+      {required AudioBufferSourceNode that,
+      required double start,
+      required double offset}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
+            that, serializer);
+        sse_encode_f_64(start, serializer);
+        sse_encode_f_64(offset, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 163, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta:
+          kWebAudioApiNodeAudioBufferSourceNodeStartAtWithOffsetConstMeta,
+      argValues: [that, start, offset],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiNodeAudioBufferSourceNodeStartAtWithOffsetConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioBufferSourceNode_start_at_with_offset",
+            argNames: ["that", "start", "offset"],
+          );
+
+  @override
+  Future<void> webAudioApiNodeAudioBufferSourceNodeStartAtWithOffsetAndDuration(
+      {required AudioBufferSourceNode that,
+      required double start,
+      required double offset,
+      required double duration}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
+            that, serializer);
+        sse_encode_f_64(start, serializer);
+        sse_encode_f_64(offset, serializer);
+        sse_encode_f_64(duration, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 164, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta:
+          kWebAudioApiNodeAudioBufferSourceNodeStartAtWithOffsetAndDurationConstMeta,
+      argValues: [that, start, offset, duration],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiNodeAudioBufferSourceNodeStartAtWithOffsetAndDurationConstMeta =>
+          const TaskConstMeta(
+            debugName:
+                "AudioBufferSourceNode_start_at_with_offset_and_duration",
+            argNames: ["that", "start", "offset", "duration"],
+          );
+
+  @override
+  Future<BigInt> webAudioApiNodeAudioDestinationNodeMaxChannelCount(
+      {required AudioDestinationNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioDestinationNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 165, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_usize,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeAudioDestinationNodeMaxChannelCountConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiNodeAudioDestinationNodeMaxChannelCountConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioDestinationNode_max_channel_count",
+            argNames: ["that"],
+          );
+
+  @override
+  Future<AudioParam> webAudioApiNodeBiquadFilterNodeDetune(
+      {required BiquadFilterNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBiquadFilterNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 166, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeBiquadFilterNodeDetuneConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeBiquadFilterNodeDetuneConstMeta =>
+      const TaskConstMeta(
+        debugName: "BiquadFilterNode_detune",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<AudioParam> webAudioApiNodeBiquadFilterNodeFrequency(
+      {required BiquadFilterNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBiquadFilterNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 167, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeBiquadFilterNodeFrequencyConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeBiquadFilterNodeFrequencyConstMeta =>
+      const TaskConstMeta(
+        debugName: "BiquadFilterNode_frequency",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<AudioParam> webAudioApiNodeBiquadFilterNodeGain(
+      {required BiquadFilterNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBiquadFilterNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 168, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeBiquadFilterNodeGainConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeBiquadFilterNodeGainConstMeta =>
       const TaskConstMeta(
         debugName: "BiquadFilterNode_gain",
         argNames: ["that"],
       );
 
   @override
-  Future<void> webAudioApiNodeBiquadFilterBiquadFilterNodeGetFrequencyResponse(
+  Future<void> webAudioApiNodeBiquadFilterNodeGetFrequencyResponse(
       {required BiquadFilterNode that,
       required F32 frequencyHz,
       required F32 magResponse,
@@ -5888,28 +6167,27 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
             phaseResponse, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 153, port: port_);
+            funcId: 169, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiNodeBiquadFilterBiquadFilterNodeGetFrequencyResponseConstMeta,
+      constMeta: kWebAudioApiNodeBiquadFilterNodeGetFrequencyResponseConstMeta,
       argValues: [that, frequencyHz, magResponse, phaseResponse],
       apiImpl: this,
     ));
   }
 
   TaskConstMeta
-      get kWebAudioApiNodeBiquadFilterBiquadFilterNodeGetFrequencyResponseConstMeta =>
+      get kWebAudioApiNodeBiquadFilterNodeGetFrequencyResponseConstMeta =>
           const TaskConstMeta(
             debugName: "BiquadFilterNode_get_frequency_response",
             argNames: ["that", "frequencyHz", "magResponse", "phaseResponse"],
           );
 
   @override
-  Future<BiquadFilterNode> webAudioApiNodeBiquadFilterBiquadFilterNodeNew(
+  Future<BiquadFilterNode> webAudioApiNodeBiquadFilterNodeNew(
       {required C context, required BiquadFilterOptions options}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -5918,496 +6196,32 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             context, serializer);
         sse_encode_box_autoadd_biquad_filter_options(options, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 154, port: port_);
+            funcId: 170, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBiquadFilterNode,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodeBiquadFilterBiquadFilterNodeNewConstMeta,
+      constMeta: kWebAudioApiNodeBiquadFilterNodeNewConstMeta,
       argValues: [context, options],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiNodeBiquadFilterBiquadFilterNodeNewConstMeta =>
+  TaskConstMeta get kWebAudioApiNodeBiquadFilterNodeNewConstMeta =>
       const TaskConstMeta(
         debugName: "BiquadFilterNode_new",
         argNames: ["context", "options"],
       );
 
   @override
-  Future<AudioParam> webAudioApiNodeBiquadFilterBiquadFilterNodeQ(
+  Future<AudioParam> webAudioApiNodeBiquadFilterNodeQ(
       {required BiquadFilterNode that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBiquadFilterNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 155, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodeBiquadFilterBiquadFilterNodeQConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiNodeBiquadFilterBiquadFilterNodeQConstMeta =>
-      const TaskConstMeta(
-        debugName: "BiquadFilterNode_q",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<void> webAudioApiNodeBiquadFilterBiquadFilterNodeSetType(
-      {required BiquadFilterNode that, required BiquadFilterType type}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBiquadFilterNode(
-            that, serializer);
-        sse_encode_biquad_filter_type(type, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 156, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodeBiquadFilterBiquadFilterNodeSetTypeConstMeta,
-      argValues: [that, type],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiNodeBiquadFilterBiquadFilterNodeSetTypeConstMeta =>
-          const TaskConstMeta(
-            debugName: "BiquadFilterNode_set_type",
-            argNames: ["that", "type"],
-          );
-
-  @override
-  Future<BiquadFilterType> webAudioApiNodeBiquadFilterBiquadFilterNodeType(
-      {required BiquadFilterNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBiquadFilterNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 157, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_biquad_filter_type,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodeBiquadFilterBiquadFilterNodeTypeConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiNodeBiquadFilterBiquadFilterNodeTypeConstMeta =>
-      const TaskConstMeta(
-        debugName: "BiquadFilterNode_type_",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<ChannelMergerNode> webAudioApiNodeChannelMergerChannelMergerNodeNew(
-      {required C context, required ChannelMergerOptions options}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerC(
-            context, serializer);
-        sse_encode_box_autoadd_channel_merger_options(options, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 158, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelMergerNode,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodeChannelMergerChannelMergerNodeNewConstMeta,
-      argValues: [context, options],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiNodeChannelMergerChannelMergerNodeNewConstMeta =>
-          const TaskConstMeta(
-            debugName: "ChannelMergerNode_new",
-            argNames: ["context", "options"],
-          );
-
-  @override
-  Future<ChannelSplitterNode>
-      webAudioApiNodeChannelSplitterChannelSplitterNodeNew(
-          {required C context, required ChannelSplitterOptions options}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerC(
-            context, serializer);
-        sse_encode_box_autoadd_channel_splitter_options(options, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 159, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelSplitterNode,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodeChannelSplitterChannelSplitterNodeNewConstMeta,
-      argValues: [context, options],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiNodeChannelSplitterChannelSplitterNodeNewConstMeta =>
-          const TaskConstMeta(
-            debugName: "ChannelSplitterNode_new",
-            argNames: ["context", "options"],
-          );
-
-  @override
-  Future<ConstantSourceNode> webAudioApiNodeConstantSourceConstantSourceNodeNew(
-      {required C context, required ConstantSourceOptions options}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerC(
-            context, serializer);
-        sse_encode_box_autoadd_constant_source_options(options, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 160, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConstantSourceNode,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodeConstantSourceConstantSourceNodeNewConstMeta,
-      argValues: [context, options],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiNodeConstantSourceConstantSourceNodeNewConstMeta =>
-          const TaskConstMeta(
-            debugName: "ConstantSourceNode_new",
-            argNames: ["context", "options"],
-          );
-
-  @override
-  Future<AudioParam> webAudioApiNodeConstantSourceConstantSourceNodeOffset(
-      {required ConstantSourceNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConstantSourceNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 161, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiNodeConstantSourceConstantSourceNodeOffsetConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiNodeConstantSourceConstantSourceNodeOffsetConstMeta =>
-          const TaskConstMeta(
-            debugName: "ConstantSourceNode_offset",
-            argNames: ["that"],
-          );
-
-  @override
-  Future<AudioBuffer?> webAudioApiNodeConvolverConvolverNodeBuffer(
-      {required ConvolverNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvolverNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 162, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_opt_box_autoadd_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodeConvolverConvolverNodeBufferConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiNodeConvolverConvolverNodeBufferConstMeta =>
-      const TaskConstMeta(
-        debugName: "ConvolverNode_buffer",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<ConvolverNode> webAudioApiNodeConvolverConvolverNodeNew(
-      {required C context, required ConvolverOptions options}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerC(
-            context, serializer);
-        sse_encode_box_autoadd_convolver_options(options, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 163, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvolverNode,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodeConvolverConvolverNodeNewConstMeta,
-      argValues: [context, options],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiNodeConvolverConvolverNodeNewConstMeta =>
-      const TaskConstMeta(
-        debugName: "ConvolverNode_new",
-        argNames: ["context", "options"],
-      );
-
-  @override
-  Future<bool> webAudioApiNodeConvolverConvolverNodeNormalize(
-      {required ConvolverNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvolverNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 164, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_bool,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodeConvolverConvolverNodeNormalizeConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiNodeConvolverConvolverNodeNormalizeConstMeta =>
-      const TaskConstMeta(
-        debugName: "ConvolverNode_normalize",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<void> webAudioApiNodeConvolverConvolverNodeSetBuffer(
-      {required ConvolverNode that, required AudioBuffer buffer}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvolverNode(
-            that, serializer);
-        sse_encode_box_autoadd_audio_buffer(buffer, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 165, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodeConvolverConvolverNodeSetBufferConstMeta,
-      argValues: [that, buffer],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiNodeConvolverConvolverNodeSetBufferConstMeta =>
-      const TaskConstMeta(
-        debugName: "ConvolverNode_set_buffer",
-        argNames: ["that", "buffer"],
-      );
-
-  @override
-  Future<void> webAudioApiNodeConvolverConvolverNodeSetNormalize(
-      {required ConvolverNode that, required bool value}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvolverNode(
-            that, serializer);
-        sse_encode_bool(value, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 166, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodeConvolverConvolverNodeSetNormalizeConstMeta,
-      argValues: [that, value],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiNodeConvolverConvolverNodeSetNormalizeConstMeta =>
-          const TaskConstMeta(
-            debugName: "ConvolverNode_set_normalize",
-            argNames: ["that", "value"],
-          );
-
-  @override
-  Future<AudioParam> webAudioApiNodeDelayDelayNodeDelayTime(
-      {required DelayNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDelayNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 167, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodeDelayDelayNodeDelayTimeConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiNodeDelayDelayNodeDelayTimeConstMeta =>
-      const TaskConstMeta(
-        debugName: "DelayNode_delay_time",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<DelayNode> webAudioApiNodeDelayDelayNodeNew(
-      {required C context, required DelayOptions options}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerC(
-            context, serializer);
-        sse_encode_box_autoadd_delay_options(options, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 168, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDelayNode,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodeDelayDelayNodeNewConstMeta,
-      argValues: [context, options],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiNodeDelayDelayNodeNewConstMeta =>
-      const TaskConstMeta(
-        debugName: "DelayNode_new",
-        argNames: ["context", "options"],
-      );
-
-  @override
-  Future<BigInt> webAudioApiNodeDestinationAudioDestinationNodeMaxChannelCount(
-      {required AudioDestinationNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioDestinationNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 169, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_usize,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiNodeDestinationAudioDestinationNodeMaxChannelCountConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiNodeDestinationAudioDestinationNodeMaxChannelCountConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioDestinationNode_max_channel_count",
-            argNames: ["that"],
-          );
-
-  @override
-  Future<AudioParam>
-      webAudioApiNodeDynamicsCompressorDynamicsCompressorNodeAttack(
-          {required DynamicsCompressorNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDynamicsCompressorNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 170, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiNodeDynamicsCompressorDynamicsCompressorNodeAttackConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiNodeDynamicsCompressorDynamicsCompressorNodeAttackConstMeta =>
-          const TaskConstMeta(
-            debugName: "DynamicsCompressorNode_attack",
-            argNames: ["that"],
-          );
-
-  @override
-  Future<AudioParam>
-      webAudioApiNodeDynamicsCompressorDynamicsCompressorNodeKnee(
-          {required DynamicsCompressorNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDynamicsCompressorNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 171, port: port_);
@@ -6417,181 +6231,167 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiNodeDynamicsCompressorDynamicsCompressorNodeKneeConstMeta,
+      constMeta: kWebAudioApiNodeBiquadFilterNodeQConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiNodeDynamicsCompressorDynamicsCompressorNodeKneeConstMeta =>
-          const TaskConstMeta(
-            debugName: "DynamicsCompressorNode_knee",
-            argNames: ["that"],
-          );
+  TaskConstMeta get kWebAudioApiNodeBiquadFilterNodeQConstMeta =>
+      const TaskConstMeta(
+        debugName: "BiquadFilterNode_q",
+        argNames: ["that"],
+      );
 
   @override
-  Future<DynamicsCompressorNode>
-      webAudioApiNodeDynamicsCompressorDynamicsCompressorNodeNew(
-          {required C context, required DynamicsCompressorOptions options}) {
+  Future<void> webAudioApiNodeBiquadFilterNodeSetType(
+      {required BiquadFilterNode that, required BiquadFilterType type}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerC(
-            context, serializer);
-        sse_encode_box_autoadd_dynamics_compressor_options(options, serializer);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBiquadFilterNode(
+            that, serializer);
+        sse_encode_biquad_filter_type(type, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 172, port: port_);
       },
       codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDynamicsCompressorNode,
+        decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiNodeDynamicsCompressorDynamicsCompressorNodeNewConstMeta,
-      argValues: [context, options],
+      constMeta: kWebAudioApiNodeBiquadFilterNodeSetTypeConstMeta,
+      argValues: [that, type],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiNodeDynamicsCompressorDynamicsCompressorNodeNewConstMeta =>
-          const TaskConstMeta(
-            debugName: "DynamicsCompressorNode_new",
-            argNames: ["context", "options"],
-          );
+  TaskConstMeta get kWebAudioApiNodeBiquadFilterNodeSetTypeConstMeta =>
+      const TaskConstMeta(
+        debugName: "BiquadFilterNode_set_type",
+        argNames: ["that", "type"],
+      );
 
   @override
-  Future<AudioParam>
-      webAudioApiNodeDynamicsCompressorDynamicsCompressorNodeRatio(
-          {required DynamicsCompressorNode that}) {
+  Future<BiquadFilterType> webAudioApiNodeBiquadFilterNodeType(
+      {required BiquadFilterNode that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDynamicsCompressorNode(
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBiquadFilterNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 173, port: port_);
       },
       codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
+        decodeSuccessData: sse_decode_biquad_filter_type,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiNodeDynamicsCompressorDynamicsCompressorNodeRatioConstMeta,
+      constMeta: kWebAudioApiNodeBiquadFilterNodeTypeConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiNodeDynamicsCompressorDynamicsCompressorNodeRatioConstMeta =>
-          const TaskConstMeta(
-            debugName: "DynamicsCompressorNode_ratio",
-            argNames: ["that"],
-          );
+  TaskConstMeta get kWebAudioApiNodeBiquadFilterNodeTypeConstMeta =>
+      const TaskConstMeta(
+        debugName: "BiquadFilterNode_type_",
+        argNames: ["that"],
+      );
 
   @override
-  Future<double>
-      webAudioApiNodeDynamicsCompressorDynamicsCompressorNodeReduction(
-          {required DynamicsCompressorNode that}) {
+  Future<ChannelMergerNode> webAudioApiNodeChannelMergerNodeNew(
+      {required C context, required ChannelMergerOptions options}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDynamicsCompressorNode(
-            that, serializer);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerC(
+            context, serializer);
+        sse_encode_box_autoadd_channel_merger_options(options, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 174, port: port_);
       },
       codec: SseCodec(
-        decodeSuccessData: sse_decode_f_32,
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelMergerNode,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiNodeDynamicsCompressorDynamicsCompressorNodeReductionConstMeta,
-      argValues: [that],
+      constMeta: kWebAudioApiNodeChannelMergerNodeNewConstMeta,
+      argValues: [context, options],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiNodeDynamicsCompressorDynamicsCompressorNodeReductionConstMeta =>
-          const TaskConstMeta(
-            debugName: "DynamicsCompressorNode_reduction",
-            argNames: ["that"],
-          );
+  TaskConstMeta get kWebAudioApiNodeChannelMergerNodeNewConstMeta =>
+      const TaskConstMeta(
+        debugName: "ChannelMergerNode_new",
+        argNames: ["context", "options"],
+      );
 
   @override
-  Future<AudioParam>
-      webAudioApiNodeDynamicsCompressorDynamicsCompressorNodeRelease(
-          {required DynamicsCompressorNode that}) {
+  Future<ChannelSplitterNode> webAudioApiNodeChannelSplitterNodeNew(
+      {required C context, required ChannelSplitterOptions options}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDynamicsCompressorNode(
-            that, serializer);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerC(
+            context, serializer);
+        sse_encode_box_autoadd_channel_splitter_options(options, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 175, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
-            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelSplitterNode,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiNodeDynamicsCompressorDynamicsCompressorNodeReleaseConstMeta,
-      argValues: [that],
+      constMeta: kWebAudioApiNodeChannelSplitterNodeNewConstMeta,
+      argValues: [context, options],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiNodeDynamicsCompressorDynamicsCompressorNodeReleaseConstMeta =>
-          const TaskConstMeta(
-            debugName: "DynamicsCompressorNode_release",
-            argNames: ["that"],
-          );
+  TaskConstMeta get kWebAudioApiNodeChannelSplitterNodeNewConstMeta =>
+      const TaskConstMeta(
+        debugName: "ChannelSplitterNode_new",
+        argNames: ["context", "options"],
+      );
 
   @override
-  Future<AudioParam>
-      webAudioApiNodeDynamicsCompressorDynamicsCompressorNodeThreshold(
-          {required DynamicsCompressorNode that}) {
+  Future<ConstantSourceNode> webAudioApiNodeConstantSourceNodeNew(
+      {required C context, required ConstantSourceOptions options}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDynamicsCompressorNode(
-            that, serializer);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerC(
+            context, serializer);
+        sse_encode_box_autoadd_constant_source_options(options, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 176, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
-            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConstantSourceNode,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiNodeDynamicsCompressorDynamicsCompressorNodeThresholdConstMeta,
-      argValues: [that],
+      constMeta: kWebAudioApiNodeConstantSourceNodeNewConstMeta,
+      argValues: [context, options],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiNodeDynamicsCompressorDynamicsCompressorNodeThresholdConstMeta =>
-          const TaskConstMeta(
-            debugName: "DynamicsCompressorNode_threshold",
-            argNames: ["that"],
-          );
+  TaskConstMeta get kWebAudioApiNodeConstantSourceNodeNewConstMeta =>
+      const TaskConstMeta(
+        debugName: "ConstantSourceNode_new",
+        argNames: ["context", "options"],
+      );
 
   @override
-  Future<AudioParam> webAudioApiNodeGainGainNodeGain({required GainNode that}) {
+  Future<AudioParam> webAudioApiNodeConstantSourceNodeOffset(
+      {required ConstantSourceNode that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerGainNode(
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConstantSourceNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 177, port: port_);
@@ -6601,20 +6401,440 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodeGainGainNodeGainConstMeta,
+      constMeta: kWebAudioApiNodeConstantSourceNodeOffsetConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiNodeGainGainNodeGainConstMeta =>
+  TaskConstMeta get kWebAudioApiNodeConstantSourceNodeOffsetConstMeta =>
+      const TaskConstMeta(
+        debugName: "ConstantSourceNode_offset",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<AudioBuffer?> webAudioApiNodeConvolverNodeBuffer(
+      {required ConvolverNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvolverNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 178, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_opt_box_autoadd_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeConvolverNodeBufferConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeConvolverNodeBufferConstMeta =>
+      const TaskConstMeta(
+        debugName: "ConvolverNode_buffer",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<ConvolverNode> webAudioApiNodeConvolverNodeNew(
+      {required C context, required ConvolverOptions options}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerC(
+            context, serializer);
+        sse_encode_box_autoadd_convolver_options(options, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 179, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvolverNode,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeConvolverNodeNewConstMeta,
+      argValues: [context, options],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeConvolverNodeNewConstMeta =>
+      const TaskConstMeta(
+        debugName: "ConvolverNode_new",
+        argNames: ["context", "options"],
+      );
+
+  @override
+  Future<bool> webAudioApiNodeConvolverNodeNormalize(
+      {required ConvolverNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvolverNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 180, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_bool,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeConvolverNodeNormalizeConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeConvolverNodeNormalizeConstMeta =>
+      const TaskConstMeta(
+        debugName: "ConvolverNode_normalize",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<void> webAudioApiNodeConvolverNodeSetBuffer(
+      {required ConvolverNode that, required AudioBuffer buffer}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvolverNode(
+            that, serializer);
+        sse_encode_box_autoadd_audio_buffer(buffer, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 181, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeConvolverNodeSetBufferConstMeta,
+      argValues: [that, buffer],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeConvolverNodeSetBufferConstMeta =>
+      const TaskConstMeta(
+        debugName: "ConvolverNode_set_buffer",
+        argNames: ["that", "buffer"],
+      );
+
+  @override
+  Future<void> webAudioApiNodeConvolverNodeSetNormalize(
+      {required ConvolverNode that, required bool value}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvolverNode(
+            that, serializer);
+        sse_encode_bool(value, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 182, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeConvolverNodeSetNormalizeConstMeta,
+      argValues: [that, value],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeConvolverNodeSetNormalizeConstMeta =>
+      const TaskConstMeta(
+        debugName: "ConvolverNode_set_normalize",
+        argNames: ["that", "value"],
+      );
+
+  @override
+  Future<AudioParam> webAudioApiNodeDelayNodeDelayTime(
+      {required DelayNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDelayNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 183, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeDelayNodeDelayTimeConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeDelayNodeDelayTimeConstMeta =>
+      const TaskConstMeta(
+        debugName: "DelayNode_delay_time",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<DelayNode> webAudioApiNodeDelayNodeNew(
+      {required C context, required DelayOptions options}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerC(
+            context, serializer);
+        sse_encode_box_autoadd_delay_options(options, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 184, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDelayNode,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeDelayNodeNewConstMeta,
+      argValues: [context, options],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeDelayNodeNewConstMeta =>
+      const TaskConstMeta(
+        debugName: "DelayNode_new",
+        argNames: ["context", "options"],
+      );
+
+  @override
+  Future<AudioParam> webAudioApiNodeDynamicsCompressorNodeAttack(
+      {required DynamicsCompressorNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDynamicsCompressorNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 185, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeDynamicsCompressorNodeAttackConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeDynamicsCompressorNodeAttackConstMeta =>
+      const TaskConstMeta(
+        debugName: "DynamicsCompressorNode_attack",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<AudioParam> webAudioApiNodeDynamicsCompressorNodeKnee(
+      {required DynamicsCompressorNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDynamicsCompressorNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 186, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeDynamicsCompressorNodeKneeConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeDynamicsCompressorNodeKneeConstMeta =>
+      const TaskConstMeta(
+        debugName: "DynamicsCompressorNode_knee",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<DynamicsCompressorNode> webAudioApiNodeDynamicsCompressorNodeNew(
+      {required C context, required DynamicsCompressorOptions options}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerC(
+            context, serializer);
+        sse_encode_box_autoadd_dynamics_compressor_options(options, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 187, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDynamicsCompressorNode,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeDynamicsCompressorNodeNewConstMeta,
+      argValues: [context, options],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeDynamicsCompressorNodeNewConstMeta =>
+      const TaskConstMeta(
+        debugName: "DynamicsCompressorNode_new",
+        argNames: ["context", "options"],
+      );
+
+  @override
+  Future<AudioParam> webAudioApiNodeDynamicsCompressorNodeRatio(
+      {required DynamicsCompressorNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDynamicsCompressorNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 188, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeDynamicsCompressorNodeRatioConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeDynamicsCompressorNodeRatioConstMeta =>
+      const TaskConstMeta(
+        debugName: "DynamicsCompressorNode_ratio",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<double> webAudioApiNodeDynamicsCompressorNodeReduction(
+      {required DynamicsCompressorNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDynamicsCompressorNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 189, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_f_32,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeDynamicsCompressorNodeReductionConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeDynamicsCompressorNodeReductionConstMeta =>
+      const TaskConstMeta(
+        debugName: "DynamicsCompressorNode_reduction",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<AudioParam> webAudioApiNodeDynamicsCompressorNodeRelease(
+      {required DynamicsCompressorNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDynamicsCompressorNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 190, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeDynamicsCompressorNodeReleaseConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeDynamicsCompressorNodeReleaseConstMeta =>
+      const TaskConstMeta(
+        debugName: "DynamicsCompressorNode_release",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<AudioParam> webAudioApiNodeDynamicsCompressorNodeThreshold(
+      {required DynamicsCompressorNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDynamicsCompressorNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 191, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeDynamicsCompressorNodeThresholdConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeDynamicsCompressorNodeThresholdConstMeta =>
+      const TaskConstMeta(
+        debugName: "DynamicsCompressorNode_threshold",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<AudioParam> webAudioApiNodeGainNodeGain({required GainNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerGainNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 192, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeGainNodeGainConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeGainNodeGainConstMeta =>
       const TaskConstMeta(
         debugName: "GainNode_gain",
         argNames: ["that"],
       );
 
   @override
-  Future<GainNode> webAudioApiNodeGainGainNodeNew(
+  Future<GainNode> webAudioApiNodeGainNodeNew(
       {required C context, required GainOptions options}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -6623,27 +6843,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             context, serializer);
         sse_encode_box_autoadd_gain_options(options, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 178, port: port_);
+            funcId: 193, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerGainNode,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodeGainGainNodeNewConstMeta,
+      constMeta: kWebAudioApiNodeGainNodeNewConstMeta,
       argValues: [context, options],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiNodeGainGainNodeNewConstMeta =>
-      const TaskConstMeta(
+  TaskConstMeta get kWebAudioApiNodeGainNodeNewConstMeta => const TaskConstMeta(
         debugName: "GainNode_new",
         argNames: ["context", "options"],
       );
 
   @override
-  Future<void> webAudioApiNodeIirFilterIirFilterNodeGetFrequencyResponse(
+  Future<void> webAudioApiNodeIirFilterNodeGetFrequencyResponse(
       {required IirFilterNode that,
       required F32 frequencyHz,
       required F32 magResponse,
@@ -6660,28 +6879,27 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
             phaseResponse, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 179, port: port_);
+            funcId: 194, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiNodeIirFilterIirFilterNodeGetFrequencyResponseConstMeta,
+      constMeta: kWebAudioApiNodeIirFilterNodeGetFrequencyResponseConstMeta,
       argValues: [that, frequencyHz, magResponse, phaseResponse],
       apiImpl: this,
     ));
   }
 
   TaskConstMeta
-      get kWebAudioApiNodeIirFilterIirFilterNodeGetFrequencyResponseConstMeta =>
+      get kWebAudioApiNodeIirFilterNodeGetFrequencyResponseConstMeta =>
           const TaskConstMeta(
             debugName: "IirFilterNode_get_frequency_response",
             argNames: ["that", "frequencyHz", "magResponse", "phaseResponse"],
           );
 
   @override
-  Future<IirFilterNode> webAudioApiNodeIirFilterIirFilterNodeNew(
+  Future<IirFilterNode> webAudioApiNodeIirFilterNodeNew(
       {required C context, required IIRFilterOptions options}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -6690,20 +6908,20 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             context, serializer);
         sse_encode_box_autoadd_iir_filter_options(options, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 180, port: port_);
+            funcId: 195, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIIRFilterNode,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodeIirFilterIirFilterNodeNewConstMeta,
+      constMeta: kWebAudioApiNodeIirFilterNodeNewConstMeta,
       argValues: [context, options],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiNodeIirFilterIirFilterNodeNewConstMeta =>
+  TaskConstMeta get kWebAudioApiNodeIirFilterNodeNewConstMeta =>
       const TaskConstMeta(
         debugName: "IirFilterNode_new",
         argNames: ["context", "options"],
@@ -6711,7 +6929,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
 
   @override
   Future<MediaElementAudioSourceNode>
-      webAudioApiNodeMediaElementSourceMediaElementAudioSourceNodeNew(
+      webAudioApiNodeMediaElementAudioSourceNodeNew(
           {required C context,
           required MediaElementAudioSourceOptions options}) {
     return handler.executeNormal(NormalTask(
@@ -6722,37 +6940,34 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaElementAudioSourceOptions(
             options, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 181, port: port_);
+            funcId: 196, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaElementAudioSourceNode,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiNodeMediaElementSourceMediaElementAudioSourceNodeNewConstMeta,
+      constMeta: kWebAudioApiNodeMediaElementAudioSourceNodeNewConstMeta,
       argValues: [context, options],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiNodeMediaElementSourceMediaElementAudioSourceNodeNewConstMeta =>
-          const TaskConstMeta(
-            debugName: "MediaElementAudioSourceNode_new",
-            argNames: ["context", "options"],
-          );
+  TaskConstMeta get kWebAudioApiNodeMediaElementAudioSourceNodeNewConstMeta =>
+      const TaskConstMeta(
+        debugName: "MediaElementAudioSourceNode_new",
+        argNames: ["context", "options"],
+      );
 
   @override
-  MediaElement
-      webAudioApiNodeMediaElementSourceMediaElementAudioSourceOptionsGetMediaElement(
-          {required MediaElementAudioSourceOptions that}) {
+  MediaElement webAudioApiNodeMediaElementAudioSourceOptionsGetMediaElement(
+      {required MediaElementAudioSourceOptions that}) {
     return handler.executeSync(SyncTask(
       callFfi: () {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaElementAudioSourceOptions(
             that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 182)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 197)!;
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -6760,24 +6975,23 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         decodeErrorData: null,
       ),
       constMeta:
-          kWebAudioApiNodeMediaElementSourceMediaElementAudioSourceOptionsGetMediaElementConstMeta,
+          kWebAudioApiNodeMediaElementAudioSourceOptionsGetMediaElementConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
   TaskConstMeta
-      get kWebAudioApiNodeMediaElementSourceMediaElementAudioSourceOptionsGetMediaElementConstMeta =>
+      get kWebAudioApiNodeMediaElementAudioSourceOptionsGetMediaElementConstMeta =>
           const TaskConstMeta(
             debugName: "MediaElementAudioSourceOptions_get_media_element",
             argNames: ["that"],
           );
 
   @override
-  void
-      webAudioApiNodeMediaElementSourceMediaElementAudioSourceOptionsSetMediaElement(
-          {required MediaElementAudioSourceOptions that,
-          required MediaElement mediaElement}) {
+  void webAudioApiNodeMediaElementAudioSourceOptionsSetMediaElement(
+      {required MediaElementAudioSourceOptions that,
+      required MediaElement mediaElement}) {
     return handler.executeSync(SyncTask(
       callFfi: () {
         final serializer = SseSerializer(generalizedFrbRustBinding);
@@ -6785,21 +6999,21 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaElement(
             mediaElement, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 183)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 198)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
       constMeta:
-          kWebAudioApiNodeMediaElementSourceMediaElementAudioSourceOptionsSetMediaElementConstMeta,
+          kWebAudioApiNodeMediaElementAudioSourceOptionsSetMediaElementConstMeta,
       argValues: [that, mediaElement],
       apiImpl: this,
     ));
   }
 
   TaskConstMeta
-      get kWebAudioApiNodeMediaElementSourceMediaElementAudioSourceOptionsSetMediaElementConstMeta =>
+      get kWebAudioApiNodeMediaElementAudioSourceOptionsSetMediaElementConstMeta =>
           const TaskConstMeta(
             debugName: "MediaElementAudioSourceOptions_set_media_element",
             argNames: ["that", "mediaElement"],
@@ -6807,7 +7021,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
 
   @override
   Future<MediaStreamAudioDestinationNode>
-      webAudioApiNodeMediaStreamDestinationMediaStreamAudioDestinationNodeNew(
+      webAudioApiNodeMediaStreamAudioDestinationNodeNew(
           {required C context, required AudioNodeOptions options}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -6816,53 +7030,50 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             context, serializer);
         sse_encode_box_autoadd_audio_node_options(options, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 184, port: port_);
+            funcId: 199, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamAudioDestinationNode,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiNodeMediaStreamDestinationMediaStreamAudioDestinationNodeNewConstMeta,
+      constMeta: kWebAudioApiNodeMediaStreamAudioDestinationNodeNewConstMeta,
       argValues: [context, options],
       apiImpl: this,
     ));
   }
 
   TaskConstMeta
-      get kWebAudioApiNodeMediaStreamDestinationMediaStreamAudioDestinationNodeNewConstMeta =>
+      get kWebAudioApiNodeMediaStreamAudioDestinationNodeNewConstMeta =>
           const TaskConstMeta(
             debugName: "MediaStreamAudioDestinationNode_new",
             argNames: ["context", "options"],
           );
 
   @override
-  Future<MediaStream>
-      webAudioApiNodeMediaStreamDestinationMediaStreamAudioDestinationNodeStream(
-          {required MediaStreamAudioDestinationNode that}) {
+  Future<MediaStream> webAudioApiNodeMediaStreamAudioDestinationNodeStream(
+      {required MediaStreamAudioDestinationNode that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamAudioDestinationNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 185, port: port_);
+            funcId: 200, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStream,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiNodeMediaStreamDestinationMediaStreamAudioDestinationNodeStreamConstMeta,
+      constMeta: kWebAudioApiNodeMediaStreamAudioDestinationNodeStreamConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
   TaskConstMeta
-      get kWebAudioApiNodeMediaStreamDestinationMediaStreamAudioDestinationNodeStreamConstMeta =>
+      get kWebAudioApiNodeMediaStreamAudioDestinationNodeStreamConstMeta =>
           const TaskConstMeta(
             debugName: "MediaStreamAudioDestinationNode_stream",
             argNames: ["that"],
@@ -6870,7 +7081,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
 
   @override
   Future<MediaStreamAudioSourceNode>
-      webAudioApiNodeMediaStreamSourceMediaStreamAudioSourceNodeNew(
+      webAudioApiNodeMediaStreamAudioSourceNodeNew(
           {required C context,
           required MediaStreamAudioSourceOptions options}) {
     return handler.executeNormal(NormalTask(
@@ -6881,37 +7092,34 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamAudioSourceOptions(
             options, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 186, port: port_);
+            funcId: 201, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamAudioSourceNode,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiNodeMediaStreamSourceMediaStreamAudioSourceNodeNewConstMeta,
+      constMeta: kWebAudioApiNodeMediaStreamAudioSourceNodeNewConstMeta,
       argValues: [context, options],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiNodeMediaStreamSourceMediaStreamAudioSourceNodeNewConstMeta =>
-          const TaskConstMeta(
-            debugName: "MediaStreamAudioSourceNode_new",
-            argNames: ["context", "options"],
-          );
+  TaskConstMeta get kWebAudioApiNodeMediaStreamAudioSourceNodeNewConstMeta =>
+      const TaskConstMeta(
+        debugName: "MediaStreamAudioSourceNode_new",
+        argNames: ["context", "options"],
+      );
 
   @override
-  MediaStream
-      webAudioApiNodeMediaStreamSourceMediaStreamAudioSourceOptionsGetMediaStream(
-          {required MediaStreamAudioSourceOptions that}) {
+  MediaStream webAudioApiNodeMediaStreamAudioSourceOptionsGetMediaStream(
+      {required MediaStreamAudioSourceOptions that}) {
     return handler.executeSync(SyncTask(
       callFfi: () {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamAudioSourceOptions(
             that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 187)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 202)!;
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -6919,24 +7127,23 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         decodeErrorData: null,
       ),
       constMeta:
-          kWebAudioApiNodeMediaStreamSourceMediaStreamAudioSourceOptionsGetMediaStreamConstMeta,
+          kWebAudioApiNodeMediaStreamAudioSourceOptionsGetMediaStreamConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
   TaskConstMeta
-      get kWebAudioApiNodeMediaStreamSourceMediaStreamAudioSourceOptionsGetMediaStreamConstMeta =>
+      get kWebAudioApiNodeMediaStreamAudioSourceOptionsGetMediaStreamConstMeta =>
           const TaskConstMeta(
             debugName: "MediaStreamAudioSourceOptions_get_media_stream",
             argNames: ["that"],
           );
 
   @override
-  void
-      webAudioApiNodeMediaStreamSourceMediaStreamAudioSourceOptionsSetMediaStream(
-          {required MediaStreamAudioSourceOptions that,
-          required MediaStream mediaStream}) {
+  void webAudioApiNodeMediaStreamAudioSourceOptionsSetMediaStream(
+      {required MediaStreamAudioSourceOptions that,
+      required MediaStream mediaStream}) {
     return handler.executeSync(SyncTask(
       callFfi: () {
         final serializer = SseSerializer(generalizedFrbRustBinding);
@@ -6944,21 +7151,21 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStream(
             mediaStream, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 188)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 203)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
       constMeta:
-          kWebAudioApiNodeMediaStreamSourceMediaStreamAudioSourceOptionsSetMediaStreamConstMeta,
+          kWebAudioApiNodeMediaStreamAudioSourceOptionsSetMediaStreamConstMeta,
       argValues: [that, mediaStream],
       apiImpl: this,
     ));
   }
 
   TaskConstMeta
-      get kWebAudioApiNodeMediaStreamSourceMediaStreamAudioSourceOptionsSetMediaStreamConstMeta =>
+      get kWebAudioApiNodeMediaStreamAudioSourceOptionsSetMediaStreamConstMeta =>
           const TaskConstMeta(
             debugName: "MediaStreamAudioSourceOptions_set_media_stream",
             argNames: ["that", "mediaStream"],
@@ -6966,7 +7173,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
 
   @override
   Future<MediaStreamTrackAudioSourceNode>
-      webAudioApiNodeMediaStreamTrackSourceMediaStreamTrackAudioSourceNodeNew(
+      webAudioApiNodeMediaStreamTrackAudioSourceNodeNew(
           {required C context,
           required MediaStreamTrackAudioSourceOptions options}) {
     return handler.executeNormal(NormalTask(
@@ -6977,22 +7184,21 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrackAudioSourceOptions(
             options, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 189, port: port_);
+            funcId: 204, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrackAudioSourceNode,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiNodeMediaStreamTrackSourceMediaStreamTrackAudioSourceNodeNewConstMeta,
+      constMeta: kWebAudioApiNodeMediaStreamTrackAudioSourceNodeNewConstMeta,
       argValues: [context, options],
       apiImpl: this,
     ));
   }
 
   TaskConstMeta
-      get kWebAudioApiNodeMediaStreamTrackSourceMediaStreamTrackAudioSourceNodeNewConstMeta =>
+      get kWebAudioApiNodeMediaStreamTrackAudioSourceNodeNewConstMeta =>
           const TaskConstMeta(
             debugName: "MediaStreamTrackAudioSourceNode_new",
             argNames: ["context", "options"],
@@ -7000,14 +7206,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
 
   @override
   MediaStreamTrack
-      webAudioApiNodeMediaStreamTrackSourceMediaStreamTrackAudioSourceOptionsGetMediaStreamTrack(
+      webAudioApiNodeMediaStreamTrackAudioSourceOptionsGetMediaStreamTrack(
           {required MediaStreamTrackAudioSourceOptions that}) {
     return handler.executeSync(SyncTask(
       callFfi: () {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrackAudioSourceOptions(
             that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 190)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 205)!;
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -7015,14 +7221,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         decodeErrorData: null,
       ),
       constMeta:
-          kWebAudioApiNodeMediaStreamTrackSourceMediaStreamTrackAudioSourceOptionsGetMediaStreamTrackConstMeta,
+          kWebAudioApiNodeMediaStreamTrackAudioSourceOptionsGetMediaStreamTrackConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
   TaskConstMeta
-      get kWebAudioApiNodeMediaStreamTrackSourceMediaStreamTrackAudioSourceOptionsGetMediaStreamTrackConstMeta =>
+      get kWebAudioApiNodeMediaStreamTrackAudioSourceOptionsGetMediaStreamTrackConstMeta =>
           const TaskConstMeta(
             debugName:
                 "MediaStreamTrackAudioSourceOptions_get_media_stream_track",
@@ -7030,10 +7236,9 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           );
 
   @override
-  void
-      webAudioApiNodeMediaStreamTrackSourceMediaStreamTrackAudioSourceOptionsSetMediaStreamTrack(
-          {required MediaStreamTrackAudioSourceOptions that,
-          required MediaStreamTrack mediaStreamTrack}) {
+  void webAudioApiNodeMediaStreamTrackAudioSourceOptionsSetMediaStreamTrack(
+      {required MediaStreamTrackAudioSourceOptions that,
+      required MediaStreamTrack mediaStreamTrack}) {
     return handler.executeSync(SyncTask(
       callFfi: () {
         final serializer = SseSerializer(generalizedFrbRustBinding);
@@ -7041,21 +7246,21 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrack(
             mediaStreamTrack, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 191)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 206)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
       constMeta:
-          kWebAudioApiNodeMediaStreamTrackSourceMediaStreamTrackAudioSourceOptionsSetMediaStreamTrackConstMeta,
+          kWebAudioApiNodeMediaStreamTrackAudioSourceOptionsSetMediaStreamTrackConstMeta,
       argValues: [that, mediaStreamTrack],
       apiImpl: this,
     ));
   }
 
   TaskConstMeta
-      get kWebAudioApiNodeMediaStreamTrackSourceMediaStreamTrackAudioSourceOptionsSetMediaStreamTrackConstMeta =>
+      get kWebAudioApiNodeMediaStreamTrackAudioSourceOptionsSetMediaStreamTrackConstMeta =>
           const TaskConstMeta(
             debugName:
                 "MediaStreamTrackAudioSourceOptions_set_media_stream_track",
@@ -7063,7 +7268,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           );
 
   @override
-  Future<AudioParam> webAudioApiNodeOscillatorOscillatorNodeDetune(
+  Future<AudioParam> webAudioApiNodeOscillatorNodeDetune(
       {required OscillatorNode that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -7071,451 +7276,32 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOscillatorNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 192, port: port_);
+            funcId: 207, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodeOscillatorOscillatorNodeDetuneConstMeta,
+      constMeta: kWebAudioApiNodeOscillatorNodeDetuneConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiNodeOscillatorOscillatorNodeDetuneConstMeta =>
+  TaskConstMeta get kWebAudioApiNodeOscillatorNodeDetuneConstMeta =>
       const TaskConstMeta(
         debugName: "OscillatorNode_detune",
         argNames: ["that"],
       );
 
   @override
-  Future<AudioParam> webAudioApiNodeOscillatorOscillatorNodeFrequency(
+  Future<AudioParam> webAudioApiNodeOscillatorNodeFrequency(
       {required OscillatorNode that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOscillatorNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 193, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodeOscillatorOscillatorNodeFrequencyConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiNodeOscillatorOscillatorNodeFrequencyConstMeta =>
-          const TaskConstMeta(
-            debugName: "OscillatorNode_frequency",
-            argNames: ["that"],
-          );
-
-  @override
-  Future<OscillatorNode> webAudioApiNodeOscillatorOscillatorNodeNew(
-      {required C context, required OscillatorOptions options}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerC(
-            context, serializer);
-        sse_encode_box_autoadd_oscillator_options(options, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 194, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOscillatorNode,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodeOscillatorOscillatorNodeNewConstMeta,
-      argValues: [context, options],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiNodeOscillatorOscillatorNodeNewConstMeta =>
-      const TaskConstMeta(
-        debugName: "OscillatorNode_new",
-        argNames: ["context", "options"],
-      );
-
-  @override
-  Future<void> webAudioApiNodeOscillatorOscillatorNodeSetPeriodicWave(
-      {required OscillatorNode that, required PeriodicWave periodicWave}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOscillatorNode(
-            that, serializer);
-        sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPeriodicWave(
-            periodicWave, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 195, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiNodeOscillatorOscillatorNodeSetPeriodicWaveConstMeta,
-      argValues: [that, periodicWave],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiNodeOscillatorOscillatorNodeSetPeriodicWaveConstMeta =>
-          const TaskConstMeta(
-            debugName: "OscillatorNode_set_periodic_wave",
-            argNames: ["that", "periodicWave"],
-          );
-
-  @override
-  Future<void> webAudioApiNodeOscillatorOscillatorNodeSetType(
-      {required OscillatorNode that, required OscillatorType type}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOscillatorNode(
-            that, serializer);
-        sse_encode_oscillator_type(type, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 196, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodeOscillatorOscillatorNodeSetTypeConstMeta,
-      argValues: [that, type],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiNodeOscillatorOscillatorNodeSetTypeConstMeta =>
-      const TaskConstMeta(
-        debugName: "OscillatorNode_set_type",
-        argNames: ["that", "type"],
-      );
-
-  @override
-  Future<OscillatorType> webAudioApiNodeOscillatorOscillatorNodeType(
-      {required OscillatorNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOscillatorNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 197, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_oscillator_type,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodeOscillatorOscillatorNodeTypeConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiNodeOscillatorOscillatorNodeTypeConstMeta =>
-      const TaskConstMeta(
-        debugName: "OscillatorNode_type_",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<double> webAudioApiNodePannerPannerNodeConeInnerAngle(
-      {required PannerNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 198, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_f_64,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodePannerPannerNodeConeInnerAngleConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiNodePannerPannerNodeConeInnerAngleConstMeta =>
-      const TaskConstMeta(
-        debugName: "PannerNode_cone_inner_angle",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<double> webAudioApiNodePannerPannerNodeConeOuterAngle(
-      {required PannerNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 199, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_f_64,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodePannerPannerNodeConeOuterAngleConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiNodePannerPannerNodeConeOuterAngleConstMeta =>
-      const TaskConstMeta(
-        debugName: "PannerNode_cone_outer_angle",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<double> webAudioApiNodePannerPannerNodeConeOuterGain(
-      {required PannerNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 200, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_f_64,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodePannerPannerNodeConeOuterGainConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiNodePannerPannerNodeConeOuterGainConstMeta =>
-      const TaskConstMeta(
-        debugName: "PannerNode_cone_outer_gain",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<DistanceModelType> webAudioApiNodePannerPannerNodeDistanceModel(
-      {required PannerNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 201, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_distance_model_type,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodePannerPannerNodeDistanceModelConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiNodePannerPannerNodeDistanceModelConstMeta =>
-      const TaskConstMeta(
-        debugName: "PannerNode_distance_model",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<double> webAudioApiNodePannerPannerNodeMaxDistance(
-      {required PannerNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 202, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_f_64,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodePannerPannerNodeMaxDistanceConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiNodePannerPannerNodeMaxDistanceConstMeta =>
-      const TaskConstMeta(
-        debugName: "PannerNode_max_distance",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<PannerNode> webAudioApiNodePannerPannerNodeNew(
-      {required C context, required PannerOptions options}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerC(
-            context, serializer);
-        sse_encode_box_autoadd_panner_options(options, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 203, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodePannerPannerNodeNewConstMeta,
-      argValues: [context, options],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiNodePannerPannerNodeNewConstMeta =>
-      const TaskConstMeta(
-        debugName: "PannerNode_new",
-        argNames: ["context", "options"],
-      );
-
-  @override
-  Future<AudioParam> webAudioApiNodePannerPannerNodeOrientationX(
-      {required PannerNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 204, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodePannerPannerNodeOrientationXConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiNodePannerPannerNodeOrientationXConstMeta =>
-      const TaskConstMeta(
-        debugName: "PannerNode_orientation_x",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<AudioParam> webAudioApiNodePannerPannerNodeOrientationY(
-      {required PannerNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 205, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodePannerPannerNodeOrientationYConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiNodePannerPannerNodeOrientationYConstMeta =>
-      const TaskConstMeta(
-        debugName: "PannerNode_orientation_y",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<AudioParam> webAudioApiNodePannerPannerNodeOrientationZ(
-      {required PannerNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 206, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodePannerPannerNodeOrientationZConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiNodePannerPannerNodeOrientationZConstMeta =>
-      const TaskConstMeta(
-        debugName: "PannerNode_orientation_z",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<PanningModelType> webAudioApiNodePannerPannerNodePanningModel(
-      {required PannerNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 207, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_panning_model_type,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiNodePannerPannerNodePanningModelConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiNodePannerPannerNodePanningModelConstMeta =>
-      const TaskConstMeta(
-        debugName: "PannerNode_panning_model",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<AudioParam> webAudioApiNodePannerPannerNodePositionX(
-      {required PannerNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 208, port: port_);
@@ -7525,20 +7311,436 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodePannerPannerNodePositionXConstMeta,
+      constMeta: kWebAudioApiNodeOscillatorNodeFrequencyConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiNodePannerPannerNodePositionXConstMeta =>
+  TaskConstMeta get kWebAudioApiNodeOscillatorNodeFrequencyConstMeta =>
+      const TaskConstMeta(
+        debugName: "OscillatorNode_frequency",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<OscillatorNode> webAudioApiNodeOscillatorNodeNew(
+      {required C context, required OscillatorOptions options}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerC(
+            context, serializer);
+        sse_encode_box_autoadd_oscillator_options(options, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 209, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOscillatorNode,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeOscillatorNodeNewConstMeta,
+      argValues: [context, options],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeOscillatorNodeNewConstMeta =>
+      const TaskConstMeta(
+        debugName: "OscillatorNode_new",
+        argNames: ["context", "options"],
+      );
+
+  @override
+  Future<void> webAudioApiNodeOscillatorNodeSetPeriodicWave(
+      {required OscillatorNode that, required PeriodicWave periodicWave}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOscillatorNode(
+            that, serializer);
+        sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPeriodicWave(
+            periodicWave, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 210, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeOscillatorNodeSetPeriodicWaveConstMeta,
+      argValues: [that, periodicWave],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeOscillatorNodeSetPeriodicWaveConstMeta =>
+      const TaskConstMeta(
+        debugName: "OscillatorNode_set_periodic_wave",
+        argNames: ["that", "periodicWave"],
+      );
+
+  @override
+  Future<void> webAudioApiNodeOscillatorNodeSetType(
+      {required OscillatorNode that, required OscillatorType type}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOscillatorNode(
+            that, serializer);
+        sse_encode_oscillator_type(type, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 211, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeOscillatorNodeSetTypeConstMeta,
+      argValues: [that, type],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeOscillatorNodeSetTypeConstMeta =>
+      const TaskConstMeta(
+        debugName: "OscillatorNode_set_type",
+        argNames: ["that", "type"],
+      );
+
+  @override
+  Future<OscillatorType> webAudioApiNodeOscillatorNodeType(
+      {required OscillatorNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOscillatorNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 212, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_oscillator_type,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodeOscillatorNodeTypeConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodeOscillatorNodeTypeConstMeta =>
+      const TaskConstMeta(
+        debugName: "OscillatorNode_type_",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<double> webAudioApiNodePannerNodeConeInnerAngle(
+      {required PannerNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 213, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_f_64,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodePannerNodeConeInnerAngleConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodePannerNodeConeInnerAngleConstMeta =>
+      const TaskConstMeta(
+        debugName: "PannerNode_cone_inner_angle",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<double> webAudioApiNodePannerNodeConeOuterAngle(
+      {required PannerNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 214, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_f_64,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodePannerNodeConeOuterAngleConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodePannerNodeConeOuterAngleConstMeta =>
+      const TaskConstMeta(
+        debugName: "PannerNode_cone_outer_angle",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<double> webAudioApiNodePannerNodeConeOuterGain(
+      {required PannerNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 215, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_f_64,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodePannerNodeConeOuterGainConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodePannerNodeConeOuterGainConstMeta =>
+      const TaskConstMeta(
+        debugName: "PannerNode_cone_outer_gain",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<DistanceModelType> webAudioApiNodePannerNodeDistanceModel(
+      {required PannerNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 216, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_distance_model_type,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodePannerNodeDistanceModelConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodePannerNodeDistanceModelConstMeta =>
+      const TaskConstMeta(
+        debugName: "PannerNode_distance_model",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<double> webAudioApiNodePannerNodeMaxDistance(
+      {required PannerNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 217, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_f_64,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodePannerNodeMaxDistanceConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodePannerNodeMaxDistanceConstMeta =>
+      const TaskConstMeta(
+        debugName: "PannerNode_max_distance",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<PannerNode> webAudioApiNodePannerNodeNew(
+      {required C context, required PannerOptions options}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerC(
+            context, serializer);
+        sse_encode_box_autoadd_panner_options(options, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 218, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodePannerNodeNewConstMeta,
+      argValues: [context, options],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodePannerNodeNewConstMeta =>
+      const TaskConstMeta(
+        debugName: "PannerNode_new",
+        argNames: ["context", "options"],
+      );
+
+  @override
+  Future<AudioParam> webAudioApiNodePannerNodeOrientationX(
+      {required PannerNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 219, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodePannerNodeOrientationXConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodePannerNodeOrientationXConstMeta =>
+      const TaskConstMeta(
+        debugName: "PannerNode_orientation_x",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<AudioParam> webAudioApiNodePannerNodeOrientationY(
+      {required PannerNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 220, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodePannerNodeOrientationYConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodePannerNodeOrientationYConstMeta =>
+      const TaskConstMeta(
+        debugName: "PannerNode_orientation_y",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<AudioParam> webAudioApiNodePannerNodeOrientationZ(
+      {required PannerNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 221, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodePannerNodeOrientationZConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodePannerNodeOrientationZConstMeta =>
+      const TaskConstMeta(
+        debugName: "PannerNode_orientation_z",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<PanningModelType> webAudioApiNodePannerNodePanningModel(
+      {required PannerNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 222, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_panning_model_type,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodePannerNodePanningModelConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodePannerNodePanningModelConstMeta =>
+      const TaskConstMeta(
+        debugName: "PannerNode_panning_model",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<AudioParam> webAudioApiNodePannerNodePositionX(
+      {required PannerNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 223, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiNodePannerNodePositionXConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiNodePannerNodePositionXConstMeta =>
       const TaskConstMeta(
         debugName: "PannerNode_position_x",
         argNames: ["that"],
       );
 
   @override
-  Future<AudioParam> webAudioApiNodePannerPannerNodePositionY(
+  Future<AudioParam> webAudioApiNodePannerNodePositionY(
       {required PannerNode that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -7546,27 +7748,27 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 209, port: port_);
+            funcId: 224, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodePannerPannerNodePositionYConstMeta,
+      constMeta: kWebAudioApiNodePannerNodePositionYConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiNodePannerPannerNodePositionYConstMeta =>
+  TaskConstMeta get kWebAudioApiNodePannerNodePositionYConstMeta =>
       const TaskConstMeta(
         debugName: "PannerNode_position_y",
         argNames: ["that"],
       );
 
   @override
-  Future<AudioParam> webAudioApiNodePannerPannerNodePositionZ(
+  Future<AudioParam> webAudioApiNodePannerNodePositionZ(
       {required PannerNode that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -7574,27 +7776,27 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 210, port: port_);
+            funcId: 225, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodePannerPannerNodePositionZConstMeta,
+      constMeta: kWebAudioApiNodePannerNodePositionZConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiNodePannerPannerNodePositionZConstMeta =>
+  TaskConstMeta get kWebAudioApiNodePannerNodePositionZConstMeta =>
       const TaskConstMeta(
         debugName: "PannerNode_position_z",
         argNames: ["that"],
       );
 
   @override
-  Future<double> webAudioApiNodePannerPannerNodeRefDistance(
+  Future<double> webAudioApiNodePannerNodeRefDistance(
       {required PannerNode that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -7602,26 +7804,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 211, port: port_);
+            funcId: 226, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_64,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodePannerPannerNodeRefDistanceConstMeta,
+      constMeta: kWebAudioApiNodePannerNodeRefDistanceConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiNodePannerPannerNodeRefDistanceConstMeta =>
+  TaskConstMeta get kWebAudioApiNodePannerNodeRefDistanceConstMeta =>
       const TaskConstMeta(
         debugName: "PannerNode_ref_distance",
         argNames: ["that"],
       );
 
   @override
-  Future<double> webAudioApiNodePannerPannerNodeRolloffFactor(
+  Future<double> webAudioApiNodePannerNodeRolloffFactor(
       {required PannerNode that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -7629,26 +7831,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 212, port: port_);
+            funcId: 227, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_64,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodePannerPannerNodeRolloffFactorConstMeta,
+      constMeta: kWebAudioApiNodePannerNodeRolloffFactorConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiNodePannerPannerNodeRolloffFactorConstMeta =>
+  TaskConstMeta get kWebAudioApiNodePannerNodeRolloffFactorConstMeta =>
       const TaskConstMeta(
         debugName: "PannerNode_rolloff_factor",
         argNames: ["that"],
       );
 
   @override
-  Future<void> webAudioApiNodePannerPannerNodeSetConeInnerAngle(
+  Future<void> webAudioApiNodePannerNodeSetConeInnerAngle(
       {required PannerNode that, required double value}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -7657,27 +7859,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_f_64(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 213, port: port_);
+            funcId: 228, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodePannerPannerNodeSetConeInnerAngleConstMeta,
+      constMeta: kWebAudioApiNodePannerNodeSetConeInnerAngleConstMeta,
       argValues: [that, value],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiNodePannerPannerNodeSetConeInnerAngleConstMeta =>
-          const TaskConstMeta(
-            debugName: "PannerNode_set_cone_inner_angle",
-            argNames: ["that", "value"],
-          );
+  TaskConstMeta get kWebAudioApiNodePannerNodeSetConeInnerAngleConstMeta =>
+      const TaskConstMeta(
+        debugName: "PannerNode_set_cone_inner_angle",
+        argNames: ["that", "value"],
+      );
 
   @override
-  Future<void> webAudioApiNodePannerPannerNodeSetConeOuterAngle(
+  Future<void> webAudioApiNodePannerNodeSetConeOuterAngle(
       {required PannerNode that, required double value}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -7686,27 +7887,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_f_64(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 214, port: port_);
+            funcId: 229, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodePannerPannerNodeSetConeOuterAngleConstMeta,
+      constMeta: kWebAudioApiNodePannerNodeSetConeOuterAngleConstMeta,
       argValues: [that, value],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiNodePannerPannerNodeSetConeOuterAngleConstMeta =>
-          const TaskConstMeta(
-            debugName: "PannerNode_set_cone_outer_angle",
-            argNames: ["that", "value"],
-          );
+  TaskConstMeta get kWebAudioApiNodePannerNodeSetConeOuterAngleConstMeta =>
+      const TaskConstMeta(
+        debugName: "PannerNode_set_cone_outer_angle",
+        argNames: ["that", "value"],
+      );
 
   @override
-  Future<void> webAudioApiNodePannerPannerNodeSetConeOuterGain(
+  Future<void> webAudioApiNodePannerNodeSetConeOuterGain(
       {required PannerNode that, required double value}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -7715,26 +7915,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_f_64(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 215, port: port_);
+            funcId: 230, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodePannerPannerNodeSetConeOuterGainConstMeta,
+      constMeta: kWebAudioApiNodePannerNodeSetConeOuterGainConstMeta,
       argValues: [that, value],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiNodePannerPannerNodeSetConeOuterGainConstMeta =>
+  TaskConstMeta get kWebAudioApiNodePannerNodeSetConeOuterGainConstMeta =>
       const TaskConstMeta(
         debugName: "PannerNode_set_cone_outer_gain",
         argNames: ["that", "value"],
       );
 
   @override
-  Future<void> webAudioApiNodePannerPannerNodeSetDistanceModel(
+  Future<void> webAudioApiNodePannerNodeSetDistanceModel(
       {required PannerNode that, required DistanceModelType value}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -7743,26 +7943,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_distance_model_type(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 216, port: port_);
+            funcId: 231, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodePannerPannerNodeSetDistanceModelConstMeta,
+      constMeta: kWebAudioApiNodePannerNodeSetDistanceModelConstMeta,
       argValues: [that, value],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiNodePannerPannerNodeSetDistanceModelConstMeta =>
+  TaskConstMeta get kWebAudioApiNodePannerNodeSetDistanceModelConstMeta =>
       const TaskConstMeta(
         debugName: "PannerNode_set_distance_model",
         argNames: ["that", "value"],
       );
 
   @override
-  Future<void> webAudioApiNodePannerPannerNodeSetMaxDistance(
+  Future<void> webAudioApiNodePannerNodeSetMaxDistance(
       {required PannerNode that, required double value}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -7771,26 +7971,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_f_64(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 217, port: port_);
+            funcId: 232, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodePannerPannerNodeSetMaxDistanceConstMeta,
+      constMeta: kWebAudioApiNodePannerNodeSetMaxDistanceConstMeta,
       argValues: [that, value],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiNodePannerPannerNodeSetMaxDistanceConstMeta =>
+  TaskConstMeta get kWebAudioApiNodePannerNodeSetMaxDistanceConstMeta =>
       const TaskConstMeta(
         debugName: "PannerNode_set_max_distance",
         argNames: ["that", "value"],
       );
 
   @override
-  Future<void> webAudioApiNodePannerPannerNodeSetOrientation(
+  Future<void> webAudioApiNodePannerNodeSetOrientation(
       {required PannerNode that,
       required double x,
       required double y,
@@ -7804,26 +8004,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_f_32(y, serializer);
         sse_encode_f_32(z, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 218, port: port_);
+            funcId: 233, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodePannerPannerNodeSetOrientationConstMeta,
+      constMeta: kWebAudioApiNodePannerNodeSetOrientationConstMeta,
       argValues: [that, x, y, z],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiNodePannerPannerNodeSetOrientationConstMeta =>
+  TaskConstMeta get kWebAudioApiNodePannerNodeSetOrientationConstMeta =>
       const TaskConstMeta(
         debugName: "PannerNode_set_orientation",
         argNames: ["that", "x", "y", "z"],
       );
 
   @override
-  Future<void> webAudioApiNodePannerPannerNodeSetPanningModel(
+  Future<void> webAudioApiNodePannerNodeSetPanningModel(
       {required PannerNode that, required PanningModelType value}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -7832,26 +8032,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_panning_model_type(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 219, port: port_);
+            funcId: 234, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodePannerPannerNodeSetPanningModelConstMeta,
+      constMeta: kWebAudioApiNodePannerNodeSetPanningModelConstMeta,
       argValues: [that, value],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiNodePannerPannerNodeSetPanningModelConstMeta =>
+  TaskConstMeta get kWebAudioApiNodePannerNodeSetPanningModelConstMeta =>
       const TaskConstMeta(
         debugName: "PannerNode_set_panning_model",
         argNames: ["that", "value"],
       );
 
   @override
-  Future<void> webAudioApiNodePannerPannerNodeSetPosition(
+  Future<void> webAudioApiNodePannerNodeSetPosition(
       {required PannerNode that,
       required double x,
       required double y,
@@ -7865,26 +8065,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_f_32(y, serializer);
         sse_encode_f_32(z, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 220, port: port_);
+            funcId: 235, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodePannerPannerNodeSetPositionConstMeta,
+      constMeta: kWebAudioApiNodePannerNodeSetPositionConstMeta,
       argValues: [that, x, y, z],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiNodePannerPannerNodeSetPositionConstMeta =>
+  TaskConstMeta get kWebAudioApiNodePannerNodeSetPositionConstMeta =>
       const TaskConstMeta(
         debugName: "PannerNode_set_position",
         argNames: ["that", "x", "y", "z"],
       );
 
   @override
-  Future<void> webAudioApiNodePannerPannerNodeSetRefDistance(
+  Future<void> webAudioApiNodePannerNodeSetRefDistance(
       {required PannerNode that, required double value}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -7893,26 +8093,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_f_64(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 221, port: port_);
+            funcId: 236, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodePannerPannerNodeSetRefDistanceConstMeta,
+      constMeta: kWebAudioApiNodePannerNodeSetRefDistanceConstMeta,
       argValues: [that, value],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiNodePannerPannerNodeSetRefDistanceConstMeta =>
+  TaskConstMeta get kWebAudioApiNodePannerNodeSetRefDistanceConstMeta =>
       const TaskConstMeta(
         debugName: "PannerNode_set_ref_distance",
         argNames: ["that", "value"],
       );
 
   @override
-  Future<void> webAudioApiNodePannerPannerNodeSetRolloffFactor(
+  Future<void> webAudioApiNodePannerNodeSetRolloffFactor(
       {required PannerNode that, required double value}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -7921,26 +8121,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_f_64(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 222, port: port_);
+            funcId: 237, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodePannerPannerNodeSetRolloffFactorConstMeta,
+      constMeta: kWebAudioApiNodePannerNodeSetRolloffFactorConstMeta,
       argValues: [that, value],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiNodePannerPannerNodeSetRolloffFactorConstMeta =>
+  TaskConstMeta get kWebAudioApiNodePannerNodeSetRolloffFactorConstMeta =>
       const TaskConstMeta(
         debugName: "PannerNode_set_rolloff_factor",
         argNames: ["that", "value"],
       );
 
   @override
-  Future<BigInt> webAudioApiNodeScriptProcessorScriptProcessorNodeBufferSize(
+  Future<BigInt> webAudioApiNodeScriptProcessorNodeBufferSize(
       {required ScriptProcessorNode that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -7948,60 +8148,56 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerScriptProcessorNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 223, port: port_);
+            funcId: 238, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_usize,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiNodeScriptProcessorScriptProcessorNodeBufferSizeConstMeta,
+      constMeta: kWebAudioApiNodeScriptProcessorNodeBufferSizeConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiNodeScriptProcessorScriptProcessorNodeBufferSizeConstMeta =>
-          const TaskConstMeta(
-            debugName: "ScriptProcessorNode_buffer_size",
-            argNames: ["that"],
-          );
+  TaskConstMeta get kWebAudioApiNodeScriptProcessorNodeBufferSizeConstMeta =>
+      const TaskConstMeta(
+        debugName: "ScriptProcessorNode_buffer_size",
+        argNames: ["that"],
+      );
 
   @override
-  Future<void>
-      webAudioApiNodeScriptProcessorScriptProcessorNodeClearOnaudioprocess(
-          {required ScriptProcessorNode that}) {
+  Future<void> webAudioApiNodeScriptProcessorNodeClearOnaudioprocess(
+      {required ScriptProcessorNode that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerScriptProcessorNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 224, port: port_);
+            funcId: 239, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
       constMeta:
-          kWebAudioApiNodeScriptProcessorScriptProcessorNodeClearOnaudioprocessConstMeta,
+          kWebAudioApiNodeScriptProcessorNodeClearOnaudioprocessConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
   TaskConstMeta
-      get kWebAudioApiNodeScriptProcessorScriptProcessorNodeClearOnaudioprocessConstMeta =>
+      get kWebAudioApiNodeScriptProcessorNodeClearOnaudioprocessConstMeta =>
           const TaskConstMeta(
             debugName: "ScriptProcessorNode_clear_onaudioprocess",
             argNames: ["that"],
           );
 
   @override
-  Future<ScriptProcessorNode>
-      webAudioApiNodeScriptProcessorScriptProcessorNodeNew(
-          {required C context, required ScriptProcessorOptions options}) {
+  Future<ScriptProcessorNode> webAudioApiNodeScriptProcessorNodeNew(
+      {required C context, required ScriptProcessorOptions options}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
@@ -8009,30 +8205,28 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             context, serializer);
         sse_encode_box_autoadd_script_processor_options(options, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 225, port: port_);
+            funcId: 240, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerScriptProcessorNode,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodeScriptProcessorScriptProcessorNodeNewConstMeta,
+      constMeta: kWebAudioApiNodeScriptProcessorNodeNewConstMeta,
       argValues: [context, options],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiNodeScriptProcessorScriptProcessorNodeNewConstMeta =>
-          const TaskConstMeta(
-            debugName: "ScriptProcessorNode_new",
-            argNames: ["context", "options"],
-          );
+  TaskConstMeta get kWebAudioApiNodeScriptProcessorNodeNewConstMeta =>
+      const TaskConstMeta(
+        debugName: "ScriptProcessorNode_new",
+        argNames: ["context", "options"],
+      );
 
   @override
-  Future<void>
-      webAudioApiNodeScriptProcessorScriptProcessorNodeSetOnaudioprocess(
-          {required ScriptProcessorNode that, required F callback}) {
+  Future<void> webAudioApiNodeScriptProcessorNodeSetOnaudioprocess(
+      {required ScriptProcessorNode that, required F callback}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
@@ -8041,28 +8235,27 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerF(
             callback, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 226, port: port_);
+            funcId: 241, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta:
-          kWebAudioApiNodeScriptProcessorScriptProcessorNodeSetOnaudioprocessConstMeta,
+      constMeta: kWebAudioApiNodeScriptProcessorNodeSetOnaudioprocessConstMeta,
       argValues: [that, callback],
       apiImpl: this,
     ));
   }
 
   TaskConstMeta
-      get kWebAudioApiNodeScriptProcessorScriptProcessorNodeSetOnaudioprocessConstMeta =>
+      get kWebAudioApiNodeScriptProcessorNodeSetOnaudioprocessConstMeta =>
           const TaskConstMeta(
             debugName: "ScriptProcessorNode_set_onaudioprocess",
             argNames: ["that", "callback"],
           );
 
   @override
-  Future<StereoPannerNode> webAudioApiNodeStereoPannerStereoPannerNodeNew(
+  Future<StereoPannerNode> webAudioApiNodeStereoPannerNodeNew(
       {required C context, required StereoPannerOptions options}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -8071,27 +8264,27 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             context, serializer);
         sse_encode_box_autoadd_stereo_panner_options(options, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 227, port: port_);
+            funcId: 242, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerStereoPannerNode,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodeStereoPannerStereoPannerNodeNewConstMeta,
+      constMeta: kWebAudioApiNodeStereoPannerNodeNewConstMeta,
       argValues: [context, options],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiNodeStereoPannerStereoPannerNodeNewConstMeta =>
+  TaskConstMeta get kWebAudioApiNodeStereoPannerNodeNewConstMeta =>
       const TaskConstMeta(
         debugName: "StereoPannerNode_new",
         argNames: ["context", "options"],
       );
 
   @override
-  Future<AudioParam> webAudioApiNodeStereoPannerStereoPannerNodePan(
+  Future<AudioParam> webAudioApiNodeStereoPannerNodePan(
       {required StereoPannerNode that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -8099,27 +8292,27 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerStereoPannerNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 228, port: port_);
+            funcId: 243, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodeStereoPannerStereoPannerNodePanConstMeta,
+      constMeta: kWebAudioApiNodeStereoPannerNodePanConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiNodeStereoPannerStereoPannerNodePanConstMeta =>
+  TaskConstMeta get kWebAudioApiNodeStereoPannerNodePanConstMeta =>
       const TaskConstMeta(
         debugName: "StereoPannerNode_pan",
         argNames: ["that"],
       );
 
   @override
-  Future<F32?> webAudioApiNodeWaveshaperWaveShaperNodeCurve(
+  Future<F32?> webAudioApiNodeWaveShaperNodeCurve(
       {required WaveShaperNode that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -8127,27 +8320,27 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerWaveShaperNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 229, port: port_);
+            funcId: 244, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_opt_box_autoadd_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodeWaveshaperWaveShaperNodeCurveConstMeta,
+      constMeta: kWebAudioApiNodeWaveShaperNodeCurveConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiNodeWaveshaperWaveShaperNodeCurveConstMeta =>
+  TaskConstMeta get kWebAudioApiNodeWaveShaperNodeCurveConstMeta =>
       const TaskConstMeta(
         debugName: "WaveShaperNode_curve",
         argNames: ["that"],
       );
 
   @override
-  Future<WaveShaperNode> webAudioApiNodeWaveshaperWaveShaperNodeNew(
+  Future<WaveShaperNode> webAudioApiNodeWaveShaperNodeNew(
       {required C context, required WaveShaperOptions options}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -8156,27 +8349,27 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             context, serializer);
         sse_encode_box_autoadd_wave_shaper_options(options, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 230, port: port_);
+            funcId: 245, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
             sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerWaveShaperNode,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodeWaveshaperWaveShaperNodeNewConstMeta,
+      constMeta: kWebAudioApiNodeWaveShaperNodeNewConstMeta,
       argValues: [context, options],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiNodeWaveshaperWaveShaperNodeNewConstMeta =>
+  TaskConstMeta get kWebAudioApiNodeWaveShaperNodeNewConstMeta =>
       const TaskConstMeta(
         debugName: "WaveShaperNode_new",
         argNames: ["context", "options"],
       );
 
   @override
-  Future<OverSampleType> webAudioApiNodeWaveshaperWaveShaperNodeOversample(
+  Future<OverSampleType> webAudioApiNodeWaveShaperNodeOversample(
       {required WaveShaperNode that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -8184,27 +8377,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerWaveShaperNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 231, port: port_);
+            funcId: 246, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_over_sample_type,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodeWaveshaperWaveShaperNodeOversampleConstMeta,
+      constMeta: kWebAudioApiNodeWaveShaperNodeOversampleConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiNodeWaveshaperWaveShaperNodeOversampleConstMeta =>
-          const TaskConstMeta(
-            debugName: "WaveShaperNode_oversample",
-            argNames: ["that"],
-          );
+  TaskConstMeta get kWebAudioApiNodeWaveShaperNodeOversampleConstMeta =>
+      const TaskConstMeta(
+        debugName: "WaveShaperNode_oversample",
+        argNames: ["that"],
+      );
 
   @override
-  Future<void> webAudioApiNodeWaveshaperWaveShaperNodeSetCurve(
+  Future<void> webAudioApiNodeWaveShaperNodeSetCurve(
       {required WaveShaperNode that, required List<double> curve}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -8213,26 +8405,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_list_prim_f_32_loose(curve, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 232, port: port_);
+            funcId: 247, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodeWaveshaperWaveShaperNodeSetCurveConstMeta,
+      constMeta: kWebAudioApiNodeWaveShaperNodeSetCurveConstMeta,
       argValues: [that, curve],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiNodeWaveshaperWaveShaperNodeSetCurveConstMeta =>
+  TaskConstMeta get kWebAudioApiNodeWaveShaperNodeSetCurveConstMeta =>
       const TaskConstMeta(
         debugName: "WaveShaperNode_set_curve",
         argNames: ["that", "curve"],
       );
 
   @override
-  Future<void> webAudioApiNodeWaveshaperWaveShaperNodeSetOversample(
+  Future<void> webAudioApiNodeWaveShaperNodeSetOversample(
       {required WaveShaperNode that, required OverSampleType oversample}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -8241,469 +8433,22 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_over_sample_type(oversample, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 233, port: port_);
+            funcId: 248, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiNodeWaveshaperWaveShaperNodeSetOversampleConstMeta,
+      constMeta: kWebAudioApiNodeWaveShaperNodeSetOversampleConstMeta,
       argValues: [that, oversample],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta
-      get kWebAudioApiNodeWaveshaperWaveShaperNodeSetOversampleConstMeta =>
-          const TaskConstMeta(
-            debugName: "WaveShaperNode_set_oversample",
-            argNames: ["that", "oversample"],
-          );
-
-  @override
-  Future<AutomationRate> webAudioApiParamAudioParamAutomationRate(
-      {required AudioParam that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 234, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_automation_rate,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiParamAudioParamAutomationRateConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiParamAudioParamAutomationRateConstMeta =>
+  TaskConstMeta get kWebAudioApiNodeWaveShaperNodeSetOversampleConstMeta =>
       const TaskConstMeta(
-        debugName: "AudioParam_automation_rate",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<Self> webAudioApiParamAudioParamCancelAndHoldAtTime(
-      {required AudioParam that, required double cancelTime}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
-            that, serializer);
-        sse_encode_f_64(cancelTime, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 235, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSelf,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiParamAudioParamCancelAndHoldAtTimeConstMeta,
-      argValues: [that, cancelTime],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiParamAudioParamCancelAndHoldAtTimeConstMeta =>
-      const TaskConstMeta(
-        debugName: "AudioParam_cancel_and_hold_at_time",
-        argNames: ["that", "cancelTime"],
-      );
-
-  @override
-  Future<Self> webAudioApiParamAudioParamCancelScheduledValues(
-      {required AudioParam that, required double cancelTime}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
-            that, serializer);
-        sse_encode_f_64(cancelTime, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 236, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSelf,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiParamAudioParamCancelScheduledValuesConstMeta,
-      argValues: [that, cancelTime],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiParamAudioParamCancelScheduledValuesConstMeta =>
-      const TaskConstMeta(
-        debugName: "AudioParam_cancel_scheduled_values",
-        argNames: ["that", "cancelTime"],
-      );
-
-  @override
-  Future<double> webAudioApiParamAudioParamDefaultValue(
-      {required AudioParam that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 237, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_f_32,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiParamAudioParamDefaultValueConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiParamAudioParamDefaultValueConstMeta =>
-      const TaskConstMeta(
-        debugName: "AudioParam_default_value",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<Self> webAudioApiParamAudioParamExponentialRampToValueAtTime(
-      {required AudioParam that,
-      required double value,
-      required double endTime}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
-            that, serializer);
-        sse_encode_f_32(value, serializer);
-        sse_encode_f_64(endTime, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 238, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSelf,
-        decodeErrorData: null,
-      ),
-      constMeta:
-          kWebAudioApiParamAudioParamExponentialRampToValueAtTimeConstMeta,
-      argValues: [that, value, endTime],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiParamAudioParamExponentialRampToValueAtTimeConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioParam_exponential_ramp_to_value_at_time",
-            argNames: ["that", "value", "endTime"],
-          );
-
-  @override
-  Future<Self> webAudioApiParamAudioParamLinearRampToValueAtTime(
-      {required AudioParam that,
-      required double value,
-      required double endTime}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
-            that, serializer);
-        sse_encode_f_32(value, serializer);
-        sse_encode_f_64(endTime, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 239, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSelf,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiParamAudioParamLinearRampToValueAtTimeConstMeta,
-      argValues: [that, value, endTime],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta
-      get kWebAudioApiParamAudioParamLinearRampToValueAtTimeConstMeta =>
-          const TaskConstMeta(
-            debugName: "AudioParam_linear_ramp_to_value_at_time",
-            argNames: ["that", "value", "endTime"],
-          );
-
-  @override
-  Future<double> webAudioApiParamAudioParamMaxValue(
-      {required AudioParam that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 240, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_f_32,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiParamAudioParamMaxValueConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiParamAudioParamMaxValueConstMeta =>
-      const TaskConstMeta(
-        debugName: "AudioParam_max_value",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<double> webAudioApiParamAudioParamMinValue(
-      {required AudioParam that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 241, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_f_32,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiParamAudioParamMinValueConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiParamAudioParamMinValueConstMeta =>
-      const TaskConstMeta(
-        debugName: "AudioParam_min_value",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<void> webAudioApiParamAudioParamSetAutomationRate(
-      {required AudioParam that, required AutomationRate value}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
-            that, serializer);
-        sse_encode_automation_rate(value, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 242, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiParamAudioParamSetAutomationRateConstMeta,
-      argValues: [that, value],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiParamAudioParamSetAutomationRateConstMeta =>
-      const TaskConstMeta(
-        debugName: "AudioParam_set_automation_rate",
-        argNames: ["that", "value"],
-      );
-
-  @override
-  Future<Self> webAudioApiParamAudioParamSetTargetAtTime(
-      {required AudioParam that,
-      required double value,
-      required double startTime,
-      required double timeConstant}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
-            that, serializer);
-        sse_encode_f_32(value, serializer);
-        sse_encode_f_64(startTime, serializer);
-        sse_encode_f_64(timeConstant, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 243, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSelf,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiParamAudioParamSetTargetAtTimeConstMeta,
-      argValues: [that, value, startTime, timeConstant],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiParamAudioParamSetTargetAtTimeConstMeta =>
-      const TaskConstMeta(
-        debugName: "AudioParam_set_target_at_time",
-        argNames: ["that", "value", "startTime", "timeConstant"],
-      );
-
-  @override
-  Future<Self> webAudioApiParamAudioParamSetValue(
-      {required AudioParam that, required double value}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
-            that, serializer);
-        sse_encode_f_32(value, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 244, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSelf,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiParamAudioParamSetValueConstMeta,
-      argValues: [that, value],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiParamAudioParamSetValueConstMeta =>
-      const TaskConstMeta(
-        debugName: "AudioParam_set_value",
-        argNames: ["that", "value"],
-      );
-
-  @override
-  Future<Self> webAudioApiParamAudioParamSetValueAtTime(
-      {required AudioParam that,
-      required double value,
-      required double startTime}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
-            that, serializer);
-        sse_encode_f_32(value, serializer);
-        sse_encode_f_64(startTime, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 245, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSelf,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiParamAudioParamSetValueAtTimeConstMeta,
-      argValues: [that, value, startTime],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiParamAudioParamSetValueAtTimeConstMeta =>
-      const TaskConstMeta(
-        debugName: "AudioParam_set_value_at_time",
-        argNames: ["that", "value", "startTime"],
-      );
-
-  @override
-  Future<Self> webAudioApiParamAudioParamSetValueCurveAtTime(
-      {required AudioParam that,
-      required F32 values,
-      required double startTime,
-      required double duration}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
-            that, serializer);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
-            values, serializer);
-        sse_encode_f_64(startTime, serializer);
-        sse_encode_f_64(duration, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 246, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerSelf,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiParamAudioParamSetValueCurveAtTimeConstMeta,
-      argValues: [that, values, startTime, duration],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiParamAudioParamSetValueCurveAtTimeConstMeta =>
-      const TaskConstMeta(
-        debugName: "AudioParam_set_value_curve_at_time",
-        argNames: ["that", "values", "startTime", "duration"],
-      );
-
-  @override
-  Future<double> webAudioApiParamAudioParamValue({required AudioParam that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 247, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_f_32,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiParamAudioParamValueConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiParamAudioParamValueConstMeta =>
-      const TaskConstMeta(
-        debugName: "AudioParam_value",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<PeriodicWave> webAudioApiPeriodicWavePeriodicWaveNew(
-      {required C context, required PeriodicWaveOptions options}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerC(
-            context, serializer);
-        sse_encode_box_autoadd_periodic_wave_options(options, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 248, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPeriodicWave,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiPeriodicWavePeriodicWaveNewConstMeta,
-      argValues: [context, options],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiPeriodicWavePeriodicWaveNewConstMeta =>
-      const TaskConstMeta(
-        debugName: "PeriodicWave_new",
-        argNames: ["context", "options"],
+        debugName: "WaveShaperNode_set_oversample",
+        argNames: ["that", "oversample"],
       );
 
   @override

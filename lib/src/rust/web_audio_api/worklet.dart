@@ -4,9 +4,9 @@
 // ignore_for_file: invalid_use_of_internal_member, unused_import, unnecessary_import
 
 import '../frb_generated.dart';
-import 'node/audio_node.dart';
+import '../web_audio_api.dart';
+import 'node.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
-import 'periodic_wave.dart';
 
 // These functions are ignored because they are not marked as `pub`: `channel_config`, `clone`, `default`, `fmt`, `fmt`, `fmt`, `has_side_effects`, `load`, `new`, `number_of_inputs`, `number_of_outputs`, `onmessage`, `process`, `registration`
 // These types are ignored because they are not used by any `pub` functions: `AudioParamValues`, `AudioWorkletRenderer`, `Processor`
