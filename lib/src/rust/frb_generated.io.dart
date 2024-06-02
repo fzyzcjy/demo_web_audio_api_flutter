@@ -91,9 +91,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_BoxAnyPtr => wire
       ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySendPtr;
 
-  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_BoxAnyPtr => wire
-      ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySendstaticPtr;
-
   CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_BoxErrorPtr => wire
       ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynErrorPtr;
 
@@ -335,11 +332,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   BoxAny
       dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySend(
-          dynamic raw);
-
-  @protected
-  BoxAny
-      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySendstatic(
           dynamic raw);
 
   @protected
@@ -958,11 +950,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
           dynamic raw);
 
   @protected
-  BoxAny
-      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySendstatic(
-          dynamic raw);
-
-  @protected
   BoxError
       dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynError(
           dynamic raw);
@@ -1227,9 +1214,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   AudioNodeOptions dco_decode_audio_node_options(dynamic raw);
 
   @protected
-  AudioProcessingEvent dco_decode_audio_processing_event(dynamic raw);
-
-  @protected
   AudioRenderCapacityOptions dco_decode_audio_render_capacity_options(
       dynamic raw);
 
@@ -1284,10 +1268,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   AudioNodeOptions dco_decode_box_autoadd_audio_node_options(dynamic raw);
-
-  @protected
-  AudioProcessingEvent dco_decode_box_autoadd_audio_processing_event(
-      dynamic raw);
 
   @protected
   AudioRenderCapacityOptions
@@ -1352,13 +1332,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   PeriodicWaveOptions dco_decode_box_autoadd_periodic_wave_options(dynamic raw);
-
-  @protected
-  (
-    ConcreteBaseAudioContext,
-    AudioNodeId
-  ) dco_decode_box_autoadd_record_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_concrete_base_audio_context_audio_node_id(
-      dynamic raw);
 
   @protected
   ScriptProcessorOptions dco_decode_box_autoadd_script_processor_options(
@@ -1505,13 +1478,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   double? dco_decode_opt_box_autoadd_f_64(dynamic raw);
 
   @protected
-  (
-    ConcreteBaseAudioContext,
-    AudioNodeId
-  )? dco_decode_opt_box_autoadd_record_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_concrete_base_audio_context_audio_node_id(
-      dynamic raw);
-
-  @protected
   int? dco_decode_opt_box_autoadd_u_32(dynamic raw);
 
   @protected
@@ -1534,13 +1500,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   PeriodicWaveOptions dco_decode_periodic_wave_options(dynamic raw);
-
-  @protected
-  (
-    ConcreteBaseAudioContext,
-    AudioNodeId
-  ) dco_decode_record_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_concrete_base_audio_context_audio_node_id(
-      dynamic raw);
 
   @protected
   (String, double) dco_decode_record_string_f_64(dynamic raw);
@@ -1637,11 +1596,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   BoxAny
       sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySend(
-          SseDeserializer deserializer);
-
-  @protected
-  BoxAny
-      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySendstatic(
           SseDeserializer deserializer);
 
   @protected
@@ -2260,11 +2214,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
           SseDeserializer deserializer);
 
   @protected
-  BoxAny
-      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySendstatic(
-          SseDeserializer deserializer);
-
-  @protected
   BoxError
       sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynError(
           SseDeserializer deserializer);
@@ -2533,10 +2482,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   AudioNodeOptions sse_decode_audio_node_options(SseDeserializer deserializer);
 
   @protected
-  AudioProcessingEvent sse_decode_audio_processing_event(
-      SseDeserializer deserializer);
-
-  @protected
   AudioRenderCapacityOptions sse_decode_audio_render_capacity_options(
       SseDeserializer deserializer);
 
@@ -2596,10 +2541,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   AudioNodeOptions sse_decode_box_autoadd_audio_node_options(
-      SseDeserializer deserializer);
-
-  @protected
-  AudioProcessingEvent sse_decode_box_autoadd_audio_processing_event(
       SseDeserializer deserializer);
 
   @protected
@@ -2672,13 +2613,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   PeriodicWaveOptions sse_decode_box_autoadd_periodic_wave_options(
-      SseDeserializer deserializer);
-
-  @protected
-  (
-    ConcreteBaseAudioContext,
-    AudioNodeId
-  ) sse_decode_box_autoadd_record_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_concrete_base_audio_context_audio_node_id(
       SseDeserializer deserializer);
 
   @protected
@@ -2841,13 +2775,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   double? sse_decode_opt_box_autoadd_f_64(SseDeserializer deserializer);
 
   @protected
-  (
-    ConcreteBaseAudioContext,
-    AudioNodeId
-  )? sse_decode_opt_box_autoadd_record_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_concrete_base_audio_context_audio_node_id(
-      SseDeserializer deserializer);
-
-  @protected
   int? sse_decode_opt_box_autoadd_u_32(SseDeserializer deserializer);
 
   @protected
@@ -2871,13 +2798,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   PeriodicWaveOptions sse_decode_periodic_wave_options(
-      SseDeserializer deserializer);
-
-  @protected
-  (
-    ConcreteBaseAudioContext,
-    AudioNodeId
-  ) sse_decode_record_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_concrete_base_audio_context_audio_node_id(
       SseDeserializer deserializer);
 
   @protected
@@ -2978,11 +2898,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySend(
-          BoxAny self, SseSerializer serializer);
-
-  @protected
-  void
-      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySendstatic(
           BoxAny self, SseSerializer serializer);
 
   @protected
@@ -3611,11 +3526,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void
-      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySendstatic(
-          BoxAny self, SseSerializer serializer);
-
-  @protected
-  void
       sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynError(
           BoxError self, SseSerializer serializer);
 
@@ -3891,10 +3801,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
       AudioNodeOptions self, SseSerializer serializer);
 
   @protected
-  void sse_encode_audio_processing_event(
-      AudioProcessingEvent self, SseSerializer serializer);
-
-  @protected
   void sse_encode_audio_render_capacity_options(
       AudioRenderCapacityOptions self, SseSerializer serializer);
 
@@ -3960,10 +3866,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   void sse_encode_box_autoadd_audio_node_options(
       AudioNodeOptions self, SseSerializer serializer);
-
-  @protected
-  void sse_encode_box_autoadd_audio_processing_event(
-      AudioProcessingEvent self, SseSerializer serializer);
 
   @protected
   void sse_encode_box_autoadd_audio_render_capacity_options(
@@ -4038,12 +3940,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   void sse_encode_box_autoadd_periodic_wave_options(
       PeriodicWaveOptions self, SseSerializer serializer);
-
-  @protected
-  void
-      sse_encode_box_autoadd_record_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_concrete_base_audio_context_audio_node_id(
-          (ConcreteBaseAudioContext, AudioNodeId) self,
-          SseSerializer serializer);
 
   @protected
   void sse_encode_box_autoadd_script_processor_options(
@@ -4213,12 +4109,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void sse_encode_opt_box_autoadd_f_64(double? self, SseSerializer serializer);
 
   @protected
-  void
-      sse_encode_opt_box_autoadd_record_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_concrete_base_audio_context_audio_node_id(
-          (ConcreteBaseAudioContext, AudioNodeId)? self,
-          SseSerializer serializer);
-
-  @protected
   void sse_encode_opt_box_autoadd_u_32(int? self, SseSerializer serializer);
 
   @protected
@@ -4247,12 +4137,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   void sse_encode_periodic_wave_options(
       PeriodicWaveOptions self, SseSerializer serializer);
-
-  @protected
-  void
-      sse_encode_record_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_concrete_base_audio_context_audio_node_id(
-          (ConcreteBaseAudioContext, AudioNodeId) self,
-          SseSerializer serializer);
 
   @protected
   void sse_encode_record_string_f_64(
@@ -4810,38 +4694,6 @@ class RustLibWire implements BaseWire {
           'frbgen_demo_web_audio_api_flutter_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySend');
   late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySend =
       _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySendPtr
-          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
-
-  void
-      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySendstatic(
-    ffi.Pointer<ffi.Void> ptr,
-  ) {
-    return _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySendstatic(
-      ptr,
-    );
-  }
-
-  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySendstaticPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-          'frbgen_demo_web_audio_api_flutter_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySendstatic');
-  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySendstatic =
-      _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySendstaticPtr
-          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
-
-  void
-      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySendstatic(
-    ffi.Pointer<ffi.Void> ptr,
-  ) {
-    return _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySendstatic(
-      ptr,
-    );
-  }
-
-  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySendstaticPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-          'frbgen_demo_web_audio_api_flutter_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySendstatic');
-  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySendstatic =
-      _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySendstaticPtr
           .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
   void

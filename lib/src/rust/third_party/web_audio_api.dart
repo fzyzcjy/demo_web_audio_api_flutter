@@ -10,7 +10,8 @@ import 'web_audio_api/context.dart';
 part 'web_audio_api.freezed.dart';
 
 // These functions are ignored because they are not marked as `pub`: `as_slice`, `assert_is_finite`, `assert_not_zero`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_sequence_length`, `assert_strictly_positive`, `assert_valid_buffer_length`, `assert_valid_channel_number`, `assert_valid_number_of_channels`, `assert_valid_sample_rate`, `assert_valid_time_value`, `audio_param_pair`, `cancel_and_hold_at_time_raw`, `cancel_scheduled_values_raw`, `channel_config`, `channel_data_mut`, `channel_data`, `channels_mut`, `channels`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `compute_buffer`, `compute_exponential_ramp_automation`, `compute_exponential_ramp_sample`, `compute_intrinsic_values`, `compute_linear_ramp_automation`, `compute_linear_ramp_sample`, `compute_set_target_automation`, `compute_set_target_sample`, `compute_set_value_automation`, `compute_set_value_curve_automation`, `compute_set_value_curve_sample`, `default`, `default`, `default`, `default`, `drop`, `eq`, `eq`, `eq`, `eq`, `exponential_ramp_to_value_at_time_raw`, `extend`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `from_channels`, `from_raw_parts`, `generate_wavetable`, `handle_event`, `handle_incoming_event`, `hash`, `into_raw_parts`, `is_a_rate`, `is_empty`, `iter_mut`, `iter`, `linear_ramp_to_value_at_time_raw`, `mix_to_output`, `new`, `new`, `new`, `next`, `normalize`, `number_of_inputs`, `number_of_outputs`, `onmessage`, `peek`, `pop`, `process`, `push`, `registration`, `replace_peek`, `resample`, `retain`, `send_event`, `set_automation_rate_constrained`, `set_channel_count_mode`, `set_channel_count`, `set_channel_interpretation`, `set_target_at_time_raw`, `set_value_at_time_raw`, `set_value_curve_at_time_raw`, `set_value_raw`, `sort`, `split_off`, `unsorted_peek`
-// These types are ignored because they are not used by any `pub` functions: `AudioParamDescriptor`, `AudioParamEventTimeline`, `AudioParamEventType`, `AudioParamEvent`, `AudioParamInner`, `AudioParamProcessor`, `AudioRenderCapacityLoad`, `BlockInfos`, `EventPayload`
+// These types are ignored because they are not used by any `pub` functions: `AudioParamDescriptor`, `AudioParamEventTimeline`, `AudioParamEventType`, `AudioParamEvent`, `AudioParamInner`, `AudioParamProcessor`, `AudioProcessingEvent`, `AudioRenderCapacityLoad`, `BlockInfos`, `EventPayload`
+// These functions are ignored: `audio_processing`, `ended`, `message`, `processor_error`
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AtomicF32>>
 @sealed
@@ -508,27 +509,6 @@ class BoxAny extends RustOpaque {
   );
 }
 
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Box < dyn Any + Send + 'static >>>
-@sealed
-class BoxAny extends RustOpaque {
-  // Not to be used by end users
-  BoxAny.frbInternalDcoDecode(List<dynamic> wire)
-      : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  BoxAny.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
-      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_BoxAny,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_BoxAny,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_BoxAnyPtr,
-  );
-}
-
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<C>>
 @sealed
 class C extends RustOpaque {
@@ -685,29 +665,11 @@ class EventDispatch extends RustOpaque {
         RustLib.instance.api.rust_arc_decrement_strong_count_EventDispatchPtr,
   );
 
-  static Future<EventDispatch> audioProcessing(
-          {required AudioNodeId id, required AudioProcessingEvent value}) =>
-      RustLib.instance.api
-          .webAudioApiEventDispatchAudioProcessing(id: id, value: value);
-
   static Future<EventDispatch> complete({required AudioBuffer buffer}) =>
       RustLib.instance.api.webAudioApiEventDispatchComplete(buffer: buffer);
 
   static Future<EventDispatch> diagnostics({required List<int> value}) =>
       RustLib.instance.api.webAudioApiEventDispatchDiagnostics(value: value);
-
-  static Future<EventDispatch> ended({required AudioNodeId id}) =>
-      RustLib.instance.api.webAudioApiEventDispatchEnded(id: id);
-
-  static Future<EventDispatch> message(
-          {required AudioNodeId id, required BoxAny value}) =>
-      RustLib.instance.api
-          .webAudioApiEventDispatchMessage(id: id, value: value);
-
-  static Future<EventDispatch> processorError(
-          {required AudioNodeId id, required ErrorEvent value}) =>
-      RustLib.instance.api
-          .webAudioApiEventDispatchProcessorError(id: id, value: value);
 
   static Future<EventDispatch> renderCapacity(
           {required AudioRenderCapacityEvent value}) =>
@@ -1214,44 +1176,6 @@ class AudioBufferOptions {
           numberOfChannels == other.numberOfChannels &&
           length == other.length &&
           sampleRate == other.sampleRate;
-}
-
-/// The AudioProcessingEvent interface
-class AudioProcessingEvent {
-  /// The input buffer
-  final AudioBuffer inputBuffer;
-
-  /// The output buffer
-  final AudioBuffer outputBuffer;
-
-  /// The time when the audio will be played in the same time coordinate system as the
-  /// AudioContext's currentTime.
-  final double playbackTime;
-  final (ConcreteBaseAudioContext, AudioNodeId)? registration;
-
-  const AudioProcessingEvent({
-    required this.inputBuffer,
-    required this.outputBuffer,
-    required this.playbackTime,
-    this.registration,
-  });
-
-  @override
-  int get hashCode =>
-      inputBuffer.hashCode ^
-      outputBuffer.hashCode ^
-      playbackTime.hashCode ^
-      registration.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is AudioProcessingEvent &&
-          runtimeType == other.runtimeType &&
-          inputBuffer == other.inputBuffer &&
-          outputBuffer == other.outputBuffer &&
-          playbackTime == other.playbackTime &&
-          registration == other.registration;
 }
 
 /// Options for constructing an `AudioRenderCapacity`
