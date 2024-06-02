@@ -5,7 +5,6 @@
 
 import '../frb_generated.dart';
 import 'message_port.dart';
-import 'node/analyser.dart';
 import 'node/audio_node.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
@@ -130,6 +129,27 @@ class AudioWorkletNodeOptions extends RustOpaque {
   void set processorOptions(C processorOptions) => RustLib.instance.api
       .webAudioApiWorkletAudioWorkletNodeOptionsSetProcessorOptions(
           that: this, processorOptions: processorOptions);
+}
+
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<C>>
+@sealed
+class C extends RustOpaque {
+  // Not to be used by end users
+  C.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  C.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_C,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_C,
+    rustArcDecrementStrongCountPtr:
+        RustLib.instance.api.rust_arc_decrement_strong_count_CPtr,
+  );
 }
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<HashMap < String , AudioParam >>>

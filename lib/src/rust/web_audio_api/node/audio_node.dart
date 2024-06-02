@@ -6,8 +6,7 @@
 import '../../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-// These functions are ignored because they are not marked as `pub`: `clone`, `eq`, `assert_receiver_is_total_eq`, `fmt`, `from`, `clone`, `eq`, `assert_receiver_is_total_eq`, `fmt`, `from`, `clone`, `fmt`, `default`, `clone`, `fmt`, `clone`, `default`, `fmt`, `count_mode`, `set_count_mode`, `interpretation`, `set_interpretation`, `count`, `set_count`, `inner`, `from`
-// These types are ignored because they are not used by any `pub` functions: `ChannelConfig`
+// These types are ignored because they are not used by any `pub` functions: `ChannelConfigInner`, `ChannelConfig`
 
 /// Options that can be used in constructing all AudioNodes.
 class AudioNodeOptions {
@@ -40,31 +39,6 @@ class AudioNodeOptions {
           channelCount == other.channelCount &&
           channelCountMode == other.channelCountMode &&
           channelInterpretation == other.channelInterpretation;
-}
-
-class ChannelConfigInner {
-  final BigInt count;
-  final ChannelCountMode countMode;
-  final ChannelInterpretation interpretation;
-
-  const ChannelConfigInner({
-    required this.count,
-    required this.countMode,
-    required this.interpretation,
-  });
-
-  @override
-  int get hashCode =>
-      count.hashCode ^ countMode.hashCode ^ interpretation.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ChannelConfigInner &&
-          runtimeType == other.runtimeType &&
-          count == other.count &&
-          countMode == other.countMode &&
-          interpretation == other.interpretation;
 }
 
 /// How channels must be matched between the node's inputs and outputs.

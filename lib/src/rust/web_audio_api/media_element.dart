@@ -4,29 +4,27 @@
 // ignore_for_file: invalid_use_of_internal_member, unused_import, unnecessary_import
 
 import '../frb_generated.dart';
-import 'context/online.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-// These functions are ignored because they are not marked as `pub`: `fmt`, `fmt`, `take_stream`, `next`
 // These types are ignored because they are not used by any `pub` functions: `RTSStream`, `MediaElementAction`
 
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<P>>
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MediaElement>>
 @sealed
-class P extends RustOpaque {
+class MediaElement extends RustOpaque {
   // Not to be used by end users
-  P.frbInternalDcoDecode(List<dynamic> wire)
+  MediaElement.frbInternalDcoDecode(List<dynamic> wire)
       : super.frbInternalDcoDecode(wire, _kStaticData);
 
   // Not to be used by end users
-  P.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+  MediaElement.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
       : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
 
   static final _kStaticData = RustArcStaticData(
     rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_P,
+        RustLib.instance.api.rust_arc_increment_strong_count_MediaElement,
     rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_P,
+        RustLib.instance.api.rust_arc_decrement_strong_count_MediaElement,
     rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_PPtr,
+        RustLib.instance.api.rust_arc_decrement_strong_count_MediaElementPtr,
   );
 }
