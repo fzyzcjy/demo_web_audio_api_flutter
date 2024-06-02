@@ -1,5 +1,4 @@
 use flutter_rust_bridge::frb;
-#[allow(unused_imports)]
 use web_audio_api::AudioRenderCapacity;
 
 #[frb(external)]
