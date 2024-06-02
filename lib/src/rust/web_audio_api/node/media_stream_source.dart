@@ -4,29 +4,45 @@
 // ignore_for_file: invalid_use_of_internal_member, unused_import, unnecessary_import
 
 import '../../frb_generated.dart';
+import 'analyser.dart';
+import 'media_stream_destination.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-// These types are ignored because they are not used by any `pub` functions: `MediaStreamAudioSourceNode`
+// These functions are ignored because they are not marked as `pub`: `fmt`, `fmt`, `registration`, `channel_config`, `number_of_inputs`, `number_of_outputs`
 
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MediaStream>>
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MediaStreamAudioSourceNode>>
 @sealed
-class MediaStream extends RustOpaque {
+class MediaStreamAudioSourceNode extends RustOpaque {
   // Not to be used by end users
-  MediaStream.frbInternalDcoDecode(List<dynamic> wire)
+  MediaStreamAudioSourceNode.frbInternalDcoDecode(List<dynamic> wire)
       : super.frbInternalDcoDecode(wire, _kStaticData);
 
   // Not to be used by end users
-  MediaStream.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+  MediaStreamAudioSourceNode.frbInternalSseDecode(
+      BigInt ptr, int externalSizeOnNative)
       : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
 
   static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_MediaStream,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_MediaStream,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_MediaStreamPtr,
+    rustArcIncrementStrongCount: RustLib.instance.api
+        .rust_arc_increment_strong_count_MediaStreamAudioSourceNode,
+    rustArcDecrementStrongCount: RustLib.instance.api
+        .rust_arc_decrement_strong_count_MediaStreamAudioSourceNode,
+    rustArcDecrementStrongCountPtr: RustLib.instance.api
+        .rust_arc_decrement_strong_count_MediaStreamAudioSourceNodePtr,
   );
+
+  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
+  /// Create a new `MediaStreamAudioSourceNode`
+  ///
+  /// # Panics
+  ///
+  /// This method will panic when the provided `MediaStream` does not contain any audio tracks.
+  static Future<MediaStreamAudioSourceNode> newInstance(
+          {required C context,
+          required MediaStreamAudioSourceOptions options}) =>
+      RustLib.instance.api
+          .webAudioApiNodeMediaStreamSourceMediaStreamAudioSourceNodeNew(
+              context: context, options: options);
 }
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MediaStreamAudioSourceOptions>>

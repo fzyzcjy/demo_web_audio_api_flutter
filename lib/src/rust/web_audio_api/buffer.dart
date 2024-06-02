@@ -6,7 +6,156 @@
 import '../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-// These types are ignored because they are not used by any `pub` functions: `AudioBufferOptions`
+// These functions are ignored because they are not marked as `pub`: `clone`, `fmt`, `clone`, `fmt`, `from_channels`, `channels`, `channels_mut`, `channel_data`, `channel_data_mut`, `extend`, `split_off`, `resample`, `clone`, `eq`, `fmt`
+
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioBuffer>>
+@sealed
+class AudioBuffer extends RustOpaque {
+  // Not to be used by end users
+  AudioBuffer.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  AudioBuffer.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_AudioBuffer,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_AudioBuffer,
+    rustArcDecrementStrongCountPtr:
+        RustLib.instance.api.rust_arc_decrement_strong_count_AudioBufferPtr,
+  );
+
+  /// Copy data from a given channel to the given `Vec`
+  ///
+  /// # Panics
+  ///
+  /// This function will panic if `channel_number` is greater or equal than
+  /// `AudioBuffer::number_of_channels()`
+  Future<void> copyFromChannel(
+          {required F32 destination, required BigInt channelNumber}) =>
+      RustLib.instance.api.webAudioApiBufferAudioBufferCopyFromChannel(
+          that: this, destination: destination, channelNumber: channelNumber);
+
+  /// Copy data from a given channel to the given `Vec` starting at `offset`
+  ///
+  /// # Panics
+  ///
+  /// This function will panic if:
+  /// - the given channel number is greater than or equal to the given number of channels.
+  Future<void> copyFromChannelWithOffset(
+          {required F32 destination,
+          required BigInt channelNumber,
+          required BigInt offset}) =>
+      RustLib.instance.api
+          .webAudioApiBufferAudioBufferCopyFromChannelWithOffset(
+              that: this,
+              destination: destination,
+              channelNumber: channelNumber,
+              offset: offset);
+
+  /// Copy data from a given source to the given channel.
+  ///
+  /// # Panics
+  ///
+  /// This function will panic if:
+  /// - the given channel number is greater than or equal to the given number of channels.
+  Future<void> copyToChannel(
+          {required F32 source, required BigInt channelNumber}) =>
+      RustLib.instance.api.webAudioApiBufferAudioBufferCopyToChannel(
+          that: this, source: source, channelNumber: channelNumber);
+
+  /// Copy data from a given source to the given channel starting at `offset`.
+  ///
+  /// # Panics
+  ///
+  /// This function will panic if:
+  /// - the given channel number is greater than or equal to the given number of channels.
+  Future<void> copyToChannelWithOffset(
+          {required F32 source,
+          required BigInt channelNumber,
+          required BigInt offset}) =>
+      RustLib.instance.api.webAudioApiBufferAudioBufferCopyToChannelWithOffset(
+          that: this,
+          source: source,
+          channelNumber: channelNumber,
+          offset: offset);
+
+  /// Duration in seconds of the `AudioBuffer`
+  Future<double> duration() =>
+      RustLib.instance.api.webAudioApiBufferAudioBufferDuration(
+        that: this,
+      );
+
+  /// Convert raw samples to an AudioBuffer
+  ///
+  /// The outer Vec determine the channels. The inner Vecs should have the same length.
+  ///
+  /// # Panics
+  ///
+  /// This function will panic if:
+  /// - the given sample rate is zero
+  /// - the given number of channels defined by `samples.len()`is outside the
+  ///   [1, 32] range, 32 being defined by the MAX_CHANNELS constant.
+  /// - any of its items have different lengths
+  static Future<AudioBuffer> from(
+          {required List<Float32List> samples, required double sampleRate}) =>
+      RustLib.instance.api.webAudioApiBufferAudioBufferFrom(
+          samples: samples, sampleRate: sampleRate);
+
+  /// Return a read-only copy of the underlying data of the channel
+  ///
+  /// # Panics
+  ///
+  /// This function will panic if:
+  /// - the given channel number is greater than or equal to the given number of channels.
+  Future<F32> getChannelData({required BigInt channelNumber}) =>
+      RustLib.instance.api.webAudioApiBufferAudioBufferGetChannelData(
+          that: this, channelNumber: channelNumber);
+
+  /// Return a mutable slice of the underlying data of the channel
+  ///
+  /// # Panics
+  ///
+  /// This function will panic if:
+  /// - the given channel number is greater than or equal to the given number of channels.
+  Future<F32> getChannelDataMut({required BigInt channelNumber}) =>
+      RustLib.instance.api.webAudioApiBufferAudioBufferGetChannelDataMut(
+          that: this, channelNumber: channelNumber);
+
+  /// Number of samples per channel in this `AudioBuffer`
+  Future<BigInt> length() =>
+      RustLib.instance.api.webAudioApiBufferAudioBufferLength(
+        that: this,
+      );
+
+  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
+  /// Allocate a silent audiobuffer with [`AudioBufferOptions`]
+  ///
+  /// # Panics
+  ///
+  /// This function will panic if:
+  /// - the given sample rate is zero
+  /// - the given number of channels is outside the [1, 32] range,
+  /// 32 being defined by the MAX_CHANNELS constant.
+  static Future<AudioBuffer> newInstance(
+          {required AudioBufferOptions options}) =>
+      RustLib.instance.api.webAudioApiBufferAudioBufferNew(options: options);
+
+  /// Number of channels in this `AudioBuffer`
+  Future<BigInt> numberOfChannels() =>
+      RustLib.instance.api.webAudioApiBufferAudioBufferNumberOfChannels(
+        that: this,
+      );
+
+  /// Sample rate of this `AudioBuffer` in Hertz
+  Future<double> sampleRate() =>
+      RustLib.instance.api.webAudioApiBufferAudioBufferSampleRate(
+        that: this,
+      );
+}
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ChannelData>>
 @sealed
@@ -26,6 +175,53 @@ class ChannelData extends RustOpaque {
         RustLib.instance.api.rust_arc_decrement_strong_count_ChannelData,
     rustArcDecrementStrongCountPtr:
         RustLib.instance.api.rust_arc_decrement_strong_count_ChannelDataPtr,
+  );
+
+  Future<F32> asMutSlice() =>
+      RustLib.instance.api.webAudioApiBufferChannelDataAsMutSlice(
+        that: this,
+      );
+
+  Future<F32> asSlice() =>
+      RustLib.instance.api.webAudioApiBufferChannelDataAsSlice(
+        that: this,
+      );
+
+  static Future<ChannelData> from({required List<double> data}) =>
+      RustLib.instance.api.webAudioApiBufferChannelDataFrom(data: data);
+
+  Future<bool> isEmpty() =>
+      RustLib.instance.api.webAudioApiBufferChannelDataIsEmpty(
+        that: this,
+      );
+
+  Future<BigInt> len() => RustLib.instance.api.webAudioApiBufferChannelDataLen(
+        that: this,
+      );
+
+  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
+  static Future<ChannelData> newInstance({required BigInt length}) =>
+      RustLib.instance.api.webAudioApiBufferChannelDataNew(length: length);
+}
+
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<[f32]>>
+@sealed
+class F32 extends RustOpaque {
+  // Not to be used by end users
+  F32.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  F32.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_F32,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_F32,
+    rustArcDecrementStrongCountPtr:
+        RustLib.instance.api.rust_arc_decrement_strong_count_F32Ptr,
   );
 }
 
@@ -81,6 +277,134 @@ class AudioBuffer {
     required this.sampleRate,
   });
 
+  /// Copy data from a given channel to the given `Vec`
+  ///
+  /// # Panics
+  ///
+  /// This function will panic if `channel_number` is greater or equal than
+  /// `AudioBuffer::number_of_channels()`
+  Future<void> copyFromChannel(
+          {required F32 destination, required BigInt channelNumber}) =>
+      RustLib.instance.api.webAudioApiBufferAudioBufferCopyFromChannel(
+          that: this, destination: destination, channelNumber: channelNumber);
+
+  /// Copy data from a given channel to the given `Vec` starting at `offset`
+  ///
+  /// # Panics
+  ///
+  /// This function will panic if:
+  /// - the given channel number is greater than or equal to the given number of channels.
+  Future<void> copyFromChannelWithOffset(
+          {required F32 destination,
+          required BigInt channelNumber,
+          required BigInt offset}) =>
+      RustLib.instance.api
+          .webAudioApiBufferAudioBufferCopyFromChannelWithOffset(
+              that: this,
+              destination: destination,
+              channelNumber: channelNumber,
+              offset: offset);
+
+  /// Copy data from a given source to the given channel.
+  ///
+  /// # Panics
+  ///
+  /// This function will panic if:
+  /// - the given channel number is greater than or equal to the given number of channels.
+  Future<void> copyToChannel(
+          {required F32 source, required BigInt channelNumber}) =>
+      RustLib.instance.api.webAudioApiBufferAudioBufferCopyToChannel(
+          that: this, source: source, channelNumber: channelNumber);
+
+  /// Copy data from a given source to the given channel starting at `offset`.
+  ///
+  /// # Panics
+  ///
+  /// This function will panic if:
+  /// - the given channel number is greater than or equal to the given number of channels.
+  Future<void> copyToChannelWithOffset(
+          {required F32 source,
+          required BigInt channelNumber,
+          required BigInt offset}) =>
+      RustLib.instance.api.webAudioApiBufferAudioBufferCopyToChannelWithOffset(
+          that: this,
+          source: source,
+          channelNumber: channelNumber,
+          offset: offset);
+
+  /// Duration in seconds of the `AudioBuffer`
+  Future<double> duration() =>
+      RustLib.instance.api.webAudioApiBufferAudioBufferDuration(
+        that: this,
+      );
+
+  /// Convert raw samples to an AudioBuffer
+  ///
+  /// The outer Vec determine the channels. The inner Vecs should have the same length.
+  ///
+  /// # Panics
+  ///
+  /// This function will panic if:
+  /// - the given sample rate is zero
+  /// - the given number of channels defined by `samples.len()`is outside the
+  ///   [1, 32] range, 32 being defined by the MAX_CHANNELS constant.
+  /// - any of its items have different lengths
+  static Future<AudioBuffer> from(
+          {required List<Float32List> samples, required double sampleRate}) =>
+      RustLib.instance.api.webAudioApiBufferAudioBufferFrom(
+          samples: samples, sampleRate: sampleRate);
+
+  /// Return a read-only copy of the underlying data of the channel
+  ///
+  /// # Panics
+  ///
+  /// This function will panic if:
+  /// - the given channel number is greater than or equal to the given number of channels.
+  Future<F32> getChannelData({required BigInt channelNumber}) =>
+      RustLib.instance.api.webAudioApiBufferAudioBufferGetChannelData(
+          that: this, channelNumber: channelNumber);
+
+  /// Return a mutable slice of the underlying data of the channel
+  ///
+  /// # Panics
+  ///
+  /// This function will panic if:
+  /// - the given channel number is greater than or equal to the given number of channels.
+  Future<F32> getChannelDataMut({required BigInt channelNumber}) =>
+      RustLib.instance.api.webAudioApiBufferAudioBufferGetChannelDataMut(
+          that: this, channelNumber: channelNumber);
+
+  /// Number of samples per channel in this `AudioBuffer`
+  Future<BigInt> length() =>
+      RustLib.instance.api.webAudioApiBufferAudioBufferLength(
+        that: this,
+      );
+
+  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
+  /// Allocate a silent audiobuffer with [`AudioBufferOptions`]
+  ///
+  /// # Panics
+  ///
+  /// This function will panic if:
+  /// - the given sample rate is zero
+  /// - the given number of channels is outside the [1, 32] range,
+  /// 32 being defined by the MAX_CHANNELS constant.
+  static Future<AudioBuffer> newInstance(
+          {required AudioBufferOptions options}) =>
+      RustLib.instance.api.webAudioApiBufferAudioBufferNew(options: options);
+
+  /// Number of channels in this `AudioBuffer`
+  Future<BigInt> numberOfChannels() =>
+      RustLib.instance.api.webAudioApiBufferAudioBufferNumberOfChannels(
+        that: this,
+      );
+
+  /// Sample rate of this `AudioBuffer` in Hertz
+  Future<double> sampleRate() =>
+      RustLib.instance.api.webAudioApiBufferAudioBufferSampleRate(
+        that: this,
+      );
+
   @override
   int get hashCode => channels.hashCode ^ sampleRate.hashCode;
 
@@ -90,5 +414,36 @@ class AudioBuffer {
       other is AudioBuffer &&
           runtimeType == other.runtimeType &&
           channels == other.channels &&
+          sampleRate == other.sampleRate;
+}
+
+/// Options for constructing an [`AudioBuffer`]
+class AudioBufferOptions {
+  /// The number of channels for the buffer
+  final BigInt numberOfChannels;
+
+  /// The length in sample frames of the buffer
+  final BigInt length;
+
+  /// The sample rate in Hz for the buffer
+  final double sampleRate;
+
+  const AudioBufferOptions({
+    required this.numberOfChannels,
+    required this.length,
+    required this.sampleRate,
+  });
+
+  @override
+  int get hashCode =>
+      numberOfChannels.hashCode ^ length.hashCode ^ sampleRate.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is AudioBufferOptions &&
+          runtimeType == other.runtimeType &&
+          numberOfChannels == other.numberOfChannels &&
+          length == other.length &&
           sampleRate == other.sampleRate;
 }

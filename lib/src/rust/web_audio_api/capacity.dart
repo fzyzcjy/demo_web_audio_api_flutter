@@ -7,7 +7,53 @@ import '../frb_generated.dart';
 import 'events.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-// These types are ignored because they are not used by any `pub` functions: `AudioRenderCapacity`, `AudioRenderCapacityOptions`
+// These functions are ignored because they are not marked as `pub`: `clone`, `fmt`, `clone`, `fmt`, `default`, `clone`, `fmt`, `new`, `fmt`, `new`
+
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioRenderCapacity>>
+@sealed
+class AudioRenderCapacity extends RustOpaque {
+  // Not to be used by end users
+  AudioRenderCapacity.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  AudioRenderCapacity.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount: RustLib
+        .instance.api.rust_arc_increment_strong_count_AudioRenderCapacity,
+    rustArcDecrementStrongCount: RustLib
+        .instance.api.rust_arc_decrement_strong_count_AudioRenderCapacity,
+    rustArcDecrementStrongCountPtr: RustLib
+        .instance.api.rust_arc_decrement_strong_count_AudioRenderCapacityPtr,
+  );
+
+  /// Unset the EventHandler for [`AudioRenderCapacityEvent`].
+  Future<void> clearOnupdate() =>
+      RustLib.instance.api.webAudioApiCapacityAudioRenderCapacityClearOnupdate(
+        that: this,
+      );
+
+  /// The EventHandler for [`AudioRenderCapacityEvent`].
+  ///
+  /// Only a single event handler is active at any time. Calling this method multiple times will
+  /// override the previous event handler.
+  Future<void> setOnupdate({required F callback}) =>
+      RustLib.instance.api.webAudioApiCapacityAudioRenderCapacitySetOnupdate(
+          that: this, callback: callback);
+
+  /// Start metric collection and analysis
+  Future<void> start({required AudioRenderCapacityOptions options}) =>
+      RustLib.instance.api.webAudioApiCapacityAudioRenderCapacityStart(
+          that: this, options: options);
+
+  /// Stop metric collection and analysis
+  Future<void> stop() =>
+      RustLib.instance.api.webAudioApiCapacityAudioRenderCapacityStop(
+        that: this,
+      );
+}
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioRenderCapacityEvent>>
 @sealed
@@ -74,4 +120,67 @@ class AudioRenderCapacityEvent extends RustOpaque {
   void set underrunRatio(double underrunRatio) => RustLib.instance.api
       .webAudioApiCapacityAudioRenderCapacityEventSetUnderrunRatio(
           that: this, underrunRatio: underrunRatio);
+}
+
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<F>>
+@sealed
+class F extends RustOpaque {
+  // Not to be used by end users
+  F.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  F.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_F,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_F,
+    rustArcDecrementStrongCountPtr:
+        RustLib.instance.api.rust_arc_decrement_strong_count_FPtr,
+  );
+}
+
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Receiver < AudioRenderCapacityLoad >>>
+@sealed
+class ReceiverAudioRenderCapacityLoad extends RustOpaque {
+  // Not to be used by end users
+  ReceiverAudioRenderCapacityLoad.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  ReceiverAudioRenderCapacityLoad.frbInternalSseDecode(
+      BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount: RustLib.instance.api
+        .rust_arc_increment_strong_count_ReceiverAudioRenderCapacityLoad,
+    rustArcDecrementStrongCount: RustLib.instance.api
+        .rust_arc_decrement_strong_count_ReceiverAudioRenderCapacityLoad,
+    rustArcDecrementStrongCountPtr: RustLib.instance.api
+        .rust_arc_decrement_strong_count_ReceiverAudioRenderCapacityLoadPtr,
+  );
+}
+
+/// Options for constructing an `AudioRenderCapacity`
+class AudioRenderCapacityOptions {
+  /// An update interval (in seconds) for dispatching [`AudioRenderCapacityEvent`]s
+  final double updateInterval;
+
+  const AudioRenderCapacityOptions({
+    required this.updateInterval,
+  });
+
+  @override
+  int get hashCode => updateInterval.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is AudioRenderCapacityOptions &&
+          runtimeType == other.runtimeType &&
+          updateInterval == other.updateInterval;
 }

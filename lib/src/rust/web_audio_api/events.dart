@@ -5,12 +5,39 @@
 
 import '../frb_generated.dart';
 import 'buffer.dart';
+import 'capacity.dart';
+import 'context.dart';
+import 'context/concrete_base.dart';
 import 'media_devices.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
+import 'package:freezed_annotation/freezed_annotation.dart' hide protected;
+part 'events.freezed.dart';
 
-// These types are ignored because they are not used by any `pub` functions: `AudioProcessingEvent`, `EventLoop`, `EventHandler`, `EventType`, `EventPayload`
+// These functions are ignored because they are not marked as `pub`: `fmt`, `clone`, `hash`, `assert_receiver_is_total_eq`, `eq`, `fmt`, `fmt`, `fmt`, `drop`, `fmt`, `fmt`, `fmt`, `clone`, `handle_event`
+// These types are ignored because they are not used by any `pub` functions: `EventPayload`
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Box < dyn Any + Send >>>
+@sealed
+class BoxAny extends RustOpaque {
+  // Not to be used by end users
+  BoxAny.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  BoxAny.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_BoxAny,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_BoxAny,
+    rustArcDecrementStrongCountPtr:
+        RustLib.instance.api.rust_arc_decrement_strong_count_BoxAnyPtr,
+  );
+}
+
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Box < dyn Any + Send + 'static >>>
 @sealed
 class BoxAny extends RustOpaque {
   // Not to be used by end users
@@ -102,6 +129,131 @@ class Event extends RustOpaque {
       .webAudioApiEventsEventSetType(that: this, type: type);
 }
 
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<EventDispatch>>
+@sealed
+class EventDispatch extends RustOpaque {
+  // Not to be used by end users
+  EventDispatch.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  EventDispatch.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_EventDispatch,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_EventDispatch,
+    rustArcDecrementStrongCountPtr:
+        RustLib.instance.api.rust_arc_decrement_strong_count_EventDispatchPtr,
+  );
+
+  static Future<EventDispatch> audioProcessing(
+          {required AudioNodeId id, required AudioProcessingEvent value}) =>
+      RustLib.instance.api
+          .webAudioApiEventsEventDispatchAudioProcessing(id: id, value: value);
+
+  static Future<EventDispatch> complete({required AudioBuffer buffer}) =>
+      RustLib.instance.api
+          .webAudioApiEventsEventDispatchComplete(buffer: buffer);
+
+  static Future<EventDispatch> diagnostics({required List<int> value}) =>
+      RustLib.instance.api
+          .webAudioApiEventsEventDispatchDiagnostics(value: value);
+
+  static Future<EventDispatch> ended({required AudioNodeId id}) =>
+      RustLib.instance.api.webAudioApiEventsEventDispatchEnded(id: id);
+
+  static Future<EventDispatch> message(
+          {required AudioNodeId id, required BoxAny value}) =>
+      RustLib.instance.api
+          .webAudioApiEventsEventDispatchMessage(id: id, value: value);
+
+  static Future<EventDispatch> processorError(
+          {required AudioNodeId id, required ErrorEvent value}) =>
+      RustLib.instance.api
+          .webAudioApiEventsEventDispatchProcessorError(id: id, value: value);
+
+  static Future<EventDispatch> renderCapacity(
+          {required AudioRenderCapacityEvent value}) =>
+      RustLib.instance.api
+          .webAudioApiEventsEventDispatchRenderCapacity(value: value);
+
+  static Future<EventDispatch> sinkChange() =>
+      RustLib.instance.api.webAudioApiEventsEventDispatchSinkChange();
+
+  static Future<EventDispatch> stateChange(
+          {required AudioContextState state}) =>
+      RustLib.instance.api
+          .webAudioApiEventsEventDispatchStateChange(state: state);
+}
+
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<EventHandler>>
+@sealed
+class EventHandler extends RustOpaque {
+  // Not to be used by end users
+  EventHandler.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  EventHandler.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_EventHandler,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_EventHandler,
+    rustArcDecrementStrongCountPtr:
+        RustLib.instance.api.rust_arc_decrement_strong_count_EventHandlerPtr,
+  );
+}
+
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<EventLoop>>
+@sealed
+class EventLoop extends RustOpaque {
+  // Not to be used by end users
+  EventLoop.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  EventLoop.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_EventLoop,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_EventLoop,
+    rustArcDecrementStrongCountPtr:
+        RustLib.instance.api.rust_arc_decrement_strong_count_EventLoopPtr,
+  );
+
+  Future<void> clearHandler({required EventType event}) => RustLib.instance.api
+      .webAudioApiEventsEventLoopClearHandler(that: this, event: event);
+
+  Future<bool> handlePendingEvents() =>
+      RustLib.instance.api.webAudioApiEventsEventLoopHandlePendingEvents(
+        that: this,
+      );
+
+  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
+  static Future<EventLoop> newInstance(
+          {required ReceiverEventDispatch eventRecv}) =>
+      RustLib.instance.api.webAudioApiEventsEventLoopNew(eventRecv: eventRecv);
+
+  Future<void> runInThread() =>
+      RustLib.instance.api.webAudioApiEventsEventLoopRunInThread(
+        that: this,
+      );
+
+  Future<void> setHandler(
+          {required EventType event, required EventHandler callback}) =>
+      RustLib.instance.api.webAudioApiEventsEventLoopSetHandler(
+          that: this, event: event, callback: callback);
+}
+
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<OfflineAudioCompletionEvent>>
 @sealed
 class OfflineAudioCompletionEvent extends RustOpaque {
@@ -140,4 +292,87 @@ class OfflineAudioCompletionEvent extends RustOpaque {
   void set renderedBuffer(AudioBuffer renderedBuffer) => RustLib.instance.api
       .webAudioApiEventsOfflineAudioCompletionEventSetRenderedBuffer(
           that: this, renderedBuffer: renderedBuffer);
+}
+
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Receiver < EventDispatch >>>
+@sealed
+class ReceiverEventDispatch extends RustOpaque {
+  // Not to be used by end users
+  ReceiverEventDispatch.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  ReceiverEventDispatch.frbInternalSseDecode(
+      BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount: RustLib
+        .instance.api.rust_arc_increment_strong_count_ReceiverEventDispatch,
+    rustArcDecrementStrongCount: RustLib
+        .instance.api.rust_arc_decrement_strong_count_ReceiverEventDispatch,
+    rustArcDecrementStrongCountPtr: RustLib
+        .instance.api.rust_arc_decrement_strong_count_ReceiverEventDispatchPtr,
+  );
+}
+
+/// The AudioProcessingEvent interface
+class AudioProcessingEvent {
+  /// The input buffer
+  final AudioBuffer inputBuffer;
+
+  /// The output buffer
+  final AudioBuffer outputBuffer;
+
+  /// The time when the audio will be played in the same time coordinate system as the
+  /// AudioContext's currentTime.
+  final double playbackTime;
+  final (ConcreteBaseAudioContext, AudioNodeId)? registration;
+
+  const AudioProcessingEvent({
+    required this.inputBuffer,
+    required this.outputBuffer,
+    required this.playbackTime,
+    this.registration,
+  });
+
+  @override
+  int get hashCode =>
+      inputBuffer.hashCode ^
+      outputBuffer.hashCode ^
+      playbackTime.hashCode ^
+      registration.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is AudioProcessingEvent &&
+          runtimeType == other.runtimeType &&
+          inputBuffer == other.inputBuffer &&
+          outputBuffer == other.outputBuffer &&
+          playbackTime == other.playbackTime &&
+          registration == other.registration;
+}
+
+@freezed
+sealed class EventType with _$EventType {
+  const EventType._();
+
+  const factory EventType.ended(
+    AudioNodeId field0,
+  ) = EventType_Ended;
+  const factory EventType.sinkChange() = EventType_SinkChange;
+  const factory EventType.stateChange() = EventType_StateChange;
+  const factory EventType.renderCapacity() = EventType_RenderCapacity;
+  const factory EventType.processorError(
+    AudioNodeId field0,
+  ) = EventType_ProcessorError;
+  const factory EventType.diagnostics() = EventType_Diagnostics;
+  const factory EventType.message(
+    AudioNodeId field0,
+  ) = EventType_Message;
+  const factory EventType.complete() = EventType_Complete;
+  const factory EventType.audioProcessing(
+    AudioNodeId field0,
+  ) = EventType_AudioProcessing;
 }

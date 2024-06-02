@@ -4,9 +4,12 @@
 // ignore_for_file: invalid_use_of_internal_member, unused_import, unnecessary_import
 
 import '../../frb_generated.dart';
+import '../events.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
+// These functions are ignored because they are not marked as `pub`: `fmt`, `send_ended_event`, `send_audio_processing_event`, `report_error`, `fmt`, `deref`, `fmt`, `from`, `listener_params`
 // These types are ignored because they are not used by any `pub` functions: `DerefAudioRenderQuantumChannel`
+// These functions have error during generation (see debug logs for more details): `get`
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioWorkletGlobalScope>>
 @sealed
@@ -43,6 +46,15 @@ class AudioWorkletGlobalScope extends RustOpaque {
           .webAudioApiRenderProcessorAudioWorkletGlobalScopeGetSampleRate(
         that: this,
       );
+
+  /// Send a message to the corresponding AudioWorkletNode of this processor
+  ///
+  /// This method is just a shim of the full
+  /// [`MessagePort`](https://webaudio.github.io/web-audio-api/#dom-audioworkletprocessor-port)
+  /// `postMessage` functionality of the AudioWorkletProcessor.
+  Future<void> postMessage({required BoxAny msg}) => RustLib.instance.api
+      .webAudioApiRenderProcessorAudioWorkletGlobalScopePostMessage(
+          that: this, msg: msg);
 
   void set currentFrame(BigInt currentFrame) => RustLib.instance.api
       .webAudioApiRenderProcessorAudioWorkletGlobalScopeSetCurrentFrame(
