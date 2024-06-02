@@ -9,7 +9,7 @@ import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 import 'package:freezed_annotation/freezed_annotation.dart' hide protected;
 part 'media_devices.freezed.dart';
 
-// These functions are ignored because they are not marked as `pub`: `is_valid_device_id`, `hash`, `as_string`, `clone`, `fmt`, `eq`, `assert_receiver_is_total_eq`, `hash`, `fmt`, `new`, `device`, `clone`, `fmt`, `default`, `fmt`, `clone`, `from`
+// These functions are ignored because they are not marked as `pub`: `as_string`, `assert_receiver_is_total_eq`, `clone`, `clone`, `clone`, `default`, `device`, `eq`, `fmt`, `fmt`, `fmt`, `fmt`, `from`, `hash`, `hash`, `is_valid_device_id`, `new`
 // These types are ignored because they are not used by any `pub` functions: `DeviceId`
 
 /// List the available media output devices, such as speakers, headsets, loopbacks, etc

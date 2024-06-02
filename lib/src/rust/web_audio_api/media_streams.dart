@@ -6,8 +6,8 @@
 import '../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-// These functions are ignored because they are not marked as `pub`: `clone`, `eq`, `assert_receiver_is_total_eq`, `fmt`, `clone`, `fmt`, `next`, `clone`, `fmt`
-// These types are ignored because they are not used by any `pub` functions: `MediaStreamTrackIter`, `MediaStreamTrackInner`
+// These functions are ignored because they are not marked as `pub`: `assert_receiver_is_total_eq`, `clone`, `clone`, `clone`, `eq`, `fmt`, `fmt`, `fmt`, `next`
+// These types are ignored because they are not used by any `pub` functions: `MediaStreamTrackInner`, `MediaStreamTrackIter`
 // These functions have error during generation (see debug logs for more details): `iter`
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MediaStreamTrack>>

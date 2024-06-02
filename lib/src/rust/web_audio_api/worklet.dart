@@ -4,14 +4,32 @@
 // ignore_for_file: invalid_use_of_internal_member, unused_import, unnecessary_import
 
 import '../frb_generated.dart';
-import 'message_port.dart';
-import 'node/analyser.dart';
-import 'node/audio_node.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-// These functions are ignored because they are not marked as `pub`: `fmt`, `clone`, `fmt`, `default`, `fmt`, `registration`, `channel_config`, `number_of_inputs`, `number_of_outputs`, `new`, `load`, `process`, `onmessage`, `has_side_effects`
+// These functions are ignored because they are not marked as `pub`: `channel_config`, `clone`, `default`, `fmt`, `fmt`, `fmt`, `has_side_effects`, `load`, `new`, `number_of_inputs`, `number_of_outputs`, `onmessage`, `process`, `registration`
 // These types are ignored because they are not used by any `pub` functions: `AudioParamValues`, `AudioWorkletRenderer`, `Processor`
 // These functions have error during generation (see debug logs for more details): `get`, `new`
+
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioNodeOptions>>
+@sealed
+class AudioNodeOptions extends RustOpaque {
+  // Not to be used by end users
+  AudioNodeOptions.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  AudioNodeOptions.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_AudioNodeOptions,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_AudioNodeOptions,
+    rustArcDecrementStrongCountPtr: RustLib
+        .instance.api.rust_arc_decrement_strong_count_AudioNodeOptionsPtr,
+  );
+}
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioWorkletNode>>
 @sealed
@@ -132,6 +150,27 @@ class AudioWorkletNodeOptions extends RustOpaque {
           that: this, processorOptions: processorOptions);
 }
 
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<C>>
+@sealed
+class C extends RustOpaque {
+  // Not to be used by end users
+  C.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  C.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_C,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_C,
+    rustArcDecrementStrongCountPtr:
+        RustLib.instance.api.rust_arc_decrement_strong_count_CPtr,
+  );
+}
+
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<HashMap < String , AudioParam >>>
 @sealed
 class HashMapStringAudioParam extends RustOpaque {
@@ -151,5 +190,26 @@ class HashMapStringAudioParam extends RustOpaque {
         .instance.api.rust_arc_decrement_strong_count_HashMapStringAudioParam,
     rustArcDecrementStrongCountPtr: RustLib.instance.api
         .rust_arc_decrement_strong_count_HashMapStringAudioParamPtr,
+  );
+}
+
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MessagePort < '_ >>>
+@sealed
+class MessagePort extends RustOpaque {
+  // Not to be used by end users
+  MessagePort.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  MessagePort.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_MessagePort,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_MessagePort,
+    rustArcDecrementStrongCountPtr:
+        RustLib.instance.api.rust_arc_decrement_strong_count_MessagePortPtr,
   );
 }
