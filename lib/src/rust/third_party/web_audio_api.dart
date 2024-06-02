@@ -5,77 +5,10 @@
 
 import '../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
-import 'package:freezed_annotation/freezed_annotation.dart' hide protected;
-import 'web_audio_api/context.dart';
-part 'web_audio_api.freezed.dart';
 
 // These functions are ignored because they are not marked as `pub`: `as_slice`, `assert_is_finite`, `assert_not_zero`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_sequence_length`, `assert_strictly_positive`, `assert_valid_buffer_length`, `assert_valid_channel_number`, `assert_valid_number_of_channels`, `assert_valid_sample_rate`, `assert_valid_time_value`, `audio_param_pair`, `cancel_and_hold_at_time_raw`, `cancel_scheduled_values_raw`, `channel_config`, `channel_data_mut`, `channel_data`, `channels_mut`, `channels`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `compute_buffer`, `compute_exponential_ramp_automation`, `compute_exponential_ramp_sample`, `compute_intrinsic_values`, `compute_linear_ramp_automation`, `compute_linear_ramp_sample`, `compute_set_target_automation`, `compute_set_target_sample`, `compute_set_value_automation`, `compute_set_value_curve_automation`, `compute_set_value_curve_sample`, `default`, `default`, `default`, `default`, `drop`, `eq`, `eq`, `eq`, `eq`, `exponential_ramp_to_value_at_time_raw`, `extend`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `from_channels`, `from_raw_parts`, `generate_wavetable`, `handle_event`, `handle_incoming_event`, `hash`, `into_raw_parts`, `is_a_rate`, `is_empty`, `iter_mut`, `iter`, `linear_ramp_to_value_at_time_raw`, `mix_to_output`, `new`, `new`, `new`, `next`, `normalize`, `number_of_inputs`, `number_of_outputs`, `onmessage`, `peek`, `pop`, `process`, `push`, `registration`, `replace_peek`, `resample`, `retain`, `send_event`, `set_automation_rate_constrained`, `set_channel_count_mode`, `set_channel_count`, `set_channel_interpretation`, `set_target_at_time_raw`, `set_value_at_time_raw`, `set_value_curve_at_time_raw`, `set_value_raw`, `sort`, `split_off`, `unsorted_peek`
-// These types are ignored because they are not used by any `pub` functions: `AudioParamDescriptor`, `AudioParamEventTimeline`, `AudioParamEventType`, `AudioParamEvent`, `AudioParamInner`, `AudioParamProcessor`, `AudioProcessingEvent`, `AudioRenderCapacityLoad`, `BlockInfos`, `EventPayload`
-// These functions are ignored: `audio_processing`, `ended`, `message`, `processor_error`
-
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AtomicF32>>
-@sealed
-class AtomicF32 extends RustOpaque {
-  // Not to be used by end users
-  AtomicF32.frbInternalDcoDecode(List<dynamic> wire)
-      : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  AtomicF32.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
-      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_AtomicF32,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_AtomicF32,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_AtomicF32Ptr,
-  );
-
-  Future<double> load({required Ordering ordering}) => RustLib.instance.api
-      .webAudioApiAtomicF32Load(that: this, ordering: ordering);
-
-  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
-  static Future<AtomicF32> newInstance({required double value}) =>
-      RustLib.instance.api.webAudioApiAtomicF32New(value: value);
-
-  Future<void> store({required double value, required Ordering ordering}) =>
-      RustLib.instance.api.webAudioApiAtomicF32Store(
-          that: this, value: value, ordering: ordering);
-}
-
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AtomicF64>>
-@sealed
-class AtomicF64 extends RustOpaque {
-  // Not to be used by end users
-  AtomicF64.frbInternalDcoDecode(List<dynamic> wire)
-      : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  AtomicF64.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
-      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_AtomicF64,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_AtomicF64,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_AtomicF64Ptr,
-  );
-
-  Future<double> load({required Ordering ordering}) => RustLib.instance.api
-      .webAudioApiAtomicF64Load(that: this, ordering: ordering);
-
-  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
-  static Future<AtomicF64> newInstance({required double value}) =>
-      RustLib.instance.api.webAudioApiAtomicF64New(value: value);
-
-  Future<void> store({required double value, required Ordering ordering}) =>
-      RustLib.instance.api.webAudioApiAtomicF64Store(
-          that: this, value: value, ordering: ordering);
-}
+// These types are ignored because they are not used by any `pub` functions: `AtomicF32`, `AtomicF64`, `AudioParamDescriptor`, `AudioParamEventTimeline`, `AudioParamEventType`, `AudioParamEvent`, `AudioParamInner`, `AudioParamProcessor`, `AudioProcessingEvent`, `AudioRenderCapacityLoad`, `BlockInfos`, `EventDispatch`, `EventHandler`, `EventLoop`, `EventPayload`, `EventType`
+// These functions are ignored: `as_mut_slice`, `as_slice`, `audio_processing`, `clear_handler`, `complete`, `diagnostics`, `ended`, `from`, `handle_pending_events`, `is_empty`, `len`, `load`, `load`, `message`, `new`, `new`, `new`, `new`, `processor_error`, `render_capacity`, `run_in_thread`, `set_handler`, `sink_change`, `state_change`, `store`, `store`
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioBuffer>>
 @sealed
@@ -549,30 +482,6 @@ class ChannelData extends RustOpaque {
     rustArcDecrementStrongCountPtr:
         RustLib.instance.api.rust_arc_decrement_strong_count_ChannelDataPtr,
   );
-
-  Future<F32> asMutSlice() =>
-      RustLib.instance.api.webAudioApiChannelDataAsMutSlice(
-        that: this,
-      );
-
-  Future<F32> asSlice() => RustLib.instance.api.webAudioApiChannelDataAsSlice(
-        that: this,
-      );
-
-  static Future<ChannelData> from({required List<double> data}) =>
-      RustLib.instance.api.webAudioApiChannelDataFrom(data: data);
-
-  Future<bool> isEmpty() => RustLib.instance.api.webAudioApiChannelDataIsEmpty(
-        that: this,
-      );
-
-  Future<BigInt> len() => RustLib.instance.api.webAudioApiChannelDataLen(
-        that: this,
-      );
-
-  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
-  static Future<ChannelData> newInstance({required BigInt length}) =>
-      RustLib.instance.api.webAudioApiChannelDataNew(length: length);
 }
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ErrorEvent>>
@@ -645,109 +554,6 @@ class Event extends RustOpaque {
       RustLib.instance.api.webAudioApiEventSetType(that: this, type: type);
 }
 
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<EventDispatch>>
-@sealed
-class EventDispatch extends RustOpaque {
-  // Not to be used by end users
-  EventDispatch.frbInternalDcoDecode(List<dynamic> wire)
-      : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  EventDispatch.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
-      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_EventDispatch,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_EventDispatch,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_EventDispatchPtr,
-  );
-
-  static Future<EventDispatch> complete({required AudioBuffer buffer}) =>
-      RustLib.instance.api.webAudioApiEventDispatchComplete(buffer: buffer);
-
-  static Future<EventDispatch> diagnostics({required List<int> value}) =>
-      RustLib.instance.api.webAudioApiEventDispatchDiagnostics(value: value);
-
-  static Future<EventDispatch> renderCapacity(
-          {required AudioRenderCapacityEvent value}) =>
-      RustLib.instance.api.webAudioApiEventDispatchRenderCapacity(value: value);
-
-  static Future<EventDispatch> sinkChange() =>
-      RustLib.instance.api.webAudioApiEventDispatchSinkChange();
-
-  static Future<EventDispatch> stateChange(
-          {required AudioContextState state}) =>
-      RustLib.instance.api.webAudioApiEventDispatchStateChange(state: state);
-}
-
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<EventHandler>>
-@sealed
-class EventHandler extends RustOpaque {
-  // Not to be used by end users
-  EventHandler.frbInternalDcoDecode(List<dynamic> wire)
-      : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  EventHandler.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
-      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_EventHandler,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_EventHandler,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_EventHandlerPtr,
-  );
-}
-
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<EventLoop>>
-@sealed
-class EventLoop extends RustOpaque {
-  // Not to be used by end users
-  EventLoop.frbInternalDcoDecode(List<dynamic> wire)
-      : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  EventLoop.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
-      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_EventLoop,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_EventLoop,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_EventLoopPtr,
-  );
-
-  Future<void> clearHandler({required EventType event}) => RustLib.instance.api
-      .webAudioApiEventLoopClearHandler(that: this, event: event);
-
-  Future<bool> handlePendingEvents() =>
-      RustLib.instance.api.webAudioApiEventLoopHandlePendingEvents(
-        that: this,
-      );
-
-  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
-  static Future<EventLoop> newInstance(
-          {required ReceiverEventDispatch eventRecv}) =>
-      RustLib.instance.api.webAudioApiEventLoopNew(eventRecv: eventRecv);
-
-  Future<void> runInThread() =>
-      RustLib.instance.api.webAudioApiEventLoopRunInThread(
-        that: this,
-      );
-
-  Future<void> setHandler(
-          {required EventType event, required EventHandler callback}) =>
-      RustLib.instance.api.webAudioApiEventLoopSetHandler(
-          that: this, event: event, callback: callback);
-}
-
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<F>>
 @sealed
 class F extends RustOpaque {
@@ -808,27 +614,6 @@ class OfflineAudioCompletionEvent extends RustOpaque {
           that: this, renderedBuffer: renderedBuffer);
 }
 
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Ordering>>
-@sealed
-class Ordering extends RustOpaque {
-  // Not to be used by end users
-  Ordering.frbInternalDcoDecode(List<dynamic> wire)
-      : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  Ordering.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
-      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_Ordering,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_Ordering,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_OrderingPtr,
-  );
-}
-
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PeriodicWave>>
 @sealed
 class PeriodicWave extends RustOpaque {
@@ -870,28 +655,6 @@ class PeriodicWave extends RustOpaque {
           {required C context, required PeriodicWaveOptions options}) =>
       RustLib.instance.api
           .webAudioApiPeriodicWaveNew(context: context, options: options);
-}
-
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Receiver < EventDispatch >>>
-@sealed
-class ReceiverEventDispatch extends RustOpaque {
-  // Not to be used by end users
-  ReceiverEventDispatch.frbInternalDcoDecode(List<dynamic> wire)
-      : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  ReceiverEventDispatch.frbInternalSseDecode(
-      BigInt ptr, int externalSizeOnNative)
-      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount: RustLib
-        .instance.api.rust_arc_increment_strong_count_ReceiverEventDispatch,
-    rustArcDecrementStrongCount: RustLib
-        .instance.api.rust_arc_decrement_strong_count_ReceiverEventDispatch,
-    rustArcDecrementStrongCountPtr: RustLib
-        .instance.api.rust_arc_decrement_strong_count_ReceiverEventDispatchPtr,
-  );
 }
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Self>>
@@ -1207,29 +970,6 @@ enum AutomationRate {
   /// then used for the entire block
   k,
   ;
-}
-
-@freezed
-sealed class EventType with _$EventType {
-  const EventType._();
-
-  const factory EventType.ended(
-    AudioNodeId field0,
-  ) = EventType_Ended;
-  const factory EventType.sinkChange() = EventType_SinkChange;
-  const factory EventType.stateChange() = EventType_StateChange;
-  const factory EventType.renderCapacity() = EventType_RenderCapacity;
-  const factory EventType.processorError(
-    AudioNodeId field0,
-  ) = EventType_ProcessorError;
-  const factory EventType.diagnostics() = EventType_Diagnostics;
-  const factory EventType.message(
-    AudioNodeId field0,
-  ) = EventType_Message;
-  const factory EventType.complete() = EventType_Complete;
-  const factory EventType.audioProcessing(
-    AudioNodeId field0,
-  ) = EventType_AudioProcessing;
 }
 
 /// Options for constructing a [`PeriodicWave`]

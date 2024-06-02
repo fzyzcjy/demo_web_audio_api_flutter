@@ -12,7 +12,7 @@ import 'package:freezed_annotation/freezed_annotation.dart' hide protected;
 part 'context.freezed.dart';
 
 // These functions are ignored because they are not marked as `pub`: `address`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `base`, `base`, `base`, `calculate_suspend_frame`, `clear_event_handler`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `connect_listener_to_panner`, `connect`, `context`, `current_time`, `default`, `default`, `default`, `default`, `destination_channel_config`, `disconnect`, `drop`, `drop`, `ensure_audio_listener_present`, `eq`, `eq`, `eq`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `from`, `from`, `get`, `hash`, `id`, `is_valid_sink_id`, `listener`, `lock_control_msg_sender`, `mark_node_dropped`, `max_channel_count`, `new`, `new`, `offline`, `post_message`, `queue_audio_param_connect`, `register`, `resolve_queued_control_msgs`, `sample_rate`, `send_control_msg`, `send_event`, `set_event_handler`, `set_state`, `state`
-// These types are ignored because they are not used by any `pub` functions: `AudioNodeIdProvider`, `AudioParamId`, `ConcreteBaseAudioContextInner`, `OfflineAudioContextRenderer`
+// These types are ignored because they are not used by any `pub` functions: `AudioContextState`, `AudioNodeIdProvider`, `AudioNodeId`, `AudioParamId`, `ConcreteBaseAudioContextInner`, `OfflineAudioContextRenderer`
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioContext>>
 @sealed
@@ -621,40 +621,4 @@ enum AudioContextRenderSizeCategory {
   /// The default value of 128 frames
   Default,
   ;
-}
-
-/// Describes the current state of the `AudioContext`
-enum AudioContextState {
-  /// This context is currently suspended (context time is not proceeding,
-  /// audio hardware may be powered down/released).
-  suspended,
-
-  /// Audio is being processed.
-  running,
-
-  /// This context has been released, and can no longer be used to process audio.
-  /// All system audio resources have been released.
-  closed,
-  ;
-}
-
-/// Unique identifier for audio nodes.
-///
-/// Used for internal bookkeeping.
-class AudioNodeId {
-  final BigInt field0;
-
-  const AudioNodeId({
-    required this.field0,
-  });
-
-  @override
-  int get hashCode => field0.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is AudioNodeId &&
-          runtimeType == other.runtimeType &&
-          field0 == other.field0;
 }
