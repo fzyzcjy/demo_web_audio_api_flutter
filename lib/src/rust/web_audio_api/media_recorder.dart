@@ -10,7 +10,7 @@ import 'media_streams.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 // These functions are ignored because they are not marked as `pub`: `new`, `encode_first`, `encode_next`, `record`, `handle_error`, `flush`, `stop`, `fmt`, `fmt`
-// These types are ignored because they are not used by any `pub` functions: `MediaRecorderInner`, `RecordedData`
+// These types are ignored because they are not used by any `pub` functions: `RecordedData`, `MediaRecorderInner`
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<BlobEvent>>
 @sealed

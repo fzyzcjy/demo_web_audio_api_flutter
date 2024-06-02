@@ -9,7 +9,7 @@ import 'audio_node.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 // These functions are ignored because they are not marked as `pub`: `fmt`, `registration`, `channel_config`, `number_of_inputs`, `number_of_outputs`, `process`, `next`
-// These types are ignored because they are not used by any `pub` functions: `DestinationRenderer`, `AudioDestinationNodeStream`
+// These types are ignored because they are not used by any `pub` functions: `AudioDestinationNodeStream`, `DestinationRenderer`
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MediaStream>>
 @sealed

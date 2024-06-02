@@ -8,7 +8,7 @@ import '../context.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 // These functions are ignored because they are not marked as `pub`: `new`, `get`, `clone`, `eq`, `fmt`, `base`, `new`, `address`, `register`, `send_control_msg`, `send_event`, `lock_control_msg_sender`, `mark_node_dropped`, `destination_channel_config`, `listener`, `state`, `set_state`, `sample_rate`, `current_time`, `max_channel_count`, `resolve_queued_control_msgs`, `connect`, `queue_audio_param_connect`, `disconnect`, `connect_listener_to_panner`, `ensure_audio_listener_present`, `offline`, `set_event_handler`, `clear_event_handler`
-// These types are ignored because they are not used by any `pub` functions: `AudioNodeIdProvider`, `ConcreteBaseAudioContextInner`
+// These types are ignored because they are not used by any `pub` functions: `ConcreteBaseAudioContextInner`, `AudioNodeIdProvider`
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ConcreteBaseAudioContext>>
 @sealed

@@ -11,7 +11,7 @@ import 'audio_node.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 // These functions are ignored because they are not marked as `pub`: `get_computed_freq`, `calculate_coefs`, `clone`, `fmt`, `default`, `fmt`, `clone`, `eq`, `assert_receiver_is_total_eq`, `default`, `from`, `clone`, `fmt`, `default`, `fmt`, `registration`, `channel_config`, `number_of_inputs`, `number_of_outputs`, `process`, `onmessage`
-// These types are ignored because they are not used by any `pub` functions: `Coefficients`, `BiquadFilterRenderer`
+// These types are ignored because they are not used by any `pub` functions: `BiquadFilterRenderer`, `Coefficients`
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<BiquadFilterNode>>
 @sealed

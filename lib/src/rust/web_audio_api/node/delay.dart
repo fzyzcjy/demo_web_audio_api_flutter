@@ -10,7 +10,7 @@ import 'audio_node.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 // These functions are ignored because they are not marked as `pub`: `clone`, `fmt`, `default`, `clone`, `fmt`, `default`, `fmt`, `registration`, `channel_config`, `number_of_inputs`, `number_of_outputs`, `connect_from_output_to_input`, `disconnect`, `disconnect_dest`, `disconnect_output`, `disconnect_dest_from_output`, `disconnect_dest_from_output_to_input`, `drop`, `ring_buffer_mut`, `process`, `has_side_effects`, `check_ring_buffer_up_down_mix`, `ring_buffer_mut`, `process`, `get_playback_infos`
-// These types are ignored because they are not used by any `pub` functions: `DelayReader`, `PlaybackInfo`, `DelayWriter`
+// These types are ignored because they are not used by any `pub` functions: `PlaybackInfo`, `DelayReader`, `DelayWriter`
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<DelayNode>>
 @sealed

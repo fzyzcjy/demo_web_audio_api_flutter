@@ -10,7 +10,7 @@ import 'audio_node.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 // These functions are ignored because they are not marked as `pub`: `assert_valid_cone_outer_gain`, `load_hrtf_processor`, `assert_valid_channel_count`, `assert_valid_channel_count_mode`, `apply_mono_to_stereo_gain`, `apply_stereo_to_stereo_gain`, `fmt`, `clone`, `eq`, `assert_receiver_is_total_eq`, `default`, `from`, `fmt`, `clone`, `eq`, `assert_receiver_is_total_eq`, `default`, `from`, `clone`, `fmt`, `default`, `new`, `process`, `tail_time_samples`, `fmt`, `registration`, `channel_config`, `number_of_inputs`, `number_of_outputs`, `set_channel_count`, `set_channel_count_mode`, `clone`, `process`, `onmessage`, `cone_gain`, `dist_gain`
-// These types are ignored because they are not used by any `pub` functions: `SpatialParams`, `HrtfState`, `PannerRenderer`
+// These types are ignored because they are not used by any `pub` functions: `PannerRenderer`, `HrtfState`, `SpatialParams`
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PannerNode>>
 @sealed

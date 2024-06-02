@@ -10,7 +10,7 @@ import 'node/audio_node.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 // These functions are ignored because they are not marked as `pub`: `fmt`, `clone`, `fmt`, `default`, `fmt`, `registration`, `channel_config`, `number_of_inputs`, `number_of_outputs`, `new`, `load`, `process`, `onmessage`, `has_side_effects`
-// These types are ignored because they are not used by any `pub` functions: `AudioWorkletRenderer`, `AudioParamValues`, `Processor`
+// These types are ignored because they are not used by any `pub` functions: `AudioParamValues`, `AudioWorkletRenderer`, `Processor`
 // These functions have error during generation (see debug logs for more details): `get`, `new`
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioWorkletNode>>

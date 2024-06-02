@@ -10,7 +10,7 @@ import 'analyser.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 // These functions are ignored because they are not marked as `pub`: `clone`, `fmt`, `default`, `fmt`, `clone`, `fmt`, `clone`, `fmt`, `clone`, `fmt`, `registration`, `channel_config`, `number_of_inputs`, `number_of_outputs`, `start`, `start_at`, `stop`, `stop_at`, `default`, `handle_control_message`, `process`, `onmessage`, `before_drop`
-// These types are ignored because they are not used by any `pub` functions: `AudioBufferRendererState`, `AudioBufferSourceRenderer`, `LoopState`
+// These types are ignored because they are not used by any `pub` functions: `LoopState`, `AudioBufferRendererState`, `AudioBufferSourceRenderer`
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioBufferSourceNode>>
 @sealed
