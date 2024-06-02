@@ -5,7 +5,6 @@
 
 import '../../frb_generated.dart';
 import '../web_audio_api.dart';
-import 'context.dart';
 import 'media_streams.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
