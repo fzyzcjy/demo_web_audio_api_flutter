@@ -18,13 +18,13 @@ import 'dart:async';
 import 'dart:convert';
 import 'frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated_web.dart';
-import 'web_audio_api.dart';
-import 'web_audio_api/context.dart';
-import 'web_audio_api/media_devices.dart';
-import 'web_audio_api/media_recorder.dart';
-import 'web_audio_api/media_streams.dart';
-import 'web_audio_api/node.dart';
-import 'web_audio_api/worklet.dart';
+import 'third_party/web_audio_api.dart';
+import 'third_party/web_audio_api/context.dart';
+import 'third_party/web_audio_api/media_devices.dart';
+import 'third_party/web_audio_api/media_recorder.dart';
+import 'third_party/web_audio_api/media_streams.dart';
+import 'third_party/web_audio_api/node.dart';
+import 'third_party/web_audio_api/worklet.dart';
 
 abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   RustLibApiImplPlatform({
