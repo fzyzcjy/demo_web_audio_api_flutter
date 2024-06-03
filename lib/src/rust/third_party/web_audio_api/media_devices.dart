@@ -4,12 +4,12 @@
 // ignore_for_file: invalid_use_of_internal_member, unused_import, unnecessary_import
 
 import '../../frb_generated.dart';
-import '../web_audio_api.dart';
 import 'media_streams.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 // These functions are ignored because they are not marked as `pub`: `as_string`, `assert_receiver_is_total_eq`, `clone`, `clone`, `clone`, `default`, `device`, `eq`, `fmt`, `fmt`, `fmt`, `fmt`, `from`, `hash`, `hash`, `is_valid_device_id`, `new`
 // These types are ignored because they are not used by any `pub` functions: `DeviceId`, `MediaTrackConstraints`
+// These functions are ignored: `group_id`
 
 /// List the available media output devices, such as speakers, headsets, loopbacks, etc
 ///
@@ -91,12 +91,6 @@ class MediaDeviceInfo extends RustOpaque {
   /// value
   Future<void> deviceId() =>
       RustLib.instance.api.webAudioApiMediaDevicesMediaDeviceInfoDeviceId(
-        that: this,
-      );
-
-  /// Two devices have the same group identifier if they belong to the same physical device
-  Future<Str?> groupId() =>
-      RustLib.instance.api.webAudioApiMediaDevicesMediaDeviceInfoGroupId(
         that: this,
       );
 
