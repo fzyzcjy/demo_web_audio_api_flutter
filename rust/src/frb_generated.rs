@@ -41,7 +41,7 @@ flutter_rust_bridge::frb_generated_boilerplate!(
     default_rust_auto_opaque = RustAutoOpaqueMoi,
 );
 pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_VERSION: &str = "2.0.0-dev.37";
-pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = 1950913246;
+pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = 1016884793;
 
 // Section: executor
 
@@ -1347,228 +1347,6 @@ let decode_indices_ = flutter_rust_bridge::for_generated::rust_auto_opaque_decod
                     })())
                 } })
 }
-fn wire__web_audio_api__ErrorEvent_get_error_impl(
-    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
-    rust_vec_len_: i32,
-    data_len_: i32,
-) -> flutter_rust_bridge::for_generated::WireSyncRust2DartSse {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::SseCodec, _>(
-        flutter_rust_bridge::for_generated::TaskInfo {
-            debug_name: "ErrorEvent_get_error",
-            port: None,
-            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
-        },
-        move || {
-            let message = unsafe {
-                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
-                    ptr_,
-                    rust_vec_len_,
-                    data_len_,
-                )
-            };
-            let mut deserializer =
-                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            let api_that = <RustOpaqueMoi<
-                flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ErrorEvent>,
-            >>::sse_decode(&mut deserializer);
-            deserializer.end();
-            transform_result_sse((move || {
-                let mut api_that_decoded = None;
-                let decode_indices_ =
-                    flutter_rust_bridge::for_generated::rust_auto_opaque_decode_compute_order(
-                        vec![
-                            flutter_rust_bridge::for_generated::rust_auto_opaque_lock_order_info(
-                                &api_that, 0, false,
-                            ),
-                        ],
-                    );
-                for i in decode_indices_ {
-                    match i {
-                        0 => api_that_decoded = Some(
-                            flutter_rust_bridge::for_generated::rust_auto_opaque_decode_sync_ref(
-                                &api_that,
-                            ),
-                        ),
-                        _ => unreachable!(),
-                    }
-                }
-                let api_that = api_that_decoded.unwrap();
-                Result::<_, ()>::Ok(api_that.error.clone())
-            })())
-        },
-    )
-}
-fn wire__web_audio_api__ErrorEvent_get_event_impl(
-    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
-    rust_vec_len_: i32,
-    data_len_: i32,
-) -> flutter_rust_bridge::for_generated::WireSyncRust2DartSse {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::SseCodec, _>(
-        flutter_rust_bridge::for_generated::TaskInfo {
-            debug_name: "ErrorEvent_get_event",
-            port: None,
-            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
-        },
-        move || {
-            let message = unsafe {
-                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
-                    ptr_,
-                    rust_vec_len_,
-                    data_len_,
-                )
-            };
-            let mut deserializer =
-                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            let api_that = <RustOpaqueMoi<
-                flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ErrorEvent>,
-            >>::sse_decode(&mut deserializer);
-            deserializer.end();
-            transform_result_sse((move || {
-                let mut api_that_decoded = None;
-                let decode_indices_ =
-                    flutter_rust_bridge::for_generated::rust_auto_opaque_decode_compute_order(
-                        vec![
-                            flutter_rust_bridge::for_generated::rust_auto_opaque_lock_order_info(
-                                &api_that, 0, false,
-                            ),
-                        ],
-                    );
-                for i in decode_indices_ {
-                    match i {
-                        0 => api_that_decoded = Some(
-                            flutter_rust_bridge::for_generated::rust_auto_opaque_decode_sync_ref(
-                                &api_that,
-                            ),
-                        ),
-                        _ => unreachable!(),
-                    }
-                }
-                let api_that = api_that_decoded.unwrap();
-                Result::<_, ()>::Ok(api_that.event.clone())
-            })())
-        },
-    )
-}
-fn wire__web_audio_api__ErrorEvent_get_message_impl(
-    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
-    rust_vec_len_: i32,
-    data_len_: i32,
-) -> flutter_rust_bridge::for_generated::WireSyncRust2DartSse {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::SseCodec, _>(
-        flutter_rust_bridge::for_generated::TaskInfo {
-            debug_name: "ErrorEvent_get_message",
-            port: None,
-            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
-        },
-        move || {
-            let message = unsafe {
-                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
-                    ptr_,
-                    rust_vec_len_,
-                    data_len_,
-                )
-            };
-            let mut deserializer =
-                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            let api_that = <RustOpaqueMoi<
-                flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ErrorEvent>,
-            >>::sse_decode(&mut deserializer);
-            deserializer.end();
-            transform_result_sse((move || {
-                let mut api_that_decoded = None;
-                let decode_indices_ =
-                    flutter_rust_bridge::for_generated::rust_auto_opaque_decode_compute_order(
-                        vec![
-                            flutter_rust_bridge::for_generated::rust_auto_opaque_lock_order_info(
-                                &api_that, 0, false,
-                            ),
-                        ],
-                    );
-                for i in decode_indices_ {
-                    match i {
-                        0 => api_that_decoded = Some(
-                            flutter_rust_bridge::for_generated::rust_auto_opaque_decode_sync_ref(
-                                &api_that,
-                            ),
-                        ),
-                        _ => unreachable!(),
-                    }
-                }
-                let api_that = api_that_decoded.unwrap();
-                Result::<_, ()>::Ok(api_that.message.clone())
-            })())
-        },
-    )
-}
-fn wire__web_audio_api__ErrorEvent_set_error_impl(
-    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
-    rust_vec_len_: i32,
-    data_len_: i32,
-) -> flutter_rust_bridge::for_generated::WireSyncRust2DartSse {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::SseCodec,_>(flutter_rust_bridge::for_generated::TaskInfo{ debug_name: "ErrorEvent_set_error", port: None, mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync }, move || { 
-            let message = unsafe { flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(ptr_, rust_vec_len_, data_len_) };
-            let mut deserializer = flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            let api_that = <RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ErrorEvent>>>::sse_decode(&mut deserializer);
-let api_error = <Box < dyn Any + Send >>::sse_decode(&mut deserializer);deserializer.end();
-                transform_result_sse((move || {
-                    let mut api_that_decoded = None;
-let decode_indices_ = flutter_rust_bridge::for_generated::rust_auto_opaque_decode_compute_order(vec![flutter_rust_bridge::for_generated::rust_auto_opaque_lock_order_info(&api_that, 0, true)]);
-        for i in decode_indices_ {
-            match i {
-                0 => api_that_decoded = Some(flutter_rust_bridge::for_generated::rust_auto_opaque_decode_sync_ref_mut(&api_that)),
-                _ => unreachable!(),
-            }
-        }
-        let mut api_that = api_that_decoded.unwrap();
- Result::<_,()>::Ok({ { api_that.error = api_error; }; })
-                })()) })
-}
-fn wire__web_audio_api__ErrorEvent_set_event_impl(
-    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
-    rust_vec_len_: i32,
-    data_len_: i32,
-) -> flutter_rust_bridge::for_generated::WireSyncRust2DartSse {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::SseCodec,_>(flutter_rust_bridge::for_generated::TaskInfo{ debug_name: "ErrorEvent_set_event", port: None, mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync }, move || { 
-            let message = unsafe { flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(ptr_, rust_vec_len_, data_len_) };
-            let mut deserializer = flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            let api_that = <RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ErrorEvent>>>::sse_decode(&mut deserializer);
-let api_event = <Event>::sse_decode(&mut deserializer);deserializer.end();
-                transform_result_sse((move || {
-                    let mut api_that_decoded = None;
-let decode_indices_ = flutter_rust_bridge::for_generated::rust_auto_opaque_decode_compute_order(vec![flutter_rust_bridge::for_generated::rust_auto_opaque_lock_order_info(&api_that, 0, true)]);
-        for i in decode_indices_ {
-            match i {
-                0 => api_that_decoded = Some(flutter_rust_bridge::for_generated::rust_auto_opaque_decode_sync_ref_mut(&api_that)),
-                _ => unreachable!(),
-            }
-        }
-        let mut api_that = api_that_decoded.unwrap();
- Result::<_,()>::Ok({ { api_that.event = api_event; }; })
-                })()) })
-}
-fn wire__web_audio_api__ErrorEvent_set_message_impl(
-    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
-    rust_vec_len_: i32,
-    data_len_: i32,
-) -> flutter_rust_bridge::for_generated::WireSyncRust2DartSse {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::SseCodec,_>(flutter_rust_bridge::for_generated::TaskInfo{ debug_name: "ErrorEvent_set_message", port: None, mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync }, move || { 
-            let message = unsafe { flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(ptr_, rust_vec_len_, data_len_) };
-            let mut deserializer = flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            let api_that = <RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ErrorEvent>>>::sse_decode(&mut deserializer);
-let api_message = <String>::sse_decode(&mut deserializer);deserializer.end();
-                transform_result_sse((move || {
-                    let mut api_that_decoded = None;
-let decode_indices_ = flutter_rust_bridge::for_generated::rust_auto_opaque_decode_compute_order(vec![flutter_rust_bridge::for_generated::rust_auto_opaque_lock_order_info(&api_that, 0, true)]);
-        for i in decode_indices_ {
-            match i {
-                0 => api_that_decoded = Some(flutter_rust_bridge::for_generated::rust_auto_opaque_decode_sync_ref_mut(&api_that)),
-                _ => unreachable!(),
-            }
-        }
-        let mut api_that = api_that_decoded.unwrap();
- Result::<_,()>::Ok({ { api_that.message = api_message; }; })
-                })()) })
-}
 fn wire__web_audio_api__OfflineAudioCompletionEvent_get_event_impl(
     ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
     rust_vec_len_: i32,
@@ -2655,78 +2433,6 @@ let decode_indices_ = flutter_rust_bridge::for_generated::rust_auto_opaque_decod
         let api_that = api_that_decoded.unwrap();
  Result::<_,()>::Ok({ web_audio_api::context::OfflineAudioContext::suspend(&api_that, api_suspend_time).await; })
                     })().await)
-                } })
-}
-fn wire__web_audio_api__media_devices__MediaDeviceInfo_device_id_impl(
-    port_: flutter_rust_bridge::for_generated::MessagePort,
-    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
-    rust_vec_len_: i32,
-    data_len_: i32,
-) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec,_,_>(flutter_rust_bridge::for_generated::TaskInfo{ debug_name: "MediaDeviceInfo_device_id", port: Some(port_), mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal }, move || { 
-            let message = unsafe { flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(ptr_, rust_vec_len_, data_len_) };
-            let mut deserializer = flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            let api_that = <RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MediaDeviceInfo>>>::sse_decode(&mut deserializer);deserializer.end(); move |context|  {
-                    transform_result_sse((move ||  {
-                        let mut api_that_decoded = None;
-let decode_indices_ = flutter_rust_bridge::for_generated::rust_auto_opaque_decode_compute_order(vec![flutter_rust_bridge::for_generated::rust_auto_opaque_lock_order_info(&api_that, 0, false)]);
-        for i in decode_indices_ {
-            match i {
-                0 => api_that_decoded = Some(flutter_rust_bridge::for_generated::rust_auto_opaque_decode_sync_ref(&api_that)),
-                _ => unreachable!(),
-            }
-        }
-        let api_that = api_that_decoded.unwrap();
- Result::<_,()>::Ok({ web_audio_api::media_devices::MediaDeviceInfo::device_id(&api_that); })
-                    })())
-                } })
-}
-fn wire__web_audio_api__media_devices__MediaDeviceInfo_kind_impl(
-    port_: flutter_rust_bridge::for_generated::MessagePort,
-    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
-    rust_vec_len_: i32,
-    data_len_: i32,
-) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec,_,_>(flutter_rust_bridge::for_generated::TaskInfo{ debug_name: "MediaDeviceInfo_kind", port: Some(port_), mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal }, move || { 
-            let message = unsafe { flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(ptr_, rust_vec_len_, data_len_) };
-            let mut deserializer = flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            let api_that = <RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MediaDeviceInfo>>>::sse_decode(&mut deserializer);deserializer.end(); move |context|  {
-                    transform_result_sse((move ||  {
-                        let mut api_that_decoded = None;
-let decode_indices_ = flutter_rust_bridge::for_generated::rust_auto_opaque_decode_compute_order(vec![flutter_rust_bridge::for_generated::rust_auto_opaque_lock_order_info(&api_that, 0, false)]);
-        for i in decode_indices_ {
-            match i {
-                0 => api_that_decoded = Some(flutter_rust_bridge::for_generated::rust_auto_opaque_decode_sync_ref(&api_that)),
-                _ => unreachable!(),
-            }
-        }
-        let api_that = api_that_decoded.unwrap();
- Result::<_,()>::Ok(web_audio_api::media_devices::MediaDeviceInfo::kind(&api_that))
-                    })())
-                } })
-}
-fn wire__web_audio_api__media_devices__MediaDeviceInfo_label_impl(
-    port_: flutter_rust_bridge::for_generated::MessagePort,
-    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
-    rust_vec_len_: i32,
-    data_len_: i32,
-) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec,_,_>(flutter_rust_bridge::for_generated::TaskInfo{ debug_name: "MediaDeviceInfo_label", port: Some(port_), mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal }, move || { 
-            let message = unsafe { flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(ptr_, rust_vec_len_, data_len_) };
-            let mut deserializer = flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            let api_that = <RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MediaDeviceInfo>>>::sse_decode(&mut deserializer);deserializer.end(); move |context|  {
-                    transform_result_sse((move ||  {
-                        let mut api_that_decoded = None;
-let decode_indices_ = flutter_rust_bridge::for_generated::rust_auto_opaque_decode_compute_order(vec![flutter_rust_bridge::for_generated::rust_auto_opaque_lock_order_info(&api_that, 0, false)]);
-        for i in decode_indices_ {
-            match i {
-                0 => api_that_decoded = Some(flutter_rust_bridge::for_generated::rust_auto_opaque_decode_sync_ref(&api_that)),
-                _ => unreachable!(),
-            }
-        }
-        let api_that = api_that_decoded.unwrap();
- Result::<_,()>::Ok({ web_audio_api::media_devices::MediaDeviceInfo::label(&api_that); })
-                    })())
                 } })
 }
 fn wire__web_audio_api__media_devices__enumerate_devices_sync_impl(
@@ -5261,9 +4967,6 @@ flutter_rust_bridge::frb_generated_moi_arc_impl_value!(
     flutter_rust_bridge::for_generated::RustAutoOpaqueInner<BlobEvent>
 );
 flutter_rust_bridge::frb_generated_moi_arc_impl_value!(
-    flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Box<dyn Any + Send>>
-);
-flutter_rust_bridge::frb_generated_moi_arc_impl_value!(
     flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Box<dyn Error>>
 );
 flutter_rust_bridge::frb_generated_moi_arc_impl_value!(
@@ -5283,9 +4986,6 @@ flutter_rust_bridge::frb_generated_moi_arc_impl_value!(
 );
 flutter_rust_bridge::frb_generated_moi_arc_impl_value!(
     flutter_rust_bridge::for_generated::RustAutoOpaqueInner<DynamicsCompressorNode>
-);
-flutter_rust_bridge::frb_generated_moi_arc_impl_value!(
-    flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ErrorEvent>
 );
 flutter_rust_bridge::frb_generated_moi_arc_impl_value!(
     flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Event>
@@ -5490,16 +5190,6 @@ impl SseDecode for BlobEvent {
     }
 }
 
-impl SseDecode for Box<dyn Any + Send> {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut inner = <RustOpaqueMoi<
-            flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Box<dyn Any + Send>>,
-        >>::sse_decode(deserializer);
-        return flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(inner);
-    }
-}
-
 impl SseDecode for Box<dyn Error> {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -5565,16 +5255,6 @@ impl SseDecode for DynamicsCompressorNode {
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
         let mut inner = <RustOpaqueMoi<
             flutter_rust_bridge::for_generated::RustAutoOpaqueInner<DynamicsCompressorNode>,
-        >>::sse_decode(deserializer);
-        return flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(inner);
-    }
-}
-
-impl SseDecode for ErrorEvent {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut inner = <RustOpaqueMoi<
-            flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ErrorEvent>,
         >>::sse_decode(deserializer);
         return flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(inner);
     }
@@ -5933,16 +5613,6 @@ impl SseDecode
 }
 
 impl SseDecode
-    for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Box<dyn Any + Send>>>
-{
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut inner = <usize>::sse_decode(deserializer);
-        return decode_rust_opaque_moi(inner);
-    }
-}
-
-impl SseDecode
     for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Box<dyn Error>>>
 {
     // Codec=Sse (Serialization based), see doc to use other codecs
@@ -6008,16 +5678,6 @@ impl SseDecode
     for RustOpaqueMoi<
         flutter_rust_bridge::for_generated::RustAutoOpaqueInner<DynamicsCompressorNode>,
     >
-{
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut inner = <usize>::sse_decode(deserializer);
-        return decode_rust_opaque_moi(inner);
-    }
-}
-
-impl SseDecode
-    for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ErrorEvent>>
 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -6413,19 +6073,6 @@ impl SseDecode for Vec<u8> {
     }
 }
 
-impl SseDecode for web_audio_api::media_devices::MediaDeviceInfoKind {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut inner = <i32>::sse_decode(deserializer);
-        return match inner {
-            0 => web_audio_api::media_devices::MediaDeviceInfoKind::VideoInput,
-            1 => web_audio_api::media_devices::MediaDeviceInfoKind::AudioInput,
-            2 => web_audio_api::media_devices::MediaDeviceInfoKind::AudioOutput,
-            _ => unreachable!("Invalid variant for MediaDeviceInfoKind: {}", inner),
-        };
-    }
-}
-
 impl SseDecode for web_audio_api::media_streams::MediaStreamTrackState {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -6623,364 +6270,346 @@ fn pde_ffi_dispatcher_primary_impl(
             wire__web_audio_api__AudioRenderCapacity_start_impl(port, ptr, rust_vec_len, data_len)
         }
         43 => wire__web_audio_api__AudioRenderCapacity_stop_impl(port, ptr, rust_vec_len, data_len),
-        62 => wire__web_audio_api__context__AudioContext_base_latency_impl(
+        56 => wire__web_audio_api__context__AudioContext_base_latency_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        63 => wire__web_audio_api__context__AudioContext_clear_onsinkchange_impl(
+        57 => wire__web_audio_api__context__AudioContext_clear_onsinkchange_impl(
+            port,
+            ptr,
+            rust_vec_len,
+            data_len,
+        ),
+        58 => {
+            wire__web_audio_api__context__AudioContext_close_impl(port, ptr, rust_vec_len, data_len)
+        }
+        59 => wire__web_audio_api__context__AudioContext_close_sync_impl(
+            port,
+            ptr,
+            rust_vec_len,
+            data_len,
+        ),
+        60 => wire__web_audio_api__context__AudioContext_create_media_element_source_impl(
+            port,
+            ptr,
+            rust_vec_len,
+            data_len,
+        ),
+        61 => wire__web_audio_api__context__AudioContext_create_media_stream_destination_impl(
+            port,
+            ptr,
+            rust_vec_len,
+            data_len,
+        ),
+        62 => wire__web_audio_api__context__AudioContext_create_media_stream_source_impl(
+            port,
+            ptr,
+            rust_vec_len,
+            data_len,
+        ),
+        63 => wire__web_audio_api__context__AudioContext_create_media_stream_track_source_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
         64 => {
-            wire__web_audio_api__context__AudioContext_close_impl(port, ptr, rust_vec_len, data_len)
-        }
-        65 => wire__web_audio_api__context__AudioContext_close_sync_impl(
-            port,
-            ptr,
-            rust_vec_len,
-            data_len,
-        ),
-        66 => wire__web_audio_api__context__AudioContext_create_media_element_source_impl(
-            port,
-            ptr,
-            rust_vec_len,
-            data_len,
-        ),
-        67 => wire__web_audio_api__context__AudioContext_create_media_stream_destination_impl(
-            port,
-            ptr,
-            rust_vec_len,
-            data_len,
-        ),
-        68 => wire__web_audio_api__context__AudioContext_create_media_stream_source_impl(
-            port,
-            ptr,
-            rust_vec_len,
-            data_len,
-        ),
-        69 => wire__web_audio_api__context__AudioContext_create_media_stream_track_source_impl(
-            port,
-            ptr,
-            rust_vec_len,
-            data_len,
-        ),
-        70 => {
             wire__web_audio_api__context__AudioContext_new_impl(port, ptr, rust_vec_len, data_len)
         }
-        71 => wire__web_audio_api__context__AudioContext_output_latency_impl(
+        65 => wire__web_audio_api__context__AudioContext_output_latency_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        72 => wire__web_audio_api__context__AudioContext_render_capacity_impl(
+        66 => wire__web_audio_api__context__AudioContext_render_capacity_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        73 => wire__web_audio_api__context__AudioContext_resume_impl(
+        67 => wire__web_audio_api__context__AudioContext_resume_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        74 => wire__web_audio_api__context__AudioContext_resume_sync_impl(
+        68 => wire__web_audio_api__context__AudioContext_resume_sync_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        75 => wire__web_audio_api__context__AudioContext_set_sink_id_sync_impl(
+        69 => wire__web_audio_api__context__AudioContext_set_sink_id_sync_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        76 => wire__web_audio_api__context__AudioContext_sink_id_impl(
+        70 => wire__web_audio_api__context__AudioContext_sink_id_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        77 => wire__web_audio_api__context__AudioContext_suspend_impl(
+        71 => wire__web_audio_api__context__AudioContext_suspend_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        78 => wire__web_audio_api__context__AudioContext_suspend_sync_impl(
+        72 => wire__web_audio_api__context__AudioContext_suspend_sync_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        79 => wire__web_audio_api__context__ConcreteBaseAudioContext_mark_cycle_breaker_impl(
+        73 => wire__web_audio_api__context__ConcreteBaseAudioContext_mark_cycle_breaker_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        80 => wire__web_audio_api__context__OfflineAudioContext_clear_oncomplete_impl(
+        74 => wire__web_audio_api__context__OfflineAudioContext_clear_oncomplete_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        81 => wire__web_audio_api__context__OfflineAudioContext_length_impl(
+        75 => wire__web_audio_api__context__OfflineAudioContext_length_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        82 => wire__web_audio_api__context__OfflineAudioContext_new_impl(
+        76 => wire__web_audio_api__context__OfflineAudioContext_new_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        83 => wire__web_audio_api__context__OfflineAudioContext_resume_impl(
+        77 => wire__web_audio_api__context__OfflineAudioContext_resume_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        84 => wire__web_audio_api__context__OfflineAudioContext_start_rendering_impl(
+        78 => wire__web_audio_api__context__OfflineAudioContext_start_rendering_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        85 => wire__web_audio_api__context__OfflineAudioContext_start_rendering_sync_impl(
+        79 => wire__web_audio_api__context__OfflineAudioContext_start_rendering_sync_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        86 => wire__web_audio_api__context__OfflineAudioContext_suspend_impl(
+        80 => wire__web_audio_api__context__OfflineAudioContext_suspend_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        87 => wire__web_audio_api__media_devices__MediaDeviceInfo_device_id_impl(
+        81 => wire__web_audio_api__media_devices__enumerate_devices_sync_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        88 => wire__web_audio_api__media_devices__MediaDeviceInfo_kind_impl(
+        82 => wire__web_audio_api__media_devices__get_user_media_sync_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        89 => wire__web_audio_api__media_devices__MediaDeviceInfo_label_impl(
+        89 => wire__web_audio_api__media_recorder__MediaRecorder_clear_ondataavailable_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        90 => wire__web_audio_api__media_devices__enumerate_devices_sync_impl(
+        90 => wire__web_audio_api__media_recorder__MediaRecorder_clear_onerror_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        91 => wire__web_audio_api__media_devices__get_user_media_sync_impl(
+        91 => wire__web_audio_api__media_recorder__MediaRecorder_clear_onstop_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        98 => wire__web_audio_api__media_recorder__MediaRecorder_clear_ondataavailable_impl(
+        92 => wire__web_audio_api__media_recorder__MediaRecorder_new_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        99 => wire__web_audio_api__media_recorder__MediaRecorder_clear_onerror_impl(
+        93 => wire__web_audio_api__media_recorder__MediaRecorder_start_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        100 => wire__web_audio_api__media_recorder__MediaRecorder_clear_onstop_impl(
+        94 => wire__web_audio_api__media_recorder__MediaRecorder_stop_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        101 => wire__web_audio_api__media_recorder__MediaRecorder_new_impl(
+        95 => wire__web_audio_api__media_streams__MediaStreamTrack_close_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        102 => wire__web_audio_api__media_recorder__MediaRecorder_start_impl(
+        96 => wire__web_audio_api__media_streams__MediaStreamTrack_ready_state_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        103 => wire__web_audio_api__media_recorder__MediaRecorder_stop_impl(
+        97 => wire__web_audio_api__media_streams__MediaStream_from_tracks_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        104 => wire__web_audio_api__media_streams__MediaStreamTrack_close_impl(
+        98 => wire__web_audio_api__media_streams__MediaStream_get_tracks_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        105 => wire__web_audio_api__media_streams__MediaStreamTrack_ready_state_impl(
-            port,
-            ptr,
-            rust_vec_len,
-            data_len,
-        ),
-        106 => wire__web_audio_api__media_streams__MediaStream_from_tracks_impl(
-            port,
-            ptr,
-            rust_vec_len,
-            data_len,
-        ),
-        107 => wire__web_audio_api__media_streams__MediaStream_get_tracks_impl(
-            port,
-            ptr,
-            rust_vec_len,
-            data_len,
-        ),
-        108 => {
+        99 => {
             wire__web_audio_api__node__AnalyserNode_fft_size_impl(port, ptr, rust_vec_len, data_len)
         }
-        109 => wire__web_audio_api__node__AnalyserNode_frequency_bin_count_impl(
+        100 => wire__web_audio_api__node__AnalyserNode_frequency_bin_count_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        110 => wire__web_audio_api__node__AnalyserNode_max_decibels_impl(
+        101 => wire__web_audio_api__node__AnalyserNode_max_decibels_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        111 => wire__web_audio_api__node__AnalyserNode_min_decibels_impl(
+        102 => wire__web_audio_api__node__AnalyserNode_min_decibels_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        112 => wire__web_audio_api__node__AnalyserNode_set_fft_size_impl(
+        103 => wire__web_audio_api__node__AnalyserNode_set_fft_size_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        113 => wire__web_audio_api__node__AnalyserNode_set_max_decibels_impl(
+        104 => wire__web_audio_api__node__AnalyserNode_set_max_decibels_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        114 => wire__web_audio_api__node__AnalyserNode_set_min_decibels_impl(
+        105 => wire__web_audio_api__node__AnalyserNode_set_min_decibels_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        115 => wire__web_audio_api__node__AnalyserNode_set_smoothing_time_constant_impl(
+        106 => wire__web_audio_api__node__AnalyserNode_set_smoothing_time_constant_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        116 => wire__web_audio_api__node__AnalyserNode_smoothing_time_constant_impl(
+        107 => wire__web_audio_api__node__AnalyserNode_smoothing_time_constant_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        117 => wire__web_audio_api__node__AudioBufferSourceNode_buffer_impl(
+        108 => wire__web_audio_api__node__AudioBufferSourceNode_buffer_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        118 => wire__web_audio_api__node__AudioBufferSourceNode_detune_impl(
+        109 => wire__web_audio_api__node__AudioBufferSourceNode_detune_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        119 => wire__web_audio_api__node__AudioBufferSourceNode_loop__impl(
+        110 => wire__web_audio_api__node__AudioBufferSourceNode_loop__impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        120 => wire__web_audio_api__node__AudioBufferSourceNode_loop_end_impl(
+        111 => wire__web_audio_api__node__AudioBufferSourceNode_loop_end_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        121 => wire__web_audio_api__node__AudioBufferSourceNode_loop_start_impl(
+        112 => wire__web_audio_api__node__AudioBufferSourceNode_loop_start_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        122 => wire__web_audio_api__node__AudioBufferSourceNode_playback_rate_impl(
+        113 => wire__web_audio_api__node__AudioBufferSourceNode_playback_rate_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        123 => wire__web_audio_api__node__AudioBufferSourceNode_position_impl(
+        114 => wire__web_audio_api__node__AudioBufferSourceNode_position_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        124 => wire__web_audio_api__node__AudioBufferSourceNode_set_buffer_impl(
+        115 => wire__web_audio_api__node__AudioBufferSourceNode_set_buffer_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        125 => wire__web_audio_api__node__AudioBufferSourceNode_set_loop_impl(
+        116 => wire__web_audio_api__node__AudioBufferSourceNode_set_loop_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        126 => wire__web_audio_api__node__AudioBufferSourceNode_set_loop_end_impl(
+        117 => wire__web_audio_api__node__AudioBufferSourceNode_set_loop_end_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        127 => wire__web_audio_api__node__AudioBufferSourceNode_set_loop_start_impl(
+        118 => wire__web_audio_api__node__AudioBufferSourceNode_set_loop_start_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        128 => wire__web_audio_api__node__AudioBufferSourceNode_start_at_with_offset_impl(
+        119 => wire__web_audio_api__node__AudioBufferSourceNode_start_at_with_offset_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        129 => {
+        120 => {
             wire__web_audio_api__node__AudioBufferSourceNode_start_at_with_offset_and_duration_impl(
                 port,
                 ptr,
@@ -6988,308 +6617,308 @@ fn pde_ffi_dispatcher_primary_impl(
                 data_len,
             )
         }
-        130 => wire__web_audio_api__node__AudioDestinationNode_max_channel_count_impl(
+        121 => wire__web_audio_api__node__AudioDestinationNode_max_channel_count_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        131 => wire__web_audio_api__node__BiquadFilterNode_detune_impl(
+        122 => wire__web_audio_api__node__BiquadFilterNode_detune_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        132 => wire__web_audio_api__node__BiquadFilterNode_frequency_impl(
+        123 => wire__web_audio_api__node__BiquadFilterNode_frequency_impl(
+            port,
+            ptr,
+            rust_vec_len,
+            data_len,
+        ),
+        124 => {
+            wire__web_audio_api__node__BiquadFilterNode_gain_impl(port, ptr, rust_vec_len, data_len)
+        }
+        125 => {
+            wire__web_audio_api__node__BiquadFilterNode_q_impl(port, ptr, rust_vec_len, data_len)
+        }
+        126 => wire__web_audio_api__node__BiquadFilterNode_set_type_impl(
+            port,
+            ptr,
+            rust_vec_len,
+            data_len,
+        ),
+        127 => wire__web_audio_api__node__BiquadFilterNode_type__impl(
+            port,
+            ptr,
+            rust_vec_len,
+            data_len,
+        ),
+        128 => wire__web_audio_api__node__ConstantSourceNode_offset_impl(
+            port,
+            ptr,
+            rust_vec_len,
+            data_len,
+        ),
+        129 => {
+            wire__web_audio_api__node__ConvolverNode_buffer_impl(port, ptr, rust_vec_len, data_len)
+        }
+        130 => wire__web_audio_api__node__ConvolverNode_normalize_impl(
+            port,
+            ptr,
+            rust_vec_len,
+            data_len,
+        ),
+        131 => wire__web_audio_api__node__ConvolverNode_set_buffer_impl(
+            port,
+            ptr,
+            rust_vec_len,
+            data_len,
+        ),
+        132 => wire__web_audio_api__node__ConvolverNode_set_normalize_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
         133 => {
-            wire__web_audio_api__node__BiquadFilterNode_gain_impl(port, ptr, rust_vec_len, data_len)
+            wire__web_audio_api__node__DelayNode_delay_time_impl(port, ptr, rust_vec_len, data_len)
         }
-        134 => {
-            wire__web_audio_api__node__BiquadFilterNode_q_impl(port, ptr, rust_vec_len, data_len)
-        }
-        135 => wire__web_audio_api__node__BiquadFilterNode_set_type_impl(
+        134 => wire__web_audio_api__node__DynamicsCompressorNode_attack_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        136 => wire__web_audio_api__node__BiquadFilterNode_type__impl(
+        135 => wire__web_audio_api__node__DynamicsCompressorNode_knee_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        137 => wire__web_audio_api__node__ConstantSourceNode_offset_impl(
+        136 => wire__web_audio_api__node__DynamicsCompressorNode_ratio_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        138 => {
-            wire__web_audio_api__node__ConvolverNode_buffer_impl(port, ptr, rust_vec_len, data_len)
-        }
-        139 => wire__web_audio_api__node__ConvolverNode_normalize_impl(
+        137 => wire__web_audio_api__node__DynamicsCompressorNode_reduction_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        140 => wire__web_audio_api__node__ConvolverNode_set_buffer_impl(
+        138 => wire__web_audio_api__node__DynamicsCompressorNode_release_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        141 => wire__web_audio_api__node__ConvolverNode_set_normalize_impl(
+        139 => wire__web_audio_api__node__DynamicsCompressorNode_threshold_impl(
+            port,
+            ptr,
+            rust_vec_len,
+            data_len,
+        ),
+        140 => wire__web_audio_api__node__GainNode_gain_impl(port, ptr, rust_vec_len, data_len),
+        141 => wire__web_audio_api__node__MediaStreamAudioDestinationNode_stream_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
         142 => {
-            wire__web_audio_api__node__DelayNode_delay_time_impl(port, ptr, rust_vec_len, data_len)
-        }
-        143 => wire__web_audio_api__node__DynamicsCompressorNode_attack_impl(
-            port,
-            ptr,
-            rust_vec_len,
-            data_len,
-        ),
-        144 => wire__web_audio_api__node__DynamicsCompressorNode_knee_impl(
-            port,
-            ptr,
-            rust_vec_len,
-            data_len,
-        ),
-        145 => wire__web_audio_api__node__DynamicsCompressorNode_ratio_impl(
-            port,
-            ptr,
-            rust_vec_len,
-            data_len,
-        ),
-        146 => wire__web_audio_api__node__DynamicsCompressorNode_reduction_impl(
-            port,
-            ptr,
-            rust_vec_len,
-            data_len,
-        ),
-        147 => wire__web_audio_api__node__DynamicsCompressorNode_release_impl(
-            port,
-            ptr,
-            rust_vec_len,
-            data_len,
-        ),
-        148 => wire__web_audio_api__node__DynamicsCompressorNode_threshold_impl(
-            port,
-            ptr,
-            rust_vec_len,
-            data_len,
-        ),
-        149 => wire__web_audio_api__node__GainNode_gain_impl(port, ptr, rust_vec_len, data_len),
-        150 => wire__web_audio_api__node__MediaStreamAudioDestinationNode_stream_impl(
-            port,
-            ptr,
-            rust_vec_len,
-            data_len,
-        ),
-        151 => {
             wire__web_audio_api__node__OscillatorNode_detune_impl(port, ptr, rust_vec_len, data_len)
         }
-        152 => wire__web_audio_api__node__OscillatorNode_frequency_impl(
+        143 => wire__web_audio_api__node__OscillatorNode_frequency_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        153 => wire__web_audio_api__node__OscillatorNode_set_periodic_wave_impl(
+        144 => wire__web_audio_api__node__OscillatorNode_set_periodic_wave_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        154 => wire__web_audio_api__node__OscillatorNode_set_type_impl(
+        145 => wire__web_audio_api__node__OscillatorNode_set_type_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        155 => {
+        146 => {
             wire__web_audio_api__node__OscillatorNode_type__impl(port, ptr, rust_vec_len, data_len)
         }
-        156 => wire__web_audio_api__node__PannerNode_cone_inner_angle_impl(
+        147 => wire__web_audio_api__node__PannerNode_cone_inner_angle_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        157 => wire__web_audio_api__node__PannerNode_cone_outer_angle_impl(
+        148 => wire__web_audio_api__node__PannerNode_cone_outer_angle_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        158 => wire__web_audio_api__node__PannerNode_cone_outer_gain_impl(
+        149 => wire__web_audio_api__node__PannerNode_cone_outer_gain_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        159 => wire__web_audio_api__node__PannerNode_distance_model_impl(
+        150 => wire__web_audio_api__node__PannerNode_distance_model_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        160 => wire__web_audio_api__node__PannerNode_max_distance_impl(
+        151 => wire__web_audio_api__node__PannerNode_max_distance_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        161 => wire__web_audio_api__node__PannerNode_orientation_x_impl(
+        152 => wire__web_audio_api__node__PannerNode_orientation_x_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        162 => wire__web_audio_api__node__PannerNode_orientation_y_impl(
+        153 => wire__web_audio_api__node__PannerNode_orientation_y_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        163 => wire__web_audio_api__node__PannerNode_orientation_z_impl(
+        154 => wire__web_audio_api__node__PannerNode_orientation_z_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        164 => wire__web_audio_api__node__PannerNode_panning_model_impl(
+        155 => wire__web_audio_api__node__PannerNode_panning_model_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        165 => {
+        156 => {
             wire__web_audio_api__node__PannerNode_position_x_impl(port, ptr, rust_vec_len, data_len)
         }
-        166 => {
+        157 => {
             wire__web_audio_api__node__PannerNode_position_y_impl(port, ptr, rust_vec_len, data_len)
         }
-        167 => {
+        158 => {
             wire__web_audio_api__node__PannerNode_position_z_impl(port, ptr, rust_vec_len, data_len)
         }
-        168 => wire__web_audio_api__node__PannerNode_ref_distance_impl(
+        159 => wire__web_audio_api__node__PannerNode_ref_distance_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        169 => wire__web_audio_api__node__PannerNode_rolloff_factor_impl(
+        160 => wire__web_audio_api__node__PannerNode_rolloff_factor_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        170 => wire__web_audio_api__node__PannerNode_set_cone_inner_angle_impl(
+        161 => wire__web_audio_api__node__PannerNode_set_cone_inner_angle_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        171 => wire__web_audio_api__node__PannerNode_set_cone_outer_angle_impl(
+        162 => wire__web_audio_api__node__PannerNode_set_cone_outer_angle_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        172 => wire__web_audio_api__node__PannerNode_set_cone_outer_gain_impl(
+        163 => wire__web_audio_api__node__PannerNode_set_cone_outer_gain_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        173 => wire__web_audio_api__node__PannerNode_set_distance_model_impl(
+        164 => wire__web_audio_api__node__PannerNode_set_distance_model_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        174 => wire__web_audio_api__node__PannerNode_set_max_distance_impl(
+        165 => wire__web_audio_api__node__PannerNode_set_max_distance_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        175 => wire__web_audio_api__node__PannerNode_set_orientation_impl(
+        166 => wire__web_audio_api__node__PannerNode_set_orientation_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        176 => wire__web_audio_api__node__PannerNode_set_panning_model_impl(
+        167 => wire__web_audio_api__node__PannerNode_set_panning_model_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        177 => wire__web_audio_api__node__PannerNode_set_position_impl(
+        168 => wire__web_audio_api__node__PannerNode_set_position_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        178 => wire__web_audio_api__node__PannerNode_set_ref_distance_impl(
+        169 => wire__web_audio_api__node__PannerNode_set_ref_distance_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        179 => wire__web_audio_api__node__PannerNode_set_rolloff_factor_impl(
+        170 => wire__web_audio_api__node__PannerNode_set_rolloff_factor_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        180 => wire__web_audio_api__node__ScriptProcessorNode_buffer_size_impl(
+        171 => wire__web_audio_api__node__ScriptProcessorNode_buffer_size_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        181 => wire__web_audio_api__node__ScriptProcessorNode_clear_onaudioprocess_impl(
+        172 => wire__web_audio_api__node__ScriptProcessorNode_clear_onaudioprocess_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        182 => {
+        173 => {
             wire__web_audio_api__node__StereoPannerNode_pan_impl(port, ptr, rust_vec_len, data_len)
         }
-        183 => wire__web_audio_api__node__WaveShaperNode_oversample_impl(
+        174 => wire__web_audio_api__node__WaveShaperNode_oversample_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        184 => wire__web_audio_api__node__WaveShaperNode_set_curve_impl(
+        175 => wire__web_audio_api__node__WaveShaperNode_set_curve_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        185 => wire__web_audio_api__node__WaveShaperNode_set_oversample_impl(
+        176 => wire__web_audio_api__node__WaveShaperNode_set_oversample_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        186 => wire__web_audio_api__worklet__AudioWorkletNode_parameters_impl(
+        177 => wire__web_audio_api__worklet__AudioWorkletNode_parameters_impl(
             port,
             ptr,
             rust_vec_len,
@@ -7387,98 +7016,92 @@ fn pde_ffi_dispatcher_sync_impl(
             rust_vec_len,
             data_len,
         ),
-        44 => wire__web_audio_api__ErrorEvent_get_error_impl(ptr, rust_vec_len, data_len),
-        45 => wire__web_audio_api__ErrorEvent_get_event_impl(ptr, rust_vec_len, data_len),
-        46 => wire__web_audio_api__ErrorEvent_get_message_impl(ptr, rust_vec_len, data_len),
-        47 => wire__web_audio_api__ErrorEvent_set_error_impl(ptr, rust_vec_len, data_len),
-        48 => wire__web_audio_api__ErrorEvent_set_event_impl(ptr, rust_vec_len, data_len),
-        49 => wire__web_audio_api__ErrorEvent_set_message_impl(ptr, rust_vec_len, data_len),
-        50 => wire__web_audio_api__OfflineAudioCompletionEvent_get_event_impl(
+        44 => wire__web_audio_api__OfflineAudioCompletionEvent_get_event_impl(
             ptr,
             rust_vec_len,
             data_len,
         ),
-        51 => wire__web_audio_api__OfflineAudioCompletionEvent_get_rendered_buffer_impl(
+        45 => wire__web_audio_api__OfflineAudioCompletionEvent_get_rendered_buffer_impl(
             ptr,
             rust_vec_len,
             data_len,
         ),
-        52 => wire__web_audio_api__OfflineAudioCompletionEvent_set_event_impl(
+        46 => wire__web_audio_api__OfflineAudioCompletionEvent_set_event_impl(
             ptr,
             rust_vec_len,
             data_len,
         ),
-        53 => wire__web_audio_api__OfflineAudioCompletionEvent_set_rendered_buffer_impl(
+        47 => wire__web_audio_api__OfflineAudioCompletionEvent_set_rendered_buffer_impl(
             ptr,
             rust_vec_len,
             data_len,
         ),
-        54 => wire__web_audio_api__context__AudioContextOptions_get_latency_hint_impl(
+        48 => wire__web_audio_api__context__AudioContextOptions_get_latency_hint_impl(
             ptr,
             rust_vec_len,
             data_len,
         ),
-        55 => wire__web_audio_api__context__AudioContextOptions_get_render_size_hint_impl(
+        49 => wire__web_audio_api__context__AudioContextOptions_get_render_size_hint_impl(
             ptr,
             rust_vec_len,
             data_len,
         ),
-        56 => wire__web_audio_api__context__AudioContextOptions_get_sample_rate_impl(
+        50 => wire__web_audio_api__context__AudioContextOptions_get_sample_rate_impl(
             ptr,
             rust_vec_len,
             data_len,
         ),
-        57 => wire__web_audio_api__context__AudioContextOptions_get_sink_id_impl(
+        51 => wire__web_audio_api__context__AudioContextOptions_get_sink_id_impl(
             ptr,
             rust_vec_len,
             data_len,
         ),
-        58 => wire__web_audio_api__context__AudioContextOptions_set_latency_hint_impl(
+        52 => wire__web_audio_api__context__AudioContextOptions_set_latency_hint_impl(
             ptr,
             rust_vec_len,
             data_len,
         ),
-        59 => wire__web_audio_api__context__AudioContextOptions_set_render_size_hint_impl(
+        53 => wire__web_audio_api__context__AudioContextOptions_set_render_size_hint_impl(
             ptr,
             rust_vec_len,
             data_len,
         ),
-        60 => wire__web_audio_api__context__AudioContextOptions_set_sample_rate_impl(
+        54 => wire__web_audio_api__context__AudioContextOptions_set_sample_rate_impl(
             ptr,
             rust_vec_len,
             data_len,
         ),
-        61 => wire__web_audio_api__context__AudioContextOptions_set_sink_id_impl(
+        55 => wire__web_audio_api__context__AudioContextOptions_set_sink_id_impl(
             ptr,
             rust_vec_len,
             data_len,
         ),
-        92 => wire__web_audio_api__media_recorder__BlobEvent_get_blob_impl(
+        83 => wire__web_audio_api__media_recorder__BlobEvent_get_blob_impl(
             ptr,
             rust_vec_len,
             data_len,
         ),
-        93 => wire__web_audio_api__media_recorder__BlobEvent_get_event_impl(
+        84 => wire__web_audio_api__media_recorder__BlobEvent_get_event_impl(
             ptr,
             rust_vec_len,
             data_len,
         ),
-        94 => wire__web_audio_api__media_recorder__BlobEvent_get_timecode_impl(
+        85 => wire__web_audio_api__media_recorder__BlobEvent_get_timecode_impl(
             ptr,
             rust_vec_len,
             data_len,
         ),
-        95 => wire__web_audio_api__media_recorder__BlobEvent_set_blob_impl(
+        86 => wire__web_audio_api__media_recorder__BlobEvent_set_blob_impl(
             ptr,
             rust_vec_len,
             data_len,
         ),
-        96 => wire__web_audio_api__media_recorder__BlobEvent_set_event_impl(
+        87 => wire__web_audio_api__media_recorder__BlobEvent_set_event_impl(
             ptr,
             rust_vec_len,
             data_len,
         ),
-        97 => wire__web_audio_api__media_recorder__BlobEvent_set_timecode_impl(
+        88 => wire__web_audio_api__media_recorder__BlobEvent_set_timecode_impl(
             ptr,
             rust_vec_len,
             data_len,
@@ -7727,24 +7350,6 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<BlobEvent>> for BlobEvent {
 }
 
 // Codec=Dco (DartCObject based), see doc to use other codecs
-impl flutter_rust_bridge::IntoDart for FrbWrapper<Box<dyn Any + Send>> {
-    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, MoiArc<_>>(self.0)
-            .into_dart()
-    }
-}
-impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
-    for FrbWrapper<Box<dyn Any + Send>>
-{
-}
-
-impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<Box<dyn Any + Send>>> for Box<dyn Any + Send> {
-    fn into_into_dart(self) -> FrbWrapper<Box<dyn Any + Send>> {
-        self.into()
-    }
-}
-
-// Codec=Dco (DartCObject based), see doc to use other codecs
 impl flutter_rust_bridge::IntoDart for FrbWrapper<Box<dyn Error>> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
         flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, MoiArc<_>>(self.0)
@@ -7858,21 +7463,6 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<DynamicsCompressorNode>>
     for DynamicsCompressorNode
 {
     fn into_into_dart(self) -> FrbWrapper<DynamicsCompressorNode> {
-        self.into()
-    }
-}
-
-// Codec=Dco (DartCObject based), see doc to use other codecs
-impl flutter_rust_bridge::IntoDart for FrbWrapper<ErrorEvent> {
-    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, MoiArc<_>>(self.0)
-            .into_dart()
-    }
-}
-impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for FrbWrapper<ErrorEvent> {}
-
-impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<ErrorEvent>> for ErrorEvent {
-    fn into_into_dart(self) -> FrbWrapper<ErrorEvent> {
         self.into()
     }
 }
@@ -8329,30 +7919,6 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<web_audio_api::node::DistanceM
 }
 // Codec=Dco (DartCObject based), see doc to use other codecs
 impl flutter_rust_bridge::IntoDart
-    for FrbWrapper<web_audio_api::media_devices::MediaDeviceInfoKind>
-{
-    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        match self.0 {
-            web_audio_api::media_devices::MediaDeviceInfoKind::VideoInput => 0.into_dart(),
-            web_audio_api::media_devices::MediaDeviceInfoKind::AudioInput => 1.into_dart(),
-            web_audio_api::media_devices::MediaDeviceInfoKind::AudioOutput => 2.into_dart(),
-        }
-    }
-}
-impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
-    for FrbWrapper<web_audio_api::media_devices::MediaDeviceInfoKind>
-{
-}
-impl
-    flutter_rust_bridge::IntoIntoDart<FrbWrapper<web_audio_api::media_devices::MediaDeviceInfoKind>>
-    for web_audio_api::media_devices::MediaDeviceInfoKind
-{
-    fn into_into_dart(self) -> FrbWrapper<web_audio_api::media_devices::MediaDeviceInfoKind> {
-        self.into()
-    }
-}
-// Codec=Dco (DartCObject based), see doc to use other codecs
-impl flutter_rust_bridge::IntoDart
     for FrbWrapper<web_audio_api::media_streams::MediaStreamTrackState>
 {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
@@ -8563,13 +8129,6 @@ impl SseEncode for BlobEvent {
     }
 }
 
-impl SseEncode for Box<dyn Any + Send> {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        <RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Box < dyn Any + Send >>>>::sse_encode(flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, MoiArc<_>>(self), serializer);
-    }
-}
-
 impl SseEncode for Box<dyn Error> {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -8626,13 +8185,6 @@ impl SseEncode for DynamicsCompressorNode {
             flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, MoiArc<_>>(self),
             serializer,
         );
-    }
-}
-
-impl SseEncode for ErrorEvent {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        <RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ErrorEvent>>>::sse_encode(flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, MoiArc<_>>(self), serializer);
     }
 }
 
@@ -8980,17 +8532,6 @@ impl SseEncode
 }
 
 impl SseEncode
-    for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Box<dyn Any + Send>>>
-{
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        let (ptr, size) = self.sse_encode_raw();
-        <usize>::sse_encode(ptr, serializer);
-        <i32>::sse_encode(size, serializer);
-    }
-}
-
-impl SseEncode
     for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Box<dyn Error>>>
 {
     // Codec=Sse (Serialization based), see doc to use other codecs
@@ -9062,17 +8603,6 @@ impl SseEncode
     for RustOpaqueMoi<
         flutter_rust_bridge::for_generated::RustAutoOpaqueInner<DynamicsCompressorNode>,
     >
-{
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        let (ptr, size) = self.sse_encode_raw();
-        <usize>::sse_encode(ptr, serializer);
-        <i32>::sse_encode(size, serializer);
-    }
-}
-
-impl SseEncode
-    for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ErrorEvent>>
 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -9480,23 +9010,6 @@ impl SseEncode for Vec<u8> {
         for item in self {
             <u8>::sse_encode(item, serializer);
         }
-    }
-}
-
-impl SseEncode for web_audio_api::media_devices::MediaDeviceInfoKind {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        <i32>::sse_encode(
-            match self {
-                web_audio_api::media_devices::MediaDeviceInfoKind::VideoInput => 0,
-                web_audio_api::media_devices::MediaDeviceInfoKind::AudioInput => 1,
-                web_audio_api::media_devices::MediaDeviceInfoKind::AudioOutput => 2,
-                _ => {
-                    unimplemented!("");
-                }
-            },
-            serializer,
-        );
     }
 }
 

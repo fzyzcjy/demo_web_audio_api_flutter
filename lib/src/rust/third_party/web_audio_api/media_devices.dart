@@ -8,8 +8,8 @@ import 'media_streams.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 // These functions are ignored because they are not marked as `pub`: `as_string`, `assert_receiver_is_total_eq`, `clone`, `clone`, `clone`, `default`, `device`, `eq`, `fmt`, `fmt`, `fmt`, `fmt`, `from`, `hash`, `hash`, `is_valid_device_id`, `new`
-// These types are ignored because they are not used by any `pub` functions: `DeviceId`, `MediaTrackConstraints`
-// These functions are ignored: `group_id`
+// These types are ignored because they are not used by any `pub` functions: `DeviceId`, `MediaDeviceInfoKind`, `MediaTrackConstraints`
+// These functions are ignored: `device_id`, `group_id`, `kind`, `label`
 
 /// List the available media output devices, such as speakers, headsets, loopbacks, etc
 ///
@@ -84,27 +84,6 @@ class MediaDeviceInfo extends RustOpaque {
     rustArcDecrementStrongCountPtr:
         RustLib.instance.api.rust_arc_decrement_strong_count_MediaDeviceInfoPtr,
   );
-
-  /// Identifier for the represented device
-  ///
-  /// The current implementation is not stable across sessions so you should not persist this
-  /// value
-  Future<void> deviceId() =>
-      RustLib.instance.api.webAudioApiMediaDevicesMediaDeviceInfoDeviceId(
-        that: this,
-      );
-
-  /// Enumerated value that is either "videoinput", "audioinput" or "audiooutput".
-  Future<MediaDeviceInfoKind> kind() =>
-      RustLib.instance.api.webAudioApiMediaDevicesMediaDeviceInfoKind(
-        that: this,
-      );
-
-  /// Friendly label describing this device
-  Future<void> label() =>
-      RustLib.instance.api.webAudioApiMediaDevicesMediaDeviceInfoLabel(
-        that: this,
-      );
 }
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MediaStreamConstraints>>
@@ -127,12 +106,4 @@ class MediaStreamConstraints extends RustOpaque {
     rustArcDecrementStrongCountPtr: RustLib
         .instance.api.rust_arc_decrement_strong_count_MediaStreamConstraintsPtr,
   );
-}
-
-/// Describes input/output type of a media device
-enum MediaDeviceInfoKind {
-  videoInput,
-  audioInput,
-  audioOutput,
-  ;
 }

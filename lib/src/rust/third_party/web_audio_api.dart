@@ -8,7 +8,7 @@ import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 // These functions are ignored because they are not marked as `pub`: `as_slice`, `assert_is_finite`, `assert_not_zero`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_sequence_length`, `assert_strictly_positive`, `assert_valid_buffer_length`, `assert_valid_channel_number`, `assert_valid_number_of_channels`, `assert_valid_sample_rate`, `assert_valid_time_value`, `audio_param_pair`, `cancel_and_hold_at_time_raw`, `cancel_scheduled_values_raw`, `channel_config`, `channel_data_mut`, `channel_data`, `channels_mut`, `channels`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `compute_buffer`, `compute_exponential_ramp_automation`, `compute_exponential_ramp_sample`, `compute_intrinsic_values`, `compute_linear_ramp_automation`, `compute_linear_ramp_sample`, `compute_set_target_automation`, `compute_set_target_sample`, `compute_set_value_automation`, `compute_set_value_curve_automation`, `compute_set_value_curve_sample`, `default`, `default`, `default`, `default`, `drop`, `eq`, `eq`, `eq`, `eq`, `exponential_ramp_to_value_at_time_raw`, `extend`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `from_channels`, `from_raw_parts`, `generate_wavetable`, `handle_event`, `handle_incoming_event`, `hash`, `into_raw_parts`, `is_a_rate`, `is_empty`, `iter_mut`, `iter`, `linear_ramp_to_value_at_time_raw`, `mix_to_output`, `new`, `new`, `new`, `next`, `normalize`, `number_of_inputs`, `number_of_outputs`, `onmessage`, `peek`, `pop`, `process`, `push`, `registration`, `replace_peek`, `resample`, `retain`, `send_event`, `set_automation_rate_constrained`, `set_channel_count_mode`, `set_channel_count`, `set_channel_interpretation`, `set_target_at_time_raw`, `set_value_at_time_raw`, `set_value_curve_at_time_raw`, `set_value_raw`, `sort`, `split_off`, `unsorted_peek`
 // These functions are ignored because they have generic arguments: `new`, `set_onupdate`
-// These types are ignored because they are not used by any `pub` functions: `AtomicF32`, `AtomicF64`, `AudioParamDescriptor`, `AudioParamEventTimeline`, `AudioParamEventType`, `AudioParamEvent`, `AudioParamInner`, `AudioParamProcessor`, `AudioRenderCapacityLoad`, `BlockInfos`, `ChannelData`, `EventDispatch`, `EventHandler`, `EventLoop`, `EventPayload`, `EventType`, `PeriodicWaveOptions`
+// These types are ignored because they are not used by any `pub` functions: `AtomicF32`, `AtomicF64`, `AudioParamDescriptor`, `AudioParamEventTimeline`, `AudioParamEventType`, `AudioParamEvent`, `AudioParamInner`, `AudioParamProcessor`, `AudioRenderCapacityLoad`, `BlockInfos`, `ChannelData`, `ErrorEvent`, `EventDispatch`, `EventHandler`, `EventLoop`, `EventPayload`, `EventType`, `PeriodicWaveOptions`
 // These functions are ignored: `as_mut_slice`, `as_slice`, `audio_processing`, `clear_handler`, `complete`, `copy_from_channel_with_offset`, `copy_from_channel`, `copy_to_channel_with_offset`, `copy_to_channel`, `diagnostics`, `ended`, `from`, `handle_pending_events`, `is_empty`, `len`, `load`, `load`, `message`, `new`, `new`, `new`, `new`, `processor_error`, `render_capacity`, `run_in_thread`, `set_handler`, `sink_change`, `state_change`, `store`, `store`
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioBuffer>>
@@ -407,69 +407,6 @@ class AudioRenderCapacityEvent extends RustOpaque {
   void set underrunRatio(double underrunRatio) =>
       RustLib.instance.api.webAudioApiAudioRenderCapacityEventSetUnderrunRatio(
           that: this, underrunRatio: underrunRatio);
-}
-
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Box < dyn Any + Send >>>
-@sealed
-class BoxAny extends RustOpaque {
-  // Not to be used by end users
-  BoxAny.frbInternalDcoDecode(List<dynamic> wire)
-      : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  BoxAny.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
-      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_BoxAny,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_BoxAny,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_BoxAnyPtr,
-  );
-}
-
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ErrorEvent>>
-@sealed
-class ErrorEvent extends RustOpaque {
-  // Not to be used by end users
-  ErrorEvent.frbInternalDcoDecode(List<dynamic> wire)
-      : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  ErrorEvent.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
-      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_ErrorEvent,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_ErrorEvent,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_ErrorEventPtr,
-  );
-
-  BoxAny get error => RustLib.instance.api.webAudioApiErrorEventGetError(
-        that: this,
-      );
-
-  Event get event => RustLib.instance.api.webAudioApiErrorEventGetEvent(
-        that: this,
-      );
-
-  String get message => RustLib.instance.api.webAudioApiErrorEventGetMessage(
-        that: this,
-      );
-
-  void set error(BoxAny error) => RustLib.instance.api
-      .webAudioApiErrorEventSetError(that: this, error: error);
-
-  void set event(Event event) => RustLib.instance.api
-      .webAudioApiErrorEventSetEvent(that: this, event: event);
-
-  void set message(String message) => RustLib.instance.api
-      .webAudioApiErrorEventSetMessage(that: this, message: message);
 }
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Event>>
