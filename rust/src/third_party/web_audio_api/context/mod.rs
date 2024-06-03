@@ -8,4 +8,7 @@ impl AudioContext {
 
     #[frb(ignore)]
     fn set_sink_id_sync() {}
+
+    #[frb(ignore)]
+    fn resume() {}
 }

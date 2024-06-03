@@ -12,7 +12,7 @@ import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 // These functions are ignored because they are not marked as `pub`: `address`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `base`, `base`, `base`, `calculate_suspend_frame`, `clear_event_handler`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `connect_listener_to_panner`, `connect`, `context`, `current_time`, `default`, `default`, `default`, `default`, `destination_channel_config`, `disconnect`, `drop`, `drop`, `ensure_audio_listener_present`, `eq`, `eq`, `eq`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `from`, `from`, `get`, `hash`, `id`, `is_valid_sink_id`, `listener`, `lock_control_msg_sender`, `mark_node_dropped`, `max_channel_count`, `new`, `new`, `offline`, `post_message`, `queue_audio_param_connect`, `register`, `resolve_queued_control_msgs`, `sample_rate`, `send_control_msg`, `send_event`, `set_event_handler`, `set_state`, `state`
 // These functions are ignored because they have generic arguments: `run_diagnostics`, `set_oncomplete`, `set_onsinkchange`, `suspend_sync`
 // These types are ignored because they are not used by any `pub` functions: `AudioContextState`, `AudioNodeIdProvider`, `AudioNodeId`, `AudioParamId`, `ConcreteBaseAudioContextInner`, `OfflineAudioContextRenderer`
-// These functions are ignored: `create_media_element_source`, `set_sink_id_sync`
+// These functions are ignored: `create_media_element_source`, `resume`, `set_sink_id_sync`
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioContext>>
 @sealed
@@ -142,20 +142,6 @@ class AudioContext extends RustOpaque {
   /// Returns an [`AudioRenderCapacity`] instance associated with an AudioContext.
   Future<void> renderCapacity() =>
       RustLib.instance.api.webAudioApiContextAudioContextRenderCapacity(
-        that: this,
-      );
-
-  /// Resumes the progression of time in an audio context that has previously been
-  /// suspended/paused.
-  ///
-  /// # Panics
-  ///
-  /// Will panic if:
-  ///
-  /// * The audio device is not available
-  /// * For a `BackendSpecificError`
-  Future<void> resume() =>
-      RustLib.instance.api.webAudioApiContextAudioContextResume(
         that: this,
       );
 
