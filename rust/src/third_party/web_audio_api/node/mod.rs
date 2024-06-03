@@ -31,5 +31,5 @@ impl IIRFilterNode {
 #[frb(external)]
 impl WaveShaperNode {
     #[frb(ignore)]
-    pub fn shape() {}
+    pub fn curve() {}
 }
