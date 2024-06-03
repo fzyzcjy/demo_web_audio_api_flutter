@@ -1,4 +1,5 @@
 pub mod worklet;
+pub mod node;
 
 use flutter_rust_bridge::frb;
 use web_audio_api::AudioRenderCapacity;
