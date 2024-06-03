@@ -1,3 +1,5 @@
+pub mod message_port;
+
 use flutter_rust_bridge::frb;
 use web_audio_api::AudioRenderCapacity;
 
