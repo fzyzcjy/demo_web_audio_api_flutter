@@ -11,4 +11,7 @@ impl AudioWorkletNode {
 
     #[frb(ignore)]
     pub fn disconnect_dest() {}
+
+    #[frb(ignore)]
+    pub fn disconnect_dest_from_output() {}
 }
