@@ -5,4 +5,10 @@ use web_audio_api::worklet::AudioWorkletNode;
 impl AudioWorkletNode {
     #[frb(ignore)]
     pub fn port() {}
+
+    #[frb(ignore)]
+    pub fn set_onprocessorerror() {}
+
+    #[frb(ignore)]
+    pub fn disconnect_dest() {}
 }
