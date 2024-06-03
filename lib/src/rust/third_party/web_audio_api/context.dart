@@ -148,7 +148,7 @@ class AudioContext extends RustOpaque {
       );
 
   /// Returns an [`AudioRenderCapacity`] instance associated with an AudioContext.
-  Future<AudioRenderCapacity> renderCapacity() =>
+  Future<void> renderCapacity() =>
       RustLib.instance.api.webAudioApiContextAudioContextRenderCapacity(
         that: this,
       );

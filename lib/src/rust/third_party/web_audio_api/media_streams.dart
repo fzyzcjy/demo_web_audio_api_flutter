@@ -36,7 +36,7 @@ class MediaStream extends RustOpaque {
       RustLib.instance.api
           .webAudioApiMediaStreamsMediaStreamFromTracks(tracks: tracks);
 
-  Future<MediaStreamTrack> getTracks() =>
+  Future<void> getTracks() =>
       RustLib.instance.api.webAudioApiMediaStreamsMediaStreamGetTracks(
         that: this,
       );

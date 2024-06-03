@@ -5,7 +5,6 @@
 
 import '../../frb_generated.dart';
 import '../web_audio_api.dart';
-import 'media_streams.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 // These functions are ignored because they are not marked as `pub`: `apply_curve`, `apply_mono_to_stereo_gain`, `apply_stereo_to_stereo_gain`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_valid_channel_count_mode`, `assert_valid_channel_count_mode`, `assert_valid_channel_count_mode`, `assert_valid_channel_count_mode`, `assert_valid_channel_count_mode`, `assert_valid_channel_count`, `assert_valid_channel_count`, `assert_valid_channel_count`, `assert_valid_channel_count`, `assert_valid_channel_count`, `assert_valid_channel_interpretation`, `assert_valid_cone_outer_gain`, `assert_valid_feedback_coefs`, `assert_valid_feedforward_coefs`, `assert_valid_number_of_channels`, `assert_valid_number_of_channels`, `before_drop`, `before_drop`, `before_drop`, `calculate_coefs`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `check_ring_buffer_up_down_mix`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `complex`, `cone_gain`, `connect_from_output_to_input`, `count_mode`, `count`, `db_to_lin`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `disconnect_dest_from_output_to_input`, `disconnect_dest_from_output`, `disconnect_dest`, `disconnect_output`, `disconnect`, `dist_gain`, `downsample_x2`, `downsample_x4`, `drop`, `eq`, `eq`, `eq`, `eq`, `eq`, `eq`, `eq`, `eq`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `from_raw_parts`, `from`, `from`, `from`, `from`, `from`, `from`, `from`, `from`, `generate_custom`, `generate_sample`, `generate_sawtooth`, `generate_sine`, `generate_square`, `generate_triangle`, `get_computed_freq`, `get_phase_incr`, `get_playback_infos`, `get_stereo_gains`, `handle_control_message`, `has_side_effects`, `has_side_effects`, `inner`, `interpretation`, `into_channel_config`, `inverse`, `lin_to_db`, `load_hrtf_processor`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `next`, `normalize_buffer`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `onmessage`, `onmessage`, `onmessage`, `onmessage`, `onmessage`, `onmessage`, `onmessage`, `onmessage`, `poly_blep`, `precomputed_sine_table`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `real`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `ring_buffer_mut`, `ring_buffer_mut`, `roll_zero`, `samples_out_mut`, `samples_out`, `set_channel_count_mode`, `set_channel_count_mode`, `set_channel_count_mode`, `set_channel_count_mode`, `set_channel_count_mode`, `set_channel_count_mode`, `set_channel_count_mode`, `set_channel_count`, `set_channel_count`, `set_channel_count`, `set_channel_count`, `set_channel_count`, `set_channel_count`, `set_channel_count`, `set_channel_interpretation`, `set_count_mode`, `set_count`, `set_interpretation`, `start_at`, `start_at`, `start_at`, `start`, `start`, `start`, `stop_at`, `stop_at`, `stop_at`, `stop`, `stop`, `stop`, `tail_time_samples`, `tail`, `unroll_phase`, `upsample_x2`, `upsample_x4`
@@ -190,7 +189,7 @@ class AudioBufferSourceNode extends RustOpaque {
   /// expressed in cents
   ///
   /// see <https://en.wikipedia.org/wiki/Cent_(music)>
-  Future<AudioParam> detune() =>
+  Future<void> detune() =>
       RustLib.instance.api.webAudioApiNodeAudioBufferSourceNodeDetune(
         that: this,
       );
@@ -219,7 +218,7 @@ class AudioBufferSourceNode extends RustOpaque {
   /// - `-1` will play the file in reverse
   ///
   /// Note that playback rate will also alter the pitch of the [`AudioBuffer`]
-  Future<AudioParam> playbackRate() =>
+  Future<void> playbackRate() =>
       RustLib.instance.api.webAudioApiNodeAudioBufferSourceNodePlaybackRate(
         that: this,
       );
@@ -331,19 +330,19 @@ class BiquadFilterNode extends RustOpaque {
   );
 
   /// Returns the detune audio parameter
-  Future<AudioParam> detune() =>
+  Future<void> detune() =>
       RustLib.instance.api.webAudioApiNodeBiquadFilterNodeDetune(
         that: this,
       );
 
   /// Returns the frequency audio parameter
-  Future<AudioParam> frequency() =>
+  Future<void> frequency() =>
       RustLib.instance.api.webAudioApiNodeBiquadFilterNodeFrequency(
         that: this,
       );
 
   /// Returns the gain audio parameter
-  Future<AudioParam> gain() =>
+  Future<void> gain() =>
       RustLib.instance.api.webAudioApiNodeBiquadFilterNodeGain(
         that: this,
       );
@@ -371,8 +370,7 @@ class BiquadFilterNode extends RustOpaque {
           phaseResponse: phaseResponse);
 
   /// Returns the Q audio parameter
-  Future<AudioParam> q() =>
-      RustLib.instance.api.webAudioApiNodeBiquadFilterNodeQ(
+  Future<void> q() => RustLib.instance.api.webAudioApiNodeBiquadFilterNodeQ(
         that: this,
       );
 
@@ -411,7 +409,7 @@ class ConstantSourceNode extends RustOpaque {
         .instance.api.rust_arc_decrement_strong_count_ConstantSourceNodePtr,
   );
 
-  Future<AudioParam> offset() =>
+  Future<void> offset() =>
       RustLib.instance.api.webAudioApiNodeConstantSourceNodeOffset(
         that: this,
       );
@@ -484,7 +482,7 @@ class DelayNode extends RustOpaque {
   );
 
   /// A-rate [`AudioParam`] representing the amount of delay (in seconds) to apply.
-  Future<AudioParam> delayTime() =>
+  Future<void> delayTime() =>
       RustLib.instance.api.webAudioApiNodeDelayNodeDelayTime(
         that: this,
       );
@@ -511,17 +509,17 @@ class DynamicsCompressorNode extends RustOpaque {
         .instance.api.rust_arc_decrement_strong_count_DynamicsCompressorNodePtr,
   );
 
-  Future<AudioParam> attack() =>
+  Future<void> attack() =>
       RustLib.instance.api.webAudioApiNodeDynamicsCompressorNodeAttack(
         that: this,
       );
 
-  Future<AudioParam> knee() =>
+  Future<void> knee() =>
       RustLib.instance.api.webAudioApiNodeDynamicsCompressorNodeKnee(
         that: this,
       );
 
-  Future<AudioParam> ratio() =>
+  Future<void> ratio() =>
       RustLib.instance.api.webAudioApiNodeDynamicsCompressorNodeRatio(
         that: this,
       );
@@ -531,12 +529,12 @@ class DynamicsCompressorNode extends RustOpaque {
         that: this,
       );
 
-  Future<AudioParam> release() =>
+  Future<void> release() =>
       RustLib.instance.api.webAudioApiNodeDynamicsCompressorNodeRelease(
         that: this,
       );
 
-  Future<AudioParam> threshold() =>
+  Future<void> threshold() =>
       RustLib.instance.api.webAudioApiNodeDynamicsCompressorNodeThreshold(
         that: this,
       );
@@ -562,7 +560,7 @@ class GainNode extends RustOpaque {
         RustLib.instance.api.rust_arc_decrement_strong_count_GainNodePtr,
   );
 
-  Future<AudioParam> gain() => RustLib.instance.api.webAudioApiNodeGainNodeGain(
+  Future<void> gain() => RustLib.instance.api.webAudioApiNodeGainNodeGain(
         that: this,
       );
 }
@@ -655,7 +653,7 @@ class MediaStreamAudioDestinationNode extends RustOpaque {
 
   /// A [`MediaStream`] producing audio buffers with the same number of channels as the node
   /// itself
-  Future<MediaStream> stream() =>
+  Future<void> stream() =>
       RustLib.instance.api.webAudioApiNodeMediaStreamAudioDestinationNodeStream(
         that: this,
       );
@@ -731,7 +729,7 @@ class OscillatorNode extends RustOpaque {
   /// see <https://en.wikipedia.org/wiki/Cent_(music)>
   ///
   /// The final frequency is calculated as follow: frequency * 2^(detune/1200)
-  Future<AudioParam> detune() =>
+  Future<void> detune() =>
       RustLib.instance.api.webAudioApiNodeOscillatorNodeDetune(
         that: this,
       );
@@ -740,7 +738,7 @@ class OscillatorNode extends RustOpaque {
   /// oscillator, expressed in Hz
   ///
   /// The final frequency is calculated as follow: frequency * 2^(detune/1200)
-  Future<AudioParam> frequency() =>
+  Future<void> frequency() =>
       RustLib.instance.api.webAudioApiNodeOscillatorNodeFrequency(
         that: this,
       );
@@ -817,17 +815,17 @@ class PannerNode extends RustOpaque {
         that: this,
       );
 
-  Future<AudioParam> orientationX() =>
+  Future<void> orientationX() =>
       RustLib.instance.api.webAudioApiNodePannerNodeOrientationX(
         that: this,
       );
 
-  Future<AudioParam> orientationY() =>
+  Future<void> orientationY() =>
       RustLib.instance.api.webAudioApiNodePannerNodeOrientationY(
         that: this,
       );
 
-  Future<AudioParam> orientationZ() =>
+  Future<void> orientationZ() =>
       RustLib.instance.api.webAudioApiNodePannerNodeOrientationZ(
         that: this,
       );
@@ -837,17 +835,17 @@ class PannerNode extends RustOpaque {
         that: this,
       );
 
-  Future<AudioParam> positionX() =>
+  Future<void> positionX() =>
       RustLib.instance.api.webAudioApiNodePannerNodePositionX(
         that: this,
       );
 
-  Future<AudioParam> positionY() =>
+  Future<void> positionY() =>
       RustLib.instance.api.webAudioApiNodePannerNodePositionY(
         that: this,
       );
 
-  Future<AudioParam> positionZ() =>
+  Future<void> positionZ() =>
       RustLib.instance.api.webAudioApiNodePannerNodePositionZ(
         that: this,
       );
@@ -974,8 +972,7 @@ class StereoPannerNode extends RustOpaque {
   );
 
   /// Returns the pan audio parameter
-  Future<AudioParam> pan() =>
-      RustLib.instance.api.webAudioApiNodeStereoPannerNodePan(
+  Future<void> pan() => RustLib.instance.api.webAudioApiNodeStereoPannerNodePan(
         that: this,
       );
 }

@@ -35,30 +35,8 @@ class AudioWorkletNode extends RustOpaque {
   ///
   /// This map is populated from a list of [`AudioParamDescriptor`]s in the
   /// [`AudioWorkletProcessor`] class constructor at the instantiation.
-  Future<HashMapStringAudioParam> parameters() =>
+  Future<void> parameters() =>
       RustLib.instance.api.webAudioApiWorkletAudioWorkletNodeParameters(
         that: this,
       );
-}
-
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<HashMap < String , AudioParam >>>
-@sealed
-class HashMapStringAudioParam extends RustOpaque {
-  // Not to be used by end users
-  HashMapStringAudioParam.frbInternalDcoDecode(List<dynamic> wire)
-      : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  HashMapStringAudioParam.frbInternalSseDecode(
-      BigInt ptr, int externalSizeOnNative)
-      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount: RustLib
-        .instance.api.rust_arc_increment_strong_count_HashMapStringAudioParam,
-    rustArcDecrementStrongCount: RustLib
-        .instance.api.rust_arc_decrement_strong_count_HashMapStringAudioParam,
-    rustArcDecrementStrongCountPtr: RustLib.instance.api
-        .rust_arc_decrement_strong_count_HashMapStringAudioParamPtr,
-  );
 }

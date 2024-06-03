@@ -89,7 +89,7 @@ class MediaDeviceInfo extends RustOpaque {
   ///
   /// The current implementation is not stable across sessions so you should not persist this
   /// value
-  Future<Str> deviceId() =>
+  Future<void> deviceId() =>
       RustLib.instance.api.webAudioApiMediaDevicesMediaDeviceInfoDeviceId(
         that: this,
       );
@@ -107,7 +107,7 @@ class MediaDeviceInfo extends RustOpaque {
       );
 
   /// Friendly label describing this device
-  Future<Str> label() =>
+  Future<void> label() =>
       RustLib.instance.api.webAudioApiMediaDevicesMediaDeviceInfoLabel(
         that: this,
       );

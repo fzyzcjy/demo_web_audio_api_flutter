@@ -114,7 +114,7 @@ class AudioBuffer extends RustOpaque {
   ///
   /// This function will panic if:
   /// - the given channel number is greater than or equal to the given number of channels.
-  Future<F32> getChannelData({required BigInt channelNumber}) =>
+  Future<void> getChannelData({required BigInt channelNumber}) =>
       RustLib.instance.api.webAudioApiAudioBufferGetChannelData(
           that: this, channelNumber: channelNumber);
 
@@ -124,7 +124,7 @@ class AudioBuffer extends RustOpaque {
   ///
   /// This function will panic if:
   /// - the given channel number is greater than or equal to the given number of channels.
-  Future<F32> getChannelDataMut({required BigInt channelNumber}) =>
+  Future<void> getChannelDataMut({required BigInt channelNumber}) =>
       RustLib.instance.api.webAudioApiAudioBufferGetChannelDataMut(
           that: this, channelNumber: channelNumber);
 
@@ -192,7 +192,7 @@ class AudioParam extends RustOpaque {
   /// # Panics
   ///
   /// Will panic if `cancel_time` is negative
-  Future<Self> cancelAndHoldAtTime({required double cancelTime}) =>
+  Future<void> cancelAndHoldAtTime({required double cancelTime}) =>
       RustLib.instance.api.webAudioApiAudioParamCancelAndHoldAtTime(
           that: this, cancelTime: cancelTime);
 
@@ -202,7 +202,7 @@ class AudioParam extends RustOpaque {
   /// # Panics
   ///
   /// Will panic if `cancel_time` is negative
-  Future<Self> cancelScheduledValues({required double cancelTime}) =>
+  Future<void> cancelScheduledValues({required double cancelTime}) =>
       RustLib.instance.api.webAudioApiAudioParamCancelScheduledValues(
           that: this, cancelTime: cancelTime);
 
@@ -219,7 +219,7 @@ class AudioParam extends RustOpaque {
   /// Will panic if:
   /// - `value` is zero
   /// - `end_time` is negative
-  Future<Self> exponentialRampToValueAtTime(
+  Future<void> exponentialRampToValueAtTime(
           {required double value, required double endTime}) =>
       RustLib.instance.api.webAudioApiAudioParamExponentialRampToValueAtTime(
           that: this, value: value, endTime: endTime);
@@ -230,7 +230,7 @@ class AudioParam extends RustOpaque {
   /// # Panics
   ///
   /// Will panic if `end_time` is negative
-  Future<Self> linearRampToValueAtTime(
+  Future<void> linearRampToValueAtTime(
           {required double value, required double endTime}) =>
       RustLib.instance.api.webAudioApiAudioParamLinearRampToValueAtTime(
           that: this, value: value, endTime: endTime);
@@ -262,7 +262,7 @@ class AudioParam extends RustOpaque {
   /// Will panic if:
   /// - `start_time` is negative
   /// - `time_constant` is negative
-  Future<Self> setTargetAtTime(
+  Future<void> setTargetAtTime(
           {required double value,
           required double startTime,
           required double timeConstant}) =>
@@ -276,7 +276,7 @@ class AudioParam extends RustOpaque {
   ///
   /// Is equivalent to calling the `set_value_at_time` method with the current
   /// AudioContext's currentTime
-  Future<Self> setValue({required double value}) => RustLib.instance.api
+  Future<void> setValue({required double value}) => RustLib.instance.api
       .webAudioApiAudioParamSetValue(that: this, value: value);
 
   /// Schedules a parameter value change at the given time.
@@ -284,7 +284,7 @@ class AudioParam extends RustOpaque {
   /// # Panics
   ///
   /// Will panic if `start_time` is negative
-  Future<Self> setValueAtTime(
+  Future<void> setValueAtTime(
           {required double value, required double startTime}) =>
       RustLib.instance.api.webAudioApiAudioParamSetValueAtTime(
           that: this, value: value, startTime: startTime);
@@ -298,7 +298,7 @@ class AudioParam extends RustOpaque {
   /// - `value` length is less than 2
   /// - `start_time` is negative
   /// - `duration` is negative or equal to zero
-  Future<Self> setValueCurveAtTime(
+  Future<void> setValueCurveAtTime(
           {required F32 values,
           required double startTime,
           required double duration}) =>
@@ -591,27 +591,6 @@ class PeriodicWave extends RustOpaque {
         RustLib.instance.api.rust_arc_decrement_strong_count_PeriodicWave,
     rustArcDecrementStrongCountPtr:
         RustLib.instance.api.rust_arc_decrement_strong_count_PeriodicWavePtr,
-  );
-}
-
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Self>>
-@sealed
-class Self extends RustOpaque {
-  // Not to be used by end users
-  Self.frbInternalDcoDecode(List<dynamic> wire)
-      : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  Self.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
-      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_Self,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_Self,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_SelfPtr,
   );
 }
 
