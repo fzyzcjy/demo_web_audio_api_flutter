@@ -41,7 +41,7 @@ flutter_rust_bridge::frb_generated_boilerplate!(
     default_rust_auto_opaque = RustAutoOpaqueMoi,
 );
 pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_VERSION: &str = "2.0.0-dev.37";
-pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = -271534259;
+pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = 2048515871;
 
 // Section: executor
 
@@ -3622,30 +3622,6 @@ let decode_indices_ = flutter_rust_bridge::for_generated::rust_auto_opaque_decod
                     })())
                 } })
 }
-fn wire__web_audio_api__node__ConvolverNode_buffer_impl(
-    port_: flutter_rust_bridge::for_generated::MessagePort,
-    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
-    rust_vec_len_: i32,
-    data_len_: i32,
-) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec,_,_>(flutter_rust_bridge::for_generated::TaskInfo{ debug_name: "ConvolverNode_buffer", port: Some(port_), mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal }, move || { 
-            let message = unsafe { flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(ptr_, rust_vec_len_, data_len_) };
-            let mut deserializer = flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            let api_that = <RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ConvolverNode>>>::sse_decode(&mut deserializer);deserializer.end(); move |context|  {
-                    transform_result_sse((move ||  {
-                        let mut api_that_decoded = None;
-let decode_indices_ = flutter_rust_bridge::for_generated::rust_auto_opaque_decode_compute_order(vec![flutter_rust_bridge::for_generated::rust_auto_opaque_lock_order_info(&api_that, 0, false)]);
-        for i in decode_indices_ {
-            match i {
-                0 => api_that_decoded = Some(flutter_rust_bridge::for_generated::rust_auto_opaque_decode_sync_ref(&api_that)),
-                _ => unreachable!(),
-            }
-        }
-        let api_that = api_that_decoded.unwrap();
- Result::<_,()>::Ok(web_audio_api::node::ConvolverNode::buffer(&api_that))
-                    })())
-                } })
-}
 fn wire__web_audio_api__node__ConvolverNode_normalize_impl(
     port_: flutter_rust_bridge::for_generated::MessagePort,
     ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
@@ -6461,266 +6437,263 @@ fn pde_ffi_dispatcher_primary_impl(
             rust_vec_len,
             data_len,
         ),
-        126 => {
-            wire__web_audio_api__node__ConvolverNode_buffer_impl(port, ptr, rust_vec_len, data_len)
-        }
-        127 => wire__web_audio_api__node__ConvolverNode_normalize_impl(
+        126 => wire__web_audio_api__node__ConvolverNode_normalize_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        128 => wire__web_audio_api__node__ConvolverNode_set_buffer_impl(
+        127 => wire__web_audio_api__node__ConvolverNode_set_buffer_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        129 => wire__web_audio_api__node__ConvolverNode_set_normalize_impl(
+        128 => wire__web_audio_api__node__ConvolverNode_set_normalize_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        130 => {
+        129 => {
             wire__web_audio_api__node__DelayNode_delay_time_impl(port, ptr, rust_vec_len, data_len)
         }
-        131 => wire__web_audio_api__node__DynamicsCompressorNode_attack_impl(
+        130 => wire__web_audio_api__node__DynamicsCompressorNode_attack_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        132 => wire__web_audio_api__node__DynamicsCompressorNode_knee_impl(
+        131 => wire__web_audio_api__node__DynamicsCompressorNode_knee_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        133 => wire__web_audio_api__node__DynamicsCompressorNode_ratio_impl(
+        132 => wire__web_audio_api__node__DynamicsCompressorNode_ratio_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        134 => wire__web_audio_api__node__DynamicsCompressorNode_reduction_impl(
+        133 => wire__web_audio_api__node__DynamicsCompressorNode_reduction_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        135 => wire__web_audio_api__node__DynamicsCompressorNode_release_impl(
+        134 => wire__web_audio_api__node__DynamicsCompressorNode_release_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        136 => wire__web_audio_api__node__DynamicsCompressorNode_threshold_impl(
+        135 => wire__web_audio_api__node__DynamicsCompressorNode_threshold_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        137 => wire__web_audio_api__node__GainNode_gain_impl(port, ptr, rust_vec_len, data_len),
-        138 => wire__web_audio_api__node__MediaStreamAudioDestinationNode_stream_impl(
+        136 => wire__web_audio_api__node__GainNode_gain_impl(port, ptr, rust_vec_len, data_len),
+        137 => wire__web_audio_api__node__MediaStreamAudioDestinationNode_stream_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        139 => {
+        138 => {
             wire__web_audio_api__node__OscillatorNode_detune_impl(port, ptr, rust_vec_len, data_len)
         }
-        140 => wire__web_audio_api__node__OscillatorNode_frequency_impl(
+        139 => wire__web_audio_api__node__OscillatorNode_frequency_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        141 => wire__web_audio_api__node__OscillatorNode_set_periodic_wave_impl(
+        140 => wire__web_audio_api__node__OscillatorNode_set_periodic_wave_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        142 => wire__web_audio_api__node__OscillatorNode_set_type_impl(
+        141 => wire__web_audio_api__node__OscillatorNode_set_type_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        143 => {
+        142 => {
             wire__web_audio_api__node__OscillatorNode_type__impl(port, ptr, rust_vec_len, data_len)
         }
-        144 => wire__web_audio_api__node__PannerNode_cone_inner_angle_impl(
+        143 => wire__web_audio_api__node__PannerNode_cone_inner_angle_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        145 => wire__web_audio_api__node__PannerNode_cone_outer_angle_impl(
+        144 => wire__web_audio_api__node__PannerNode_cone_outer_angle_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        146 => wire__web_audio_api__node__PannerNode_cone_outer_gain_impl(
+        145 => wire__web_audio_api__node__PannerNode_cone_outer_gain_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        147 => wire__web_audio_api__node__PannerNode_distance_model_impl(
+        146 => wire__web_audio_api__node__PannerNode_distance_model_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        148 => wire__web_audio_api__node__PannerNode_max_distance_impl(
+        147 => wire__web_audio_api__node__PannerNode_max_distance_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        149 => wire__web_audio_api__node__PannerNode_orientation_x_impl(
+        148 => wire__web_audio_api__node__PannerNode_orientation_x_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        150 => wire__web_audio_api__node__PannerNode_orientation_y_impl(
+        149 => wire__web_audio_api__node__PannerNode_orientation_y_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        151 => wire__web_audio_api__node__PannerNode_orientation_z_impl(
+        150 => wire__web_audio_api__node__PannerNode_orientation_z_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        152 => wire__web_audio_api__node__PannerNode_panning_model_impl(
+        151 => wire__web_audio_api__node__PannerNode_panning_model_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        153 => {
+        152 => {
             wire__web_audio_api__node__PannerNode_position_x_impl(port, ptr, rust_vec_len, data_len)
         }
-        154 => {
+        153 => {
             wire__web_audio_api__node__PannerNode_position_y_impl(port, ptr, rust_vec_len, data_len)
         }
-        155 => {
+        154 => {
             wire__web_audio_api__node__PannerNode_position_z_impl(port, ptr, rust_vec_len, data_len)
         }
-        156 => wire__web_audio_api__node__PannerNode_ref_distance_impl(
+        155 => wire__web_audio_api__node__PannerNode_ref_distance_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        157 => wire__web_audio_api__node__PannerNode_rolloff_factor_impl(
+        156 => wire__web_audio_api__node__PannerNode_rolloff_factor_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        158 => wire__web_audio_api__node__PannerNode_set_cone_inner_angle_impl(
+        157 => wire__web_audio_api__node__PannerNode_set_cone_inner_angle_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        159 => wire__web_audio_api__node__PannerNode_set_cone_outer_angle_impl(
+        158 => wire__web_audio_api__node__PannerNode_set_cone_outer_angle_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        160 => wire__web_audio_api__node__PannerNode_set_cone_outer_gain_impl(
+        159 => wire__web_audio_api__node__PannerNode_set_cone_outer_gain_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        161 => wire__web_audio_api__node__PannerNode_set_distance_model_impl(
+        160 => wire__web_audio_api__node__PannerNode_set_distance_model_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        162 => wire__web_audio_api__node__PannerNode_set_max_distance_impl(
+        161 => wire__web_audio_api__node__PannerNode_set_max_distance_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        163 => wire__web_audio_api__node__PannerNode_set_orientation_impl(
+        162 => wire__web_audio_api__node__PannerNode_set_orientation_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        164 => wire__web_audio_api__node__PannerNode_set_panning_model_impl(
+        163 => wire__web_audio_api__node__PannerNode_set_panning_model_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        165 => wire__web_audio_api__node__PannerNode_set_position_impl(
+        164 => wire__web_audio_api__node__PannerNode_set_position_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        166 => wire__web_audio_api__node__PannerNode_set_ref_distance_impl(
+        165 => wire__web_audio_api__node__PannerNode_set_ref_distance_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        167 => wire__web_audio_api__node__PannerNode_set_rolloff_factor_impl(
+        166 => wire__web_audio_api__node__PannerNode_set_rolloff_factor_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        168 => wire__web_audio_api__node__ScriptProcessorNode_buffer_size_impl(
+        167 => wire__web_audio_api__node__ScriptProcessorNode_buffer_size_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        169 => wire__web_audio_api__node__ScriptProcessorNode_clear_onaudioprocess_impl(
+        168 => wire__web_audio_api__node__ScriptProcessorNode_clear_onaudioprocess_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        170 => {
+        169 => {
             wire__web_audio_api__node__StereoPannerNode_pan_impl(port, ptr, rust_vec_len, data_len)
         }
-        171 => wire__web_audio_api__node__WaveShaperNode_oversample_impl(
+        170 => wire__web_audio_api__node__WaveShaperNode_oversample_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        172 => wire__web_audio_api__node__WaveShaperNode_set_curve_impl(
+        171 => wire__web_audio_api__node__WaveShaperNode_set_curve_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        173 => wire__web_audio_api__node__WaveShaperNode_set_oversample_impl(
+        172 => wire__web_audio_api__node__WaveShaperNode_set_oversample_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        174 => wire__web_audio_api__worklet__AudioWorkletNode_parameters_impl(
+        173 => wire__web_audio_api__worklet__AudioWorkletNode_parameters_impl(
             port,
             ptr,
             rust_vec_len,
