@@ -4,12 +4,11 @@
 // ignore_for_file: invalid_use_of_internal_member, unused_import, unnecessary_import
 
 import '../../frb_generated.dart';
-import 'node.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 // These functions are ignored because they are not marked as `pub`: `channel_config`, `clone`, `default`, `fmt`, `fmt`, `fmt`, `has_side_effects`, `load`, `new`, `number_of_inputs`, `number_of_outputs`, `onmessage`, `process`, `registration`
 // These functions are ignored because they have generic arguments: `new`
-// These types are ignored because they are not used by any `pub` functions: `AudioParamValues`, `AudioWorkletRenderer`, `Processor`
+// These types are ignored because they are not used by any `pub` functions: `AudioParamValues`, `AudioWorkletNodeOptions`, `AudioWorkletRenderer`, `Processor`
 // These functions are ignored: `get`
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioWorkletNode>>
@@ -50,106 +49,6 @@ class AudioWorkletNode extends RustOpaque {
       RustLib.instance.api.webAudioApiWorkletAudioWorkletNodePort(
         that: this,
       );
-}
-
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioWorkletNodeOptions>>
-@sealed
-class AudioWorkletNodeOptions extends RustOpaque {
-  // Not to be used by end users
-  AudioWorkletNodeOptions.frbInternalDcoDecode(List<dynamic> wire)
-      : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  AudioWorkletNodeOptions.frbInternalSseDecode(
-      BigInt ptr, int externalSizeOnNative)
-      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount: RustLib
-        .instance.api.rust_arc_increment_strong_count_AudioWorkletNodeOptions,
-    rustArcDecrementStrongCount: RustLib
-        .instance.api.rust_arc_decrement_strong_count_AudioWorkletNodeOptions,
-    rustArcDecrementStrongCountPtr: RustLib.instance.api
-        .rust_arc_decrement_strong_count_AudioWorkletNodeOptionsPtr,
-  );
-
-  AudioNodeOptions get audioNodeOptions => RustLib.instance.api
-          .webAudioApiWorkletAudioWorkletNodeOptionsGetAudioNodeOptions(
-        that: this,
-      );
-
-  BigInt get numberOfInputs => RustLib.instance.api
-          .webAudioApiWorkletAudioWorkletNodeOptionsGetNumberOfInputs(
-        that: this,
-      );
-
-  BigInt get numberOfOutputs => RustLib.instance.api
-          .webAudioApiWorkletAudioWorkletNodeOptionsGetNumberOfOutputs(
-        that: this,
-      );
-
-  Uint64List get outputChannelCount => RustLib.instance.api
-          .webAudioApiWorkletAudioWorkletNodeOptionsGetOutputChannelCount(
-        that: this,
-      );
-
-  Map<String, double> get parameterData => RustLib.instance.api
-          .webAudioApiWorkletAudioWorkletNodeOptionsGetParameterData(
-        that: this,
-      );
-
-  C get processorOptions => RustLib.instance.api
-          .webAudioApiWorkletAudioWorkletNodeOptionsGetProcessorOptions(
-        that: this,
-      );
-
-  void set audioNodeOptions(AudioNodeOptions audioNodeOptions) =>
-      RustLib.instance.api
-          .webAudioApiWorkletAudioWorkletNodeOptionsSetAudioNodeOptions(
-              that: this, audioNodeOptions: audioNodeOptions);
-
-  void set numberOfInputs(BigInt numberOfInputs) => RustLib.instance.api
-      .webAudioApiWorkletAudioWorkletNodeOptionsSetNumberOfInputs(
-          that: this, numberOfInputs: numberOfInputs);
-
-  void set numberOfOutputs(BigInt numberOfOutputs) => RustLib.instance.api
-      .webAudioApiWorkletAudioWorkletNodeOptionsSetNumberOfOutputs(
-          that: this, numberOfOutputs: numberOfOutputs);
-
-  void set outputChannelCount(Uint64List outputChannelCount) => RustLib
-      .instance.api
-      .webAudioApiWorkletAudioWorkletNodeOptionsSetOutputChannelCount(
-          that: this, outputChannelCount: outputChannelCount);
-
-  void set parameterData(Map<String, double> parameterData) =>
-      RustLib.instance.api
-          .webAudioApiWorkletAudioWorkletNodeOptionsSetParameterData(
-              that: this, parameterData: parameterData);
-
-  void set processorOptions(C processorOptions) => RustLib.instance.api
-      .webAudioApiWorkletAudioWorkletNodeOptionsSetProcessorOptions(
-          that: this, processorOptions: processorOptions);
-}
-
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<C>>
-@sealed
-class C extends RustOpaque {
-  // Not to be used by end users
-  C.frbInternalDcoDecode(List<dynamic> wire)
-      : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  C.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
-      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_C,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_C,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_CPtr,
-  );
 }
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<HashMap < String , AudioParam >>>
