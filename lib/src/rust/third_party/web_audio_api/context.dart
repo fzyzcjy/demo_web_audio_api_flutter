@@ -12,7 +12,7 @@ import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 // These functions are ignored because they are not marked as `pub`: `address`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `base`, `base`, `base`, `calculate_suspend_frame`, `clear_event_handler`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `connect_listener_to_panner`, `connect`, `context`, `current_time`, `default`, `default`, `default`, `default`, `destination_channel_config`, `disconnect`, `drop`, `drop`, `ensure_audio_listener_present`, `eq`, `eq`, `eq`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `from`, `from`, `get`, `hash`, `id`, `is_valid_sink_id`, `listener`, `lock_control_msg_sender`, `mark_node_dropped`, `max_channel_count`, `new`, `new`, `offline`, `post_message`, `queue_audio_param_connect`, `register`, `resolve_queued_control_msgs`, `sample_rate`, `send_control_msg`, `send_event`, `set_event_handler`, `set_state`, `state`
 // These functions are ignored because they have generic arguments: `run_diagnostics`, `set_oncomplete`, `set_onsinkchange`, `suspend_sync`
 // These types are ignored because they are not used by any `pub` functions: `AudioContextState`, `AudioNodeIdProvider`, `AudioNodeId`, `AudioParamId`, `ConcreteBaseAudioContextInner`, `OfflineAudioContextRenderer`
-// These functions are ignored: `create_media_element_source`
+// These functions are ignored: `create_media_element_source`, `set_sink_id_sync`
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioContext>>
 @sealed
@@ -176,18 +176,6 @@ class AudioContext extends RustOpaque {
         that: this,
       );
 
-  /// Update the current audio output device.
-  ///
-  /// The provided `sink_id` string must match a device name `enumerate_devices_sync`.
-  ///
-  /// Supplying `"none"` for the `sink_id` will process the audio graph without playing through an
-  /// audio output device.
-  ///
-  /// This function operates synchronously and might block the current thread. An async version
-  /// is currently not implemented.
-  Future<void> setSinkIdSync({required String sinkId}) => RustLib.instance.api
-      .webAudioApiContextAudioContextSetSinkIdSync(that: this, sinkId: sinkId);
-
   /// Identifier or the information of the current audio output device.
   ///
   /// The initial value is `""`, which means the default audio output device.
@@ -331,27 +319,6 @@ class AudioContextRegistration extends RustOpaque {
         .instance.api.rust_arc_decrement_strong_count_AudioContextRegistration,
     rustArcDecrementStrongCountPtr: RustLib.instance.api
         .rust_arc_decrement_strong_count_AudioContextRegistrationPtr,
-  );
-}
-
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Box < dyn Error >>>
-@sealed
-class BoxError extends RustOpaque {
-  // Not to be used by end users
-  BoxError.frbInternalDcoDecode(List<dynamic> wire)
-      : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  BoxError.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
-      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_BoxError,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_BoxError,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_BoxErrorPtr,
   );
 }
 
