@@ -8,3 +8,6 @@ pub struct MediaDeviceInfo;
 //     #[frb(ignore)]
 //     fn group_id() {}
 // }
+
+#[frb(ignore)]
+fn enumerate_devices_sync() {}
