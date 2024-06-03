@@ -232,28 +232,6 @@ pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_decrement_strong_co
 }
 
 #[no_mangle]
-pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnOnceErrorEventSendstatic(
-    ptr: *const std::ffi::c_void,
-) {
-    MoiArc::<
-        flutter_rust_bridge::for_generated::RustAutoOpaqueInner<
-            Box<dyn FnOnce(ErrorEvent) + Send + 'static>,
-        >,
-    >::increment_strong_count(ptr as _);
-}
-
-#[no_mangle]
-pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnOnceErrorEventSendstatic(
-    ptr: *const std::ffi::c_void,
-) {
-    MoiArc::<
-        flutter_rust_bridge::for_generated::RustAutoOpaqueInner<
-            Box<dyn FnOnce(ErrorEvent) + Send + 'static>,
-        >,
-    >::decrement_strong_count(ptr as _);
-}
-
-#[no_mangle]
 pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConcreteBaseAudioContext(
     ptr: *const std::ffi::c_void,
 ) {
