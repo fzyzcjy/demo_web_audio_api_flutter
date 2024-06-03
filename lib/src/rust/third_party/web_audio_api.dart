@@ -525,13 +525,6 @@ class Event extends RustOpaque {
     rustArcDecrementStrongCountPtr:
         RustLib.instance.api.rust_arc_decrement_strong_count_EventPtr,
   );
-
-  Str get type => RustLib.instance.api.webAudioApiEventGetType(
-        that: this,
-      );
-
-  void set type(Str type) =>
-      RustLib.instance.api.webAudioApiEventSetType(that: this, type: type);
 }
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<OfflineAudioCompletionEvent>>
