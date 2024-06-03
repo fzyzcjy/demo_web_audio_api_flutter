@@ -70,7 +70,7 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
   String get codegenVersion => '2.0.0-dev.37';
 
   @override
-  int get rustContentHash => 1562401743;
+  int get rustContentHash => -292434835;
 
   static const kDefaultExternalLibraryLoaderConfig =
       ExternalLibraryLoaderConfig(
@@ -717,9 +717,6 @@ abstract class RustLibApi extends BaseApi {
   Future<HashMapStringAudioParam> webAudioApiWorkletAudioWorkletNodeParameters(
       {required AudioWorkletNode that});
 
-  Future<MessagePort> webAudioApiWorkletAudioWorkletNodePort(
-      {required AudioWorkletNode that});
-
   RustArcIncrementStrongCountFnType
       get rust_arc_increment_strong_count_AnalyserNode;
 
@@ -1035,14 +1032,6 @@ abstract class RustLibApi extends BaseApi {
 
   CrossPlatformFinalizerArg
       get rust_arc_decrement_strong_count_MediaStreamTrackAudioSourceNodePtr;
-
-  RustArcIncrementStrongCountFnType
-      get rust_arc_increment_strong_count_MessagePort;
-
-  RustArcDecrementStrongCountFnType
-      get rust_arc_decrement_strong_count_MessagePort;
-
-  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_MessagePortPtr;
 
   RustArcIncrementStrongCountFnType
       get rust_arc_increment_strong_count_OfflineAudioCompletionEvent;
@@ -6790,34 +6779,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         argNames: ["that"],
       );
 
-  @override
-  Future<MessagePort> webAudioApiWorkletAudioWorkletNodePort(
-      {required AudioWorkletNode that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioWorkletNode(
-            that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 201, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMessagePort_,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiWorkletAudioWorkletNodePortConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiWorkletAudioWorkletNodePortConstMeta =>
-      const TaskConstMeta(
-        debugName: "AudioWorkletNode_port",
-        argNames: ["that"],
-      );
-
   RustArcIncrementStrongCountFnType
       get rust_arc_increment_strong_count_AnalyserNode => wire
           .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAnalyserNode;
@@ -7111,14 +7072,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   RustArcDecrementStrongCountFnType
       get rust_arc_decrement_strong_count_MediaStreamTrackAudioSourceNode => wire
           .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrackAudioSourceNode;
-
-  RustArcIncrementStrongCountFnType
-      get rust_arc_increment_strong_count_MessagePort => wire
-          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMessagePort_;
-
-  RustArcDecrementStrongCountFnType
-      get rust_arc_decrement_strong_count_MessagePort => wire
-          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMessagePort_;
 
   RustArcIncrementStrongCountFnType
       get rust_arc_increment_strong_count_OfflineAudioCompletionEvent => wire
@@ -7483,14 +7436,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return MediaStreamTrackAudioSourceNode.frbInternalDcoDecode(
         raw as List<dynamic>);
-  }
-
-  @protected
-  MessagePort
-      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMessagePort_(
-          dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return MessagePort.frbInternalDcoDecode(raw as List<dynamic>);
   }
 
   @protected
@@ -8323,14 +8268,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  MessagePort
-      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMessagePort_(
-          dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return MessagePort.frbInternalDcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
   OfflineAudioCompletionEvent
       dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioCompletionEvent(
           dynamic raw) {
@@ -8986,15 +8923,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return MediaStreamTrackAudioSourceNode.frbInternalSseDecode(
-        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
-  }
-
-  @protected
-  MessagePort
-      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMessagePort_(
-          SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return MessagePort.frbInternalSseDecode(
         sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
   }
 
@@ -9922,15 +9850,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  MessagePort
-      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMessagePort_(
-          SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return MessagePort.frbInternalSseDecode(
-        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
-  }
-
-  @protected
   OfflineAudioCompletionEvent
       sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioCompletionEvent(
           SseDeserializer deserializer) {
@@ -10604,14 +10523,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrackAudioSourceNode(
           MediaStreamTrackAudioSourceNode self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(self.frbInternalSseEncode(move: true), serializer);
-  }
-
-  @protected
-  void
-      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMessagePort_(
-          MessagePort self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(self.frbInternalSseEncode(move: true), serializer);
   }
@@ -11436,14 +11347,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   void
       sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrackAudioSourceNode(
           MediaStreamTrackAudioSourceNode self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(self.frbInternalSseEncode(move: null), serializer);
-  }
-
-  @protected
-  void
-      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMessagePort_(
-          MessagePort self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(self.frbInternalSseEncode(move: null), serializer);
   }
