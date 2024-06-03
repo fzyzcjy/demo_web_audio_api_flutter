@@ -7,5 +7,5 @@ edition = "2021"
 crate-type = ["cdylib", "staticlib"]
 
 [dependencies]
-flutter_rust_bridge = { path = "../../flutter_rust_bridge/frb_rust" }
+flutter_rust_bridge = "=2.0.0-dev.37"
 web-audio-api = "1.0.0-rc.6"
