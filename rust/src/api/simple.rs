@@ -1,8 +1,6 @@
 pub use std::any::Any;
 pub use std::error::Error;
 
-pub struct DummyStruct {}
-
 pub fn dummy_function(
     a: Box<dyn Any + Send>,
     b: Box<dyn Error>,
