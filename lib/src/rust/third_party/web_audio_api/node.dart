@@ -10,6 +10,7 @@ import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 // These functions are ignored because they are not marked as `pub`: `apply_curve`, `apply_mono_to_stereo_gain`, `apply_stereo_to_stereo_gain`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_valid_channel_count_mode`, `assert_valid_channel_count_mode`, `assert_valid_channel_count_mode`, `assert_valid_channel_count_mode`, `assert_valid_channel_count_mode`, `assert_valid_channel_count`, `assert_valid_channel_count`, `assert_valid_channel_count`, `assert_valid_channel_count`, `assert_valid_channel_count`, `assert_valid_channel_interpretation`, `assert_valid_cone_outer_gain`, `assert_valid_feedback_coefs`, `assert_valid_feedforward_coefs`, `assert_valid_number_of_channels`, `assert_valid_number_of_channels`, `before_drop`, `before_drop`, `before_drop`, `calculate_coefs`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `check_ring_buffer_up_down_mix`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `complex`, `cone_gain`, `connect_from_output_to_input`, `count_mode`, `count`, `db_to_lin`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `disconnect_dest_from_output_to_input`, `disconnect_dest_from_output`, `disconnect_dest`, `disconnect_output`, `disconnect`, `dist_gain`, `downsample_x2`, `downsample_x4`, `drop`, `eq`, `eq`, `eq`, `eq`, `eq`, `eq`, `eq`, `eq`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `from_raw_parts`, `from`, `from`, `from`, `from`, `from`, `from`, `from`, `from`, `generate_custom`, `generate_sample`, `generate_sawtooth`, `generate_sine`, `generate_square`, `generate_triangle`, `get_computed_freq`, `get_phase_incr`, `get_playback_infos`, `get_stereo_gains`, `handle_control_message`, `has_side_effects`, `has_side_effects`, `inner`, `interpretation`, `into_channel_config`, `inverse`, `lin_to_db`, `load_hrtf_processor`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `next`, `normalize_buffer`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `onmessage`, `onmessage`, `onmessage`, `onmessage`, `onmessage`, `onmessage`, `onmessage`, `onmessage`, `poly_blep`, `precomputed_sine_table`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `real`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `ring_buffer_mut`, `ring_buffer_mut`, `roll_zero`, `samples_out_mut`, `samples_out`, `set_channel_count_mode`, `set_channel_count_mode`, `set_channel_count_mode`, `set_channel_count_mode`, `set_channel_count_mode`, `set_channel_count_mode`, `set_channel_count_mode`, `set_channel_count`, `set_channel_count`, `set_channel_count`, `set_channel_count`, `set_channel_count`, `set_channel_count`, `set_channel_count`, `set_channel_interpretation`, `set_count_mode`, `set_count`, `set_interpretation`, `start_at`, `start_at`, `start_at`, `start`, `start`, `start`, `stop_at`, `stop_at`, `stop_at`, `stop`, `stop`, `stop`, `tail_time_samples`, `tail`, `unroll_phase`, `upsample_x2`, `upsample_x4`
 // These functions are ignored because they have generic arguments: `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `set_onaudioprocess`
 // These types are ignored because they are not used by any `pub` functions: `AnalyserOptions`, `AnalyserRenderer`, `AudioBufferRendererState`, `AudioBufferSourceOptions`, `AudioBufferSourceRenderer`, `AudioDestinationNodeStream`, `AudioNodeOptions`, `BiquadFilterOptions`, `BiquadFilterRenderer`, `ChannelConfigInner`, `ChannelConfig`, `ChannelCountMode`, `ChannelInterpretation`, `ChannelMergerNode`, `ChannelMergerOptions`, `ChannelMergerRenderer`, `ChannelSplitterNode`, `ChannelSplitterOptions`, `ChannelSplitterRenderer`, `Coefficients`, `ConstantSourceOptions`, `ConstantSourceRenderer`, `ControlMessage`, `ConvolverOptions`, `ConvolverRendererInner`, `ConvolverRenderer`, `DelayOptions`, `DelayReader`, `DelayWriter`, `DestinationRenderer`, `DynamicsCompressorOptions`, `DynamicsCompressorRenderer`, `Fft`, `GainOptions`, `GainRenderer`, `HrtfState`, `IIRFilterOptions`, `IirFilterRenderer`, `LoopState`, `MediaElementAudioSourceOptions`, `MediaStreamAudioSourceOptions`, `MediaStreamRenderer`, `MediaStreamTrackAudioSourceOptions`, `OscillatorOptions`, `OscillatorRenderer`, `PannerOptions`, `PannerRenderer`, `PlaybackInfo`, `RendererConfig`, `ResamplerConfig`, `Resampler`, `Schedule`, `ScriptProcessorOptions`, `ScriptProcessorRenderer`, `SpatialParams`, `StereoPannerOptions`, `StereoPannerRenderer`, `WaveShaperOptions`, `WaveShaperRenderer`
+// These functions are ignored: `get_byte_frequency_data`, `get_byte_time_domain_data`, `get_float_frequency_data`, `get_float_time_domain_data`
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AnalyserNode>>
 @sealed
@@ -50,43 +51,6 @@ class AnalyserNode extends RustOpaque {
       RustLib.instance.api.webAudioApiNodeAnalyserNodeFrequencyBinCount(
         that: this,
       );
-
-  /// Copy the current frequency data scaled between min_decibels and
-  /// max_decibels into the provided buffer
-  ///
-  /// # Panics
-  ///
-  /// This method may panic if the lock to the inner analyser is poisoned
-  Future<void> getByteFrequencyData({required U8 buffer}) =>
-      RustLib.instance.api.webAudioApiNodeAnalyserNodeGetByteFrequencyData(
-          that: this, buffer: buffer);
-
-  /// Copy the current time domain data as u8 values into the provided buffer
-  ///
-  /// # Panics
-  ///
-  /// This method may panic if the lock to the inner analyser is poisoned
-  Future<void> getByteTimeDomainData({required U8 buffer}) =>
-      RustLib.instance.api.webAudioApiNodeAnalyserNodeGetByteTimeDomainData(
-          that: this, buffer: buffer);
-
-  /// Copy the current frequency data into the provided buffer
-  ///
-  /// # Panics
-  ///
-  /// This method may panic if the lock to the inner analyser is poisoned
-  Future<void> getFloatFrequencyData({required F32 buffer}) =>
-      RustLib.instance.api.webAudioApiNodeAnalyserNodeGetFloatFrequencyData(
-          that: this, buffer: buffer);
-
-  /// Copy the current time domain data as f32 values into the provided buffer
-  ///
-  /// # Panics
-  ///
-  /// This method may panic if the lock to the inner analyser is poisoned
-  Future<void> getFloatTimeDomainData({required F32 buffer}) =>
-      RustLib.instance.api.webAudioApiNodeAnalyserNodeGetFloatTimeDomainData(
-          that: this, buffer: buffer);
 
   /// Maximum power value in the scaling range for the FFT analysis data for
   /// conversion to unsigned byte values. The default value is -30.
@@ -1030,27 +994,6 @@ class WaveShaperNode extends RustOpaque {
   Future<void> setOversample({required OverSampleType oversample}) =>
       RustLib.instance.api.webAudioApiNodeWaveShaperNodeSetOversample(
           that: this, oversample: oversample);
-}
-
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<[u8]>>
-@sealed
-class U8 extends RustOpaque {
-  // Not to be used by end users
-  U8.frbInternalDcoDecode(List<dynamic> wire)
-      : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  U8.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
-      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_U8,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_U8,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_U8Ptr,
-  );
 }
 
 /// Biquad filter types
