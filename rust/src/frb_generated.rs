@@ -7497,6 +7497,7 @@ impl flutter_rust_bridge::IntoDart
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
         match self.0 {
             web_audio_api::context::AudioContextRenderSizeCategory::Default => 0.into_dart(),
+            _ => unreachable!(),
         }
     }
 }
@@ -7536,6 +7537,7 @@ impl flutter_rust_bridge::IntoDart for FrbWrapper<web_audio_api::AutomationRate>
         match self.0 {
             web_audio_api::AutomationRate::A => 0.into_dart(),
             web_audio_api::AutomationRate::K => 1.into_dart(),
+            _ => unreachable!(),
         }
     }
 }
@@ -7562,6 +7564,7 @@ impl flutter_rust_bridge::IntoDart for FrbWrapper<web_audio_api::node::BiquadFil
             web_audio_api::node::BiquadFilterType::Peaking => 5.into_dart(),
             web_audio_api::node::BiquadFilterType::Lowshelf => 6.into_dart(),
             web_audio_api::node::BiquadFilterType::Highshelf => 7.into_dart(),
+            _ => unreachable!(),
         }
     }
 }
@@ -7583,6 +7586,7 @@ impl flutter_rust_bridge::IntoDart for FrbWrapper<web_audio_api::node::DistanceM
             web_audio_api::node::DistanceModelType::Linear => 0.into_dart(),
             web_audio_api::node::DistanceModelType::Inverse => 1.into_dart(),
             web_audio_api::node::DistanceModelType::Exponential => 2.into_dart(),
+            _ => unreachable!(),
         }
     }
 }
@@ -7605,6 +7609,7 @@ impl flutter_rust_bridge::IntoDart
         match self.0 {
             web_audio_api::media_streams::MediaStreamTrackState::Live => 0.into_dart(),
             web_audio_api::media_streams::MediaStreamTrackState::Ended => 1.into_dart(),
+            _ => unreachable!(),
         }
     }
 }
@@ -7630,6 +7635,7 @@ impl flutter_rust_bridge::IntoDart for FrbWrapper<web_audio_api::node::Oscillato
             web_audio_api::node::OscillatorType::Sawtooth => 2.into_dart(),
             web_audio_api::node::OscillatorType::Triangle => 3.into_dart(),
             web_audio_api::node::OscillatorType::Custom => 4.into_dart(),
+            _ => unreachable!(),
         }
     }
 }
@@ -7651,6 +7657,7 @@ impl flutter_rust_bridge::IntoDart for FrbWrapper<web_audio_api::node::OverSampl
             web_audio_api::node::OverSampleType::None => 0.into_dart(),
             web_audio_api::node::OverSampleType::X2 => 1.into_dart(),
             web_audio_api::node::OverSampleType::X4 => 2.into_dart(),
+            _ => unreachable!(),
         }
     }
 }
@@ -7671,6 +7678,7 @@ impl flutter_rust_bridge::IntoDart for FrbWrapper<web_audio_api::node::PanningMo
         match self.0 {
             web_audio_api::node::PanningModelType::EqualPower => 0.into_dart(),
             web_audio_api::node::PanningModelType::HRTF => 1.into_dart(),
+            _ => unreachable!(),
         }
     }
 }
