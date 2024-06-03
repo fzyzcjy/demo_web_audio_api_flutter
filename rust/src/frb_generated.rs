@@ -5624,6 +5624,22 @@ let decode_indices_ = flutter_rust_bridge::for_generated::rust_auto_opaque_decod
                 } })
 }
 
+// Section: static_checks
+
+#[allow(clippy::unnecessary_literal_unwrap)]
+const _: fn() = || {
+    {
+        let AudioBufferOptions = None::<web_audio_api::AudioBufferOptions>.unwrap();
+        let _: usize = AudioBufferOptions.number_of_channels;
+        let _: usize = AudioBufferOptions.length;
+        let _: f32 = AudioBufferOptions.sample_rate;
+    }
+    {
+        let AudioRenderCapacityOptions = None::<web_audio_api::AudioRenderCapacityOptions>.unwrap();
+        let _: f64 = AudioRenderCapacityOptions.update_interval;
+    }
+};
+
 // Section: related_funcs
 
 flutter_rust_bridge::frb_generated_moi_arc_impl_value!(
@@ -8741,230 +8757,244 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<WaveShaperNode>> for WaveShape
 }
 
 // Codec=Dco (DartCObject based), see doc to use other codecs
-impl flutter_rust_bridge::IntoDart for web_audio_api::AudioBufferOptions {
+impl flutter_rust_bridge::IntoDart for FrbWrapper<web_audio_api::AudioBufferOptions> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
         [
-            self.number_of_channels.into_into_dart().into_dart(),
-            self.length.into_into_dart().into_dart(),
-            self.sample_rate.into_into_dart().into_dart(),
+            self.0.number_of_channels.into_into_dart().into_dart(),
+            self.0.length.into_into_dart().into_dart(),
+            self.0.sample_rate.into_into_dart().into_dart(),
         ]
         .into_dart()
     }
 }
 impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
-    for web_audio_api::AudioBufferOptions
+    for FrbWrapper<web_audio_api::AudioBufferOptions>
 {
 }
-impl flutter_rust_bridge::IntoIntoDart<web_audio_api::AudioBufferOptions>
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<web_audio_api::AudioBufferOptions>>
     for web_audio_api::AudioBufferOptions
 {
-    fn into_into_dart(self) -> web_audio_api::AudioBufferOptions {
-        self
+    fn into_into_dart(self) -> FrbWrapper<web_audio_api::AudioBufferOptions> {
+        self.into()
     }
 }
 // Codec=Dco (DartCObject based), see doc to use other codecs
-impl flutter_rust_bridge::IntoDart for web_audio_api::context::AudioContextRenderSizeCategory {
+impl flutter_rust_bridge::IntoDart
+    for FrbWrapper<web_audio_api::context::AudioContextRenderSizeCategory>
+{
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        match self {
-            Self::Default => 0.into_dart(),
+        match self.0 {
+            web_audio_api::context::AudioContextRenderSizeCategory::Default => 0.into_dart(),
         }
     }
 }
 impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
-    for web_audio_api::context::AudioContextRenderSizeCategory
+    for FrbWrapper<web_audio_api::context::AudioContextRenderSizeCategory>
 {
 }
-impl flutter_rust_bridge::IntoIntoDart<web_audio_api::context::AudioContextRenderSizeCategory>
-    for web_audio_api::context::AudioContextRenderSizeCategory
+impl
+    flutter_rust_bridge::IntoIntoDart<
+        FrbWrapper<web_audio_api::context::AudioContextRenderSizeCategory>,
+    > for web_audio_api::context::AudioContextRenderSizeCategory
 {
-    fn into_into_dart(self) -> web_audio_api::context::AudioContextRenderSizeCategory {
-        self
+    fn into_into_dart(self) -> FrbWrapper<web_audio_api::context::AudioContextRenderSizeCategory> {
+        self.into()
     }
 }
 // Codec=Dco (DartCObject based), see doc to use other codecs
-impl flutter_rust_bridge::IntoDart for web_audio_api::AudioRenderCapacityOptions {
+impl flutter_rust_bridge::IntoDart for FrbWrapper<web_audio_api::AudioRenderCapacityOptions> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        [self.update_interval.into_into_dart().into_dart()].into_dart()
+        [self.0.update_interval.into_into_dart().into_dart()].into_dart()
     }
 }
 impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
-    for web_audio_api::AudioRenderCapacityOptions
+    for FrbWrapper<web_audio_api::AudioRenderCapacityOptions>
 {
 }
-impl flutter_rust_bridge::IntoIntoDart<web_audio_api::AudioRenderCapacityOptions>
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<web_audio_api::AudioRenderCapacityOptions>>
     for web_audio_api::AudioRenderCapacityOptions
 {
-    fn into_into_dart(self) -> web_audio_api::AudioRenderCapacityOptions {
-        self
+    fn into_into_dart(self) -> FrbWrapper<web_audio_api::AudioRenderCapacityOptions> {
+        self.into()
     }
 }
 // Codec=Dco (DartCObject based), see doc to use other codecs
-impl flutter_rust_bridge::IntoDart for web_audio_api::AutomationRate {
+impl flutter_rust_bridge::IntoDart for FrbWrapper<web_audio_api::AutomationRate> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        match self {
-            Self::A => 0.into_dart(),
-            Self::K => 1.into_dart(),
+        match self.0 {
+            web_audio_api::AutomationRate::A => 0.into_dart(),
+            web_audio_api::AutomationRate::K => 1.into_dart(),
         }
     }
 }
-impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for web_audio_api::AutomationRate {}
-impl flutter_rust_bridge::IntoIntoDart<web_audio_api::AutomationRate>
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<web_audio_api::AutomationRate>
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<web_audio_api::AutomationRate>>
     for web_audio_api::AutomationRate
 {
-    fn into_into_dart(self) -> web_audio_api::AutomationRate {
-        self
+    fn into_into_dart(self) -> FrbWrapper<web_audio_api::AutomationRate> {
+        self.into()
     }
 }
 // Codec=Dco (DartCObject based), see doc to use other codecs
-impl flutter_rust_bridge::IntoDart for web_audio_api::node::BiquadFilterType {
+impl flutter_rust_bridge::IntoDart for FrbWrapper<web_audio_api::node::BiquadFilterType> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        match self {
-            Self::Lowpass => 0.into_dart(),
-            Self::Highpass => 1.into_dart(),
-            Self::Bandpass => 2.into_dart(),
-            Self::Notch => 3.into_dart(),
-            Self::Allpass => 4.into_dart(),
-            Self::Peaking => 5.into_dart(),
-            Self::Lowshelf => 6.into_dart(),
-            Self::Highshelf => 7.into_dart(),
+        match self.0 {
+            web_audio_api::node::BiquadFilterType::Lowpass => 0.into_dart(),
+            web_audio_api::node::BiquadFilterType::Highpass => 1.into_dart(),
+            web_audio_api::node::BiquadFilterType::Bandpass => 2.into_dart(),
+            web_audio_api::node::BiquadFilterType::Notch => 3.into_dart(),
+            web_audio_api::node::BiquadFilterType::Allpass => 4.into_dart(),
+            web_audio_api::node::BiquadFilterType::Peaking => 5.into_dart(),
+            web_audio_api::node::BiquadFilterType::Lowshelf => 6.into_dart(),
+            web_audio_api::node::BiquadFilterType::Highshelf => 7.into_dart(),
         }
     }
 }
 impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<web_audio_api::node::BiquadFilterType>
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<web_audio_api::node::BiquadFilterType>>
     for web_audio_api::node::BiquadFilterType
 {
-}
-impl flutter_rust_bridge::IntoIntoDart<web_audio_api::node::BiquadFilterType>
-    for web_audio_api::node::BiquadFilterType
-{
-    fn into_into_dart(self) -> web_audio_api::node::BiquadFilterType {
-        self
+    fn into_into_dart(self) -> FrbWrapper<web_audio_api::node::BiquadFilterType> {
+        self.into()
     }
 }
 // Codec=Dco (DartCObject based), see doc to use other codecs
-impl flutter_rust_bridge::IntoDart for web_audio_api::node::DistanceModelType {
+impl flutter_rust_bridge::IntoDart for FrbWrapper<web_audio_api::node::DistanceModelType> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        match self {
-            Self::Linear => 0.into_dart(),
-            Self::Inverse => 1.into_dart(),
-            Self::Exponential => 2.into_dart(),
+        match self.0 {
+            web_audio_api::node::DistanceModelType::Linear => 0.into_dart(),
+            web_audio_api::node::DistanceModelType::Inverse => 1.into_dart(),
+            web_audio_api::node::DistanceModelType::Exponential => 2.into_dart(),
         }
     }
 }
 impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<web_audio_api::node::DistanceModelType>
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<web_audio_api::node::DistanceModelType>>
     for web_audio_api::node::DistanceModelType
 {
-}
-impl flutter_rust_bridge::IntoIntoDart<web_audio_api::node::DistanceModelType>
-    for web_audio_api::node::DistanceModelType
-{
-    fn into_into_dart(self) -> web_audio_api::node::DistanceModelType {
-        self
+    fn into_into_dart(self) -> FrbWrapper<web_audio_api::node::DistanceModelType> {
+        self.into()
     }
 }
 // Codec=Dco (DartCObject based), see doc to use other codecs
-impl flutter_rust_bridge::IntoDart for web_audio_api::media_devices::MediaDeviceInfoKind {
+impl flutter_rust_bridge::IntoDart
+    for FrbWrapper<web_audio_api::media_devices::MediaDeviceInfoKind>
+{
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        match self {
-            Self::VideoInput => 0.into_dart(),
-            Self::AudioInput => 1.into_dart(),
-            Self::AudioOutput => 2.into_dart(),
+        match self.0 {
+            web_audio_api::media_devices::MediaDeviceInfoKind::VideoInput => 0.into_dart(),
+            web_audio_api::media_devices::MediaDeviceInfoKind::AudioInput => 1.into_dart(),
+            web_audio_api::media_devices::MediaDeviceInfoKind::AudioOutput => 2.into_dart(),
         }
     }
 }
 impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<web_audio_api::media_devices::MediaDeviceInfoKind>
+{
+}
+impl
+    flutter_rust_bridge::IntoIntoDart<FrbWrapper<web_audio_api::media_devices::MediaDeviceInfoKind>>
     for web_audio_api::media_devices::MediaDeviceInfoKind
 {
-}
-impl flutter_rust_bridge::IntoIntoDart<web_audio_api::media_devices::MediaDeviceInfoKind>
-    for web_audio_api::media_devices::MediaDeviceInfoKind
-{
-    fn into_into_dart(self) -> web_audio_api::media_devices::MediaDeviceInfoKind {
-        self
+    fn into_into_dart(self) -> FrbWrapper<web_audio_api::media_devices::MediaDeviceInfoKind> {
+        self.into()
     }
 }
 // Codec=Dco (DartCObject based), see doc to use other codecs
-impl flutter_rust_bridge::IntoDart for web_audio_api::media_streams::MediaStreamTrackState {
+impl flutter_rust_bridge::IntoDart
+    for FrbWrapper<web_audio_api::media_streams::MediaStreamTrackState>
+{
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        match self {
-            Self::Live => 0.into_dart(),
-            Self::Ended => 1.into_dart(),
+        match self.0 {
+            web_audio_api::media_streams::MediaStreamTrackState::Live => 0.into_dart(),
+            web_audio_api::media_streams::MediaStreamTrackState::Ended => 1.into_dart(),
         }
     }
 }
 impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
-    for web_audio_api::media_streams::MediaStreamTrackState
+    for FrbWrapper<web_audio_api::media_streams::MediaStreamTrackState>
 {
 }
-impl flutter_rust_bridge::IntoIntoDart<web_audio_api::media_streams::MediaStreamTrackState>
-    for web_audio_api::media_streams::MediaStreamTrackState
+impl
+    flutter_rust_bridge::IntoIntoDart<
+        FrbWrapper<web_audio_api::media_streams::MediaStreamTrackState>,
+    > for web_audio_api::media_streams::MediaStreamTrackState
 {
-    fn into_into_dart(self) -> web_audio_api::media_streams::MediaStreamTrackState {
-        self
+    fn into_into_dart(self) -> FrbWrapper<web_audio_api::media_streams::MediaStreamTrackState> {
+        self.into()
     }
 }
 // Codec=Dco (DartCObject based), see doc to use other codecs
-impl flutter_rust_bridge::IntoDart for web_audio_api::node::OscillatorType {
+impl flutter_rust_bridge::IntoDart for FrbWrapper<web_audio_api::node::OscillatorType> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        match self {
-            Self::Sine => 0.into_dart(),
-            Self::Square => 1.into_dart(),
-            Self::Sawtooth => 2.into_dart(),
-            Self::Triangle => 3.into_dart(),
-            Self::Custom => 4.into_dart(),
+        match self.0 {
+            web_audio_api::node::OscillatorType::Sine => 0.into_dart(),
+            web_audio_api::node::OscillatorType::Square => 1.into_dart(),
+            web_audio_api::node::OscillatorType::Sawtooth => 2.into_dart(),
+            web_audio_api::node::OscillatorType::Triangle => 3.into_dart(),
+            web_audio_api::node::OscillatorType::Custom => 4.into_dart(),
         }
     }
 }
 impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<web_audio_api::node::OscillatorType>
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<web_audio_api::node::OscillatorType>>
     for web_audio_api::node::OscillatorType
 {
-}
-impl flutter_rust_bridge::IntoIntoDart<web_audio_api::node::OscillatorType>
-    for web_audio_api::node::OscillatorType
-{
-    fn into_into_dart(self) -> web_audio_api::node::OscillatorType {
-        self
+    fn into_into_dart(self) -> FrbWrapper<web_audio_api::node::OscillatorType> {
+        self.into()
     }
 }
 // Codec=Dco (DartCObject based), see doc to use other codecs
-impl flutter_rust_bridge::IntoDart for web_audio_api::node::OverSampleType {
+impl flutter_rust_bridge::IntoDart for FrbWrapper<web_audio_api::node::OverSampleType> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        match self {
-            Self::None => 0.into_dart(),
-            Self::X2 => 1.into_dart(),
-            Self::X4 => 2.into_dart(),
+        match self.0 {
+            web_audio_api::node::OverSampleType::None => 0.into_dart(),
+            web_audio_api::node::OverSampleType::X2 => 1.into_dart(),
+            web_audio_api::node::OverSampleType::X4 => 2.into_dart(),
         }
     }
 }
 impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
-    for web_audio_api::node::OverSampleType
+    for FrbWrapper<web_audio_api::node::OverSampleType>
 {
 }
-impl flutter_rust_bridge::IntoIntoDart<web_audio_api::node::OverSampleType>
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<web_audio_api::node::OverSampleType>>
     for web_audio_api::node::OverSampleType
 {
-    fn into_into_dart(self) -> web_audio_api::node::OverSampleType {
-        self
+    fn into_into_dart(self) -> FrbWrapper<web_audio_api::node::OverSampleType> {
+        self.into()
     }
 }
 // Codec=Dco (DartCObject based), see doc to use other codecs
-impl flutter_rust_bridge::IntoDart for web_audio_api::node::PanningModelType {
+impl flutter_rust_bridge::IntoDart for FrbWrapper<web_audio_api::node::PanningModelType> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        match self {
-            Self::EqualPower => 0.into_dart(),
-            Self::HRTF => 1.into_dart(),
+        match self.0 {
+            web_audio_api::node::PanningModelType::EqualPower => 0.into_dart(),
+            web_audio_api::node::PanningModelType::HRTF => 1.into_dart(),
         }
     }
 }
 impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
-    for web_audio_api::node::PanningModelType
+    for FrbWrapper<web_audio_api::node::PanningModelType>
 {
 }
-impl flutter_rust_bridge::IntoIntoDart<web_audio_api::node::PanningModelType>
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<web_audio_api::node::PanningModelType>>
     for web_audio_api::node::PanningModelType
 {
-    fn into_into_dart(self) -> web_audio_api::node::PanningModelType {
-        self
+    fn into_into_dart(self) -> FrbWrapper<web_audio_api::node::PanningModelType> {
+        self.into()
     }
 }
 
