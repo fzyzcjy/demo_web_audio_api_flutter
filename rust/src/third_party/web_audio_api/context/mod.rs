@@ -5,4 +5,7 @@ use web_audio_api::context::AudioContext;
 impl AudioContext {
     #[frb(ignore)]
     fn create_media_element_source() {}
+
+    #[frb(ignore)]
+    fn set_sink_id_sync() {}
 }
