@@ -6,47 +6,26 @@
 import '../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-Future<void> dummyFunction({required BoxAny a, required BoxError b}) =>
-    RustLib.instance.api.crateApiSimpleDummyFunction(a: a, b: b);
+Future<void> f({required DummyStruct a}) =>
+    RustLib.instance.api.crateApiSimpleF(a: a);
 
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Box < dyn Any + Send >>>
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<DummyStruct>>
 @sealed
-class BoxAny extends RustOpaque {
+class DummyStruct extends RustOpaque {
   // Not to be used by end users
-  BoxAny.frbInternalDcoDecode(List<dynamic> wire)
+  DummyStruct.frbInternalDcoDecode(List<dynamic> wire)
       : super.frbInternalDcoDecode(wire, _kStaticData);
 
   // Not to be used by end users
-  BoxAny.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+  DummyStruct.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
       : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
 
   static final _kStaticData = RustArcStaticData(
     rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_BoxAny,
+        RustLib.instance.api.rust_arc_increment_strong_count_DummyStruct,
     rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_BoxAny,
+        RustLib.instance.api.rust_arc_decrement_strong_count_DummyStruct,
     rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_BoxAnyPtr,
-  );
-}
-
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Box < dyn Error >>>
-@sealed
-class BoxError extends RustOpaque {
-  // Not to be used by end users
-  BoxError.frbInternalDcoDecode(List<dynamic> wire)
-      : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  BoxError.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
-      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_BoxError,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_BoxError,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_BoxErrorPtr,
+        RustLib.instance.api.rust_arc_decrement_strong_count_DummyStructPtr,
   );
 }
