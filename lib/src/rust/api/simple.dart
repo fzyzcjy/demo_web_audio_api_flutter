@@ -6,9 +6,5 @@
 import '../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-///frb_marker: #[frb(sync)]
-Future<String> greet({required String name}) =>
+String greet({required String name}) =>
     RustLib.instance.api.crateApiSimpleGreet(name: name);
-
-///frb_marker: #[frb(init)]
-Future<void> initApp() => RustLib.instance.api.crateApiSimpleInitApp();
