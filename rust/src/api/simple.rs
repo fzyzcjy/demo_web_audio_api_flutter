@@ -1,12 +1,13 @@
-// `pub use` to let frb_generated.rs be able to use these types
 pub use std::any::Any;
 pub use std::error::Error;
 
 pub struct DummyStruct {}
 
-#[flutter_rust_bridge::frb(sync)] // Synchronous mode for simplicity of the demo
-pub fn greet(dummy: DummyStruct) {
-    let _ = dummy;
+pub fn dummy_function(
+    a: Box<dyn Any + Send>,
+    b: Box<dyn Error>,
+) {
+    let _ = (a, b);
 }
 
 #[flutter_rust_bridge::frb(init)]
