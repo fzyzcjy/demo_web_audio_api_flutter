@@ -20,8 +20,4 @@ impl AudioBuffer {
     pub fn copy_to_channel() {}
     #[frb(ignore)]
     pub fn copy_to_channel_with_offset() {}
-    #[frb(ignore)]
-    pub fn get_channel_data() {}
-    #[frb(ignore)]
-    pub fn get_channel_data_mut() {}
 }
