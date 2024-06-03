@@ -1,5 +1,5 @@
 use flutter_rust_bridge::frb;
-use web_audio_api::node::AnalyserNode;
+use web_audio_api::node::{AnalyserNode, BiquadFilterNode, IIRFilterNode};
 
 #[frb(external)]
 impl AnalyserNode {
@@ -14,4 +14,16 @@ impl AnalyserNode {
 
     #[frb(ignore)]
     pub fn get_byte_frequency_data() {}
+}
+
+#[frb(external)]
+impl BiquadFilterNode {
+    #[frb(ignore)]
+    pub fn get_frequency_response() {}
+}
+
+#[frb(external)]
+impl IIRFilterNode {
+    #[frb(ignore)]
+    pub fn get_frequency_response() {}
 }
