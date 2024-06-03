@@ -22,3 +22,6 @@ impl AudioBuffer {
     #[frb(ignore)]
     pub fn copy_to_channel_with_offset() {}
 }
+
+#[frb(ignore)]
+pub struct ErrorEvent;
