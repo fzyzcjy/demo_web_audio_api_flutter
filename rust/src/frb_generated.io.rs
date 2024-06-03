@@ -76,6 +76,34 @@ pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_decrement_strong_co
 }
 
 #[no_mangle]
+pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
+    ptr: *const std::ffi::c_void,
+) {
+    MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioContextLatencyCategory>>::increment_strong_count(ptr as _);
+}
+
+#[no_mangle]
+pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
+    ptr: *const std::ffi::c_void,
+) {
+    MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioContextLatencyCategory>>::decrement_strong_count(ptr as _);
+}
+
+#[no_mangle]
+pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+    ptr: *const std::ffi::c_void,
+) {
+    MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioContextOptions>>::increment_strong_count(ptr as _);
+}
+
+#[no_mangle]
+pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+    ptr: *const std::ffi::c_void,
+) {
+    MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioContextOptions>>::decrement_strong_count(ptr as _);
+}
+
+#[no_mangle]
 pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextRegistration(
     ptr: *const std::ffi::c_void,
 ) {
@@ -115,6 +143,20 @@ pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_decrement_strong_co
     ptr: *const std::ffi::c_void,
 ) {
     MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioParam>>::decrement_strong_count(ptr as _);
+}
+
+#[no_mangle]
+pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+    ptr: *const std::ffi::c_void,
+) {
+    MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioProcessingEvent>>::increment_strong_count(ptr as _);
+}
+
+#[no_mangle]
+pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+    ptr: *const std::ffi::c_void,
+) {
+    MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioProcessingEvent>>::decrement_strong_count(ptr as _);
 }
 
 #[no_mangle]
@@ -213,20 +255,6 @@ pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_decrement_strong_co
     ptr: *const std::ffi::c_void,
 ) {
     MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Box < dyn Error >>>::decrement_strong_count(ptr as _);
-}
-
-#[no_mangle]
-pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
-    ptr: *const std::ffi::c_void,
-) {
-    MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ChannelData>>::increment_strong_count(ptr as _);
-}
-
-#[no_mangle]
-pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
-    ptr: *const std::ffi::c_void,
-) {
-    MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ChannelData>>::decrement_strong_count(ptr as _);
 }
 
 #[no_mangle]
@@ -469,6 +497,20 @@ pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_decrement_strong_co
     ptr: *const std::ffi::c_void,
 ) {
     MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MediaStreamAudioSourceNode>>::decrement_strong_count(ptr as _);
+}
+
+#[no_mangle]
+pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamConstraints(
+    ptr: *const std::ffi::c_void,
+) {
+    MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MediaStreamConstraints>>::increment_strong_count(ptr as _);
+}
+
+#[no_mangle]
+pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamConstraints(
+    ptr: *const std::ffi::c_void,
+) {
+    MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MediaStreamConstraints>>::decrement_strong_count(ptr as _);
 }
 
 #[no_mangle]

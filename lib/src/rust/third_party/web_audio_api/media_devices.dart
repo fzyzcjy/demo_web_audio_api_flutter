@@ -7,11 +7,9 @@ import '../../frb_generated.dart';
 import '../web_audio_api.dart';
 import 'media_streams.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
-import 'package:freezed_annotation/freezed_annotation.dart' hide protected;
-part 'media_devices.freezed.dart';
 
 // These functions are ignored because they are not marked as `pub`: `as_string`, `assert_receiver_is_total_eq`, `clone`, `clone`, `clone`, `default`, `device`, `eq`, `fmt`, `fmt`, `fmt`, `fmt`, `from`, `hash`, `hash`, `is_valid_device_id`, `new`
-// These types are ignored because they are not used by any `pub` functions: `DeviceId`
+// These types are ignored because they are not used by any `pub` functions: `DeviceId`, `MediaTrackConstraints`
 
 /// List the available media output devices, such as speakers, headsets, loopbacks, etc
 ///
@@ -115,52 +113,32 @@ class MediaDeviceInfo extends RustOpaque {
       );
 }
 
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MediaStreamConstraints>>
+@sealed
+class MediaStreamConstraints extends RustOpaque {
+  // Not to be used by end users
+  MediaStreamConstraints.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  MediaStreamConstraints.frbInternalSseDecode(
+      BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount: RustLib
+        .instance.api.rust_arc_increment_strong_count_MediaStreamConstraints,
+    rustArcDecrementStrongCount: RustLib
+        .instance.api.rust_arc_decrement_strong_count_MediaStreamConstraints,
+    rustArcDecrementStrongCountPtr: RustLib
+        .instance.api.rust_arc_decrement_strong_count_MediaStreamConstraintsPtr,
+  );
+}
+
 /// Describes input/output type of a media device
 enum MediaDeviceInfoKind {
   videoInput,
   audioInput,
   audioOutput,
   ;
-}
-
-@freezed
-sealed class MediaStreamConstraints with _$MediaStreamConstraints {
-  const MediaStreamConstraints._();
-
-  const factory MediaStreamConstraints.audio() = MediaStreamConstraints_Audio;
-  const factory MediaStreamConstraints.audioWithConstraints(
-    MediaTrackConstraints field0,
-  ) = MediaStreamConstraints_AudioWithConstraints;
-}
-
-/// Desired media stream track settings for [`MediaTrackConstraints`]
-class MediaTrackConstraints {
-  final double? sampleRate;
-  final double? latency;
-  final int? channelCount;
-  final String? deviceId;
-
-  const MediaTrackConstraints({
-    this.sampleRate,
-    this.latency,
-    this.channelCount,
-    this.deviceId,
-  });
-
-  @override
-  int get hashCode =>
-      sampleRate.hashCode ^
-      latency.hashCode ^
-      channelCount.hashCode ^
-      deviceId.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is MediaTrackConstraints &&
-          runtimeType == other.runtimeType &&
-          sampleRate == other.sampleRate &&
-          latency == other.latency &&
-          channelCount == other.channelCount &&
-          deviceId == other.deviceId;
 }

@@ -8,7 +8,7 @@ import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 // These functions are ignored because they are not marked as `pub`: `as_slice`, `assert_is_finite`, `assert_not_zero`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_sequence_length`, `assert_strictly_positive`, `assert_valid_buffer_length`, `assert_valid_channel_number`, `assert_valid_number_of_channels`, `assert_valid_sample_rate`, `assert_valid_time_value`, `audio_param_pair`, `cancel_and_hold_at_time_raw`, `cancel_scheduled_values_raw`, `channel_config`, `channel_data_mut`, `channel_data`, `channels_mut`, `channels`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `compute_buffer`, `compute_exponential_ramp_automation`, `compute_exponential_ramp_sample`, `compute_intrinsic_values`, `compute_linear_ramp_automation`, `compute_linear_ramp_sample`, `compute_set_target_automation`, `compute_set_target_sample`, `compute_set_value_automation`, `compute_set_value_curve_automation`, `compute_set_value_curve_sample`, `default`, `default`, `default`, `default`, `drop`, `eq`, `eq`, `eq`, `eq`, `exponential_ramp_to_value_at_time_raw`, `extend`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `from_channels`, `from_raw_parts`, `generate_wavetable`, `handle_event`, `handle_incoming_event`, `hash`, `into_raw_parts`, `is_a_rate`, `is_empty`, `iter_mut`, `iter`, `linear_ramp_to_value_at_time_raw`, `mix_to_output`, `new`, `new`, `new`, `next`, `normalize`, `number_of_inputs`, `number_of_outputs`, `onmessage`, `peek`, `pop`, `process`, `push`, `registration`, `replace_peek`, `resample`, `retain`, `send_event`, `set_automation_rate_constrained`, `set_channel_count_mode`, `set_channel_count`, `set_channel_interpretation`, `set_target_at_time_raw`, `set_value_at_time_raw`, `set_value_curve_at_time_raw`, `set_value_raw`, `sort`, `split_off`, `unsorted_peek`
 // These functions are ignored because they have generic arguments: `new`, `set_onupdate`
-// These types are ignored because they are not used by any `pub` functions: `AtomicF32`, `AtomicF64`, `AudioParamDescriptor`, `AudioParamEventTimeline`, `AudioParamEventType`, `AudioParamEvent`, `AudioParamInner`, `AudioParamProcessor`, `AudioProcessingEvent`, `AudioRenderCapacityLoad`, `BlockInfos`, `EventDispatch`, `EventHandler`, `EventLoop`, `EventPayload`, `EventType`, `PeriodicWaveOptions`
+// These types are ignored because they are not used by any `pub` functions: `AtomicF32`, `AtomicF64`, `AudioParamDescriptor`, `AudioParamEventTimeline`, `AudioParamEventType`, `AudioParamEvent`, `AudioParamInner`, `AudioParamProcessor`, `AudioRenderCapacityLoad`, `BlockInfos`, `ChannelData`, `EventDispatch`, `EventHandler`, `EventLoop`, `EventPayload`, `EventType`, `PeriodicWaveOptions`
 // These functions are ignored: `as_mut_slice`, `as_slice`, `audio_processing`, `clear_handler`, `complete`, `diagnostics`, `ended`, `from`, `handle_pending_events`, `is_empty`, `len`, `load`, `load`, `message`, `new`, `new`, `new`, `new`, `processor_error`, `render_capacity`, `run_in_thread`, `set_handler`, `sink_change`, `state_change`, `store`, `store`
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioBuffer>>
@@ -310,6 +310,55 @@ class AudioParam extends RustOpaque {
       );
 }
 
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioProcessingEvent>>
+@sealed
+class AudioProcessingEvent extends RustOpaque {
+  // Not to be used by end users
+  AudioProcessingEvent.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  AudioProcessingEvent.frbInternalSseDecode(
+      BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount: RustLib
+        .instance.api.rust_arc_increment_strong_count_AudioProcessingEvent,
+    rustArcDecrementStrongCount: RustLib
+        .instance.api.rust_arc_decrement_strong_count_AudioProcessingEvent,
+    rustArcDecrementStrongCountPtr: RustLib
+        .instance.api.rust_arc_decrement_strong_count_AudioProcessingEventPtr,
+  );
+
+  AudioBuffer get inputBuffer =>
+      RustLib.instance.api.webAudioApiAudioProcessingEventGetInputBuffer(
+        that: this,
+      );
+
+  AudioBuffer get outputBuffer =>
+      RustLib.instance.api.webAudioApiAudioProcessingEventGetOutputBuffer(
+        that: this,
+      );
+
+  double get playbackTime =>
+      RustLib.instance.api.webAudioApiAudioProcessingEventGetPlaybackTime(
+        that: this,
+      );
+
+  void set inputBuffer(AudioBuffer inputBuffer) =>
+      RustLib.instance.api.webAudioApiAudioProcessingEventSetInputBuffer(
+          that: this, inputBuffer: inputBuffer);
+
+  void set outputBuffer(AudioBuffer outputBuffer) =>
+      RustLib.instance.api.webAudioApiAudioProcessingEventSetOutputBuffer(
+          that: this, outputBuffer: outputBuffer);
+
+  void set playbackTime(double playbackTime) =>
+      RustLib.instance.api.webAudioApiAudioProcessingEventSetPlaybackTime(
+          that: this, playbackTime: playbackTime);
+}
+
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioRenderCapacity>>
 @sealed
 class AudioRenderCapacity extends RustOpaque {
@@ -432,27 +481,6 @@ class BoxAny extends RustOpaque {
         RustLib.instance.api.rust_arc_decrement_strong_count_BoxAny,
     rustArcDecrementStrongCountPtr:
         RustLib.instance.api.rust_arc_decrement_strong_count_BoxAnyPtr,
-  );
-}
-
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ChannelData>>
-@sealed
-class ChannelData extends RustOpaque {
-  // Not to be used by end users
-  ChannelData.frbInternalDcoDecode(List<dynamic> wire)
-      : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  ChannelData.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
-      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_ChannelData,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_ChannelData,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_ChannelDataPtr,
   );
 }
 
@@ -647,196 +675,6 @@ class Str extends RustOpaque {
     rustArcDecrementStrongCountPtr:
         RustLib.instance.api.rust_arc_decrement_strong_count_StrPtr,
   );
-}
-
-/// Memory-resident audio asset, basically a matrix of channels * samples
-///
-/// An AudioBuffer has copy-on-write semantics, so it is cheap to clone.
-///
-/// - MDN documentation: <https://developer.mozilla.org/en-US/docs/Web/API/AudioBuffer>
-/// - specification: <https://webaudio.github.io/web-audio-api/#AudioBuffer>
-/// - see also: [`BaseAudioContext::create_buffer`](crate::context::BaseAudioContext::create_buffer)
-///
-/// # Usage
-///
-/// ```no_run
-/// use std::f32::consts::PI;
-/// use web_audio_api::context::{AudioContext, BaseAudioContext};
-/// use web_audio_api::node::{AudioNode, AudioScheduledSourceNode};
-///
-/// let context = AudioContext::default();
-///
-/// let length = context.sample_rate() as usize;
-/// let sample_rate = context.sample_rate();
-/// let mut buffer = context.create_buffer(1, length, sample_rate);
-///
-/// // fill buffer with a sine wave
-/// let mut sine = vec![];
-///
-/// for i in 0..length {
-///     let phase = i as f32 / length as f32 * 2. * PI * 200.;
-///     sine.push(phase.sin());
-/// }
-///
-/// buffer.copy_to_channel(&sine, 0);
-///
-/// // play the buffer in a loop
-/// let mut src = context.create_buffer_source();
-/// src.set_buffer(buffer.clone());
-/// src.set_loop(true);
-/// src.connect(&context.destination());
-/// src.start();
-/// ```
-///
-/// # Example
-///
-/// - `cargo run --release --example audio_buffer`
-///
-class AudioBuffer {
-  final List<ChannelData> channels;
-  final double sampleRate;
-
-  const AudioBuffer({
-    required this.channels,
-    required this.sampleRate,
-  });
-
-  /// Copy data from a given channel to the given `Vec`
-  ///
-  /// # Panics
-  ///
-  /// This function will panic if `channel_number` is greater or equal than
-  /// `AudioBuffer::number_of_channels()`
-  Future<void> copyFromChannel(
-          {required F32 destination, required BigInt channelNumber}) =>
-      RustLib.instance.api.webAudioApiAudioBufferCopyFromChannel(
-          that: this, destination: destination, channelNumber: channelNumber);
-
-  /// Copy data from a given channel to the given `Vec` starting at `offset`
-  ///
-  /// # Panics
-  ///
-  /// This function will panic if:
-  /// - the given channel number is greater than or equal to the given number of channels.
-  Future<void> copyFromChannelWithOffset(
-          {required F32 destination,
-          required BigInt channelNumber,
-          required BigInt offset}) =>
-      RustLib.instance.api.webAudioApiAudioBufferCopyFromChannelWithOffset(
-          that: this,
-          destination: destination,
-          channelNumber: channelNumber,
-          offset: offset);
-
-  /// Copy data from a given source to the given channel.
-  ///
-  /// # Panics
-  ///
-  /// This function will panic if:
-  /// - the given channel number is greater than or equal to the given number of channels.
-  Future<void> copyToChannel(
-          {required F32 source, required BigInt channelNumber}) =>
-      RustLib.instance.api.webAudioApiAudioBufferCopyToChannel(
-          that: this, source: source, channelNumber: channelNumber);
-
-  /// Copy data from a given source to the given channel starting at `offset`.
-  ///
-  /// # Panics
-  ///
-  /// This function will panic if:
-  /// - the given channel number is greater than or equal to the given number of channels.
-  Future<void> copyToChannelWithOffset(
-          {required F32 source,
-          required BigInt channelNumber,
-          required BigInt offset}) =>
-      RustLib.instance.api.webAudioApiAudioBufferCopyToChannelWithOffset(
-          that: this,
-          source: source,
-          channelNumber: channelNumber,
-          offset: offset);
-
-  /// Duration in seconds of the `AudioBuffer`
-  Future<double> duration() =>
-      RustLib.instance.api.webAudioApiAudioBufferDuration(
-        that: this,
-      );
-
-  /// Convert raw samples to an AudioBuffer
-  ///
-  /// The outer Vec determine the channels. The inner Vecs should have the same length.
-  ///
-  /// # Panics
-  ///
-  /// This function will panic if:
-  /// - the given sample rate is zero
-  /// - the given number of channels defined by `samples.len()`is outside the
-  ///   [1, 32] range, 32 being defined by the MAX_CHANNELS constant.
-  /// - any of its items have different lengths
-  static Future<AudioBuffer> from(
-          {required List<Float32List> samples, required double sampleRate}) =>
-      RustLib.instance.api
-          .webAudioApiAudioBufferFrom(samples: samples, sampleRate: sampleRate);
-
-  /// Return a read-only copy of the underlying data of the channel
-  ///
-  /// # Panics
-  ///
-  /// This function will panic if:
-  /// - the given channel number is greater than or equal to the given number of channels.
-  Future<F32> getChannelData({required BigInt channelNumber}) =>
-      RustLib.instance.api.webAudioApiAudioBufferGetChannelData(
-          that: this, channelNumber: channelNumber);
-
-  /// Return a mutable slice of the underlying data of the channel
-  ///
-  /// # Panics
-  ///
-  /// This function will panic if:
-  /// - the given channel number is greater than or equal to the given number of channels.
-  Future<F32> getChannelDataMut({required BigInt channelNumber}) =>
-      RustLib.instance.api.webAudioApiAudioBufferGetChannelDataMut(
-          that: this, channelNumber: channelNumber);
-
-  /// Number of samples per channel in this `AudioBuffer`
-  Future<BigInt> length() => RustLib.instance.api.webAudioApiAudioBufferLength(
-        that: this,
-      );
-
-  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
-  /// Allocate a silent audiobuffer with [`AudioBufferOptions`]
-  ///
-  /// # Panics
-  ///
-  /// This function will panic if:
-  /// - the given sample rate is zero
-  /// - the given number of channels is outside the [1, 32] range,
-  /// 32 being defined by the MAX_CHANNELS constant.
-  static Future<AudioBuffer> newInstance(
-          {required AudioBufferOptions options}) =>
-      RustLib.instance.api.webAudioApiAudioBufferNew(options: options);
-
-  /// Number of channels in this `AudioBuffer`
-  Future<BigInt> numberOfChannels() =>
-      RustLib.instance.api.webAudioApiAudioBufferNumberOfChannels(
-        that: this,
-      );
-
-  /// Sample rate of this `AudioBuffer` in Hertz
-  Future<double> sampleRate() =>
-      RustLib.instance.api.webAudioApiAudioBufferSampleRate(
-        that: this,
-      );
-
-  @override
-  int get hashCode => channels.hashCode ^ sampleRate.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is AudioBuffer &&
-          runtimeType == other.runtimeType &&
-          channels == other.channels &&
-          sampleRate == other.sampleRate;
 }
 
 /// Options for constructing an [`AudioBuffer`]

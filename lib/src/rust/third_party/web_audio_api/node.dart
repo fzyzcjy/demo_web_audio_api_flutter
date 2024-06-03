@@ -5,6 +5,7 @@
 
 import '../../frb_generated.dart';
 import '../web_audio_api.dart';
+import 'media_streams.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 // These functions are ignored because they are not marked as `pub`: `apply_curve`, `apply_mono_to_stereo_gain`, `apply_stereo_to_stereo_gain`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_valid_channel_count_mode`, `assert_valid_channel_count_mode`, `assert_valid_channel_count_mode`, `assert_valid_channel_count_mode`, `assert_valid_channel_count_mode`, `assert_valid_channel_count`, `assert_valid_channel_count`, `assert_valid_channel_count`, `assert_valid_channel_count`, `assert_valid_channel_count`, `assert_valid_channel_interpretation`, `assert_valid_cone_outer_gain`, `assert_valid_feedback_coefs`, `assert_valid_feedforward_coefs`, `assert_valid_number_of_channels`, `assert_valid_number_of_channels`, `before_drop`, `before_drop`, `before_drop`, `calculate_coefs`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `check_ring_buffer_up_down_mix`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `complex`, `cone_gain`, `connect_from_output_to_input`, `count_mode`, `count`, `db_to_lin`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `disconnect_dest_from_output_to_input`, `disconnect_dest_from_output`, `disconnect_dest`, `disconnect_output`, `disconnect`, `dist_gain`, `downsample_x2`, `downsample_x4`, `drop`, `eq`, `eq`, `eq`, `eq`, `eq`, `eq`, `eq`, `eq`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `from_raw_parts`, `from`, `from`, `from`, `from`, `from`, `from`, `from`, `from`, `generate_custom`, `generate_sample`, `generate_sawtooth`, `generate_sine`, `generate_square`, `generate_triangle`, `get_computed_freq`, `get_phase_incr`, `get_playback_infos`, `get_stereo_gains`, `handle_control_message`, `has_side_effects`, `has_side_effects`, `inner`, `interpretation`, `into_channel_config`, `inverse`, `lin_to_db`, `load_hrtf_processor`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `next`, `normalize_buffer`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `onmessage`, `onmessage`, `onmessage`, `onmessage`, `onmessage`, `onmessage`, `onmessage`, `onmessage`, `poly_blep`, `precomputed_sine_table`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `real`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `ring_buffer_mut`, `ring_buffer_mut`, `roll_zero`, `samples_out_mut`, `samples_out`, `set_channel_count_mode`, `set_channel_count_mode`, `set_channel_count_mode`, `set_channel_count_mode`, `set_channel_count_mode`, `set_channel_count_mode`, `set_channel_count_mode`, `set_channel_count`, `set_channel_count`, `set_channel_count`, `set_channel_count`, `set_channel_count`, `set_channel_count`, `set_channel_count`, `set_channel_interpretation`, `set_count_mode`, `set_count`, `set_interpretation`, `start_at`, `start_at`, `start_at`, `start`, `start`, `start`, `stop_at`, `stop_at`, `stop_at`, `stop`, `stop`, `stop`, `tail_time_samples`, `tail`, `unroll_phase`, `upsample_x2`, `upsample_x4`
@@ -628,27 +629,6 @@ class MediaElementAudioSourceNode extends RustOpaque {
         .rust_arc_decrement_strong_count_MediaElementAudioSourceNode,
     rustArcDecrementStrongCountPtr: RustLib.instance.api
         .rust_arc_decrement_strong_count_MediaElementAudioSourceNodePtr,
-  );
-}
-
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MediaStream>>
-@sealed
-class MediaStream extends RustOpaque {
-  // Not to be used by end users
-  MediaStream.frbInternalDcoDecode(List<dynamic> wire)
-      : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  MediaStream.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
-      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_MediaStream,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_MediaStream,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_MediaStreamPtr,
   );
 }
 

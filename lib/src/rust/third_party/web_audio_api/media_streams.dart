@@ -11,6 +11,37 @@ import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 // These types are ignored because they are not used by any `pub` functions: `MediaStreamTrackInner`, `MediaStreamTrackIter`
 // These functions have error during generation (see debug logs for more details): `iter`
 
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MediaStream>>
+@sealed
+class MediaStream extends RustOpaque {
+  // Not to be used by end users
+  MediaStream.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  MediaStream.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_MediaStream,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_MediaStream,
+    rustArcDecrementStrongCountPtr:
+        RustLib.instance.api.rust_arc_decrement_strong_count_MediaStreamPtr,
+  );
+
+  static Future<MediaStream> fromTracks(
+          {required List<MediaStreamTrack> tracks}) =>
+      RustLib.instance.api
+          .webAudioApiMediaStreamsMediaStreamFromTracks(tracks: tracks);
+
+  Future<MediaStreamTrack> getTracks() =>
+      RustLib.instance.api.webAudioApiMediaStreamsMediaStreamGetTracks(
+        that: this,
+      );
+}
+
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MediaStreamTrack>>
 @sealed
 class MediaStreamTrack extends RustOpaque {
@@ -40,38 +71,6 @@ class MediaStreamTrack extends RustOpaque {
       RustLib.instance.api.webAudioApiMediaStreamsMediaStreamTrackReadyState(
         that: this,
       );
-}
-
-/// Stream of media content.
-///
-/// A stream consists of several tracks, such as video or audio tracks. Each track is specified as
-/// an instance of [`MediaStreamTrack`].
-class MediaStream {
-  final List<MediaStreamTrack> tracks;
-
-  const MediaStream({
-    required this.tracks,
-  });
-
-  static Future<MediaStream> fromTracks(
-          {required List<MediaStreamTrack> tracks}) =>
-      RustLib.instance.api
-          .webAudioApiMediaStreamsMediaStreamFromTracks(tracks: tracks);
-
-  Future<MediaStreamTrack> getTracks() =>
-      RustLib.instance.api.webAudioApiMediaStreamsMediaStreamGetTracks(
-        that: this,
-      );
-
-  @override
-  int get hashCode => tracks.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is MediaStream &&
-          runtimeType == other.runtimeType &&
-          tracks == other.tracks;
 }
 
 /// Ready-state of a [`MediaStreamTrack`]

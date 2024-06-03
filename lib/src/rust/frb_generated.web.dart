@@ -51,6 +51,14 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
           .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext;
 
   CrossPlatformFinalizerArg
+      get rust_arc_decrement_strong_count_AudioContextLatencyCategoryPtr => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory;
+
+  CrossPlatformFinalizerArg
+      get rust_arc_decrement_strong_count_AudioContextOptionsPtr => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions;
+
+  CrossPlatformFinalizerArg
       get rust_arc_decrement_strong_count_AudioContextRegistrationPtr => wire
           .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextRegistration;
 
@@ -60,6 +68,10 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_AudioParamPtr =>
       wire.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam;
+
+  CrossPlatformFinalizerArg
+      get rust_arc_decrement_strong_count_AudioProcessingEventPtr => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent;
 
   CrossPlatformFinalizerArg
       get rust_arc_decrement_strong_count_AudioRenderCapacityPtr => wire
@@ -85,10 +97,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_BoxErrorPtr => wire
       .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynError;
-
-  CrossPlatformFinalizerArg
-      get rust_arc_decrement_strong_count_ChannelDataPtr => wire
-          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData;
 
   CrossPlatformFinalizerArg
       get rust_arc_decrement_strong_count_ConcreteBaseAudioContextPtr => wire
@@ -155,6 +163,10 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
           .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamAudioSourceNode;
 
   CrossPlatformFinalizerArg
+      get rust_arc_decrement_strong_count_MediaStreamConstraintsPtr => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamConstraints;
+
+  CrossPlatformFinalizerArg
       get rust_arc_decrement_strong_count_MediaStreamTrackPtr => wire
           .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrack;
 
@@ -215,6 +227,11 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
           dynamic raw);
 
   @protected
+  AudioBuffer
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+          dynamic raw);
+
+  @protected
   AudioBufferSourceNode
       dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
           dynamic raw);
@@ -225,6 +242,16 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
           dynamic raw);
 
   @protected
+  AudioContextLatencyCategory
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
+          dynamic raw);
+
+  @protected
+  AudioContextOptions
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          dynamic raw);
+
+  @protected
   AudioDestinationNode
       dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioDestinationNode(
           dynamic raw);
@@ -232,6 +259,11 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   AudioParam
       dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
+          dynamic raw);
+
+  @protected
+  AudioProcessingEvent
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
           dynamic raw);
 
   @protected
@@ -267,11 +299,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   BoxError
       dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynError(
-          dynamic raw);
-
-  @protected
-  ChannelData
-      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
           dynamic raw);
 
   @protected
@@ -335,6 +362,11 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
           dynamic raw);
 
   @protected
+  MediaStream
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStream(
+          dynamic raw);
+
+  @protected
   MediaStreamAudioDestinationNode
       dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamAudioDestinationNode(
           dynamic raw);
@@ -342,6 +374,11 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   MediaStreamAudioSourceNode
       dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamAudioSourceNode(
+          dynamic raw);
+
+  @protected
+  MediaStreamConstraints
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamConstraints(
           dynamic raw);
 
   @protected
@@ -412,6 +449,16 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   AudioBufferSourceNode
       dco_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
+          dynamic raw);
+
+  @protected
+  AudioContextOptions
+      dco_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          dynamic raw);
+
+  @protected
+  AudioProcessingEvent
+      dco_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
           dynamic raw);
 
   @protected
@@ -503,6 +550,11 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
           dynamic raw);
 
   @protected
+  AudioContextOptions
+      dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          dynamic raw);
+
+  @protected
   AudioContextRegistration
       dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextRegistration(
           dynamic raw);
@@ -515,6 +567,11 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   AudioParam
       dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
+          dynamic raw);
+
+  @protected
+  AudioProcessingEvent
+      dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
           dynamic raw);
 
   @protected
@@ -686,6 +743,16 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
           dynamic raw);
 
   @protected
+  AudioContextLatencyCategory
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
+          dynamic raw);
+
+  @protected
+  AudioContextOptions
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          dynamic raw);
+
+  @protected
   AudioContextRegistration
       dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextRegistration(
           dynamic raw);
@@ -698,6 +765,11 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   AudioParam
       dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
+          dynamic raw);
+
+  @protected
+  AudioProcessingEvent
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
           dynamic raw);
 
   @protected
@@ -733,11 +805,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   BoxError
       dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynError(
-          dynamic raw);
-
-  @protected
-  ChannelData
-      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
           dynamic raw);
 
   @protected
@@ -826,6 +893,11 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
           dynamic raw);
 
   @protected
+  MediaStreamConstraints
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamConstraints(
+          dynamic raw);
+
+  @protected
   MediaStreamTrack
       dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrack(
           dynamic raw);
@@ -901,17 +973,7 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   String dco_decode_String(dynamic raw);
 
   @protected
-  AudioBuffer dco_decode_audio_buffer(dynamic raw);
-
-  @protected
   AudioBufferOptions dco_decode_audio_buffer_options(dynamic raw);
-
-  @protected
-  AudioContextLatencyCategory dco_decode_audio_context_latency_category(
-      dynamic raw);
-
-  @protected
-  AudioContextOptions dco_decode_audio_context_options(dynamic raw);
 
   @protected
   AudioContextRenderSizeCategory dco_decode_audio_context_render_size_category(
@@ -944,13 +1006,7 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
       dynamic raw);
 
   @protected
-  AudioBuffer dco_decode_box_autoadd_audio_buffer(dynamic raw);
-
-  @protected
   AudioBufferOptions dco_decode_box_autoadd_audio_buffer_options(dynamic raw);
-
-  @protected
-  AudioContextOptions dco_decode_box_autoadd_audio_context_options(dynamic raw);
 
   @protected
   AudioRenderCapacityOptions
@@ -958,23 +1014,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   double dco_decode_box_autoadd_f_32(dynamic raw);
-
-  @protected
-  double dco_decode_box_autoadd_f_64(dynamic raw);
-
-  @protected
-  MediaStream dco_decode_box_autoadd_media_stream(dynamic raw);
-
-  @protected
-  MediaStreamConstraints dco_decode_box_autoadd_media_stream_constraints(
-      dynamic raw);
-
-  @protected
-  MediaTrackConstraints dco_decode_box_autoadd_media_track_constraints(
-      dynamic raw);
-
-  @protected
-  int dco_decode_box_autoadd_u_32(dynamic raw);
 
   @protected
   DistanceModelType dco_decode_distance_model_type(dynamic raw);
@@ -987,11 +1026,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   int dco_decode_i_32(dynamic raw);
-
-  @protected
-  List<ChannelData>
-      dco_decode_list_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
-          dynamic raw);
 
   @protected
   List<MediaDeviceInfo>
@@ -1019,19 +1053,7 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   MediaDeviceInfoKind dco_decode_media_device_info_kind(dynamic raw);
 
   @protected
-  MediaStream dco_decode_media_stream(dynamic raw);
-
-  @protected
-  MediaStreamConstraints dco_decode_media_stream_constraints(dynamic raw);
-
-  @protected
   MediaStreamTrackState dco_decode_media_stream_track_state(dynamic raw);
-
-  @protected
-  MediaTrackConstraints dco_decode_media_track_constraints(dynamic raw);
-
-  @protected
-  String? dco_decode_opt_String(dynamic raw);
 
   @protected
   AudioBuffer?
@@ -1052,12 +1074,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   double? dco_decode_opt_box_autoadd_f_32(dynamic raw);
 
   @protected
-  double? dco_decode_opt_box_autoadd_f_64(dynamic raw);
-
-  @protected
-  int? dco_decode_opt_box_autoadd_u_32(dynamic raw);
-
-  @protected
   OscillatorType dco_decode_oscillator_type(dynamic raw);
 
   @protected
@@ -1065,9 +1081,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   PanningModelType dco_decode_panning_model_type(dynamic raw);
-
-  @protected
-  int dco_decode_u_32(dynamic raw);
 
   @protected
   int dco_decode_u_8(dynamic raw);
@@ -1084,6 +1097,11 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
           SseDeserializer deserializer);
 
   @protected
+  AudioBuffer
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+          SseDeserializer deserializer);
+
+  @protected
   AudioBufferSourceNode
       sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
           SseDeserializer deserializer);
@@ -1094,6 +1112,16 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
           SseDeserializer deserializer);
 
   @protected
+  AudioContextLatencyCategory
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
+          SseDeserializer deserializer);
+
+  @protected
+  AudioContextOptions
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          SseDeserializer deserializer);
+
+  @protected
   AudioDestinationNode
       sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioDestinationNode(
           SseDeserializer deserializer);
@@ -1101,6 +1129,11 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   AudioParam
       sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
+          SseDeserializer deserializer);
+
+  @protected
+  AudioProcessingEvent
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
           SseDeserializer deserializer);
 
   @protected
@@ -1136,11 +1169,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   BoxError
       sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynError(
-          SseDeserializer deserializer);
-
-  @protected
-  ChannelData
-      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
           SseDeserializer deserializer);
 
   @protected
@@ -1204,6 +1232,11 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
           SseDeserializer deserializer);
 
   @protected
+  MediaStream
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStream(
+          SseDeserializer deserializer);
+
+  @protected
   MediaStreamAudioDestinationNode
       sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamAudioDestinationNode(
           SseDeserializer deserializer);
@@ -1211,6 +1244,11 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   MediaStreamAudioSourceNode
       sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamAudioSourceNode(
+          SseDeserializer deserializer);
+
+  @protected
+  MediaStreamConstraints
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamConstraints(
           SseDeserializer deserializer);
 
   @protected
@@ -1281,6 +1319,16 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   AudioBufferSourceNode
       sse_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
+          SseDeserializer deserializer);
+
+  @protected
+  AudioContextOptions
+      sse_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          SseDeserializer deserializer);
+
+  @protected
+  AudioProcessingEvent
+      sse_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
           SseDeserializer deserializer);
 
   @protected
@@ -1372,6 +1420,11 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
           SseDeserializer deserializer);
 
   @protected
+  AudioContextOptions
+      sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          SseDeserializer deserializer);
+
+  @protected
   AudioContextRegistration
       sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextRegistration(
           SseDeserializer deserializer);
@@ -1384,6 +1437,11 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   AudioParam
       sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
+          SseDeserializer deserializer);
+
+  @protected
+  AudioProcessingEvent
+      sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
           SseDeserializer deserializer);
 
   @protected
@@ -1555,6 +1613,16 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
           SseDeserializer deserializer);
 
   @protected
+  AudioContextLatencyCategory
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
+          SseDeserializer deserializer);
+
+  @protected
+  AudioContextOptions
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          SseDeserializer deserializer);
+
+  @protected
   AudioContextRegistration
       sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextRegistration(
           SseDeserializer deserializer);
@@ -1567,6 +1635,11 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   AudioParam
       sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
+          SseDeserializer deserializer);
+
+  @protected
+  AudioProcessingEvent
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
           SseDeserializer deserializer);
 
   @protected
@@ -1602,11 +1675,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   BoxError
       sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynError(
-          SseDeserializer deserializer);
-
-  @protected
-  ChannelData
-      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
           SseDeserializer deserializer);
 
   @protected
@@ -1695,6 +1763,11 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
           SseDeserializer deserializer);
 
   @protected
+  MediaStreamConstraints
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamConstraints(
+          SseDeserializer deserializer);
+
+  @protected
   MediaStreamTrack
       sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrack(
           SseDeserializer deserializer);
@@ -1770,18 +1843,7 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   String sse_decode_String(SseDeserializer deserializer);
 
   @protected
-  AudioBuffer sse_decode_audio_buffer(SseDeserializer deserializer);
-
-  @protected
   AudioBufferOptions sse_decode_audio_buffer_options(
-      SseDeserializer deserializer);
-
-  @protected
-  AudioContextLatencyCategory sse_decode_audio_context_latency_category(
-      SseDeserializer deserializer);
-
-  @protected
-  AudioContextOptions sse_decode_audio_context_options(
       SseDeserializer deserializer);
 
   @protected
@@ -1815,14 +1877,7 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
       SseDeserializer deserializer);
 
   @protected
-  AudioBuffer sse_decode_box_autoadd_audio_buffer(SseDeserializer deserializer);
-
-  @protected
   AudioBufferOptions sse_decode_box_autoadd_audio_buffer_options(
-      SseDeserializer deserializer);
-
-  @protected
-  AudioContextOptions sse_decode_box_autoadd_audio_context_options(
       SseDeserializer deserializer);
 
   @protected
@@ -1832,23 +1887,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   double sse_decode_box_autoadd_f_32(SseDeserializer deserializer);
-
-  @protected
-  double sse_decode_box_autoadd_f_64(SseDeserializer deserializer);
-
-  @protected
-  MediaStream sse_decode_box_autoadd_media_stream(SseDeserializer deserializer);
-
-  @protected
-  MediaStreamConstraints sse_decode_box_autoadd_media_stream_constraints(
-      SseDeserializer deserializer);
-
-  @protected
-  MediaTrackConstraints sse_decode_box_autoadd_media_track_constraints(
-      SseDeserializer deserializer);
-
-  @protected
-  int sse_decode_box_autoadd_u_32(SseDeserializer deserializer);
 
   @protected
   DistanceModelType sse_decode_distance_model_type(
@@ -1862,11 +1900,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   int sse_decode_i_32(SseDeserializer deserializer);
-
-  @protected
-  List<ChannelData>
-      sse_decode_list_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
-          SseDeserializer deserializer);
 
   @protected
   List<MediaDeviceInfo>
@@ -1896,22 +1929,8 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
       SseDeserializer deserializer);
 
   @protected
-  MediaStream sse_decode_media_stream(SseDeserializer deserializer);
-
-  @protected
-  MediaStreamConstraints sse_decode_media_stream_constraints(
-      SseDeserializer deserializer);
-
-  @protected
   MediaStreamTrackState sse_decode_media_stream_track_state(
       SseDeserializer deserializer);
-
-  @protected
-  MediaTrackConstraints sse_decode_media_track_constraints(
-      SseDeserializer deserializer);
-
-  @protected
-  String? sse_decode_opt_String(SseDeserializer deserializer);
 
   @protected
   AudioBuffer?
@@ -1932,12 +1951,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   double? sse_decode_opt_box_autoadd_f_32(SseDeserializer deserializer);
 
   @protected
-  double? sse_decode_opt_box_autoadd_f_64(SseDeserializer deserializer);
-
-  @protected
-  int? sse_decode_opt_box_autoadd_u_32(SseDeserializer deserializer);
-
-  @protected
   OscillatorType sse_decode_oscillator_type(SseDeserializer deserializer);
 
   @protected
@@ -1945,9 +1958,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   PanningModelType sse_decode_panning_model_type(SseDeserializer deserializer);
-
-  @protected
-  int sse_decode_u_32(SseDeserializer deserializer);
 
   @protected
   int sse_decode_u_8(SseDeserializer deserializer);
@@ -1965,6 +1975,11 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+          AudioBuffer self, SseSerializer serializer);
+
+  @protected
+  void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
           AudioBufferSourceNode self, SseSerializer serializer);
 
@@ -1975,6 +1990,16 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
+          AudioContextLatencyCategory self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          AudioContextOptions self, SseSerializer serializer);
+
+  @protected
+  void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioDestinationNode(
           AudioDestinationNode self, SseSerializer serializer);
 
@@ -1982,6 +2007,11 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
           AudioParam self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+          AudioProcessingEvent self, SseSerializer serializer);
 
   @protected
   void
@@ -2017,11 +2047,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynError(
           BoxError self, SseSerializer serializer);
-
-  @protected
-  void
-      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
-          ChannelData self, SseSerializer serializer);
 
   @protected
   void
@@ -2085,6 +2110,11 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStream(
+          MediaStream self, SseSerializer serializer);
+
+  @protected
+  void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamAudioDestinationNode(
           MediaStreamAudioDestinationNode self, SseSerializer serializer);
 
@@ -2092,6 +2122,11 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamAudioSourceNode(
           MediaStreamAudioSourceNode self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamConstraints(
+          MediaStreamConstraints self, SseSerializer serializer);
 
   @protected
   void
@@ -2162,6 +2197,16 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void
       sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
           AudioBufferSourceNode self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          AudioContextOptions self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+          AudioProcessingEvent self, SseSerializer serializer);
 
   @protected
   void
@@ -2255,6 +2300,11 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void
+      sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          AudioContextOptions self, SseSerializer serializer);
+
+  @protected
+  void
       sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextRegistration(
           AudioContextRegistration self, SseSerializer serializer);
 
@@ -2267,6 +2317,11 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void
       sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
           AudioParam self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+          AudioProcessingEvent self, SseSerializer serializer);
 
   @protected
   void
@@ -2440,6 +2495,16 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
+          AudioContextLatencyCategory self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          AudioContextOptions self, SseSerializer serializer);
+
+  @protected
+  void
       sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextRegistration(
           AudioContextRegistration self, SseSerializer serializer);
 
@@ -2452,6 +2517,11 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void
       sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
           AudioParam self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+          AudioProcessingEvent self, SseSerializer serializer);
 
   @protected
   void
@@ -2487,11 +2557,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void
       sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynError(
           BoxError self, SseSerializer serializer);
-
-  @protected
-  void
-      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
-          ChannelData self, SseSerializer serializer);
 
   @protected
   void
@@ -2580,6 +2645,11 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamConstraints(
+          MediaStreamConstraints self, SseSerializer serializer);
+
+  @protected
+  void
       sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrack(
           MediaStreamTrack self, SseSerializer serializer);
 
@@ -2657,19 +2727,8 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void sse_encode_String(String self, SseSerializer serializer);
 
   @protected
-  void sse_encode_audio_buffer(AudioBuffer self, SseSerializer serializer);
-
-  @protected
   void sse_encode_audio_buffer_options(
       AudioBufferOptions self, SseSerializer serializer);
-
-  @protected
-  void sse_encode_audio_context_latency_category(
-      AudioContextLatencyCategory self, SseSerializer serializer);
-
-  @protected
-  void sse_encode_audio_context_options(
-      AudioContextOptions self, SseSerializer serializer);
 
   @protected
   void sse_encode_audio_context_render_size_category(
@@ -2706,16 +2765,8 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
           Str self, SseSerializer serializer);
 
   @protected
-  void sse_encode_box_autoadd_audio_buffer(
-      AudioBuffer self, SseSerializer serializer);
-
-  @protected
   void sse_encode_box_autoadd_audio_buffer_options(
       AudioBufferOptions self, SseSerializer serializer);
-
-  @protected
-  void sse_encode_box_autoadd_audio_context_options(
-      AudioContextOptions self, SseSerializer serializer);
 
   @protected
   void sse_encode_box_autoadd_audio_render_capacity_options(
@@ -2723,24 +2774,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void sse_encode_box_autoadd_f_32(double self, SseSerializer serializer);
-
-  @protected
-  void sse_encode_box_autoadd_f_64(double self, SseSerializer serializer);
-
-  @protected
-  void sse_encode_box_autoadd_media_stream(
-      MediaStream self, SseSerializer serializer);
-
-  @protected
-  void sse_encode_box_autoadd_media_stream_constraints(
-      MediaStreamConstraints self, SseSerializer serializer);
-
-  @protected
-  void sse_encode_box_autoadd_media_track_constraints(
-      MediaTrackConstraints self, SseSerializer serializer);
-
-  @protected
-  void sse_encode_box_autoadd_u_32(int self, SseSerializer serializer);
 
   @protected
   void sse_encode_distance_model_type(
@@ -2754,11 +2787,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void sse_encode_i_32(int self, SseSerializer serializer);
-
-  @protected
-  void
-      sse_encode_list_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
-          List<ChannelData> self, SseSerializer serializer);
 
   @protected
   void
@@ -2791,22 +2819,8 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
       MediaDeviceInfoKind self, SseSerializer serializer);
 
   @protected
-  void sse_encode_media_stream(MediaStream self, SseSerializer serializer);
-
-  @protected
-  void sse_encode_media_stream_constraints(
-      MediaStreamConstraints self, SseSerializer serializer);
-
-  @protected
   void sse_encode_media_stream_track_state(
       MediaStreamTrackState self, SseSerializer serializer);
-
-  @protected
-  void sse_encode_media_track_constraints(
-      MediaTrackConstraints self, SseSerializer serializer);
-
-  @protected
-  void sse_encode_opt_String(String? self, SseSerializer serializer);
 
   @protected
   void
@@ -2827,12 +2841,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void sse_encode_opt_box_autoadd_f_32(double? self, SseSerializer serializer);
 
   @protected
-  void sse_encode_opt_box_autoadd_f_64(double? self, SseSerializer serializer);
-
-  @protected
-  void sse_encode_opt_box_autoadd_u_32(int? self, SseSerializer serializer);
-
-  @protected
   void sse_encode_oscillator_type(
       OscillatorType self, SseSerializer serializer);
 
@@ -2843,9 +2851,6 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   void sse_encode_panning_model_type(
       PanningModelType self, SseSerializer serializer);
-
-  @protected
-  void sse_encode_u_32(int self, SseSerializer serializer);
 
   @protected
   void sse_encode_u_8(int self, SseSerializer serializer);
@@ -2910,6 +2915,30 @@ class RustLibWire implements BaseWire {
           .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
               ptr);
 
+  void rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
+          dynamic ptr) =>
+      wasmModule
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
+              ptr);
+
+  void rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
+          dynamic ptr) =>
+      wasmModule
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
+              ptr);
+
+  void rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          dynamic ptr) =>
+      wasmModule
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+              ptr);
+
+  void rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          dynamic ptr) =>
+      wasmModule
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+              ptr);
+
   void rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextRegistration(
           dynamic ptr) =>
       wasmModule
@@ -2944,6 +2973,18 @@ class RustLibWire implements BaseWire {
           dynamic ptr) =>
       wasmModule
           .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
+              ptr);
+
+  void rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+          dynamic ptr) =>
+      wasmModule
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+              ptr);
+
+  void rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+          dynamic ptr) =>
+      wasmModule
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
               ptr);
 
   void rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacity(
@@ -3028,18 +3069,6 @@ class RustLibWire implements BaseWire {
           dynamic ptr) =>
       wasmModule
           .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynError(
-              ptr);
-
-  void rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
-          dynamic ptr) =>
-      wasmModule
-          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
-              ptr);
-
-  void rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
-          dynamic ptr) =>
-      wasmModule
-          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
               ptr);
 
   void rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConcreteBaseAudioContext(
@@ -3244,6 +3273,18 @@ class RustLibWire implements BaseWire {
           dynamic ptr) =>
       wasmModule
           .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamAudioSourceNode(
+              ptr);
+
+  void rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamConstraints(
+          dynamic ptr) =>
+      wasmModule
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamConstraints(
+              ptr);
+
+  void rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamConstraints(
+          dynamic ptr) =>
+      wasmModule
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamConstraints(
               ptr);
 
   void rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrack(
@@ -3472,6 +3513,22 @@ class RustLibWasmModule implements WasmModule {
           dynamic ptr);
 
   external void
+      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
+          dynamic ptr);
+
+  external void
+      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
+          dynamic ptr);
+
+  external void
+      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          dynamic ptr);
+
+  external void
+      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          dynamic ptr);
+
+  external void
       rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextRegistration(
           dynamic ptr);
 
@@ -3493,6 +3550,14 @@ class RustLibWasmModule implements WasmModule {
 
   external void
       rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
+          dynamic ptr);
+
+  external void
+      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+          dynamic ptr);
+
+  external void
+      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
           dynamic ptr);
 
   external void
@@ -3549,14 +3614,6 @@ class RustLibWasmModule implements WasmModule {
 
   external void
       rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynError(
-          dynamic ptr);
-
-  external void
-      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
-          dynamic ptr);
-
-  external void
-      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
           dynamic ptr);
 
   external void
@@ -3693,6 +3750,14 @@ class RustLibWasmModule implements WasmModule {
 
   external void
       rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamAudioSourceNode(
+          dynamic ptr);
+
+  external void
+      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamConstraints(
+          dynamic ptr);
+
+  external void
+      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamConstraints(
           dynamic ptr);
 
   external void

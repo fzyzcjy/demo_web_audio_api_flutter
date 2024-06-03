@@ -70,7 +70,7 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
   String get codegenVersion => '2.0.0-dev.37';
 
   @override
-  int get rustContentHash => -469591084;
+  int get rustContentHash => 680765375;
 
   static const kDefaultExternalLibraryLoaderConfig =
       ExternalLibraryLoaderConfig(
@@ -84,6 +84,49 @@ abstract class RustLibApi extends BaseApi {
   String crateApiSimpleGreet({required String name});
 
   Future<void> crateApiSimpleInitApp();
+
+  Future<void> webAudioApiAudioBufferCopyFromChannel(
+      {required AudioBuffer that,
+      required F32 destination,
+      required BigInt channelNumber});
+
+  Future<void> webAudioApiAudioBufferCopyFromChannelWithOffset(
+      {required AudioBuffer that,
+      required F32 destination,
+      required BigInt channelNumber,
+      required BigInt offset});
+
+  Future<void> webAudioApiAudioBufferCopyToChannel(
+      {required AudioBuffer that,
+      required F32 source,
+      required BigInt channelNumber});
+
+  Future<void> webAudioApiAudioBufferCopyToChannelWithOffset(
+      {required AudioBuffer that,
+      required F32 source,
+      required BigInt channelNumber,
+      required BigInt offset});
+
+  Future<double> webAudioApiAudioBufferDuration({required AudioBuffer that});
+
+  Future<AudioBuffer> webAudioApiAudioBufferFrom(
+      {required List<Float32List> samples, required double sampleRate});
+
+  Future<F32> webAudioApiAudioBufferGetChannelData(
+      {required AudioBuffer that, required BigInt channelNumber});
+
+  Future<F32> webAudioApiAudioBufferGetChannelDataMut(
+      {required AudioBuffer that, required BigInt channelNumber});
+
+  Future<BigInt> webAudioApiAudioBufferLength({required AudioBuffer that});
+
+  Future<AudioBuffer> webAudioApiAudioBufferNew(
+      {required AudioBufferOptions options});
+
+  Future<BigInt> webAudioApiAudioBufferNumberOfChannels(
+      {required AudioBuffer that});
+
+  Future<double> webAudioApiAudioBufferSampleRate({required AudioBuffer that});
 
   Future<AutomationRate> webAudioApiAudioParamAutomationRate(
       {required AudioParam that});
@@ -134,6 +177,24 @@ abstract class RustLibApi extends BaseApi {
       required double duration});
 
   Future<double> webAudioApiAudioParamValue({required AudioParam that});
+
+  AudioBuffer webAudioApiAudioProcessingEventGetInputBuffer(
+      {required AudioProcessingEvent that});
+
+  AudioBuffer webAudioApiAudioProcessingEventGetOutputBuffer(
+      {required AudioProcessingEvent that});
+
+  double webAudioApiAudioProcessingEventGetPlaybackTime(
+      {required AudioProcessingEvent that});
+
+  void webAudioApiAudioProcessingEventSetInputBuffer(
+      {required AudioProcessingEvent that, required AudioBuffer inputBuffer});
+
+  void webAudioApiAudioProcessingEventSetOutputBuffer(
+      {required AudioProcessingEvent that, required AudioBuffer outputBuffer});
+
+  void webAudioApiAudioProcessingEventSetPlaybackTime(
+      {required AudioProcessingEvent that, required double playbackTime});
 
   double webAudioApiAudioRenderCapacityEventGetAverageLoad(
       {required AudioRenderCapacityEvent that});
@@ -207,48 +268,33 @@ abstract class RustLibApi extends BaseApi {
       {required OfflineAudioCompletionEvent that,
       required AudioBuffer renderedBuffer});
 
-  Future<void> webAudioApiAudioBufferCopyFromChannel(
-      {required AudioBuffer that,
-      required F32 destination,
-      required BigInt channelNumber});
+  AudioContextLatencyCategory
+      webAudioApiContextAudioContextOptionsGetLatencyHint(
+          {required AudioContextOptions that});
 
-  Future<void> webAudioApiAudioBufferCopyFromChannelWithOffset(
-      {required AudioBuffer that,
-      required F32 destination,
-      required BigInt channelNumber,
-      required BigInt offset});
+  AudioContextRenderSizeCategory
+      webAudioApiContextAudioContextOptionsGetRenderSizeHint(
+          {required AudioContextOptions that});
 
-  Future<void> webAudioApiAudioBufferCopyToChannel(
-      {required AudioBuffer that,
-      required F32 source,
-      required BigInt channelNumber});
+  double? webAudioApiContextAudioContextOptionsGetSampleRate(
+      {required AudioContextOptions that});
 
-  Future<void> webAudioApiAudioBufferCopyToChannelWithOffset(
-      {required AudioBuffer that,
-      required F32 source,
-      required BigInt channelNumber,
-      required BigInt offset});
+  String webAudioApiContextAudioContextOptionsGetSinkId(
+      {required AudioContextOptions that});
 
-  Future<double> webAudioApiAudioBufferDuration({required AudioBuffer that});
+  void webAudioApiContextAudioContextOptionsSetLatencyHint(
+      {required AudioContextOptions that,
+      required AudioContextLatencyCategory latencyHint});
 
-  Future<AudioBuffer> webAudioApiAudioBufferFrom(
-      {required List<Float32List> samples, required double sampleRate});
+  void webAudioApiContextAudioContextOptionsSetRenderSizeHint(
+      {required AudioContextOptions that,
+      required AudioContextRenderSizeCategory renderSizeHint});
 
-  Future<F32> webAudioApiAudioBufferGetChannelData(
-      {required AudioBuffer that, required BigInt channelNumber});
+  void webAudioApiContextAudioContextOptionsSetSampleRate(
+      {required AudioContextOptions that, double? sampleRate});
 
-  Future<F32> webAudioApiAudioBufferGetChannelDataMut(
-      {required AudioBuffer that, required BigInt channelNumber});
-
-  Future<BigInt> webAudioApiAudioBufferLength({required AudioBuffer that});
-
-  Future<AudioBuffer> webAudioApiAudioBufferNew(
-      {required AudioBufferOptions options});
-
-  Future<BigInt> webAudioApiAudioBufferNumberOfChannels(
-      {required AudioBuffer that});
-
-  Future<double> webAudioApiAudioBufferSampleRate({required AudioBuffer that});
+  void webAudioApiContextAudioContextOptionsSetSinkId(
+      {required AudioContextOptions that, required String sinkId});
 
   Future<double> webAudioApiContextAudioContextBaseLatency(
       {required AudioContext that});
@@ -707,6 +753,24 @@ abstract class RustLibApi extends BaseApi {
   CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_AudioContextPtr;
 
   RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_AudioContextLatencyCategory;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_AudioContextLatencyCategory;
+
+  CrossPlatformFinalizerArg
+      get rust_arc_decrement_strong_count_AudioContextLatencyCategoryPtr;
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_AudioContextOptions;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_AudioContextOptions;
+
+  CrossPlatformFinalizerArg
+      get rust_arc_decrement_strong_count_AudioContextOptionsPtr;
+
+  RustArcIncrementStrongCountFnType
       get rust_arc_increment_strong_count_AudioContextRegistration;
 
   RustArcDecrementStrongCountFnType
@@ -731,6 +795,15 @@ abstract class RustLibApi extends BaseApi {
       get rust_arc_decrement_strong_count_AudioParam;
 
   CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_AudioParamPtr;
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_AudioProcessingEvent;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_AudioProcessingEvent;
+
+  CrossPlatformFinalizerArg
+      get rust_arc_decrement_strong_count_AudioProcessingEventPtr;
 
   RustArcIncrementStrongCountFnType
       get rust_arc_increment_strong_count_AudioRenderCapacity;
@@ -789,14 +862,6 @@ abstract class RustLibApi extends BaseApi {
       get rust_arc_decrement_strong_count_BoxError;
 
   CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_BoxErrorPtr;
-
-  RustArcIncrementStrongCountFnType
-      get rust_arc_increment_strong_count_ChannelData;
-
-  RustArcDecrementStrongCountFnType
-      get rust_arc_decrement_strong_count_ChannelData;
-
-  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_ChannelDataPtr;
 
   RustArcIncrementStrongCountFnType
       get rust_arc_increment_strong_count_ConcreteBaseAudioContext;
@@ -942,6 +1007,15 @@ abstract class RustLibApi extends BaseApi {
 
   CrossPlatformFinalizerArg
       get rust_arc_decrement_strong_count_MediaStreamAudioSourceNodePtr;
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_MediaStreamConstraints;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_MediaStreamConstraints;
+
+  CrossPlatformFinalizerArg
+      get rust_arc_decrement_strong_count_MediaStreamConstraintsPtr;
 
   RustArcIncrementStrongCountFnType
       get rust_arc_increment_strong_count_MediaStreamTrack;
@@ -1119,6 +1193,354 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       );
 
   @override
+  Future<void> webAudioApiAudioBufferCopyFromChannel(
+      {required AudioBuffer that,
+      required F32 destination,
+      required BigInt channelNumber}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+            that, serializer);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
+            destination, serializer);
+        sse_encode_usize(channelNumber, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 3, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioBufferCopyFromChannelConstMeta,
+      argValues: [that, destination, channelNumber],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioBufferCopyFromChannelConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioBuffer_copy_from_channel",
+        argNames: ["that", "destination", "channelNumber"],
+      );
+
+  @override
+  Future<void> webAudioApiAudioBufferCopyFromChannelWithOffset(
+      {required AudioBuffer that,
+      required F32 destination,
+      required BigInt channelNumber,
+      required BigInt offset}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+            that, serializer);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
+            destination, serializer);
+        sse_encode_usize(channelNumber, serializer);
+        sse_encode_usize(offset, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 4, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioBufferCopyFromChannelWithOffsetConstMeta,
+      argValues: [that, destination, channelNumber, offset],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioBufferCopyFromChannelWithOffsetConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioBuffer_copy_from_channel_with_offset",
+        argNames: ["that", "destination", "channelNumber", "offset"],
+      );
+
+  @override
+  Future<void> webAudioApiAudioBufferCopyToChannel(
+      {required AudioBuffer that,
+      required F32 source,
+      required BigInt channelNumber}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+            that, serializer);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
+            source, serializer);
+        sse_encode_usize(channelNumber, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 5, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioBufferCopyToChannelConstMeta,
+      argValues: [that, source, channelNumber],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioBufferCopyToChannelConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioBuffer_copy_to_channel",
+        argNames: ["that", "source", "channelNumber"],
+      );
+
+  @override
+  Future<void> webAudioApiAudioBufferCopyToChannelWithOffset(
+      {required AudioBuffer that,
+      required F32 source,
+      required BigInt channelNumber,
+      required BigInt offset}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+            that, serializer);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
+            source, serializer);
+        sse_encode_usize(channelNumber, serializer);
+        sse_encode_usize(offset, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 6, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioBufferCopyToChannelWithOffsetConstMeta,
+      argValues: [that, source, channelNumber, offset],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioBufferCopyToChannelWithOffsetConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioBuffer_copy_to_channel_with_offset",
+        argNames: ["that", "source", "channelNumber", "offset"],
+      );
+
+  @override
+  Future<double> webAudioApiAudioBufferDuration({required AudioBuffer that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 7, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_f_64,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioBufferDurationConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioBufferDurationConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioBuffer_duration",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<AudioBuffer> webAudioApiAudioBufferFrom(
+      {required List<Float32List> samples, required double sampleRate}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_list_list_prim_f_32_strict(samples, serializer);
+        sse_encode_f_32(sampleRate, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 8, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioBufferFromConstMeta,
+      argValues: [samples, sampleRate],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioBufferFromConstMeta => const TaskConstMeta(
+        debugName: "AudioBuffer_from",
+        argNames: ["samples", "sampleRate"],
+      );
+
+  @override
+  Future<F32> webAudioApiAudioBufferGetChannelData(
+      {required AudioBuffer that, required BigInt channelNumber}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+            that, serializer);
+        sse_encode_usize(channelNumber, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 9, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioBufferGetChannelDataConstMeta,
+      argValues: [that, channelNumber],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioBufferGetChannelDataConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioBuffer_get_channel_data",
+        argNames: ["that", "channelNumber"],
+      );
+
+  @override
+  Future<F32> webAudioApiAudioBufferGetChannelDataMut(
+      {required AudioBuffer that, required BigInt channelNumber}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+            that, serializer);
+        sse_encode_usize(channelNumber, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 10, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioBufferGetChannelDataMutConstMeta,
+      argValues: [that, channelNumber],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioBufferGetChannelDataMutConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioBuffer_get_channel_data_mut",
+        argNames: ["that", "channelNumber"],
+      );
+
+  @override
+  Future<BigInt> webAudioApiAudioBufferLength({required AudioBuffer that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 11, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_usize,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioBufferLengthConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioBufferLengthConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioBuffer_length",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<AudioBuffer> webAudioApiAudioBufferNew(
+      {required AudioBufferOptions options}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_box_autoadd_audio_buffer_options(options, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 12, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioBufferNewConstMeta,
+      argValues: [options],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioBufferNewConstMeta => const TaskConstMeta(
+        debugName: "AudioBuffer_new",
+        argNames: ["options"],
+      );
+
+  @override
+  Future<BigInt> webAudioApiAudioBufferNumberOfChannels(
+      {required AudioBuffer that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 13, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_usize,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioBufferNumberOfChannelsConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioBufferNumberOfChannelsConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioBuffer_number_of_channels",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<double> webAudioApiAudioBufferSampleRate({required AudioBuffer that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 14, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_f_32,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioBufferSampleRateConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioBufferSampleRateConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioBuffer_sample_rate",
+        argNames: ["that"],
+      );
+
+  @override
   Future<AutomationRate> webAudioApiAudioParamAutomationRate(
       {required AudioParam that}) {
     return handler.executeNormal(NormalTask(
@@ -1127,7 +1549,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 3, port: port_);
+            funcId: 15, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_automation_rate,
@@ -1155,7 +1577,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_f_64(cancelTime, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 4, port: port_);
+            funcId: 16, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -1184,7 +1606,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_f_64(cancelTime, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 5, port: port_);
+            funcId: 17, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -1211,7 +1633,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 6, port: port_);
+            funcId: 18, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_32,
@@ -1242,7 +1664,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_f_32(value, serializer);
         sse_encode_f_64(endTime, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 7, port: port_);
+            funcId: 19, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -1275,7 +1697,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_f_32(value, serializer);
         sse_encode_f_64(endTime, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 8, port: port_);
+            funcId: 20, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -1302,7 +1724,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 9, port: port_);
+            funcId: 21, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_32,
@@ -1328,7 +1750,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 10, port: port_);
+            funcId: 22, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_32,
@@ -1356,7 +1778,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_automation_rate(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 11, port: port_);
+            funcId: 23, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -1389,7 +1811,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_f_64(startTime, serializer);
         sse_encode_f_64(timeConstant, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 12, port: port_);
+            funcId: 24, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -1418,7 +1840,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_f_32(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 13, port: port_);
+            funcId: 25, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -1450,7 +1872,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_f_32(value, serializer);
         sse_encode_f_64(startTime, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 14, port: port_);
+            funcId: 26, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -1485,7 +1907,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_f_64(startTime, serializer);
         sse_encode_f_64(duration, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 15, port: port_);
+            funcId: 27, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -1512,7 +1934,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 16, port: port_);
+            funcId: 28, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_32,
@@ -1530,6 +1952,169 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       );
 
   @override
+  AudioBuffer webAudioApiAudioProcessingEventGetInputBuffer(
+      {required AudioProcessingEvent that}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+            that, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 29)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioProcessingEventGetInputBufferConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioProcessingEventGetInputBufferConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioProcessingEvent_get_input_buffer",
+        argNames: ["that"],
+      );
+
+  @override
+  AudioBuffer webAudioApiAudioProcessingEventGetOutputBuffer(
+      {required AudioProcessingEvent that}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+            that, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 30)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioProcessingEventGetOutputBufferConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioProcessingEventGetOutputBufferConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioProcessingEvent_get_output_buffer",
+        argNames: ["that"],
+      );
+
+  @override
+  double webAudioApiAudioProcessingEventGetPlaybackTime(
+      {required AudioProcessingEvent that}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+            that, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 31)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_f_64,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioProcessingEventGetPlaybackTimeConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioProcessingEventGetPlaybackTimeConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioProcessingEvent_get_playback_time",
+        argNames: ["that"],
+      );
+
+  @override
+  void webAudioApiAudioProcessingEventSetInputBuffer(
+      {required AudioProcessingEvent that, required AudioBuffer inputBuffer}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+            that, serializer);
+        sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+            inputBuffer, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 32)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioProcessingEventSetInputBufferConstMeta,
+      argValues: [that, inputBuffer],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioProcessingEventSetInputBufferConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioProcessingEvent_set_input_buffer",
+        argNames: ["that", "inputBuffer"],
+      );
+
+  @override
+  void webAudioApiAudioProcessingEventSetOutputBuffer(
+      {required AudioProcessingEvent that, required AudioBuffer outputBuffer}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+            that, serializer);
+        sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+            outputBuffer, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 33)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioProcessingEventSetOutputBufferConstMeta,
+      argValues: [that, outputBuffer],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioProcessingEventSetOutputBufferConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioProcessingEvent_set_output_buffer",
+        argNames: ["that", "outputBuffer"],
+      );
+
+  @override
+  void webAudioApiAudioProcessingEventSetPlaybackTime(
+      {required AudioProcessingEvent that, required double playbackTime}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+            that, serializer);
+        sse_encode_f_64(playbackTime, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 34)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiAudioProcessingEventSetPlaybackTimeConstMeta,
+      argValues: [that, playbackTime],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiAudioProcessingEventSetPlaybackTimeConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioProcessingEvent_set_playback_time",
+        argNames: ["that", "playbackTime"],
+      );
+
+  @override
   double webAudioApiAudioRenderCapacityEventGetAverageLoad(
       {required AudioRenderCapacityEvent that}) {
     return handler.executeSync(SyncTask(
@@ -1537,7 +2122,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacityEvent(
             that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 17)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 35)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_64,
@@ -1564,7 +2149,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacityEvent(
             that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 18)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 36)!;
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -1591,7 +2176,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacityEvent(
             that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 19)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 37)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_64,
@@ -1617,7 +2202,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacityEvent(
             that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 20)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 38)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_64,
@@ -1643,7 +2228,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacityEvent(
             that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 21)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 39)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_64,
@@ -1671,7 +2256,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacityEvent(
             that, serializer);
         sse_encode_f_64(averageLoad, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 22)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 40)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -1700,7 +2285,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerEvent(
             event, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 23)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 41)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -1727,7 +2312,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacityEvent(
             that, serializer);
         sse_encode_f_64(peakLoad, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 24)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 42)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -1754,7 +2339,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacityEvent(
             that, serializer);
         sse_encode_f_64(timestamp, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 25)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 43)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -1781,7 +2366,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacityEvent(
             that, serializer);
         sse_encode_f_64(underrunRatio, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 26)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 44)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -1809,7 +2394,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacity(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 27, port: port_);
+            funcId: 45, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -1839,7 +2424,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_box_autoadd_audio_render_capacity_options(
             options, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 28, port: port_);
+            funcId: 46, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -1866,7 +2451,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioRenderCapacity(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 29, port: port_);
+            funcId: 47, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -1891,7 +2476,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerErrorEvent(
             that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 30)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 48)!;
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -1917,7 +2502,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerErrorEvent(
             that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 31)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 49)!;
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -1943,7 +2528,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerErrorEvent(
             that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 32)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 50)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_String,
@@ -1971,7 +2556,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynAnySend(
             error, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 33)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 51)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -1999,7 +2584,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerEvent(
             event, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 34)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 52)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -2026,7 +2611,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerErrorEvent(
             that, serializer);
         sse_encode_String(message, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 35)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 53)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -2051,7 +2636,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerEvent(
             that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 36)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 54)!;
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -2078,7 +2663,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerstr(
             type, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 37)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 55)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -2103,7 +2688,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioCompletionEvent(
             that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 38)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 56)!;
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -2130,10 +2715,11 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioCompletionEvent(
             that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 39)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 57)!;
       },
       codec: SseCodec(
-        decodeSuccessData: sse_decode_audio_buffer,
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer,
         decodeErrorData: null,
       ),
       constMeta:
@@ -2160,7 +2746,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerEvent(
             event, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 40)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 58)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -2187,8 +2773,9 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioCompletionEvent(
             that, serializer);
-        sse_encode_audio_buffer(renderedBuffer, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 41)!;
+        sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+            renderedBuffer, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 59)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -2209,342 +2796,230 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           );
 
   @override
-  Future<void> webAudioApiAudioBufferCopyFromChannel(
-      {required AudioBuffer that,
-      required F32 destination,
-      required BigInt channelNumber}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
+  AudioContextLatencyCategory
+      webAudioApiContextAudioContextOptionsGetLatencyHint(
+          {required AudioContextOptions that}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_box_autoadd_audio_buffer(that, serializer);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
-            destination, serializer);
-        sse_encode_usize(channelNumber, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 42, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiAudioBufferCopyFromChannelConstMeta,
-      argValues: [that, destination, channelNumber],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiAudioBufferCopyFromChannelConstMeta =>
-      const TaskConstMeta(
-        debugName: "audio_buffer_copy_from_channel",
-        argNames: ["that", "destination", "channelNumber"],
-      );
-
-  @override
-  Future<void> webAudioApiAudioBufferCopyFromChannelWithOffset(
-      {required AudioBuffer that,
-      required F32 destination,
-      required BigInt channelNumber,
-      required BigInt offset}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_box_autoadd_audio_buffer(that, serializer);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
-            destination, serializer);
-        sse_encode_usize(channelNumber, serializer);
-        sse_encode_usize(offset, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 43, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiAudioBufferCopyFromChannelWithOffsetConstMeta,
-      argValues: [that, destination, channelNumber, offset],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiAudioBufferCopyFromChannelWithOffsetConstMeta =>
-      const TaskConstMeta(
-        debugName: "audio_buffer_copy_from_channel_with_offset",
-        argNames: ["that", "destination", "channelNumber", "offset"],
-      );
-
-  @override
-  Future<void> webAudioApiAudioBufferCopyToChannel(
-      {required AudioBuffer that,
-      required F32 source,
-      required BigInt channelNumber}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
             that, serializer);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
-            source, serializer);
-        sse_encode_usize(channelNumber, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 44, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiAudioBufferCopyToChannelConstMeta,
-      argValues: [that, source, channelNumber],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiAudioBufferCopyToChannelConstMeta =>
-      const TaskConstMeta(
-        debugName: "audio_buffer_copy_to_channel",
-        argNames: ["that", "source", "channelNumber"],
-      );
-
-  @override
-  Future<void> webAudioApiAudioBufferCopyToChannelWithOffset(
-      {required AudioBuffer that,
-      required F32 source,
-      required BigInt channelNumber,
-      required BigInt offset}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
-            that, serializer);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
-            source, serializer);
-        sse_encode_usize(channelNumber, serializer);
-        sse_encode_usize(offset, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 45, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiAudioBufferCopyToChannelWithOffsetConstMeta,
-      argValues: [that, source, channelNumber, offset],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiAudioBufferCopyToChannelWithOffsetConstMeta =>
-      const TaskConstMeta(
-        debugName: "audio_buffer_copy_to_channel_with_offset",
-        argNames: ["that", "source", "channelNumber", "offset"],
-      );
-
-  @override
-  Future<double> webAudioApiAudioBufferDuration({required AudioBuffer that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_box_autoadd_audio_buffer(that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 46, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_f_64,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiAudioBufferDurationConstMeta,
-      argValues: [that],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiAudioBufferDurationConstMeta =>
-      const TaskConstMeta(
-        debugName: "audio_buffer_duration",
-        argNames: ["that"],
-      );
-
-  @override
-  Future<AudioBuffer> webAudioApiAudioBufferFrom(
-      {required List<Float32List> samples, required double sampleRate}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_list_list_prim_f_32_strict(samples, serializer);
-        sse_encode_f_32(sampleRate, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 47, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_audio_buffer,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiAudioBufferFromConstMeta,
-      argValues: [samples, sampleRate],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiAudioBufferFromConstMeta => const TaskConstMeta(
-        debugName: "audio_buffer_from",
-        argNames: ["samples", "sampleRate"],
-      );
-
-  @override
-  Future<F32> webAudioApiAudioBufferGetChannelData(
-      {required AudioBuffer that, required BigInt channelNumber}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_box_autoadd_audio_buffer(that, serializer);
-        sse_encode_usize(channelNumber, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 48, port: port_);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 60)!;
       },
       codec: SseCodec(
         decodeSuccessData:
-            sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32,
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiAudioBufferGetChannelDataConstMeta,
-      argValues: [that, channelNumber],
+      constMeta: kWebAudioApiContextAudioContextOptionsGetLatencyHintConstMeta,
+      argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiAudioBufferGetChannelDataConstMeta =>
-      const TaskConstMeta(
-        debugName: "audio_buffer_get_channel_data",
-        argNames: ["that", "channelNumber"],
-      );
+  TaskConstMeta
+      get kWebAudioApiContextAudioContextOptionsGetLatencyHintConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioContextOptions_get_latency_hint",
+            argNames: ["that"],
+          );
 
   @override
-  Future<F32> webAudioApiAudioBufferGetChannelDataMut(
-      {required AudioBuffer that, required BigInt channelNumber}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
+  AudioContextRenderSizeCategory
+      webAudioApiContextAudioContextOptionsGetRenderSizeHint(
+          {required AudioContextOptions that}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
             that, serializer);
-        sse_encode_usize(channelNumber, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 49, port: port_);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 61)!;
       },
       codec: SseCodec(
-        decodeSuccessData:
-            sse_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32,
+        decodeSuccessData: sse_decode_audio_context_render_size_category,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiAudioBufferGetChannelDataMutConstMeta,
-      argValues: [that, channelNumber],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiAudioBufferGetChannelDataMutConstMeta =>
-      const TaskConstMeta(
-        debugName: "audio_buffer_get_channel_data_mut",
-        argNames: ["that", "channelNumber"],
-      );
-
-  @override
-  Future<BigInt> webAudioApiAudioBufferLength({required AudioBuffer that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_box_autoadd_audio_buffer(that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 50, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_usize,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiAudioBufferLengthConstMeta,
+      constMeta:
+          kWebAudioApiContextAudioContextOptionsGetRenderSizeHintConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiAudioBufferLengthConstMeta =>
-      const TaskConstMeta(
-        debugName: "audio_buffer_length",
-        argNames: ["that"],
-      );
+  TaskConstMeta
+      get kWebAudioApiContextAudioContextOptionsGetRenderSizeHintConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioContextOptions_get_render_size_hint",
+            argNames: ["that"],
+          );
 
   @override
-  Future<AudioBuffer> webAudioApiAudioBufferNew(
-      {required AudioBufferOptions options}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
+  double? webAudioApiContextAudioContextOptionsGetSampleRate(
+      {required AudioContextOptions that}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_box_autoadd_audio_buffer_options(options, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 51, port: port_);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+            that, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 62)!;
       },
       codec: SseCodec(
-        decodeSuccessData: sse_decode_audio_buffer,
+        decodeSuccessData: sse_decode_opt_box_autoadd_f_32,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiAudioBufferNewConstMeta,
-      argValues: [options],
-      apiImpl: this,
-    ));
-  }
-
-  TaskConstMeta get kWebAudioApiAudioBufferNewConstMeta => const TaskConstMeta(
-        debugName: "audio_buffer_new",
-        argNames: ["options"],
-      );
-
-  @override
-  Future<BigInt> webAudioApiAudioBufferNumberOfChannels(
-      {required AudioBuffer that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
-        final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_box_autoadd_audio_buffer(that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 52, port: port_);
-      },
-      codec: SseCodec(
-        decodeSuccessData: sse_decode_usize,
-        decodeErrorData: null,
-      ),
-      constMeta: kWebAudioApiAudioBufferNumberOfChannelsConstMeta,
+      constMeta: kWebAudioApiContextAudioContextOptionsGetSampleRateConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiAudioBufferNumberOfChannelsConstMeta =>
-      const TaskConstMeta(
-        debugName: "audio_buffer_number_of_channels",
-        argNames: ["that"],
-      );
+  TaskConstMeta
+      get kWebAudioApiContextAudioContextOptionsGetSampleRateConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioContextOptions_get_sample_rate",
+            argNames: ["that"],
+          );
 
   @override
-  Future<double> webAudioApiAudioBufferSampleRate({required AudioBuffer that}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
+  String webAudioApiContextAudioContextOptionsGetSinkId(
+      {required AudioContextOptions that}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_box_autoadd_audio_buffer(that, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 53, port: port_);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+            that, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 63)!;
       },
       codec: SseCodec(
-        decodeSuccessData: sse_decode_f_32,
+        decodeSuccessData: sse_decode_String,
         decodeErrorData: null,
       ),
-      constMeta: kWebAudioApiAudioBufferSampleRateConstMeta,
+      constMeta: kWebAudioApiContextAudioContextOptionsGetSinkIdConstMeta,
       argValues: [that],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kWebAudioApiAudioBufferSampleRateConstMeta =>
+  TaskConstMeta get kWebAudioApiContextAudioContextOptionsGetSinkIdConstMeta =>
       const TaskConstMeta(
-        debugName: "audio_buffer_sample_rate",
+        debugName: "AudioContextOptions_get_sink_id",
         argNames: ["that"],
+      );
+
+  @override
+  void webAudioApiContextAudioContextOptionsSetLatencyHint(
+      {required AudioContextOptions that,
+      required AudioContextLatencyCategory latencyHint}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+            that, serializer);
+        sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
+            latencyHint, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 64)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiContextAudioContextOptionsSetLatencyHintConstMeta,
+      argValues: [that, latencyHint],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiContextAudioContextOptionsSetLatencyHintConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioContextOptions_set_latency_hint",
+            argNames: ["that", "latencyHint"],
+          );
+
+  @override
+  void webAudioApiContextAudioContextOptionsSetRenderSizeHint(
+      {required AudioContextOptions that,
+      required AudioContextRenderSizeCategory renderSizeHint}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+            that, serializer);
+        sse_encode_audio_context_render_size_category(
+            renderSizeHint, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 65)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta:
+          kWebAudioApiContextAudioContextOptionsSetRenderSizeHintConstMeta,
+      argValues: [that, renderSizeHint],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiContextAudioContextOptionsSetRenderSizeHintConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioContextOptions_set_render_size_hint",
+            argNames: ["that", "renderSizeHint"],
+          );
+
+  @override
+  void webAudioApiContextAudioContextOptionsSetSampleRate(
+      {required AudioContextOptions that, double? sampleRate}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+            that, serializer);
+        sse_encode_opt_box_autoadd_f_32(sampleRate, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 66)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiContextAudioContextOptionsSetSampleRateConstMeta,
+      argValues: [that, sampleRate],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiContextAudioContextOptionsSetSampleRateConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioContextOptions_set_sample_rate",
+            argNames: ["that", "sampleRate"],
+          );
+
+  @override
+  void webAudioApiContextAudioContextOptionsSetSinkId(
+      {required AudioContextOptions that, required String sinkId}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+            that, serializer);
+        sse_encode_String(sinkId, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 67)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiContextAudioContextOptionsSetSinkIdConstMeta,
+      argValues: [that, sinkId],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiContextAudioContextOptionsSetSinkIdConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioContextOptions_set_sink_id",
+        argNames: ["that", "sinkId"],
       );
 
   @override
@@ -2556,7 +3031,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 54, port: port_);
+            funcId: 68, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_64,
@@ -2583,7 +3058,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 55, port: port_);
+            funcId: 69, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -2610,7 +3085,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 56, port: port_);
+            funcId: 70, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -2637,7 +3112,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 57, port: port_);
+            funcId: 71, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -2667,7 +3142,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaElement(
             mediaElement, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 58, port: port_);
+            funcId: 72, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -2698,7 +3173,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 59, port: port_);
+            funcId: 73, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -2728,9 +3203,10 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
             that, serializer);
-        sse_encode_box_autoadd_media_stream(media, serializer);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStream(
+            media, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 60, port: port_);
+            funcId: 74, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -2763,7 +3239,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrack(
             media, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 61, port: port_);
+            funcId: 75, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -2790,9 +3266,10 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_box_autoadd_audio_context_options(options, serializer);
+        sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+            options, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 62, port: port_);
+            funcId: 76, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -2820,7 +3297,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 63, port: port_);
+            funcId: 77, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_64,
@@ -2847,7 +3324,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 64, port: port_);
+            funcId: 78, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -2875,7 +3352,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 65, port: port_);
+            funcId: 79, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -2902,7 +3379,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 66, port: port_);
+            funcId: 80, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -2930,7 +3407,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_String(sinkId, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 67, port: port_);
+            funcId: 81, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -2958,7 +3435,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 68, port: port_);
+            funcId: 82, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_String,
@@ -2985,7 +3462,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 69, port: port_);
+            funcId: 83, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -3012,7 +3489,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 70, port: port_);
+            funcId: 84, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -3042,7 +3519,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextRegistration(
             reg, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 71, port: port_);
+            funcId: 85, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -3071,7 +3548,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioContext(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 72, port: port_);
+            funcId: 86, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -3099,7 +3576,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioContext(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 73, port: port_);
+            funcId: 87, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_usize,
@@ -3129,7 +3606,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_usize(length, serializer);
         sse_encode_f_32(sampleRate, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 74, port: port_);
+            funcId: 88, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -3157,7 +3634,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioContext(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 75, port: port_);
+            funcId: 89, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -3184,10 +3661,11 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioContext(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 76, port: port_);
+            funcId: 90, port: port_);
       },
       codec: SseCodec(
-        decodeSuccessData: sse_decode_audio_buffer,
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer,
         decodeErrorData: null,
       ),
       constMeta: kWebAudioApiContextOfflineAudioContextStartRenderingConstMeta,
@@ -3212,10 +3690,11 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOfflineAudioContext(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 77, port: port_);
+            funcId: 91, port: port_);
       },
       codec: SseCodec(
-        decodeSuccessData: sse_decode_audio_buffer,
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer,
         decodeErrorData: null,
       ),
       constMeta:
@@ -3242,7 +3721,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_f_64(suspendTime, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 78, port: port_);
+            funcId: 92, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -3269,7 +3748,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaDeviceInfo(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 79, port: port_);
+            funcId: 93, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -3297,7 +3776,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaDeviceInfo(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 80, port: port_);
+            funcId: 94, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -3325,7 +3804,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaDeviceInfo(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 81, port: port_);
+            funcId: 95, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_media_device_info_kind,
@@ -3352,7 +3831,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaDeviceInfo(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 82, port: port_);
+            funcId: 96, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -3377,7 +3856,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 83, port: port_);
+            funcId: 97, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -3402,13 +3881,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_box_autoadd_media_stream_constraints(
+        sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamConstraints(
             constraints, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 84, port: port_);
+            funcId: 98, port: port_);
       },
       codec: SseCodec(
-        decodeSuccessData: sse_decode_media_stream,
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStream,
         decodeErrorData: null,
       ),
       constMeta: kWebAudioApiMediaDevicesGetUserMediaSyncConstMeta,
@@ -3431,7 +3911,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBlobEvent(
             that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 85)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 99)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_list_prim_u_8_strict,
@@ -3456,7 +3936,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBlobEvent(
             that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 86)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 100)!;
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -3483,7 +3963,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBlobEvent(
             that, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 87)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 101)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_64,
@@ -3510,7 +3990,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBlobEvent(
             that, serializer);
         sse_encode_list_prim_u_8_strict(blob, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 88)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 102)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -3538,7 +4018,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerEvent(
             event, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 89)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 103)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -3565,7 +4045,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBlobEvent(
             that, serializer);
         sse_encode_f_64(timecode, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 90)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 104)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -3592,7 +4072,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaRecorder(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 91, port: port_);
+            funcId: 105, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -3621,7 +4101,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaRecorder(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 92, port: port_);
+            funcId: 106, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -3649,7 +4129,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaRecorder(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 93, port: port_);
+            funcId: 107, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -3674,9 +4154,10 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_box_autoadd_media_stream(stream, serializer);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStream(
+            stream, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 94, port: port_);
+            funcId: 108, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -3704,7 +4185,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaRecorder(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 95, port: port_);
+            funcId: 109, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -3731,7 +4212,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaRecorder(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 96, port: port_);
+            funcId: 110, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -3758,7 +4239,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrack(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 97, port: port_);
+            funcId: 111, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -3786,7 +4267,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrack(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 98, port: port_);
+            funcId: 112, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_media_stream_track_state,
@@ -3814,10 +4295,11 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_list_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrack(
             tracks, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 99, port: port_);
+            funcId: 113, port: port_);
       },
       codec: SseCodec(
-        decodeSuccessData: sse_decode_media_stream,
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStream,
         decodeErrorData: null,
       ),
       constMeta: kWebAudioApiMediaStreamsMediaStreamFromTracksConstMeta,
@@ -3828,7 +4310,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
 
   TaskConstMeta get kWebAudioApiMediaStreamsMediaStreamFromTracksConstMeta =>
       const TaskConstMeta(
-        debugName: "media_stream_from_tracks",
+        debugName: "MediaStream_from_tracks",
         argNames: ["tracks"],
       );
 
@@ -3838,9 +4320,10 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        sse_encode_box_autoadd_media_stream(that, serializer);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStream(
+            that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 100, port: port_);
+            funcId: 114, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -3855,7 +4338,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
 
   TaskConstMeta get kWebAudioApiMediaStreamsMediaStreamGetTracksConstMeta =>
       const TaskConstMeta(
-        debugName: "media_stream_get_tracks",
+        debugName: "MediaStream_get_tracks",
         argNames: ["that"],
       );
 
@@ -3868,7 +4351,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAnalyserNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 101, port: port_);
+            funcId: 115, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_usize,
@@ -3895,7 +4378,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAnalyserNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 102, port: port_);
+            funcId: 116, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_usize,
@@ -3924,7 +4407,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
             buffer, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 103, port: port_);
+            funcId: 117, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -3953,7 +4436,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInneru8(
             buffer, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 104, port: port_);
+            funcId: 118, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -3983,7 +4466,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
             buffer, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 105, port: port_);
+            funcId: 119, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4013,7 +4496,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
             buffer, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 106, port: port_);
+            funcId: 120, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4041,7 +4524,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAnalyserNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 107, port: port_);
+            funcId: 121, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_64,
@@ -4068,7 +4551,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAnalyserNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 108, port: port_);
+            funcId: 122, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_64,
@@ -4096,7 +4579,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_usize(fftSize, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 109, port: port_);
+            funcId: 123, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4124,7 +4607,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_f_64(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 110, port: port_);
+            funcId: 124, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4152,7 +4635,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_f_64(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 111, port: port_);
+            funcId: 125, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4180,7 +4663,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_f_64(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 112, port: port_);
+            funcId: 126, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4208,7 +4691,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAnalyserNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 113, port: port_);
+            funcId: 127, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_64,
@@ -4236,7 +4719,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 114, port: port_);
+            funcId: 128, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -4264,7 +4747,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 115, port: port_);
+            funcId: 129, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -4292,7 +4775,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 116, port: port_);
+            funcId: 130, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_bool,
@@ -4319,7 +4802,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 117, port: port_);
+            funcId: 131, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_64,
@@ -4346,7 +4829,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 118, port: port_);
+            funcId: 132, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_64,
@@ -4373,7 +4856,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 119, port: port_);
+            funcId: 133, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -4402,7 +4885,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 120, port: port_);
+            funcId: 134, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_64,
@@ -4428,9 +4911,10 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
             that, serializer);
-        sse_encode_box_autoadd_audio_buffer(audioBuffer, serializer);
+        sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+            audioBuffer, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 121, port: port_);
+            funcId: 135, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4458,7 +4942,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_bool(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 122, port: port_);
+            funcId: 136, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4486,7 +4970,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_f_64(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 123, port: port_);
+            funcId: 137, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4514,7 +4998,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_f_64(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 124, port: port_);
+            funcId: 138, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4546,7 +5030,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_f_64(start, serializer);
         sse_encode_f_64(offset, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 125, port: port_);
+            funcId: 139, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4581,7 +5065,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_f_64(offset, serializer);
         sse_encode_f_64(duration, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 126, port: port_);
+            funcId: 140, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4611,7 +5095,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioDestinationNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 127, port: port_);
+            funcId: 141, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_usize,
@@ -4639,7 +5123,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBiquadFilterNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 128, port: port_);
+            funcId: 142, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -4667,7 +5151,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBiquadFilterNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 129, port: port_);
+            funcId: 143, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -4695,7 +5179,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBiquadFilterNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 130, port: port_);
+            funcId: 144, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -4732,7 +5216,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
             phaseResponse, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 131, port: port_);
+            funcId: 145, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4760,7 +5244,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBiquadFilterNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 132, port: port_);
+            funcId: 146, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -4789,7 +5273,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_biquad_filter_type(type, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 133, port: port_);
+            funcId: 147, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4816,7 +5300,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBiquadFilterNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 134, port: port_);
+            funcId: 148, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_biquad_filter_type,
@@ -4843,7 +5327,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConstantSourceNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 135, port: port_);
+            funcId: 149, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -4871,7 +5355,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvolverNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 136, port: port_);
+            funcId: 150, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -4899,7 +5383,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvolverNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 137, port: port_);
+            funcId: 151, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_bool,
@@ -4925,9 +5409,10 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConvolverNode(
             that, serializer);
-        sse_encode_box_autoadd_audio_buffer(buffer, serializer);
+        sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+            buffer, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 138, port: port_);
+            funcId: 152, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4955,7 +5440,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_bool(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 139, port: port_);
+            funcId: 153, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -4982,7 +5467,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDelayNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 140, port: port_);
+            funcId: 154, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -5010,7 +5495,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDynamicsCompressorNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 141, port: port_);
+            funcId: 155, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -5038,7 +5523,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDynamicsCompressorNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 142, port: port_);
+            funcId: 156, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -5066,7 +5551,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDynamicsCompressorNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 143, port: port_);
+            funcId: 157, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -5094,7 +5579,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDynamicsCompressorNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 144, port: port_);
+            funcId: 158, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_32,
@@ -5121,7 +5606,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDynamicsCompressorNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 145, port: port_);
+            funcId: 159, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -5149,7 +5634,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDynamicsCompressorNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 146, port: port_);
+            funcId: 160, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -5176,7 +5661,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerGainNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 147, port: port_);
+            funcId: 161, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -5213,7 +5698,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
             phaseResponse, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 148, port: port_);
+            funcId: 162, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -5241,7 +5726,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamAudioDestinationNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 149, port: port_);
+            funcId: 163, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -5270,7 +5755,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOscillatorNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 150, port: port_);
+            funcId: 164, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -5298,7 +5783,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOscillatorNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 151, port: port_);
+            funcId: 165, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -5328,7 +5813,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPeriodicWave(
             periodicWave, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 152, port: port_);
+            funcId: 166, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -5356,7 +5841,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_oscillator_type(type, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 153, port: port_);
+            funcId: 167, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -5383,7 +5868,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerOscillatorNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 154, port: port_);
+            funcId: 168, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_oscillator_type,
@@ -5410,7 +5895,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 155, port: port_);
+            funcId: 169, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_64,
@@ -5437,7 +5922,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 156, port: port_);
+            funcId: 170, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_64,
@@ -5464,7 +5949,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 157, port: port_);
+            funcId: 171, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_64,
@@ -5491,7 +5976,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 158, port: port_);
+            funcId: 172, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_distance_model_type,
@@ -5518,7 +6003,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 159, port: port_);
+            funcId: 173, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_64,
@@ -5545,7 +6030,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 160, port: port_);
+            funcId: 174, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -5573,7 +6058,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 161, port: port_);
+            funcId: 175, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -5601,7 +6086,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 162, port: port_);
+            funcId: 176, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -5629,7 +6114,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 163, port: port_);
+            funcId: 177, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_panning_model_type,
@@ -5656,7 +6141,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 164, port: port_);
+            funcId: 178, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -5684,7 +6169,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 165, port: port_);
+            funcId: 179, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -5712,7 +6197,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 166, port: port_);
+            funcId: 180, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -5740,7 +6225,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 167, port: port_);
+            funcId: 181, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_64,
@@ -5767,7 +6252,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPannerNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 168, port: port_);
+            funcId: 182, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_f_64,
@@ -5795,7 +6280,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_f_64(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 169, port: port_);
+            funcId: 183, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -5823,7 +6308,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_f_64(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 170, port: port_);
+            funcId: 184, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -5851,7 +6336,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_f_64(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 171, port: port_);
+            funcId: 185, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -5879,7 +6364,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_distance_model_type(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 172, port: port_);
+            funcId: 186, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -5907,7 +6392,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_f_64(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 173, port: port_);
+            funcId: 187, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -5940,7 +6425,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_f_32(y, serializer);
         sse_encode_f_32(z, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 174, port: port_);
+            funcId: 188, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -5968,7 +6453,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_panning_model_type(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 175, port: port_);
+            funcId: 189, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -6001,7 +6486,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_f_32(y, serializer);
         sse_encode_f_32(z, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 176, port: port_);
+            funcId: 190, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -6029,7 +6514,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_f_64(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 177, port: port_);
+            funcId: 191, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -6057,7 +6542,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_f_64(value, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 178, port: port_);
+            funcId: 192, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -6084,7 +6569,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerScriptProcessorNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 179, port: port_);
+            funcId: 193, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_usize,
@@ -6111,7 +6596,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerScriptProcessorNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 180, port: port_);
+            funcId: 194, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -6140,7 +6625,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerStereoPannerNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 181, port: port_);
+            funcId: 195, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -6168,7 +6653,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerWaveShaperNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 182, port: port_);
+            funcId: 196, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -6196,7 +6681,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerWaveShaperNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 183, port: port_);
+            funcId: 197, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_over_sample_type,
@@ -6224,7 +6709,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_list_prim_f_32_loose(curve, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 184, port: port_);
+            funcId: 198, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -6252,7 +6737,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         sse_encode_over_sample_type(oversample, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 185, port: port_);
+            funcId: 199, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -6279,7 +6764,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioWorkletNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 186, port: port_);
+            funcId: 200, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -6307,7 +6792,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioWorkletNode(
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 187, port: port_);
+            funcId: 201, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData:
@@ -6359,6 +6844,22 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext;
 
   RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_AudioContextLatencyCategory => wire
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_AudioContextLatencyCategory => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory;
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_AudioContextOptions => wire
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_AudioContextOptions => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions;
+
+  RustArcIncrementStrongCountFnType
       get rust_arc_increment_strong_count_AudioContextRegistration => wire
           .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextRegistration;
 
@@ -6381,6 +6882,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   RustArcDecrementStrongCountFnType
       get rust_arc_decrement_strong_count_AudioParam => wire
           .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam;
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_AudioProcessingEvent => wire
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_AudioProcessingEvent => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent;
 
   RustArcIncrementStrongCountFnType
       get rust_arc_increment_strong_count_AudioRenderCapacity => wire
@@ -6437,14 +6946,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   RustArcDecrementStrongCountFnType
       get rust_arc_decrement_strong_count_BoxError => wire
           .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynError;
-
-  RustArcIncrementStrongCountFnType
-      get rust_arc_increment_strong_count_ChannelData => wire
-          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData;
-
-  RustArcDecrementStrongCountFnType
-      get rust_arc_decrement_strong_count_ChannelData => wire
-          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData;
 
   RustArcIncrementStrongCountFnType
       get rust_arc_increment_strong_count_ConcreteBaseAudioContext => wire
@@ -6581,6 +7082,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamAudioSourceNode;
 
   RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_MediaStreamConstraints => wire
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamConstraints;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_MediaStreamConstraints => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamConstraints;
+
+  RustArcIncrementStrongCountFnType
       get rust_arc_increment_strong_count_MediaStreamTrack => wire
           .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrack;
 
@@ -6701,6 +7210,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  AudioBuffer
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AudioBuffer.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
   AudioBufferSourceNode
       dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
           dynamic raw) {
@@ -6717,6 +7234,23 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  AudioContextLatencyCategory
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AudioContextLatencyCategory.frbInternalDcoDecode(
+        raw as List<dynamic>);
+  }
+
+  @protected
+  AudioContextOptions
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AudioContextOptions.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
   AudioDestinationNode
       dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioDestinationNode(
           dynamic raw) {
@@ -6730,6 +7264,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return AudioParam.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  AudioProcessingEvent
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AudioProcessingEvent.frbInternalDcoDecode(raw as List<dynamic>);
   }
 
   @protected
@@ -6786,14 +7328,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return BoxError.frbInternalDcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  ChannelData
-      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
-          dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return ChannelData.frbInternalDcoDecode(raw as List<dynamic>);
   }
 
   @protected
@@ -6894,6 +7428,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  MediaStream
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStream(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return MediaStream.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
   MediaStreamAudioDestinationNode
       dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamAudioDestinationNode(
           dynamic raw) {
@@ -6909,6 +7451,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return MediaStreamAudioSourceNode.frbInternalDcoDecode(
         raw as List<dynamic>);
+  }
+
+  @protected
+  MediaStreamConstraints
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamConstraints(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return MediaStreamConstraints.frbInternalDcoDecode(raw as List<dynamic>);
   }
 
   @protected
@@ -7023,6 +7573,22 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return AudioBufferSourceNode.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  AudioContextOptions
+      dco_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AudioContextOptions.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  AudioProcessingEvent
+      dco_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AudioProcessingEvent.frbInternalDcoDecode(raw as List<dynamic>);
   }
 
   @protected
@@ -7169,6 +7735,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  AudioContextOptions
+      dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AudioContextOptions.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
   AudioContextRegistration
       dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextRegistration(
           dynamic raw) {
@@ -7190,6 +7764,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return AudioParam.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  AudioProcessingEvent
+      dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AudioProcessingEvent.frbInternalDcoDecode(raw as List<dynamic>);
   }
 
   @protected
@@ -7465,6 +8047,23 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  AudioContextLatencyCategory
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AudioContextLatencyCategory.frbInternalDcoDecode(
+        raw as List<dynamic>);
+  }
+
+  @protected
+  AudioContextOptions
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AudioContextOptions.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
   AudioContextRegistration
       dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextRegistration(
           dynamic raw) {
@@ -7486,6 +8085,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return AudioParam.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  AudioProcessingEvent
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AudioProcessingEvent.frbInternalDcoDecode(raw as List<dynamic>);
   }
 
   @protected
@@ -7542,14 +8149,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return BoxError.frbInternalDcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  ChannelData
-      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
-          dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return ChannelData.frbInternalDcoDecode(raw as List<dynamic>);
   }
 
   @protected
@@ -7692,6 +8291,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  MediaStreamConstraints
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamConstraints(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return MediaStreamConstraints.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
   MediaStreamTrack
       dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrack(
           dynamic raw) {
@@ -7817,20 +8424,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  AudioBuffer dco_decode_audio_buffer(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    final arr = raw as List<dynamic>;
-    if (arr.length != 2)
-      throw Exception('unexpected arr length: expect 2 but see ${arr.length}');
-    return AudioBuffer(
-      channels:
-          dco_decode_list_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
-              arr[0]),
-      sampleRate: dco_decode_f_32(arr[1]),
-    );
-  }
-
-  @protected
   AudioBufferOptions dco_decode_audio_buffer_options(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     final arr = raw as List<dynamic>;
@@ -7840,40 +8433,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       numberOfChannels: dco_decode_usize(arr[0]),
       length: dco_decode_usize(arr[1]),
       sampleRate: dco_decode_f_32(arr[2]),
-    );
-  }
-
-  @protected
-  AudioContextLatencyCategory dco_decode_audio_context_latency_category(
-      dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    switch (raw[0]) {
-      case 0:
-        return AudioContextLatencyCategory_Balanced();
-      case 1:
-        return AudioContextLatencyCategory_Interactive();
-      case 2:
-        return AudioContextLatencyCategory_Playback();
-      case 3:
-        return AudioContextLatencyCategory_Custom(
-          dco_decode_f_64(raw[1]),
-        );
-      default:
-        throw Exception("unreachable");
-    }
-  }
-
-  @protected
-  AudioContextOptions dco_decode_audio_context_options(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    final arr = raw as List<dynamic>;
-    if (arr.length != 4)
-      throw Exception('unexpected arr length: expect 4 but see ${arr.length}');
-    return AudioContextOptions(
-      latencyHint: dco_decode_audio_context_latency_category(arr[0]),
-      sampleRate: dco_decode_opt_box_autoadd_f_32(arr[1]),
-      sinkId: dco_decode_String(arr[2]),
-      renderSizeHint: dco_decode_audio_context_render_size_category(arr[3]),
     );
   }
 
@@ -7940,22 +8499,9 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  AudioBuffer dco_decode_box_autoadd_audio_buffer(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return dco_decode_audio_buffer(raw);
-  }
-
-  @protected
   AudioBufferOptions dco_decode_box_autoadd_audio_buffer_options(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return dco_decode_audio_buffer_options(raw);
-  }
-
-  @protected
-  AudioContextOptions dco_decode_box_autoadd_audio_context_options(
-      dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return dco_decode_audio_context_options(raw);
   }
 
   @protected
@@ -7969,38 +8515,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   double dco_decode_box_autoadd_f_32(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw as double;
-  }
-
-  @protected
-  double dco_decode_box_autoadd_f_64(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return raw as double;
-  }
-
-  @protected
-  MediaStream dco_decode_box_autoadd_media_stream(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return dco_decode_media_stream(raw);
-  }
-
-  @protected
-  MediaStreamConstraints dco_decode_box_autoadd_media_stream_constraints(
-      dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return dco_decode_media_stream_constraints(raw);
-  }
-
-  @protected
-  MediaTrackConstraints dco_decode_box_autoadd_media_track_constraints(
-      dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return dco_decode_media_track_constraints(raw);
-  }
-
-  @protected
-  int dco_decode_box_autoadd_u_32(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return raw as int;
   }
 
   @protected
@@ -8025,17 +8539,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   int dco_decode_i_32(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw as int;
-  }
-
-  @protected
-  List<ChannelData>
-      dco_decode_list_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
-          dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return (raw as List<dynamic>)
-        .map(
-            dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData)
-        .toList();
   }
 
   @protected
@@ -8093,57 +8596,9 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  MediaStream dco_decode_media_stream(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    final arr = raw as List<dynamic>;
-    if (arr.length != 1)
-      throw Exception('unexpected arr length: expect 1 but see ${arr.length}');
-    return MediaStream(
-      tracks:
-          dco_decode_list_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrack(
-              arr[0]),
-    );
-  }
-
-  @protected
-  MediaStreamConstraints dco_decode_media_stream_constraints(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    switch (raw[0]) {
-      case 0:
-        return MediaStreamConstraints_Audio();
-      case 1:
-        return MediaStreamConstraints_AudioWithConstraints(
-          dco_decode_box_autoadd_media_track_constraints(raw[1]),
-        );
-      default:
-        throw Exception("unreachable");
-    }
-  }
-
-  @protected
   MediaStreamTrackState dco_decode_media_stream_track_state(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return MediaStreamTrackState.values[raw as int];
-  }
-
-  @protected
-  MediaTrackConstraints dco_decode_media_track_constraints(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    final arr = raw as List<dynamic>;
-    if (arr.length != 4)
-      throw Exception('unexpected arr length: expect 4 but see ${arr.length}');
-    return MediaTrackConstraints(
-      sampleRate: dco_decode_opt_box_autoadd_f_32(arr[0]),
-      latency: dco_decode_opt_box_autoadd_f_64(arr[1]),
-      channelCount: dco_decode_opt_box_autoadd_u_32(arr[2]),
-      deviceId: dco_decode_opt_String(arr[3]),
-    );
-  }
-
-  @protected
-  String? dco_decode_opt_String(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return raw == null ? null : dco_decode_String(raw);
   }
 
   @protected
@@ -8186,18 +8641,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  double? dco_decode_opt_box_autoadd_f_64(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return raw == null ? null : dco_decode_box_autoadd_f_64(raw);
-  }
-
-  @protected
-  int? dco_decode_opt_box_autoadd_u_32(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return raw == null ? null : dco_decode_box_autoadd_u_32(raw);
-  }
-
-  @protected
   OscillatorType dco_decode_oscillator_type(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return OscillatorType.values[raw as int];
@@ -8213,12 +8656,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   PanningModelType dco_decode_panning_model_type(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return PanningModelType.values[raw as int];
-  }
-
-  @protected
-  int dco_decode_u_32(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return raw as int;
   }
 
   @protected
@@ -8249,6 +8686,15 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  AudioBuffer
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AudioBuffer.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
   AudioBufferSourceNode
       sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
           SseDeserializer deserializer) {
@@ -8267,6 +8713,24 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  AudioContextLatencyCategory
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AudioContextLatencyCategory.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  AudioContextOptions
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AudioContextOptions.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
   AudioDestinationNode
       sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioDestinationNode(
           SseDeserializer deserializer) {
@@ -8281,6 +8745,15 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return AudioParam.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  AudioProcessingEvent
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AudioProcessingEvent.frbInternalSseDecode(
         sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
   }
 
@@ -8344,15 +8817,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return BoxError.frbInternalSseDecode(
-        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
-  }
-
-  @protected
-  ChannelData
-      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
-          SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return ChannelData.frbInternalSseDecode(
         sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
   }
 
@@ -8465,6 +8929,15 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  MediaStream
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStream(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return MediaStream.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
   MediaStreamAudioDestinationNode
       sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamAudioDestinationNode(
           SseDeserializer deserializer) {
@@ -8479,6 +8952,15 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return MediaStreamAudioSourceNode.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  MediaStreamConstraints
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamConstraints(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return MediaStreamConstraints.frbInternalSseDecode(
         sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
   }
 
@@ -8605,6 +9087,24 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return AudioBufferSourceNode.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  AudioContextOptions
+      sse_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AudioContextOptions.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  AudioProcessingEvent
+      sse_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AudioProcessingEvent.frbInternalSseDecode(
         sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
   }
 
@@ -8769,6 +9269,15 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  AudioContextOptions
+      sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AudioContextOptions.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
   AudioContextRegistration
       sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextRegistration(
           SseDeserializer deserializer) {
@@ -8792,6 +9301,15 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return AudioParam.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  AudioProcessingEvent
+      sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AudioProcessingEvent.frbInternalSseDecode(
         sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
   }
 
@@ -9100,6 +9618,24 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  AudioContextLatencyCategory
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AudioContextLatencyCategory.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  AudioContextOptions
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AudioContextOptions.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
   AudioContextRegistration
       sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextRegistration(
           SseDeserializer deserializer) {
@@ -9123,6 +9659,15 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return AudioParam.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  AudioProcessingEvent
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AudioProcessingEvent.frbInternalSseDecode(
         sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
   }
 
@@ -9186,15 +9731,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return BoxError.frbInternalSseDecode(
-        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
-  }
-
-  @protected
-  ChannelData
-      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
-          SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return ChannelData.frbInternalSseDecode(
         sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
   }
 
@@ -9352,6 +9888,15 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  MediaStreamConstraints
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamConstraints(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return MediaStreamConstraints.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
   MediaStreamTrack
       sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrack(
           SseDeserializer deserializer) {
@@ -9491,16 +10036,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  AudioBuffer sse_decode_audio_buffer(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    var var_channels =
-        sse_decode_list_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
-            deserializer);
-    var var_sampleRate = sse_decode_f_32(deserializer);
-    return AudioBuffer(channels: var_channels, sampleRate: var_sampleRate);
-  }
-
-  @protected
   AudioBufferOptions sse_decode_audio_buffer_options(
       SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
@@ -9511,44 +10046,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         numberOfChannels: var_numberOfChannels,
         length: var_length,
         sampleRate: var_sampleRate);
-  }
-
-  @protected
-  AudioContextLatencyCategory sse_decode_audio_context_latency_category(
-      SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-
-    var tag_ = sse_decode_i_32(deserializer);
-    switch (tag_) {
-      case 0:
-        return AudioContextLatencyCategory_Balanced();
-      case 1:
-        return AudioContextLatencyCategory_Interactive();
-      case 2:
-        return AudioContextLatencyCategory_Playback();
-      case 3:
-        var var_field0 = sse_decode_f_64(deserializer);
-        return AudioContextLatencyCategory_Custom(var_field0);
-      default:
-        throw UnimplementedError('');
-    }
-  }
-
-  @protected
-  AudioContextOptions sse_decode_audio_context_options(
-      SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    var var_latencyHint =
-        sse_decode_audio_context_latency_category(deserializer);
-    var var_sampleRate = sse_decode_opt_box_autoadd_f_32(deserializer);
-    var var_sinkId = sse_decode_String(deserializer);
-    var var_renderSizeHint =
-        sse_decode_audio_context_render_size_category(deserializer);
-    return AudioContextOptions(
-        latencyHint: var_latencyHint,
-        sampleRate: var_sampleRate,
-        sinkId: var_sinkId,
-        renderSizeHint: var_renderSizeHint);
   }
 
   @protected
@@ -9613,24 +10110,10 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  AudioBuffer sse_decode_box_autoadd_audio_buffer(
-      SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return (sse_decode_audio_buffer(deserializer));
-  }
-
-  @protected
   AudioBufferOptions sse_decode_box_autoadd_audio_buffer_options(
       SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return (sse_decode_audio_buffer_options(deserializer));
-  }
-
-  @protected
-  AudioContextOptions sse_decode_box_autoadd_audio_context_options(
-      SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return (sse_decode_audio_context_options(deserializer));
   }
 
   @protected
@@ -9645,39 +10128,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   double sse_decode_box_autoadd_f_32(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return (sse_decode_f_32(deserializer));
-  }
-
-  @protected
-  double sse_decode_box_autoadd_f_64(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return (sse_decode_f_64(deserializer));
-  }
-
-  @protected
-  MediaStream sse_decode_box_autoadd_media_stream(
-      SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return (sse_decode_media_stream(deserializer));
-  }
-
-  @protected
-  MediaStreamConstraints sse_decode_box_autoadd_media_stream_constraints(
-      SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return (sse_decode_media_stream_constraints(deserializer));
-  }
-
-  @protected
-  MediaTrackConstraints sse_decode_box_autoadd_media_track_constraints(
-      SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return (sse_decode_media_track_constraints(deserializer));
-  }
-
-  @protected
-  int sse_decode_box_autoadd_u_32(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return (sse_decode_u_32(deserializer));
   }
 
   @protected
@@ -9704,22 +10154,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   int sse_decode_i_32(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return deserializer.buffer.getInt32();
-  }
-
-  @protected
-  List<ChannelData>
-      sse_decode_list_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
-          SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-
-    var len_ = sse_decode_i_32(deserializer);
-    var ans_ = <ChannelData>[];
-    for (var idx_ = 0; idx_ < len_; ++idx_) {
-      ans_.add(
-          sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
-              deserializer));
-    }
-    return ans_;
   }
 
   @protected
@@ -9797,64 +10231,11 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  MediaStream sse_decode_media_stream(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    var var_tracks =
-        sse_decode_list_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrack(
-            deserializer);
-    return MediaStream(tracks: var_tracks);
-  }
-
-  @protected
-  MediaStreamConstraints sse_decode_media_stream_constraints(
-      SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-
-    var tag_ = sse_decode_i_32(deserializer);
-    switch (tag_) {
-      case 0:
-        return MediaStreamConstraints_Audio();
-      case 1:
-        var var_field0 =
-            sse_decode_box_autoadd_media_track_constraints(deserializer);
-        return MediaStreamConstraints_AudioWithConstraints(var_field0);
-      default:
-        throw UnimplementedError('');
-    }
-  }
-
-  @protected
   MediaStreamTrackState sse_decode_media_stream_track_state(
       SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     var inner = sse_decode_i_32(deserializer);
     return MediaStreamTrackState.values[inner];
-  }
-
-  @protected
-  MediaTrackConstraints sse_decode_media_track_constraints(
-      SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    var var_sampleRate = sse_decode_opt_box_autoadd_f_32(deserializer);
-    var var_latency = sse_decode_opt_box_autoadd_f_64(deserializer);
-    var var_channelCount = sse_decode_opt_box_autoadd_u_32(deserializer);
-    var var_deviceId = sse_decode_opt_String(deserializer);
-    return MediaTrackConstraints(
-        sampleRate: var_sampleRate,
-        latency: var_latency,
-        channelCount: var_channelCount,
-        deviceId: var_deviceId);
-  }
-
-  @protected
-  String? sse_decode_opt_String(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-
-    if (sse_decode_bool(deserializer)) {
-      return (sse_decode_String(deserializer));
-    } else {
-      return null;
-    }
   }
 
   @protected
@@ -9911,28 +10292,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  double? sse_decode_opt_box_autoadd_f_64(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-
-    if (sse_decode_bool(deserializer)) {
-      return (sse_decode_box_autoadd_f_64(deserializer));
-    } else {
-      return null;
-    }
-  }
-
-  @protected
-  int? sse_decode_opt_box_autoadd_u_32(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-
-    if (sse_decode_bool(deserializer)) {
-      return (sse_decode_box_autoadd_u_32(deserializer));
-    } else {
-      return null;
-    }
-  }
-
-  @protected
   OscillatorType sse_decode_oscillator_type(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     var inner = sse_decode_i_32(deserializer);
@@ -9951,12 +10310,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     // Codec=Sse (Serialization based), see doc to use other codecs
     var inner = sse_decode_i_32(deserializer);
     return PanningModelType.values[inner];
-  }
-
-  @protected
-  int sse_decode_u_32(SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return deserializer.buffer.getUint32();
   }
 
   @protected
@@ -9986,6 +10339,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
 
   @protected
   void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBuffer(
+          AudioBuffer self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(self.frbInternalSseEncode(move: true), serializer);
+  }
+
+  @protected
+  void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
           AudioBufferSourceNode self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
@@ -10002,6 +10363,22 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
 
   @protected
   void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
+          AudioContextLatencyCategory self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(self.frbInternalSseEncode(move: true), serializer);
+  }
+
+  @protected
+  void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          AudioContextOptions self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(self.frbInternalSseEncode(move: true), serializer);
+  }
+
+  @protected
+  void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioDestinationNode(
           AudioDestinationNode self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
@@ -10012,6 +10389,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
           AudioParam self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(self.frbInternalSseEncode(move: true), serializer);
+  }
+
+  @protected
+  void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+          AudioProcessingEvent self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(self.frbInternalSseEncode(move: true), serializer);
   }
@@ -10068,14 +10453,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynError(
           BoxError self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(self.frbInternalSseEncode(move: true), serializer);
-  }
-
-  @protected
-  void
-      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
-          ChannelData self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(self.frbInternalSseEncode(move: true), serializer);
   }
@@ -10178,6 +10555,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
 
   @protected
   void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStream(
+          MediaStream self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(self.frbInternalSseEncode(move: true), serializer);
+  }
+
+  @protected
+  void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamAudioDestinationNode(
           MediaStreamAudioDestinationNode self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
@@ -10188,6 +10573,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamAudioSourceNode(
           MediaStreamAudioSourceNode self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(self.frbInternalSseEncode(move: true), serializer);
+  }
+
+  @protected
+  void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamConstraints(
+          MediaStreamConstraints self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(self.frbInternalSseEncode(move: true), serializer);
   }
@@ -10300,6 +10693,22 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   void
       sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioBufferSourceNode(
           AudioBufferSourceNode self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(self.frbInternalSseEncode(move: false), serializer);
+  }
+
+  @protected
+  void
+      sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          AudioContextOptions self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(self.frbInternalSseEncode(move: false), serializer);
+  }
+
+  @protected
+  void
+      sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+          AudioProcessingEvent self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(self.frbInternalSseEncode(move: false), serializer);
   }
@@ -10450,6 +10859,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
 
   @protected
   void
+      sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          AudioContextOptions self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(self.frbInternalSseEncode(move: false), serializer);
+  }
+
+  @protected
+  void
       sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextRegistration(
           AudioContextRegistration self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
@@ -10468,6 +10885,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   void
       sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
           AudioParam self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(self.frbInternalSseEncode(move: false), serializer);
+  }
+
+  @protected
+  void
+      sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+          AudioProcessingEvent self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(self.frbInternalSseEncode(move: false), serializer);
   }
@@ -10746,6 +11171,22 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
 
   @protected
   void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
+          AudioContextLatencyCategory self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(self.frbInternalSseEncode(move: null), serializer);
+  }
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextOptions(
+          AudioContextOptions self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(self.frbInternalSseEncode(move: null), serializer);
+  }
+
+  @protected
+  void
       sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextRegistration(
           AudioContextRegistration self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
@@ -10764,6 +11205,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   void
       sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
           AudioParam self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(self.frbInternalSseEncode(move: null), serializer);
+  }
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioProcessingEvent(
+          AudioProcessingEvent self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(self.frbInternalSseEncode(move: null), serializer);
   }
@@ -10820,14 +11269,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   void
       sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynError(
           BoxError self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(self.frbInternalSseEncode(move: null), serializer);
-  }
-
-  @protected
-  void
-      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
-          ChannelData self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(self.frbInternalSseEncode(move: null), serializer);
   }
@@ -10970,6 +11411,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
 
   @protected
   void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamConstraints(
+          MediaStreamConstraints self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(self.frbInternalSseEncode(move: null), serializer);
+  }
+
+  @protected
+  void
       sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrack(
           MediaStreamTrack self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
@@ -11095,48 +11544,12 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  void sse_encode_audio_buffer(AudioBuffer self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_list_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
-        self.channels, serializer);
-    sse_encode_f_32(self.sampleRate, serializer);
-  }
-
-  @protected
   void sse_encode_audio_buffer_options(
       AudioBufferOptions self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(self.numberOfChannels, serializer);
     sse_encode_usize(self.length, serializer);
     sse_encode_f_32(self.sampleRate, serializer);
-  }
-
-  @protected
-  void sse_encode_audio_context_latency_category(
-      AudioContextLatencyCategory self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    switch (self) {
-      case AudioContextLatencyCategory_Balanced():
-        sse_encode_i_32(0, serializer);
-      case AudioContextLatencyCategory_Interactive():
-        sse_encode_i_32(1, serializer);
-      case AudioContextLatencyCategory_Playback():
-        sse_encode_i_32(2, serializer);
-      case AudioContextLatencyCategory_Custom(field0: final field0):
-        sse_encode_i_32(3, serializer);
-        sse_encode_f_64(field0, serializer);
-    }
-  }
-
-  @protected
-  void sse_encode_audio_context_options(
-      AudioContextOptions self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_audio_context_latency_category(self.latencyHint, serializer);
-    sse_encode_opt_box_autoadd_f_32(self.sampleRate, serializer);
-    sse_encode_String(self.sinkId, serializer);
-    sse_encode_audio_context_render_size_category(
-        self.renderSizeHint, serializer);
   }
 
   @protected
@@ -11201,24 +11614,10 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  void sse_encode_box_autoadd_audio_buffer(
-      AudioBuffer self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_audio_buffer(self, serializer);
-  }
-
-  @protected
   void sse_encode_box_autoadd_audio_buffer_options(
       AudioBufferOptions self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_audio_buffer_options(self, serializer);
-  }
-
-  @protected
-  void sse_encode_box_autoadd_audio_context_options(
-      AudioContextOptions self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_audio_context_options(self, serializer);
   }
 
   @protected
@@ -11232,39 +11631,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   void sse_encode_box_autoadd_f_32(double self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_f_32(self, serializer);
-  }
-
-  @protected
-  void sse_encode_box_autoadd_f_64(double self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_f_64(self, serializer);
-  }
-
-  @protected
-  void sse_encode_box_autoadd_media_stream(
-      MediaStream self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_media_stream(self, serializer);
-  }
-
-  @protected
-  void sse_encode_box_autoadd_media_stream_constraints(
-      MediaStreamConstraints self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_media_stream_constraints(self, serializer);
-  }
-
-  @protected
-  void sse_encode_box_autoadd_media_track_constraints(
-      MediaTrackConstraints self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_media_track_constraints(self, serializer);
-  }
-
-  @protected
-  void sse_encode_box_autoadd_u_32(int self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_u_32(self, serializer);
   }
 
   @protected
@@ -11290,18 +11656,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   void sse_encode_i_32(int self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     serializer.buffer.putInt32(self);
-  }
-
-  @protected
-  void
-      sse_encode_list_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
-          List<ChannelData> self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_i_32(self.length, serializer);
-    for (final item in self) {
-      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelData(
-          item, serializer);
-    }
   }
 
   @protected
@@ -11371,50 +11725,10 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  void sse_encode_media_stream(MediaStream self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_list_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMediaStreamTrack(
-        self.tracks, serializer);
-  }
-
-  @protected
-  void sse_encode_media_stream_constraints(
-      MediaStreamConstraints self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    switch (self) {
-      case MediaStreamConstraints_Audio():
-        sse_encode_i_32(0, serializer);
-      case MediaStreamConstraints_AudioWithConstraints(field0: final field0):
-        sse_encode_i_32(1, serializer);
-        sse_encode_box_autoadd_media_track_constraints(field0, serializer);
-    }
-  }
-
-  @protected
   void sse_encode_media_stream_track_state(
       MediaStreamTrackState self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_i_32(self.index, serializer);
-  }
-
-  @protected
-  void sse_encode_media_track_constraints(
-      MediaTrackConstraints self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_opt_box_autoadd_f_32(self.sampleRate, serializer);
-    sse_encode_opt_box_autoadd_f_64(self.latency, serializer);
-    sse_encode_opt_box_autoadd_u_32(self.channelCount, serializer);
-    sse_encode_opt_String(self.deviceId, serializer);
-  }
-
-  @protected
-  void sse_encode_opt_String(String? self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-
-    sse_encode_bool(self != null, serializer);
-    if (self != null) {
-      sse_encode_String(self, serializer);
-    }
   }
 
   @protected
@@ -11467,26 +11781,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  void sse_encode_opt_box_autoadd_f_64(double? self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-
-    sse_encode_bool(self != null, serializer);
-    if (self != null) {
-      sse_encode_box_autoadd_f_64(self, serializer);
-    }
-  }
-
-  @protected
-  void sse_encode_opt_box_autoadd_u_32(int? self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-
-    sse_encode_bool(self != null, serializer);
-    if (self != null) {
-      sse_encode_box_autoadd_u_32(self, serializer);
-    }
-  }
-
-  @protected
   void sse_encode_oscillator_type(
       OscillatorType self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
@@ -11505,12 +11799,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       PanningModelType self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_i_32(self.index, serializer);
-  }
-
-  @protected
-  void sse_encode_u_32(int self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    serializer.buffer.putUint32(self);
   }
 
   @protected
