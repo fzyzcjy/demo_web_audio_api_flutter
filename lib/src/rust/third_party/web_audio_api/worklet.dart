@@ -10,7 +10,7 @@ import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 // These functions are ignored because they are not marked as `pub`: `load`, `new`
 // These functions are ignored because they have generic arguments: `connect_from_output_to_input`, `connect`, `new`
 // These types are ignored because they are not used by any `pub` functions: `AudioParamValues`, `AudioWorkletNodeOptions`, `AudioWorkletRenderer`, `Processor`
-// These functions are ignored: `before_drop`, `disconnect_dest`, `get`, `has_side_effects`, `name`, `onmessage`, `port`, `process`, `set_onprocessorerror`
+// These functions are ignored: `before_drop`, `disconnect_dest_from_output`, `disconnect_dest`, `get`, `has_side_effects`, `name`, `onmessage`, `port`, `process`, `set_onprocessorerror`
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioWorkletNode>>
 @sealed
@@ -76,20 +76,6 @@ class AudioWorkletNode extends RustOpaque {
       RustLib.instance.api.webAudioApiWorkletAudioWorkletNodeDisconnect(
         that: this,
       );
-
-  /// Disconnects a specific output of the AudioNode to a specific destination AudioNode
-  ///
-  /// # Panics
-  ///
-  /// This function will panic when
-  /// - the AudioContext of the source and destination does not match
-  /// - if the output port is out of bounds for the source node
-  /// - the source node was not connected to the destination node
-  Future<void> disconnectDestFromOutput(
-          {required AudioNode dest, required BigInt output}) =>
-      RustLib.instance.api
-          .webAudioApiWorkletAudioWorkletNodeDisconnectDestFromOutput(
-              that: this, dest: dest, output: output);
 
   /// Disconnects a specific output of the AudioNode to a specific input of some destination
   /// AudioNode
