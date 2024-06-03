@@ -10,7 +10,7 @@ import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 // These functions are ignored because they are not marked as `pub`: `load`, `new`
 // These functions are ignored because they have generic arguments: `connect_from_output_to_input`, `connect`, `new`
 // These types are ignored because they are not used by any `pub` functions: `AudioParamValues`, `AudioWorkletNodeOptions`, `AudioWorkletRenderer`, `Processor`
-// These functions are ignored: `before_drop`, `disconnect_dest_from_output`, `disconnect_dest`, `get`, `has_side_effects`, `name`, `onmessage`, `port`, `process`, `set_onprocessorerror`
+// These functions are ignored: `before_drop`, `disconnect_dest_from_output_to_input`, `disconnect_dest_from_output`, `disconnect_dest`, `get`, `has_side_effects`, `name`, `onmessage`, `port`, `process`, `set_onprocessorerror`
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioWorkletNode>>
 @sealed
@@ -77,24 +77,6 @@ class AudioWorkletNode extends RustOpaque {
         that: this,
       );
 
-  /// Disconnects a specific output of the AudioNode to a specific input of some destination
-  /// AudioNode
-  ///
-  /// # Panics
-  ///
-  /// This function will panic when
-  /// - the AudioContext of the source and destination does not match
-  /// - if the input port is out of bounds for the destination node
-  /// - if the output port is out of bounds for the source node
-  /// - the source node was not connected to the destination node
-  Future<void> disconnectDestFromOutputToInput(
-          {required AudioNode dest,
-          required BigInt output,
-          required BigInt input}) =>
-      RustLib.instance.api
-          .webAudioApiWorkletAudioWorkletNodeDisconnectDestFromOutputToInput(
-              that: this, dest: dest, output: output, input: input);
-
   /// Disconnects all outgoing connections at the given output port from the AudioNode.
   ///
   /// # Panics
@@ -143,25 +125,4 @@ class AudioWorkletNode extends RustOpaque {
       RustLib.instance.api
           .webAudioApiWorkletAudioWorkletNodeSetChannelInterpretation(
               that: this, v: v);
-}
-
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<dyn AudioNode>>
-@sealed
-class AudioNode extends RustOpaque {
-  // Not to be used by end users
-  AudioNode.frbInternalDcoDecode(List<dynamic> wire)
-      : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  AudioNode.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
-      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_AudioNode,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_AudioNode,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_AudioNodePtr,
-  );
 }

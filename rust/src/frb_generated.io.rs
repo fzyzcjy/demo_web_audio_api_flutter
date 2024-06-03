@@ -560,17 +560,3 @@ pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_decrement_strong_co
 ) {
     MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<WaveShaperNode>>::decrement_strong_count(ptr as _);
 }
-
-#[no_mangle]
-pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerdynAudioNode(
-    ptr: *const std::ffi::c_void,
-) {
-    MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<dyn AudioNode>>::increment_strong_count(ptr as _);
-}
-
-#[no_mangle]
-pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerdynAudioNode(
-    ptr: *const std::ffi::c_void,
-) {
-    MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<dyn AudioNode>>::decrement_strong_count(ptr as _);
-}

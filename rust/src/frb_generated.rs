@@ -42,7 +42,7 @@ flutter_rust_bridge::frb_generated_boilerplate!(
     default_rust_auto_opaque = RustAutoOpaqueMoi,
 );
 pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_VERSION: &str = "2.0.0-dev.37";
-pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = -983905741;
+pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = 1098882289;
 
 // Section: executor
 
@@ -4891,36 +4891,6 @@ let decode_indices_ = flutter_rust_bridge::for_generated::rust_auto_opaque_decod
                     })())
                 } })
 }
-fn wire__web_audio_api__worklet__AudioWorkletNode_disconnect_dest_from_output_to_input_impl(
-    port_: flutter_rust_bridge::for_generated::MessagePort,
-    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
-    rust_vec_len_: i32,
-    data_len_: i32,
-) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec,_,_>(flutter_rust_bridge::for_generated::TaskInfo{ debug_name: "AudioWorkletNode_disconnect_dest_from_output_to_input", port: Some(port_), mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal }, move || { 
-            let message = unsafe { flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(ptr_, rust_vec_len_, data_len_) };
-            let mut deserializer = flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            let api_that = <RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioWorkletNode>>>::sse_decode(&mut deserializer);
-let api_dest = <RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<dyn AudioNode>>>::sse_decode(&mut deserializer);
-let api_output = <usize>::sse_decode(&mut deserializer);
-let api_input = <usize>::sse_decode(&mut deserializer);deserializer.end(); move |context|  {
-                    transform_result_sse((move ||  {
-                        let mut api_that_decoded = None;
-let mut api_dest_decoded = None;
-let decode_indices_ = flutter_rust_bridge::for_generated::rust_auto_opaque_decode_compute_order(vec![flutter_rust_bridge::for_generated::rust_auto_opaque_lock_order_info(&api_that, 0, false), flutter_rust_bridge::for_generated::rust_auto_opaque_lock_order_info(&api_dest, 1, false)]);
-        for i in decode_indices_ {
-            match i {
-                0 => api_that_decoded = Some(flutter_rust_bridge::for_generated::rust_auto_opaque_decode_sync_ref(&api_that)),
-1 => api_dest_decoded = Some(flutter_rust_bridge::for_generated::rust_auto_opaque_decode_sync_ref(&api_dest)),
-                _ => unreachable!(),
-            }
-        }
-        let api_that = api_that_decoded.unwrap();
-let api_dest = api_dest_decoded.unwrap();
- Result::<_,()>::Ok({ web_audio_api::worklet::AudioWorkletNode::disconnect_dest_from_output_to_input(&api_that, &api_dest, api_output, api_input); })
-                    })())
-                } })
-}
 fn wire__web_audio_api__worklet__AudioWorkletNode_disconnect_output_impl(
     port_: flutter_rust_bridge::for_generated::MessagePort,
     ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
@@ -5249,9 +5219,6 @@ flutter_rust_bridge::frb_generated_moi_arc_impl_value!(
 );
 flutter_rust_bridge::frb_generated_moi_arc_impl_value!(
     flutter_rust_bridge::for_generated::RustAutoOpaqueInner<WaveShaperNode>
-);
-flutter_rust_bridge::frb_generated_moi_arc_impl_value!(
-    flutter_rust_bridge::for_generated::RustAutoOpaqueInner<dyn AudioNode>
 );
 
 // Section: dart2rust
@@ -6022,16 +5989,6 @@ impl SseDecode
 
 impl SseDecode
     for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<WaveShaperNode>>
-{
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut inner = <usize>::sse_decode(deserializer);
-        return decode_rust_opaque_moi(inner);
-    }
-}
-
-impl SseDecode
-    for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<dyn AudioNode>>
 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -7069,57 +7026,49 @@ fn pde_ffi_dispatcher_primary_impl(
             rust_vec_len,
             data_len,
         ),
-        178 => {
-            wire__web_audio_api__worklet__AudioWorkletNode_disconnect_dest_from_output_to_input_impl(
-                port,
-                ptr,
-                rust_vec_len,
-                data_len,
-            )
-        }
-        179 => wire__web_audio_api__worklet__AudioWorkletNode_disconnect_output_impl(
+        178 => wire__web_audio_api__worklet__AudioWorkletNode_disconnect_output_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        180 => wire__web_audio_api__worklet__AudioWorkletNode_number_of_inputs_impl(
+        179 => wire__web_audio_api__worklet__AudioWorkletNode_number_of_inputs_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        181 => wire__web_audio_api__worklet__AudioWorkletNode_number_of_outputs_impl(
+        180 => wire__web_audio_api__worklet__AudioWorkletNode_number_of_outputs_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        182 => wire__web_audio_api__worklet__AudioWorkletNode_parameters_impl(
+        181 => wire__web_audio_api__worklet__AudioWorkletNode_parameters_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        183 => wire__web_audio_api__worklet__AudioWorkletNode_registration_impl(
+        182 => wire__web_audio_api__worklet__AudioWorkletNode_registration_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        184 => wire__web_audio_api__worklet__AudioWorkletNode_set_channel_count_impl(
+        183 => wire__web_audio_api__worklet__AudioWorkletNode_set_channel_count_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        185 => wire__web_audio_api__worklet__AudioWorkletNode_set_channel_count_mode_impl(
+        184 => wire__web_audio_api__worklet__AudioWorkletNode_set_channel_count_mode_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        186 => wire__web_audio_api__worklet__AudioWorkletNode_set_channel_interpretation_impl(
+        185 => wire__web_audio_api__worklet__AudioWorkletNode_set_channel_interpretation_impl(
             port,
             ptr,
             rust_vec_len,
@@ -8963,17 +8912,6 @@ impl SseEncode
 
 impl SseEncode
     for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<WaveShaperNode>>
-{
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        let (ptr, size) = self.sse_encode_raw();
-        <usize>::sse_encode(ptr, serializer);
-        <i32>::sse_encode(size, serializer);
-    }
-}
-
-impl SseEncode
-    for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<dyn AudioNode>>
 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
