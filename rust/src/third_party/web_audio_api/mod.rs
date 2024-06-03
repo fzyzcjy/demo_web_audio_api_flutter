@@ -25,3 +25,6 @@ impl AudioBuffer {
 
 #[frb(ignore)]
 pub struct ErrorEvent;
+
+#[frb(ignore)]
+pub struct MediaElement;
