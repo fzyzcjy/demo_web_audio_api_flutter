@@ -4,12 +4,13 @@
 // ignore_for_file: invalid_use_of_internal_member, unused_import, unnecessary_import
 
 import '../../frb_generated.dart';
+import 'node.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-// These functions are ignored because they are not marked as `pub`: `channel_config`, `clone`, `default`, `fmt`, `fmt`, `fmt`, `has_side_effects`, `load`, `new`, `number_of_inputs`, `number_of_outputs`, `onmessage`, `process`, `registration`
-// These functions are ignored because they have generic arguments: `new`
+// These functions are ignored because they are not marked as `pub`: `load`, `new`
+// These functions are ignored because they have generic arguments: `connect_from_output_to_input`, `connect`, `new`
 // These types are ignored because they are not used by any `pub` functions: `AudioParamValues`, `AudioWorkletNodeOptions`, `AudioWorkletRenderer`, `Processor`
-// These functions are ignored: `get`, `port`
+// These functions are ignored: `before_drop`, `get`, `has_side_effects`, `name`, `onmessage`, `port`, `process`
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioWorkletNode>>
 @sealed
@@ -31,6 +32,113 @@ class AudioWorkletNode extends RustOpaque {
         .instance.api.rust_arc_decrement_strong_count_AudioWorkletNodePtr,
   );
 
+  Future<void> channelConfig() =>
+      RustLib.instance.api.webAudioApiWorkletAudioWorkletNodeChannelConfig(
+        that: this,
+      );
+
+  /// Represents an integer used to determine how many channels are used when up-mixing and
+  /// down-mixing connections to any inputs to the node.
+  Future<BigInt> channelCount() =>
+      RustLib.instance.api.webAudioApiWorkletAudioWorkletNodeChannelCount(
+        that: this,
+      );
+
+  /// Represents an enumerated value describing the way channels must be matched between the
+  /// node's inputs and outputs.
+  Future<ChannelCountMode> channelCountMode() =>
+      RustLib.instance.api.webAudioApiWorkletAudioWorkletNodeChannelCountMode(
+        that: this,
+      );
+
+  /// Represents an enumerated value describing the meaning of the channels. This interpretation
+  /// will define how audio up-mixing and down-mixing will happen.
+  Future<ChannelInterpretation> channelInterpretation() => RustLib.instance.api
+          .webAudioApiWorkletAudioWorkletNodeChannelInterpretation(
+        that: this,
+      );
+
+  /// Unset the callback to run when an unhandled exception occurs in the audio processor.
+  Future<void> clearOnprocessorerror() => RustLib.instance.api
+          .webAudioApiWorkletAudioWorkletNodeClearOnprocessorerror(
+        that: this,
+      );
+
+  /// The [`BaseAudioContext`](crate::context::BaseAudioContext) concrete type which owns this
+  /// AudioNode.
+  Future<void> context() =>
+      RustLib.instance.api.webAudioApiWorkletAudioWorkletNodeContext(
+        that: this,
+      );
+
+  /// Disconnects all outgoing connections from the AudioNode.
+  Future<void> disconnect() =>
+      RustLib.instance.api.webAudioApiWorkletAudioWorkletNodeDisconnect(
+        that: this,
+      );
+
+  /// Disconnects all outputs of the AudioNode that go to a specific destination AudioNode.
+  ///
+  /// # Panics
+  ///
+  /// This function will panic when
+  /// - the AudioContext of the source and destination does not match
+  /// - the source node was not connected to the destination node
+  Future<void> disconnectDest({required AudioNode dest}) => RustLib.instance.api
+      .webAudioApiWorkletAudioWorkletNodeDisconnectDest(that: this, dest: dest);
+
+  /// Disconnects a specific output of the AudioNode to a specific destination AudioNode
+  ///
+  /// # Panics
+  ///
+  /// This function will panic when
+  /// - the AudioContext of the source and destination does not match
+  /// - if the output port is out of bounds for the source node
+  /// - the source node was not connected to the destination node
+  Future<void> disconnectDestFromOutput(
+          {required AudioNode dest, required BigInt output}) =>
+      RustLib.instance.api
+          .webAudioApiWorkletAudioWorkletNodeDisconnectDestFromOutput(
+              that: this, dest: dest, output: output);
+
+  /// Disconnects a specific output of the AudioNode to a specific input of some destination
+  /// AudioNode
+  ///
+  /// # Panics
+  ///
+  /// This function will panic when
+  /// - the AudioContext of the source and destination does not match
+  /// - if the input port is out of bounds for the destination node
+  /// - if the output port is out of bounds for the source node
+  /// - the source node was not connected to the destination node
+  Future<void> disconnectDestFromOutputToInput(
+          {required AudioNode dest,
+          required BigInt output,
+          required BigInt input}) =>
+      RustLib.instance.api
+          .webAudioApiWorkletAudioWorkletNodeDisconnectDestFromOutputToInput(
+              that: this, dest: dest, output: output, input: input);
+
+  /// Disconnects all outgoing connections at the given output port from the AudioNode.
+  ///
+  /// # Panics
+  ///
+  /// This function will panic when
+  /// - if the output port is out of bounds for this node
+  Future<void> disconnectOutput({required BigInt output}) =>
+      RustLib.instance.api.webAudioApiWorkletAudioWorkletNodeDisconnectOutput(
+          that: this, output: output);
+
+  Future<BigInt> numberOfInputs() =>
+      RustLib.instance.api.webAudioApiWorkletAudioWorkletNodeNumberOfInputs(
+        that: this,
+      );
+
+  Future<BigInt> numberOfOutputs() =>
+      RustLib.instance.api.webAudioApiWorkletAudioWorkletNodeNumberOfOutputs(
+        that: this,
+      );
+
   /// Collection of AudioParam objects with associated names of this node
   ///
   /// This map is populated from a list of [`AudioParamDescriptor`]s in the
@@ -39,4 +147,77 @@ class AudioWorkletNode extends RustOpaque {
       RustLib.instance.api.webAudioApiWorkletAudioWorkletNodeParameters(
         that: this,
       );
+
+  Future<void> registration() =>
+      RustLib.instance.api.webAudioApiWorkletAudioWorkletNodeRegistration(
+        that: this,
+      );
+
+  /// Update the `channel_count` attribute
+  Future<void> setChannelCount({required BigInt v}) => RustLib.instance.api
+      .webAudioApiWorkletAudioWorkletNodeSetChannelCount(that: this, v: v);
+
+  /// Update the `channel_count_mode` attribute
+  Future<void> setChannelCountMode({required ChannelCountMode v}) => RustLib
+      .instance.api
+      .webAudioApiWorkletAudioWorkletNodeSetChannelCountMode(that: this, v: v);
+
+  /// Update the `channel_interpretation` attribute
+  Future<void> setChannelInterpretation({required ChannelInterpretation v}) =>
+      RustLib.instance.api
+          .webAudioApiWorkletAudioWorkletNodeSetChannelInterpretation(
+              that: this, v: v);
+
+  /// Register callback to run when an unhandled exception occurs in the audio processor.
+  ///
+  /// Note that once a unhandled exception is thrown, the processor will output silence throughout its lifetime.
+  ///
+  /// Only a single event handler is active at any time. Calling this method multiple times will
+  /// override the previous event handler.
+  Future<void> setOnprocessorerror({required BoxFnOnceErrorEvent callback}) =>
+      RustLib.instance.api
+          .webAudioApiWorkletAudioWorkletNodeSetOnprocessorerror(
+              that: this, callback: callback);
+}
+
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Box < dyn FnOnce (ErrorEvent) + Send + 'static >>>
+@sealed
+class BoxFnOnceErrorEvent extends RustOpaque {
+  // Not to be used by end users
+  BoxFnOnceErrorEvent.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  BoxFnOnceErrorEvent.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount: RustLib
+        .instance.api.rust_arc_increment_strong_count_BoxFnOnceErrorEvent,
+    rustArcDecrementStrongCount: RustLib
+        .instance.api.rust_arc_decrement_strong_count_BoxFnOnceErrorEvent,
+    rustArcDecrementStrongCountPtr: RustLib
+        .instance.api.rust_arc_decrement_strong_count_BoxFnOnceErrorEventPtr,
+  );
+}
+
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<dyn AudioNode>>
+@sealed
+class AudioNode extends RustOpaque {
+  // Not to be used by end users
+  AudioNode.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  AudioNode.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_AudioNode,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_AudioNode,
+    rustArcDecrementStrongCountPtr:
+        RustLib.instance.api.rust_arc_decrement_strong_count_AudioNodePtr,
+  );
 }

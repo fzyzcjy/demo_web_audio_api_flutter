@@ -3,6 +3,13 @@
 
 // ignore_for_file: unused_import, unused_element, unnecessary_import, duplicate_ignore, invalid_use_of_internal_member, annotate_overrides, non_constant_identifier_names, curly_braces_in_flow_control_structures, prefer_const_literals_to_create_immutables, unused_field
 
+import '../web_audio_api.dart';
+import '../web_audio_api/context.dart';
+import '../web_audio_api/media_devices.dart';
+import '../web_audio_api/media_recorder.dart';
+import '../web_audio_api/media_streams.dart';
+import '../web_audio_api/node.dart';
+import '../web_audio_api/worklet.dart';
 import 'api/simple.dart';
 import 'dart:async';
 import 'dart:convert';
@@ -63,7 +70,7 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
   String get codegenVersion => '2.0.0-dev.37';
 
   @override
-  int get rustContentHash => 264162904;
+  int get rustContentHash => -1186484724;
 
   static const kDefaultExternalLibraryLoaderConfig =
       ExternalLibraryLoaderConfig(
@@ -604,8 +611,69 @@ abstract class RustLibApi extends BaseApi {
   Future<void> webAudioApiNodeWaveShaperNodeSetOversample(
       {required WaveShaperNode that, required OverSampleType oversample});
 
+  Future<void> webAudioApiWorkletAudioWorkletNodeChannelConfig(
+      {required AudioWorkletNode that});
+
+  Future<BigInt> webAudioApiWorkletAudioWorkletNodeChannelCount(
+      {required AudioWorkletNode that});
+
+  Future<ChannelCountMode> webAudioApiWorkletAudioWorkletNodeChannelCountMode(
+      {required AudioWorkletNode that});
+
+  Future<ChannelInterpretation>
+      webAudioApiWorkletAudioWorkletNodeChannelInterpretation(
+          {required AudioWorkletNode that});
+
+  Future<void> webAudioApiWorkletAudioWorkletNodeClearOnprocessorerror(
+      {required AudioWorkletNode that});
+
+  Future<void> webAudioApiWorkletAudioWorkletNodeContext(
+      {required AudioWorkletNode that});
+
+  Future<void> webAudioApiWorkletAudioWorkletNodeDisconnect(
+      {required AudioWorkletNode that});
+
+  Future<void> webAudioApiWorkletAudioWorkletNodeDisconnectDest(
+      {required AudioWorkletNode that, required AudioNode dest});
+
+  Future<void> webAudioApiWorkletAudioWorkletNodeDisconnectDestFromOutput(
+      {required AudioWorkletNode that,
+      required AudioNode dest,
+      required BigInt output});
+
+  Future<void>
+      webAudioApiWorkletAudioWorkletNodeDisconnectDestFromOutputToInput(
+          {required AudioWorkletNode that,
+          required AudioNode dest,
+          required BigInt output,
+          required BigInt input});
+
+  Future<void> webAudioApiWorkletAudioWorkletNodeDisconnectOutput(
+      {required AudioWorkletNode that, required BigInt output});
+
+  Future<BigInt> webAudioApiWorkletAudioWorkletNodeNumberOfInputs(
+      {required AudioWorkletNode that});
+
+  Future<BigInt> webAudioApiWorkletAudioWorkletNodeNumberOfOutputs(
+      {required AudioWorkletNode that});
+
   Future<void> webAudioApiWorkletAudioWorkletNodeParameters(
       {required AudioWorkletNode that});
+
+  Future<void> webAudioApiWorkletAudioWorkletNodeRegistration(
+      {required AudioWorkletNode that});
+
+  Future<void> webAudioApiWorkletAudioWorkletNodeSetChannelCount(
+      {required AudioWorkletNode that, required BigInt v});
+
+  Future<void> webAudioApiWorkletAudioWorkletNodeSetChannelCountMode(
+      {required AudioWorkletNode that, required ChannelCountMode v});
+
+  Future<void> webAudioApiWorkletAudioWorkletNodeSetChannelInterpretation(
+      {required AudioWorkletNode that, required ChannelInterpretation v});
+
+  Future<void> webAudioApiWorkletAudioWorkletNodeSetOnprocessorerror(
+      {required AudioWorkletNode that, required BoxFnOnceErrorEvent callback});
 
   RustArcIncrementStrongCountFnType
       get rust_arc_increment_strong_count_AnalyserNode;
@@ -736,6 +804,15 @@ abstract class RustLibApi extends BaseApi {
       get rust_arc_decrement_strong_count_BlobEvent;
 
   CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_BlobEventPtr;
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_BoxFnOnceErrorEvent;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_BoxFnOnceErrorEvent;
+
+  CrossPlatformFinalizerArg
+      get rust_arc_decrement_strong_count_BoxFnOnceErrorEventPtr;
 
   RustArcIncrementStrongCountFnType
       get rust_arc_increment_strong_count_ConcreteBaseAudioContext;
@@ -934,6 +1011,14 @@ abstract class RustLibApi extends BaseApi {
 
   CrossPlatformFinalizerArg
       get rust_arc_decrement_strong_count_WaveShaperNodePtr;
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_AudioNode;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_AudioNode;
+
+  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_AudioNodePtr;
 }
 
 class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
@@ -5670,7 +5755,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       );
 
   @override
-  Future<void> webAudioApiWorkletAudioWorkletNodeParameters(
+  Future<void> webAudioApiWorkletAudioWorkletNodeChannelConfig(
       {required AudioWorkletNode that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
@@ -5679,6 +5764,387 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             that, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
             funcId: 171, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiWorkletAudioWorkletNodeChannelConfigConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiWorkletAudioWorkletNodeChannelConfigConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioWorkletNode_channel_config",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<BigInt> webAudioApiWorkletAudioWorkletNodeChannelCount(
+      {required AudioWorkletNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioWorkletNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 172, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_usize,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiWorkletAudioWorkletNodeChannelCountConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiWorkletAudioWorkletNodeChannelCountConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioWorkletNode_channel_count",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<ChannelCountMode> webAudioApiWorkletAudioWorkletNodeChannelCountMode(
+      {required AudioWorkletNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioWorkletNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 173, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_channel_count_mode,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiWorkletAudioWorkletNodeChannelCountModeConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiWorkletAudioWorkletNodeChannelCountModeConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioWorkletNode_channel_count_mode",
+            argNames: ["that"],
+          );
+
+  @override
+  Future<ChannelInterpretation>
+      webAudioApiWorkletAudioWorkletNodeChannelInterpretation(
+          {required AudioWorkletNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioWorkletNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 174, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_channel_interpretation,
+        decodeErrorData: null,
+      ),
+      constMeta:
+          kWebAudioApiWorkletAudioWorkletNodeChannelInterpretationConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiWorkletAudioWorkletNodeChannelInterpretationConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioWorkletNode_channel_interpretation",
+            argNames: ["that"],
+          );
+
+  @override
+  Future<void> webAudioApiWorkletAudioWorkletNodeClearOnprocessorerror(
+      {required AudioWorkletNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioWorkletNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 175, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta:
+          kWebAudioApiWorkletAudioWorkletNodeClearOnprocessorerrorConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiWorkletAudioWorkletNodeClearOnprocessorerrorConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioWorkletNode_clear_onprocessorerror",
+            argNames: ["that"],
+          );
+
+  @override
+  Future<void> webAudioApiWorkletAudioWorkletNodeContext(
+      {required AudioWorkletNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioWorkletNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 176, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiWorkletAudioWorkletNodeContextConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiWorkletAudioWorkletNodeContextConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioWorkletNode_context",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<void> webAudioApiWorkletAudioWorkletNodeDisconnect(
+      {required AudioWorkletNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioWorkletNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 177, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiWorkletAudioWorkletNodeDisconnectConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiWorkletAudioWorkletNodeDisconnectConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioWorkletNode_disconnect",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<void> webAudioApiWorkletAudioWorkletNodeDisconnectDest(
+      {required AudioWorkletNode that, required AudioNode dest}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioWorkletNode(
+            that, serializer);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerdynAudioNode(
+            dest, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 178, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiWorkletAudioWorkletNodeDisconnectDestConstMeta,
+      argValues: [that, dest],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiWorkletAudioWorkletNodeDisconnectDestConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioWorkletNode_disconnect_dest",
+            argNames: ["that", "dest"],
+          );
+
+  @override
+  Future<void> webAudioApiWorkletAudioWorkletNodeDisconnectDestFromOutput(
+      {required AudioWorkletNode that,
+      required AudioNode dest,
+      required BigInt output}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioWorkletNode(
+            that, serializer);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerdynAudioNode(
+            dest, serializer);
+        sse_encode_usize(output, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 179, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta:
+          kWebAudioApiWorkletAudioWorkletNodeDisconnectDestFromOutputConstMeta,
+      argValues: [that, dest, output],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiWorkletAudioWorkletNodeDisconnectDestFromOutputConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioWorkletNode_disconnect_dest_from_output",
+            argNames: ["that", "dest", "output"],
+          );
+
+  @override
+  Future<void>
+      webAudioApiWorkletAudioWorkletNodeDisconnectDestFromOutputToInput(
+          {required AudioWorkletNode that,
+          required AudioNode dest,
+          required BigInt output,
+          required BigInt input}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioWorkletNode(
+            that, serializer);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerdynAudioNode(
+            dest, serializer);
+        sse_encode_usize(output, serializer);
+        sse_encode_usize(input, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 180, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta:
+          kWebAudioApiWorkletAudioWorkletNodeDisconnectDestFromOutputToInputConstMeta,
+      argValues: [that, dest, output, input],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiWorkletAudioWorkletNodeDisconnectDestFromOutputToInputConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioWorkletNode_disconnect_dest_from_output_to_input",
+            argNames: ["that", "dest", "output", "input"],
+          );
+
+  @override
+  Future<void> webAudioApiWorkletAudioWorkletNodeDisconnectOutput(
+      {required AudioWorkletNode that, required BigInt output}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioWorkletNode(
+            that, serializer);
+        sse_encode_usize(output, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 181, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiWorkletAudioWorkletNodeDisconnectOutputConstMeta,
+      argValues: [that, output],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiWorkletAudioWorkletNodeDisconnectOutputConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioWorkletNode_disconnect_output",
+            argNames: ["that", "output"],
+          );
+
+  @override
+  Future<BigInt> webAudioApiWorkletAudioWorkletNodeNumberOfInputs(
+      {required AudioWorkletNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioWorkletNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 182, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_usize,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiWorkletAudioWorkletNodeNumberOfInputsConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiWorkletAudioWorkletNodeNumberOfInputsConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioWorkletNode_number_of_inputs",
+            argNames: ["that"],
+          );
+
+  @override
+  Future<BigInt> webAudioApiWorkletAudioWorkletNodeNumberOfOutputs(
+      {required AudioWorkletNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioWorkletNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 183, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_usize,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiWorkletAudioWorkletNodeNumberOfOutputsConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiWorkletAudioWorkletNodeNumberOfOutputsConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioWorkletNode_number_of_outputs",
+            argNames: ["that"],
+          );
+
+  @override
+  Future<void> webAudioApiWorkletAudioWorkletNodeParameters(
+      {required AudioWorkletNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioWorkletNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 184, port: port_);
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -5695,6 +6161,153 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         debugName: "AudioWorkletNode_parameters",
         argNames: ["that"],
       );
+
+  @override
+  Future<void> webAudioApiWorkletAudioWorkletNodeRegistration(
+      {required AudioWorkletNode that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioWorkletNode(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 185, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiWorkletAudioWorkletNodeRegistrationConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kWebAudioApiWorkletAudioWorkletNodeRegistrationConstMeta =>
+      const TaskConstMeta(
+        debugName: "AudioWorkletNode_registration",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<void> webAudioApiWorkletAudioWorkletNodeSetChannelCount(
+      {required AudioWorkletNode that, required BigInt v}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioWorkletNode(
+            that, serializer);
+        sse_encode_usize(v, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 186, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kWebAudioApiWorkletAudioWorkletNodeSetChannelCountConstMeta,
+      argValues: [that, v],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiWorkletAudioWorkletNodeSetChannelCountConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioWorkletNode_set_channel_count",
+            argNames: ["that", "v"],
+          );
+
+  @override
+  Future<void> webAudioApiWorkletAudioWorkletNodeSetChannelCountMode(
+      {required AudioWorkletNode that, required ChannelCountMode v}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioWorkletNode(
+            that, serializer);
+        sse_encode_channel_count_mode(v, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 187, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta:
+          kWebAudioApiWorkletAudioWorkletNodeSetChannelCountModeConstMeta,
+      argValues: [that, v],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiWorkletAudioWorkletNodeSetChannelCountModeConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioWorkletNode_set_channel_count_mode",
+            argNames: ["that", "v"],
+          );
+
+  @override
+  Future<void> webAudioApiWorkletAudioWorkletNodeSetChannelInterpretation(
+      {required AudioWorkletNode that, required ChannelInterpretation v}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioWorkletNode(
+            that, serializer);
+        sse_encode_channel_interpretation(v, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 188, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta:
+          kWebAudioApiWorkletAudioWorkletNodeSetChannelInterpretationConstMeta,
+      argValues: [that, v],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiWorkletAudioWorkletNodeSetChannelInterpretationConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioWorkletNode_set_channel_interpretation",
+            argNames: ["that", "v"],
+          );
+
+  @override
+  Future<void> webAudioApiWorkletAudioWorkletNodeSetOnprocessorerror(
+      {required AudioWorkletNode that, required BoxFnOnceErrorEvent callback}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioWorkletNode(
+            that, serializer);
+        sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnOnceErrorEventSendstatic(
+            callback, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 189, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta:
+          kWebAudioApiWorkletAudioWorkletNodeSetOnprocessorerrorConstMeta,
+      argValues: [that, callback],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kWebAudioApiWorkletAudioWorkletNodeSetOnprocessorerrorConstMeta =>
+          const TaskConstMeta(
+            debugName: "AudioWorkletNode_set_onprocessorerror",
+            argNames: ["that", "callback"],
+          );
 
   RustArcIncrementStrongCountFnType
       get rust_arc_increment_strong_count_AnalyserNode => wire
@@ -5815,6 +6428,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   RustArcDecrementStrongCountFnType
       get rust_arc_decrement_strong_count_BlobEvent => wire
           .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBlobEvent;
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_BoxFnOnceErrorEvent => wire
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnOnceErrorEventSendstatic;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_BoxFnOnceErrorEvent => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnOnceErrorEventSendstatic;
 
   RustArcIncrementStrongCountFnType
       get rust_arc_increment_strong_count_ConcreteBaseAudioContext => wire
@@ -5998,6 +6619,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       get rust_arc_decrement_strong_count_WaveShaperNode => wire
           .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerWaveShaperNode;
 
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_AudioNode => wire
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerdynAudioNode;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_AudioNode => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerdynAudioNode;
+
   @protected
   AnalyserNode
       dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAnalyserNode(
@@ -6109,6 +6738,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return BlobEvent.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  BoxFnOnceErrorEvent
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnOnceErrorEventSendstatic(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return BoxFnOnceErrorEvent.frbInternalDcoDecode(raw as List<dynamic>);
   }
 
   @protected
@@ -6663,6 +7300,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  AudioNode
+      dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerdynAudioNode(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AudioNode.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
   AnalyserNode
       dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAnalyserNode(
           dynamic raw) {
@@ -6781,6 +7426,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return BlobEvent.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  BoxFnOnceErrorEvent
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnOnceErrorEventSendstatic(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return BoxFnOnceErrorEvent.frbInternalDcoDecode(raw as List<dynamic>);
   }
 
   @protected
@@ -6972,6 +7625,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  AudioNode
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerdynAudioNode(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AudioNode.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
   String dco_decode_String(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw as String;
@@ -7044,6 +7705,18 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   double dco_decode_box_autoadd_f_32(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw as double;
+  }
+
+  @protected
+  ChannelCountMode dco_decode_channel_count_mode(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return ChannelCountMode.values[raw as int];
+  }
+
+  @protected
+  ChannelInterpretation dco_decode_channel_interpretation(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return ChannelInterpretation.values[raw as int];
   }
 
   @protected
@@ -7278,6 +7951,15 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return BlobEvent.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  BoxFnOnceErrorEvent
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnOnceErrorEventSendstatic(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return BoxFnOnceErrorEvent.frbInternalSseDecode(
         sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
   }
 
@@ -7894,6 +8576,15 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  AudioNode
+      sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerdynAudioNode(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AudioNode.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
   AnalyserNode
       sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAnalyserNode(
           SseDeserializer deserializer) {
@@ -8025,6 +8716,15 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return BlobEvent.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  BoxFnOnceErrorEvent
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnOnceErrorEventSendstatic(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return BoxFnOnceErrorEvent.frbInternalSseDecode(
         sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
   }
 
@@ -8236,6 +8936,15 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  AudioNode
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerdynAudioNode(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AudioNode.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
   String sse_decode_String(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     var inner = sse_decode_list_prim_u_8_strict(deserializer);
@@ -8310,6 +9019,21 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   double sse_decode_box_autoadd_f_32(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return (sse_decode_f_32(deserializer));
+  }
+
+  @protected
+  ChannelCountMode sse_decode_channel_count_mode(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var inner = sse_decode_i_32(deserializer);
+    return ChannelCountMode.values[inner];
+  }
+
+  @protected
+  ChannelInterpretation sse_decode_channel_interpretation(
+      SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var inner = sse_decode_i_32(deserializer);
+    return ChannelInterpretation.values[inner];
   }
 
   @protected
@@ -8553,6 +9277,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBlobEvent(
           BlobEvent self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(self.frbInternalSseEncode(move: true), serializer);
+  }
+
+  @protected
+  void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnOnceErrorEventSendstatic(
+          BoxFnOnceErrorEvent self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(self.frbInternalSseEncode(move: true), serializer);
   }
@@ -9103,6 +9835,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
 
   @protected
   void
+      sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerdynAudioNode(
+          AudioNode self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(self.frbInternalSseEncode(move: false), serializer);
+  }
+
+  @protected
+  void
       sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAnalyserNode(
           AnalyserNode self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
@@ -9217,6 +9957,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   void
       sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBlobEvent(
           BlobEvent self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(self.frbInternalSseEncode(move: null), serializer);
+  }
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBoxdynFnOnceErrorEventSendstatic(
+          BoxFnOnceErrorEvent self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(self.frbInternalSseEncode(move: null), serializer);
   }
@@ -9406,6 +10154,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerdynAudioNode(
+          AudioNode self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(self.frbInternalSseEncode(move: null), serializer);
+  }
+
+  @protected
   void sse_encode_String(String self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_list_prim_u_8_strict(utf8.encoder.convert(self), serializer);
@@ -9472,6 +10228,20 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   void sse_encode_box_autoadd_f_32(double self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_f_32(self, serializer);
+  }
+
+  @protected
+  void sse_encode_channel_count_mode(
+      ChannelCountMode self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_i_32(self.index, serializer);
+  }
+
+  @protected
+  void sse_encode_channel_interpretation(
+      ChannelInterpretation self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_i_32(self.index, serializer);
   }
 
   @protected
