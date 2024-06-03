@@ -8,24 +8,8 @@ import 'media_streams.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 // These functions are ignored because they are not marked as `pub`: `as_string`, `assert_receiver_is_total_eq`, `clone`, `clone`, `clone`, `default`, `device`, `eq`, `fmt`, `fmt`, `fmt`, `fmt`, `from`, `hash`, `hash`, `is_valid_device_id`, `new`
-// These types are ignored because they are not used by any `pub` functions: `DeviceId`, `MediaDeviceInfoKind`, `MediaTrackConstraints`
-// These functions are ignored: `device_id`, `group_id`, `kind`, `label`
-
-/// List the available media output devices, such as speakers, headsets, loopbacks, etc
-///
-/// The media device_id can be used to specify the [`sink_id` of the `AudioContext`](crate::context::AudioContextOptions::sink_id)
-///
-/// ```no_run
-/// use web_audio_api::media_devices::{enumerate_devices_sync, MediaDeviceInfoKind};
-///
-/// let devices = enumerate_devices_sync();
-/// assert_eq!(devices[0].device_id(), "1");
-/// assert_eq!(devices[0].group_id(), None);
-/// assert_eq!(devices[0].kind(), MediaDeviceInfoKind::AudioOutput);
-/// assert_eq!(devices[0].label(), "Macbook Pro Builtin Speakers");
-/// ```
-Future<List<MediaDeviceInfo>> enumerateDevicesSync() =>
-    RustLib.instance.api.webAudioApiMediaDevicesEnumerateDevicesSync();
+// These types are ignored because they are not used by any `pub` functions: `DeviceId`, `MediaDeviceInfoKind`, `MediaDeviceInfo`, `MediaTrackConstraints`
+// These functions are ignored: `device_id`, `enumerate_devices_sync`, `group_id`, `kind`, `label`
 
 /// Prompt for permission to use a media input (audio only)
 ///
@@ -64,27 +48,6 @@ Future<MediaStream> getUserMediaSync(
         {required MediaStreamConstraints constraints}) =>
     RustLib.instance.api
         .webAudioApiMediaDevicesGetUserMediaSync(constraints: constraints);
-
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MediaDeviceInfo>>
-@sealed
-class MediaDeviceInfo extends RustOpaque {
-  // Not to be used by end users
-  MediaDeviceInfo.frbInternalDcoDecode(List<dynamic> wire)
-      : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  MediaDeviceInfo.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
-      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_MediaDeviceInfo,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_MediaDeviceInfo,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_MediaDeviceInfoPtr,
-  );
-}
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MediaStreamConstraints>>
 @sealed
