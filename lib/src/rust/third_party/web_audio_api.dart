@@ -245,7 +245,7 @@ class AudioParam extends RustOpaque {
   /// - `start_time` is negative
   /// - `duration` is negative or equal to zero
   Future<void> setValueCurveAtTime(
-          {required F32 values,
+          {required List<double> values,
           required double startTime,
           required double duration}) =>
       RustLib.instance.api.webAudioApiAudioParamSetValueCurveAtTime(

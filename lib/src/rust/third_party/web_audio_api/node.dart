@@ -324,7 +324,7 @@ class BiquadFilterNode extends RustOpaque {
   /// This function will panic if arguments' lengths don't match
   ///
   Future<void> getFrequencyResponse(
-          {required F32 frequencyHz,
+          {required List<double> frequencyHz,
           required F32 magResponse,
           required F32 phaseResponse}) =>
       RustLib.instance.api.webAudioApiNodeBiquadFilterNodeGetFrequencyResponse(
@@ -562,7 +562,7 @@ class IirFilterNode extends RustOpaque {
   /// This function will panic if arguments' lengths don't match
   ///
   Future<void> getFrequencyResponse(
-          {required F32 frequencyHz,
+          {required List<double> frequencyHz,
           required F32 magResponse,
           required F32 phaseResponse}) =>
       RustLib.instance.api.webAudioApiNodeIirFilterNodeGetFrequencyResponse(

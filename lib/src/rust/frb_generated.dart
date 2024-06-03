@@ -151,7 +151,7 @@ abstract class RustLibApi extends BaseApi {
 
   Future<void> webAudioApiAudioParamSetValueCurveAtTime(
       {required AudioParam that,
-      required F32 values,
+      required List<double> values,
       required double startTime,
       required double duration});
 
@@ -502,7 +502,7 @@ abstract class RustLibApi extends BaseApi {
 
   Future<void> webAudioApiNodeBiquadFilterNodeGetFrequencyResponse(
       {required BiquadFilterNode that,
-      required F32 frequencyHz,
+      required List<double> frequencyHz,
       required F32 magResponse,
       required F32 phaseResponse});
 
@@ -554,7 +554,7 @@ abstract class RustLibApi extends BaseApi {
 
   Future<void> webAudioApiNodeIirFilterNodeGetFrequencyResponse(
       {required IirFilterNode that,
-      required F32 frequencyHz,
+      required List<double> frequencyHz,
       required F32 magResponse,
       required F32 phaseResponse});
 
@@ -1686,7 +1686,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   @override
   Future<void> webAudioApiAudioParamSetValueCurveAtTime(
       {required AudioParam that,
-      required F32 values,
+      required List<double> values,
       required double startTime,
       required double duration}) {
     return handler.executeNormal(NormalTask(
@@ -1694,8 +1694,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioParam(
             that, serializer);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
-            values, serializer);
+        sse_encode_list_prim_f_32_loose(values, serializer);
         sse_encode_f_64(startTime, serializer);
         sse_encode_f_64(duration, serializer);
         pdeCallFfi(generalizedFrbRustBinding, serializer,
@@ -4813,7 +4812,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   @override
   Future<void> webAudioApiNodeBiquadFilterNodeGetFrequencyResponse(
       {required BiquadFilterNode that,
-      required F32 frequencyHz,
+      required List<double> frequencyHz,
       required F32 magResponse,
       required F32 phaseResponse}) {
     return handler.executeNormal(NormalTask(
@@ -4821,8 +4820,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerBiquadFilterNode(
             that, serializer);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
-            frequencyHz, serializer);
+        sse_encode_list_prim_f_32_loose(frequencyHz, serializer);
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
             magResponse, serializer);
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
@@ -5285,7 +5283,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   @override
   Future<void> webAudioApiNodeIirFilterNodeGetFrequencyResponse(
       {required IirFilterNode that,
-      required F32 frequencyHz,
+      required List<double> frequencyHz,
       required F32 magResponse,
       required F32 phaseResponse}) {
     return handler.executeNormal(NormalTask(
@@ -5293,8 +5291,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIIRFilterNode(
             that, serializer);
-        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
-            frequencyHz, serializer);
+        sse_encode_list_prim_f_32_loose(frequencyHz, serializer);
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
             magResponse, serializer);
         sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerf32(
