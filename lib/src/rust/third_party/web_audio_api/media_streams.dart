@@ -7,6 +7,7 @@ import '../../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 // These functions are ignored because they are not marked as `pub`: `assert_receiver_is_total_eq`, `clone`, `clone`, `clone`, `eq`, `fmt`, `fmt`, `fmt`, `next`
+// These functions are ignored because they have generic arguments: `from_iter`
 // These types are ignored because they are not used by any `pub` functions: `MediaStreamTrackInner`, `MediaStreamTrackIter`
 // These functions have error during generation (see debug logs for more details): `iter`
 
@@ -35,35 +36,10 @@ class MediaStreamTrack extends RustOpaque {
         that: this,
       );
 
-  static Future<MediaStreamTrack> fromIter({required T iter}) =>
-      RustLib.instance.api
-          .webAudioApiMediaStreamsMediaStreamTrackFromIter(iter: iter);
-
   Future<MediaStreamTrackState> readyState() =>
       RustLib.instance.api.webAudioApiMediaStreamsMediaStreamTrackReadyState(
         that: this,
       );
-}
-
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<T>>
-@sealed
-class T extends RustOpaque {
-  // Not to be used by end users
-  T.frbInternalDcoDecode(List<dynamic> wire)
-      : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  T.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
-      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_T,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_T,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_TPtr,
-  );
 }
 
 /// Stream of media content.

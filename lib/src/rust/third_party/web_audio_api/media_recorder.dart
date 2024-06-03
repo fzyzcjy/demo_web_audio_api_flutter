@@ -5,11 +5,11 @@
 
 import '../../frb_generated.dart';
 import '../web_audio_api.dart';
-import 'context.dart';
 import 'media_streams.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 // These functions are ignored because they are not marked as `pub`: `encode_first`, `encode_next`, `flush`, `fmt`, `fmt`, `handle_error`, `new`, `record`, `stop`
+// These functions are ignored because they have generic arguments: `set_ondataavailable`, `set_onerror`, `set_onstop`
 // These types are ignored because they are not used by any `pub` functions: `MediaRecorderInner`, `RecordedData`
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<BlobEvent>>
@@ -100,18 +100,6 @@ class MediaRecorder extends RustOpaque {
   static Future<MediaRecorder> newInstance({required MediaStream stream}) =>
       RustLib.instance.api
           .webAudioApiMediaRecorderMediaRecorderNew(stream: stream);
-
-  Future<void> setOndataavailable({required F callback}) => RustLib.instance.api
-      .webAudioApiMediaRecorderMediaRecorderSetOndataavailable(
-          that: this, callback: callback);
-
-  Future<void> setOnerror({required F callback}) =>
-      RustLib.instance.api.webAudioApiMediaRecorderMediaRecorderSetOnerror(
-          that: this, callback: callback);
-
-  Future<void> setOnstop({required F callback}) =>
-      RustLib.instance.api.webAudioApiMediaRecorderMediaRecorderSetOnstop(
-          that: this, callback: callback);
 
   /// Begin recording media
   ///

@@ -12,6 +12,7 @@ import 'package:freezed_annotation/freezed_annotation.dart' hide protected;
 part 'context.freezed.dart';
 
 // These functions are ignored because they are not marked as `pub`: `address`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `base`, `base`, `base`, `calculate_suspend_frame`, `clear_event_handler`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `connect_listener_to_panner`, `connect`, `context`, `current_time`, `default`, `default`, `default`, `default`, `destination_channel_config`, `disconnect`, `drop`, `drop`, `ensure_audio_listener_present`, `eq`, `eq`, `eq`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `from`, `from`, `get`, `hash`, `id`, `is_valid_sink_id`, `listener`, `lock_control_msg_sender`, `mark_node_dropped`, `max_channel_count`, `new`, `new`, `offline`, `post_message`, `queue_audio_param_connect`, `register`, `resolve_queued_control_msgs`, `sample_rate`, `send_control_msg`, `send_event`, `set_event_handler`, `set_state`, `state`
+// These functions are ignored because they have generic arguments: `run_diagnostics`, `set_oncomplete`, `set_onsinkchange`, `suspend_sync`
 // These types are ignored because they are not used by any `pub` functions: `AudioContextState`, `AudioNodeIdProvider`, `AudioNodeId`, `AudioParamId`, `ConcreteBaseAudioContextInner`, `OfflineAudioContextRenderer`
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioContext>>
@@ -184,18 +185,6 @@ class AudioContext extends RustOpaque {
         that: this,
       );
 
-  Future<void> runDiagnostics({required F callback}) =>
-      RustLib.instance.api.webAudioApiContextAudioContextRunDiagnostics(
-          that: this, callback: callback);
-
-  /// Register callback to run when the audio sink has changed
-  ///
-  /// Only a single event handler is active at any time. Calling this method multiple times will
-  /// override the previous event handler.
-  Future<void> setOnsinkchange({required F callback}) =>
-      RustLib.instance.api.webAudioApiContextAudioContextSetOnsinkchange(
-          that: this, callback: callback);
-
   /// Update the current audio output device.
   ///
   /// The provided `sink_id` string must match a device name `enumerate_devices_sync`.
@@ -323,27 +312,6 @@ class ConcreteBaseAudioContext extends RustOpaque {
               that: this, reg: reg);
 }
 
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<F>>
-@sealed
-class F extends RustOpaque {
-  // Not to be used by end users
-  F.frbInternalDcoDecode(List<dynamic> wire)
-      : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  F.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
-      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_F,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_F,
-    rustArcDecrementStrongCountPtr:
-        RustLib.instance.api.rust_arc_decrement_strong_count_FPtr,
-  );
-}
-
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MediaElement>>
 @sealed
 class MediaElement extends RustOpaque {
@@ -424,14 +392,6 @@ class OfflineAudioContext extends RustOpaque {
         that: this,
       );
 
-  /// Register callback to run when the rendering has completed
-  ///
-  /// Only a single event handler is active at any time. Calling this method multiple times will
-  /// override the previous event handler.
-  Future<void> setOncomplete({required F callback}) =>
-      RustLib.instance.api.webAudioApiContextOfflineAudioContextSetOncomplete(
-          that: this, callback: callback);
-
   /// Given the current connections and scheduled changes, starts rendering audio.
   ///
   /// Rendering is purely CPU bound and contains no `await` points, so calling this method will
@@ -508,48 +468,6 @@ class OfflineAudioContext extends RustOpaque {
   Future<void> suspend({required double suspendTime}) =>
       RustLib.instance.api.webAudioApiContextOfflineAudioContextSuspend(
           that: this, suspendTime: suspendTime);
-
-  /// Schedules a suspension of the time progression in the audio context at the specified time
-  /// and runs a callback.
-  ///
-  /// This is a synchronous version of [`Self::suspend`] that runs the provided callback at
-  /// the `suspendTime`. The rendering resumes automatically after the callback has run, so there
-  /// is no `resume_sync` method.
-  ///
-  /// The specified time is quantized and rounded up to the render quantum size.
-  ///
-  /// # Panics
-  ///
-  /// Panics if the quantized frame number
-  ///
-  /// - is negative or
-  /// - is less than or equal to the current time or
-  /// - is greater than or equal to the total render duration or
-  /// - is scheduled by another suspend for the same time
-  ///
-  /// # Example usage
-  ///
-  /// ```rust
-  /// use web_audio_api::context::BaseAudioContext;
-  /// use web_audio_api::context::OfflineAudioContext;
-  /// use web_audio_api::node::{AudioNode, AudioScheduledSourceNode};
-  ///
-  /// let mut context = OfflineAudioContext::new(1, 512, 44_100.);
-  ///
-  /// context.suspend_sync(128. / 44_100., |context| {
-  ///     let mut src = context.create_constant_source();
-  ///     src.connect(&context.destination());
-  ///     src.start();
-  /// });
-  ///
-  /// let buffer = context.start_rendering_sync();
-  /// assert_eq!(buffer.number_of_channels(), 1);
-  /// assert_eq!(buffer.length(), 512);
-  /// ```
-  Future<void> suspendSync(
-          {required double suspendTime, required F callback}) =>
-      RustLib.instance.api.webAudioApiContextOfflineAudioContextSuspendSync(
-          that: this, suspendTime: suspendTime, callback: callback);
 }
 
 @freezed

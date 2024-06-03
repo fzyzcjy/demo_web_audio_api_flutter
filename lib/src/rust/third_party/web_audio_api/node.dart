@@ -10,7 +10,8 @@ import 'media_streams.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 // These functions are ignored because they are not marked as `pub`: `apply_curve`, `apply_mono_to_stereo_gain`, `apply_stereo_to_stereo_gain`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `assert_valid_channel_count_mode`, `assert_valid_channel_count_mode`, `assert_valid_channel_count_mode`, `assert_valid_channel_count_mode`, `assert_valid_channel_count_mode`, `assert_valid_channel_count`, `assert_valid_channel_count`, `assert_valid_channel_count`, `assert_valid_channel_count`, `assert_valid_channel_count`, `assert_valid_channel_interpretation`, `assert_valid_cone_outer_gain`, `assert_valid_feedback_coefs`, `assert_valid_feedforward_coefs`, `assert_valid_number_of_channels`, `assert_valid_number_of_channels`, `before_drop`, `before_drop`, `before_drop`, `calculate_coefs`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `channel_config`, `check_ring_buffer_up_down_mix`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `clone`, `complex`, `cone_gain`, `connect_from_output_to_input`, `count_mode`, `count`, `db_to_lin`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `default`, `disconnect_dest_from_output_to_input`, `disconnect_dest_from_output`, `disconnect_dest`, `disconnect_output`, `disconnect`, `dist_gain`, `downsample_x2`, `downsample_x4`, `drop`, `eq`, `eq`, `eq`, `eq`, `eq`, `eq`, `eq`, `eq`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `fmt`, `from_raw_parts`, `from`, `from`, `from`, `from`, `from`, `from`, `from`, `from`, `generate_custom`, `generate_sample`, `generate_sawtooth`, `generate_sine`, `generate_square`, `generate_triangle`, `get_computed_freq`, `get_phase_incr`, `get_playback_infos`, `get_stereo_gains`, `handle_control_message`, `has_side_effects`, `has_side_effects`, `inner`, `interpretation`, `into_channel_config`, `inverse`, `lin_to_db`, `load_hrtf_processor`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `next`, `normalize_buffer`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_inputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `number_of_outputs`, `onmessage`, `onmessage`, `onmessage`, `onmessage`, `onmessage`, `onmessage`, `onmessage`, `onmessage`, `poly_blep`, `precomputed_sine_table`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `process`, `real`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `registration`, `ring_buffer_mut`, `ring_buffer_mut`, `roll_zero`, `samples_out_mut`, `samples_out`, `set_channel_count_mode`, `set_channel_count_mode`, `set_channel_count_mode`, `set_channel_count_mode`, `set_channel_count_mode`, `set_channel_count_mode`, `set_channel_count_mode`, `set_channel_count`, `set_channel_count`, `set_channel_count`, `set_channel_count`, `set_channel_count`, `set_channel_count`, `set_channel_count`, `set_channel_interpretation`, `set_count_mode`, `set_count`, `set_interpretation`, `start_at`, `start_at`, `start_at`, `start`, `start`, `start`, `stop_at`, `stop_at`, `stop_at`, `stop`, `stop`, `stop`, `tail_time_samples`, `tail`, `unroll_phase`, `upsample_x2`, `upsample_x4`
-// These types are ignored because they are not used by any `pub` functions: `AnalyserRenderer`, `AudioBufferRendererState`, `AudioBufferSourceRenderer`, `AudioDestinationNodeStream`, `BiquadFilterRenderer`, `ChannelConfigInner`, `ChannelConfig`, `ChannelMergerRenderer`, `ChannelSplitterRenderer`, `Coefficients`, `ConstantSourceRenderer`, `ControlMessage`, `ConvolverRendererInner`, `ConvolverRenderer`, `DelayReader`, `DelayWriter`, `DestinationRenderer`, `DynamicsCompressorRenderer`, `Fft`, `GainRenderer`, `HrtfState`, `IirFilterRenderer`, `LoopState`, `MediaStreamRenderer`, `OscillatorRenderer`, `PannerRenderer`, `PlaybackInfo`, `RendererConfig`, `ResamplerConfig`, `Resampler`, `Schedule`, `ScriptProcessorRenderer`, `SpatialParams`, `StereoPannerRenderer`, `WaveShaperRenderer`
+// These functions are ignored because they have generic arguments: `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `new`, `set_onaudioprocess`
+// These types are ignored because they are not used by any `pub` functions: `AnalyserOptions`, `AnalyserRenderer`, `AudioBufferRendererState`, `AudioBufferSourceOptions`, `AudioBufferSourceRenderer`, `AudioDestinationNodeStream`, `BiquadFilterOptions`, `BiquadFilterRenderer`, `ChannelConfigInner`, `ChannelConfig`, `ChannelMergerNode`, `ChannelMergerOptions`, `ChannelMergerRenderer`, `ChannelSplitterNode`, `ChannelSplitterOptions`, `ChannelSplitterRenderer`, `Coefficients`, `ConstantSourceOptions`, `ConstantSourceRenderer`, `ControlMessage`, `ConvolverOptions`, `ConvolverRendererInner`, `ConvolverRenderer`, `DelayOptions`, `DelayReader`, `DelayWriter`, `DestinationRenderer`, `DynamicsCompressorOptions`, `DynamicsCompressorRenderer`, `Fft`, `GainOptions`, `GainRenderer`, `HrtfState`, `IIRFilterOptions`, `IirFilterRenderer`, `LoopState`, `MediaStreamRenderer`, `OscillatorOptions`, `OscillatorRenderer`, `PannerOptions`, `PannerRenderer`, `PlaybackInfo`, `RendererConfig`, `ResamplerConfig`, `Resampler`, `Schedule`, `ScriptProcessorOptions`, `ScriptProcessorRenderer`, `SpatialParams`, `StereoPannerOptions`, `StereoPannerRenderer`, `WaveShaperOptions`, `WaveShaperRenderer`
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AnalyserNode>>
 @sealed
@@ -110,12 +111,6 @@ class AnalyserNode extends RustOpaque {
       RustLib.instance.api.webAudioApiNodeAnalyserNodeMinDecibels(
         that: this,
       );
-
-  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
-  static Future<AnalyserNode> newInstance(
-          {required C context, required AnalyserOptions options}) =>
-      RustLib.instance.api
-          .webAudioApiNodeAnalyserNodeNew(context: context, options: options);
 
   /// Set FFT size
   ///
@@ -218,13 +213,6 @@ class AudioBufferSourceNode extends RustOpaque {
       RustLib.instance.api.webAudioApiNodeAudioBufferSourceNodeLoopStart(
         that: this,
       );
-
-  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
-  /// Create a new [`AudioBufferSourceNode`] instance
-  static Future<AudioBufferSourceNode> newInstance(
-          {required C context, required AudioBufferSourceOptions options}) =>
-      RustLib.instance.api.webAudioApiNodeAudioBufferSourceNodeNew(
-          context: context, options: options);
 
   /// K-rate [`AudioParam`] that defines the speed at which the [`AudioBuffer`]
   /// will be played, e.g.:
@@ -383,18 +371,6 @@ class BiquadFilterNode extends RustOpaque {
           magResponse: magResponse,
           phaseResponse: phaseResponse);
 
-  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
-  /// returns a `BiquadFilterNode` instance
-  ///
-  /// # Arguments
-  ///
-  /// * `context` - audio context in which the audio node will live.
-  /// * `options` - biquad filter options
-  static Future<BiquadFilterNode> newInstance(
-          {required C context, required BiquadFilterOptions options}) =>
-      RustLib.instance.api.webAudioApiNodeBiquadFilterNodeNew(
-          context: context, options: options);
-
   /// Returns the Q audio parameter
   Future<AudioParam> q() =>
       RustLib.instance.api.webAudioApiNodeBiquadFilterNodeQ(
@@ -416,60 +392,6 @@ class BiquadFilterNode extends RustOpaque {
       );
 }
 
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ChannelMergerNode>>
-@sealed
-class ChannelMergerNode extends RustOpaque {
-  // Not to be used by end users
-  ChannelMergerNode.frbInternalDcoDecode(List<dynamic> wire)
-      : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  ChannelMergerNode.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
-      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount:
-        RustLib.instance.api.rust_arc_increment_strong_count_ChannelMergerNode,
-    rustArcDecrementStrongCount:
-        RustLib.instance.api.rust_arc_decrement_strong_count_ChannelMergerNode,
-    rustArcDecrementStrongCountPtr: RustLib
-        .instance.api.rust_arc_decrement_strong_count_ChannelMergerNodePtr,
-  );
-
-  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
-  static Future<ChannelMergerNode> newInstance(
-          {required C context, required ChannelMergerOptions options}) =>
-      RustLib.instance.api.webAudioApiNodeChannelMergerNodeNew(
-          context: context, options: options);
-}
-
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ChannelSplitterNode>>
-@sealed
-class ChannelSplitterNode extends RustOpaque {
-  // Not to be used by end users
-  ChannelSplitterNode.frbInternalDcoDecode(List<dynamic> wire)
-      : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  ChannelSplitterNode.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
-      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount: RustLib
-        .instance.api.rust_arc_increment_strong_count_ChannelSplitterNode,
-    rustArcDecrementStrongCount: RustLib
-        .instance.api.rust_arc_decrement_strong_count_ChannelSplitterNode,
-    rustArcDecrementStrongCountPtr: RustLib
-        .instance.api.rust_arc_decrement_strong_count_ChannelSplitterNodePtr,
-  );
-
-  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
-  static Future<ChannelSplitterNode> newInstance(
-          {required C context, required ChannelSplitterOptions options}) =>
-      RustLib.instance.api.webAudioApiNodeChannelSplitterNodeNew(
-          context: context, options: options);
-}
-
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ConstantSourceNode>>
 @sealed
 class ConstantSourceNode extends RustOpaque {
@@ -489,12 +411,6 @@ class ConstantSourceNode extends RustOpaque {
     rustArcDecrementStrongCountPtr: RustLib
         .instance.api.rust_arc_decrement_strong_count_ConstantSourceNodePtr,
   );
-
-  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
-  static Future<ConstantSourceNode> newInstance(
-          {required C context, required ConstantSourceOptions options}) =>
-      RustLib.instance.api.webAudioApiNodeConstantSourceNodeNew(
-          context: context, options: options);
 
   Future<AudioParam> offset() =>
       RustLib.instance.api.webAudioApiNodeConstantSourceNodeOffset(
@@ -527,23 +443,6 @@ class ConvolverNode extends RustOpaque {
       RustLib.instance.api.webAudioApiNodeConvolverNodeBuffer(
         that: this,
       );
-
-  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
-  /// returns a `ConvolverNode` instance
-  ///
-  /// # Arguments
-  ///
-  /// * `context` - audio context in which the audio node will live.
-  /// * `options` - convolver options
-  ///
-  /// # Panics
-  ///
-  /// Panics when an AudioBuffer is provided via the `ConvolverOptions` with a sample rate
-  /// different from the audio context sample rate.
-  static Future<ConvolverNode> newInstance(
-          {required C context, required ConvolverOptions options}) =>
-      RustLib.instance.api
-          .webAudioApiNodeConvolverNodeNew(context: context, options: options);
 
   /// Denotes if the response buffer will be scaled with an equal-power normalization
   Future<bool> normalize() =>
@@ -590,17 +489,6 @@ class DelayNode extends RustOpaque {
       RustLib.instance.api.webAudioApiNodeDelayNodeDelayTime(
         that: this,
       );
-
-  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
-  /// Create a new DelayNode
-  ///
-  /// # Panics
-  ///
-  /// Panics when the max delay value is smaller than zero or langer than three minutes.
-  static Future<DelayNode> newInstance(
-          {required C context, required DelayOptions options}) =>
-      RustLib.instance.api
-          .webAudioApiNodeDelayNodeNew(context: context, options: options);
 }
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<DynamicsCompressorNode>>
@@ -633,12 +521,6 @@ class DynamicsCompressorNode extends RustOpaque {
       RustLib.instance.api.webAudioApiNodeDynamicsCompressorNodeKnee(
         that: this,
       );
-
-  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
-  static Future<DynamicsCompressorNode> newInstance(
-          {required C context, required DynamicsCompressorOptions options}) =>
-      RustLib.instance.api.webAudioApiNodeDynamicsCompressorNodeNew(
-          context: context, options: options);
 
   Future<AudioParam> ratio() =>
       RustLib.instance.api.webAudioApiNodeDynamicsCompressorNodeRatio(
@@ -684,12 +566,6 @@ class GainNode extends RustOpaque {
   Future<AudioParam> gain() => RustLib.instance.api.webAudioApiNodeGainNodeGain(
         that: this,
       );
-
-  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
-  static Future<GainNode> newInstance(
-          {required C context, required GainOptions options}) =>
-      RustLib.instance.api
-          .webAudioApiNodeGainNodeNew(context: context, options: options);
 }
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<IIRFilterNode>>
@@ -733,26 +609,6 @@ class IirFilterNode extends RustOpaque {
           frequencyHz: frequencyHz,
           magResponse: magResponse,
           phaseResponse: phaseResponse);
-
-  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
-  /// Creates an `IirFilterNode`
-  ///
-  /// # Arguments
-  ///
-  /// - `context` - Audio context in which the node will live
-  /// - `options` - node options
-  ///
-  /// # Panics
-  ///
-  /// This function panics if:
-  /// - coefs length is 0 and greater than 20
-  /// - feedforward coefs are all zeros
-  /// - feedback first coef is zero
-  ///
-  static Future<IirFilterNode> newInstance(
-          {required C context, required IIRFilterOptions options}) =>
-      RustLib.instance.api
-          .webAudioApiNodeIirFilterNodeNew(context: context, options: options);
 }
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MediaElementAudioSourceNode>>
@@ -775,19 +631,6 @@ class MediaElementAudioSourceNode extends RustOpaque {
     rustArcDecrementStrongCountPtr: RustLib.instance.api
         .rust_arc_decrement_strong_count_MediaElementAudioSourceNodePtr,
   );
-
-  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
-  /// Create a new `MediaElementAudioSourceNode`
-  ///
-  /// # Panics
-  ///
-  /// This method will panic when there already exists a source node for the given
-  /// `MediaElement`. You can only set up a single source node per element!
-  static Future<MediaElementAudioSourceNode> newInstance(
-          {required C context,
-          required MediaElementAudioSourceOptions options}) =>
-      RustLib.instance.api.webAudioApiNodeMediaElementAudioSourceNodeNew(
-          context: context, options: options);
 }
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MediaElementAudioSourceOptions>>
@@ -863,13 +706,6 @@ class MediaStreamAudioDestinationNode extends RustOpaque {
         .rust_arc_decrement_strong_count_MediaStreamAudioDestinationNodePtr,
   );
 
-  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
-  /// Create a new MediaStreamAudioDestinationNode
-  static Future<MediaStreamAudioDestinationNode> newInstance(
-          {required C context, required AudioNodeOptions options}) =>
-      RustLib.instance.api.webAudioApiNodeMediaStreamAudioDestinationNodeNew(
-          context: context, options: options);
-
   /// A [`MediaStream`] producing audio buffers with the same number of channels as the node
   /// itself
   Future<MediaStream> stream() =>
@@ -898,18 +734,6 @@ class MediaStreamAudioSourceNode extends RustOpaque {
     rustArcDecrementStrongCountPtr: RustLib.instance.api
         .rust_arc_decrement_strong_count_MediaStreamAudioSourceNodePtr,
   );
-
-  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
-  /// Create a new `MediaStreamAudioSourceNode`
-  ///
-  /// # Panics
-  ///
-  /// This method will panic when the provided `MediaStream` does not contain any audio tracks.
-  static Future<MediaStreamAudioSourceNode> newInstance(
-          {required C context,
-          required MediaStreamAudioSourceOptions options}) =>
-      RustLib.instance.api.webAudioApiNodeMediaStreamAudioSourceNodeNew(
-          context: context, options: options);
 }
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MediaStreamAudioSourceOptions>>
@@ -963,13 +787,6 @@ class MediaStreamTrackAudioSourceNode extends RustOpaque {
     rustArcDecrementStrongCountPtr: RustLib.instance.api
         .rust_arc_decrement_strong_count_MediaStreamTrackAudioSourceNodePtr,
   );
-
-  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
-  static Future<MediaStreamTrackAudioSourceNode> newInstance(
-          {required C context,
-          required MediaStreamTrackAudioSourceOptions options}) =>
-      RustLib.instance.api.webAudioApiNodeMediaStreamTrackAudioSourceNodeNew(
-          context: context, options: options);
 }
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MediaStreamTrackAudioSourceOptions>>
@@ -1044,18 +861,6 @@ class OscillatorNode extends RustOpaque {
         that: this,
       );
 
-  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
-  /// Returns an `OscillatorNode`
-  ///
-  /// # Arguments:
-  ///
-  /// * `context` - The `AudioContext`
-  /// * `options` - The OscillatorOptions
-  static Future<OscillatorNode> newInstance(
-          {required C context, required OscillatorOptions options}) =>
-      RustLib.instance.api
-          .webAudioApiNodeOscillatorNodeNew(context: context, options: options);
-
   /// Sets a `PeriodicWave` which describes a waveform to be used by the oscillator.
   ///
   /// Calling this sets the oscillator type to `custom`, once set to `custom`
@@ -1127,27 +932,6 @@ class PannerNode extends RustOpaque {
       RustLib.instance.api.webAudioApiNodePannerNodeMaxDistance(
         that: this,
       );
-
-  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
-  /// returns a `PannerNode` instance
-  ///
-  /// # Arguments
-  ///
-  /// * `context` - audio context in which the audio node will live.
-  /// * `options` - stereo panner options
-  ///
-  /// # Panics
-  ///
-  /// Will panic if:
-  ///
-  /// * `options.channel_config.count` is greater than 2
-  /// * `options.channel_config.mode` is `ChannelCountMode::Max`
-  ///
-  /// Can panic when loading HRIR-sphere
-  static Future<PannerNode> newInstance(
-          {required C context, required PannerOptions options}) =>
-      RustLib.instance.api
-          .webAudioApiNodePannerNodeNew(context: context, options: options);
 
   Future<AudioParam> orientationX() =>
       RustLib.instance.api.webAudioApiNodePannerNodeOrientationX(
@@ -1283,40 +1067,6 @@ class ScriptProcessorNode extends RustOpaque {
           .webAudioApiNodeScriptProcessorNodeClearOnaudioprocess(
         that: this,
       );
-
-  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
-  /// Creates a `ScriptProcessorNode`
-  ///
-  /// # Arguments
-  ///
-  /// - `context` - Audio context in which the node will live
-  /// - `options` - node options
-  ///
-  /// # Panics
-  ///
-  /// This function panics if:
-  /// - `buffer_size` is not 256, 512, 1024, 2048, 4096, 8192, or 16384
-  /// - the number of input and output channels are both zero
-  /// - either of the channel counts exceed [`crate::MAX_CHANNELS`]
-  static Future<ScriptProcessorNode> newInstance(
-          {required C context, required ScriptProcessorOptions options}) =>
-      RustLib.instance.api.webAudioApiNodeScriptProcessorNodeNew(
-          context: context, options: options);
-
-  /// Register callback to run when the AudioProcessingEvent is dispatched
-  ///
-  /// The event handler processes audio from the input (if any) by accessing the audio data from
-  /// the inputBuffer attribute. The audio data which is the result of the processing (or the
-  /// synthesized data if there are no inputs) is then placed into the outputBuffer.
-  ///
-  /// The output buffer is shipped back to the render thread when the AudioProcessingEvent goes
-  /// out of scope, so be sure not to store it somewhere.
-  ///
-  /// Only a single event handler is active at any time. Calling this method multiple times will
-  /// override the previous event handler.
-  Future<void> setOnaudioprocess({required F callback}) =>
-      RustLib.instance.api.webAudioApiNodeScriptProcessorNodeSetOnaudioprocess(
-          that: this, callback: callback);
 }
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<StereoPannerNode>>
@@ -1338,26 +1088,6 @@ class StereoPannerNode extends RustOpaque {
     rustArcDecrementStrongCountPtr: RustLib
         .instance.api.rust_arc_decrement_strong_count_StereoPannerNodePtr,
   );
-
-  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
-  /// returns a `StereoPannerNode` instance
-  ///
-  /// # Arguments
-  ///
-  /// * `context` - audio context in which the audio node will live.
-  /// * `options` - stereo panner options
-  ///
-  /// # Panics
-  ///
-  /// Will panic if:
-  ///
-  /// * `options.channel_config.count` is greater than 2
-  /// * `options.channel_config.mode` is `ChannelCountMode::Max`
-  ///
-  static Future<StereoPannerNode> newInstance(
-          {required C context, required StereoPannerOptions options}) =>
-      RustLib.instance.api.webAudioApiNodeStereoPannerNodeNew(
-          context: context, options: options);
 
   /// Returns the pan audio parameter
   Future<AudioParam> pan() =>
@@ -1391,18 +1121,6 @@ class WaveShaperNode extends RustOpaque {
       RustLib.instance.api.webAudioApiNodeWaveShaperNodeCurve(
         that: this,
       );
-
-  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
-  /// returns a `WaveShaperNode` instance
-  ///
-  /// # Arguments
-  ///
-  /// * `context` - audio context in which the audio node will live.
-  /// * `options` - waveshaper options
-  static Future<WaveShaperNode> newInstance(
-          {required C context, required WaveShaperOptions options}) =>
-      RustLib.instance.api
-          .webAudioApiNodeWaveShaperNodeNew(context: context, options: options);
 
   /// Returns the `oversample` faactor of this node
   Future<OverSampleType> oversample() =>
@@ -1454,82 +1172,6 @@ class U8 extends RustOpaque {
   );
 }
 
-/// Options for constructing an [`AnalyserNode`]
-class AnalyserOptions {
-  final BigInt fftSize;
-  final double maxDecibels;
-  final double minDecibels;
-  final double smoothingTimeConstant;
-  final AudioNodeOptions audioNodeOptions;
-
-  const AnalyserOptions({
-    required this.fftSize,
-    required this.maxDecibels,
-    required this.minDecibels,
-    required this.smoothingTimeConstant,
-    required this.audioNodeOptions,
-  });
-
-  @override
-  int get hashCode =>
-      fftSize.hashCode ^
-      maxDecibels.hashCode ^
-      minDecibels.hashCode ^
-      smoothingTimeConstant.hashCode ^
-      audioNodeOptions.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is AnalyserOptions &&
-          runtimeType == other.runtimeType &&
-          fftSize == other.fftSize &&
-          maxDecibels == other.maxDecibels &&
-          minDecibels == other.minDecibels &&
-          smoothingTimeConstant == other.smoothingTimeConstant &&
-          audioNodeOptions == other.audioNodeOptions;
-}
-
-/// Options for constructing an [`AudioBufferSourceNode`]
-class AudioBufferSourceOptions {
-  final AudioBuffer? buffer;
-  final double detune;
-  final bool loop;
-  final double loopStart;
-  final double loopEnd;
-  final double playbackRate;
-
-  const AudioBufferSourceOptions({
-    this.buffer,
-    required this.detune,
-    required this.loop,
-    required this.loopStart,
-    required this.loopEnd,
-    required this.playbackRate,
-  });
-
-  @override
-  int get hashCode =>
-      buffer.hashCode ^
-      detune.hashCode ^
-      loop.hashCode ^
-      loopStart.hashCode ^
-      loopEnd.hashCode ^
-      playbackRate.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is AudioBufferSourceOptions &&
-          runtimeType == other.runtimeType &&
-          buffer == other.buffer &&
-          detune == other.detune &&
-          loop == other.loop &&
-          loopStart == other.loopStart &&
-          loopEnd == other.loopEnd &&
-          playbackRate == other.playbackRate;
-}
-
 /// Options that can be used in constructing all AudioNodes.
 class AudioNodeOptions {
   /// Desired number of channels for the [`AudioNode::channel_count`] attribute.
@@ -1561,46 +1203,6 @@ class AudioNodeOptions {
           channelCount == other.channelCount &&
           channelCountMode == other.channelCountMode &&
           channelInterpretation == other.channelInterpretation;
-}
-
-/// Options for constructing a [`BiquadFilterNode`]
-class BiquadFilterOptions {
-  final double q;
-  final double detune;
-  final double frequency;
-  final double gain;
-  final BiquadFilterType type;
-  final AudioNodeOptions audioNodeOptions;
-
-  const BiquadFilterOptions({
-    required this.q,
-    required this.detune,
-    required this.frequency,
-    required this.gain,
-    required this.type,
-    required this.audioNodeOptions,
-  });
-
-  @override
-  int get hashCode =>
-      q.hashCode ^
-      detune.hashCode ^
-      frequency.hashCode ^
-      gain.hashCode ^
-      type.hashCode ^
-      audioNodeOptions.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is BiquadFilterOptions &&
-          runtimeType == other.runtimeType &&
-          q == other.q &&
-          detune == other.detune &&
-          frequency == other.frequency &&
-          gain == other.gain &&
-          type == other.type &&
-          audioNodeOptions == other.audioNodeOptions;
 }
 
 /// Biquad filter types
@@ -1660,273 +1262,12 @@ enum ChannelInterpretation {
   ;
 }
 
-/// Options for constructing a [`ChannelMergerNode`]
-class ChannelMergerOptions {
-  final BigInt numberOfInputs;
-  final AudioNodeOptions audioNodeOptions;
-
-  const ChannelMergerOptions({
-    required this.numberOfInputs,
-    required this.audioNodeOptions,
-  });
-
-  @override
-  int get hashCode => numberOfInputs.hashCode ^ audioNodeOptions.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ChannelMergerOptions &&
-          runtimeType == other.runtimeType &&
-          numberOfInputs == other.numberOfInputs &&
-          audioNodeOptions == other.audioNodeOptions;
-}
-
-/// Options for constructing a [`ChannelSplitterNode`]
-class ChannelSplitterOptions {
-  final BigInt numberOfOutputs;
-  final AudioNodeOptions audioNodeOptions;
-
-  const ChannelSplitterOptions({
-    required this.numberOfOutputs,
-    required this.audioNodeOptions,
-  });
-
-  @override
-  int get hashCode => numberOfOutputs.hashCode ^ audioNodeOptions.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ChannelSplitterOptions &&
-          runtimeType == other.runtimeType &&
-          numberOfOutputs == other.numberOfOutputs &&
-          audioNodeOptions == other.audioNodeOptions;
-}
-
-/// Options for constructing an [`ConstantSourceNode`]
-class ConstantSourceOptions {
-  /// Initial parameter value of the constant signal
-  final double offset;
-
-  const ConstantSourceOptions({
-    required this.offset,
-  });
-
-  @override
-  int get hashCode => offset.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ConstantSourceOptions &&
-          runtimeType == other.runtimeType &&
-          offset == other.offset;
-}
-
-/// `ConvolverNode` options
-class ConvolverOptions {
-  /// The desired buffer for the ConvolverNode
-  final AudioBuffer? buffer;
-
-  /// The opposite of the desired initial value for the normalize attribute
-  final bool disableNormalization;
-
-  /// AudioNode options
-  final AudioNodeOptions audioNodeOptions;
-
-  const ConvolverOptions({
-    this.buffer,
-    required this.disableNormalization,
-    required this.audioNodeOptions,
-  });
-
-  @override
-  int get hashCode =>
-      buffer.hashCode ^
-      disableNormalization.hashCode ^
-      audioNodeOptions.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ConvolverOptions &&
-          runtimeType == other.runtimeType &&
-          buffer == other.buffer &&
-          disableNormalization == other.disableNormalization &&
-          audioNodeOptions == other.audioNodeOptions;
-}
-
-/// Options for constructing a [`DelayNode`]
-class DelayOptions {
-  final double maxDelayTime;
-  final double delayTime;
-  final AudioNodeOptions audioNodeOptions;
-
-  const DelayOptions({
-    required this.maxDelayTime,
-    required this.delayTime,
-    required this.audioNodeOptions,
-  });
-
-  @override
-  int get hashCode =>
-      maxDelayTime.hashCode ^ delayTime.hashCode ^ audioNodeOptions.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is DelayOptions &&
-          runtimeType == other.runtimeType &&
-          maxDelayTime == other.maxDelayTime &&
-          delayTime == other.delayTime &&
-          audioNodeOptions == other.audioNodeOptions;
-}
-
 /// Algorithm to reduce the volume of an audio source as it moves away from the listener
 enum DistanceModelType {
   linear,
   inverse,
   exponential,
   ;
-}
-
-/// Options for constructing a [`DynamicsCompressorNode`]
-class DynamicsCompressorOptions {
-  final double attack;
-  final double knee;
-  final double ratio;
-  final double release;
-  final double threshold;
-  final AudioNodeOptions audioNodeOptions;
-
-  const DynamicsCompressorOptions({
-    required this.attack,
-    required this.knee,
-    required this.ratio,
-    required this.release,
-    required this.threshold,
-    required this.audioNodeOptions,
-  });
-
-  @override
-  int get hashCode =>
-      attack.hashCode ^
-      knee.hashCode ^
-      ratio.hashCode ^
-      release.hashCode ^
-      threshold.hashCode ^
-      audioNodeOptions.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is DynamicsCompressorOptions &&
-          runtimeType == other.runtimeType &&
-          attack == other.attack &&
-          knee == other.knee &&
-          ratio == other.ratio &&
-          release == other.release &&
-          threshold == other.threshold &&
-          audioNodeOptions == other.audioNodeOptions;
-}
-
-/// Options for constructing a [`GainNode`]
-class GainOptions {
-  final double gain;
-  final AudioNodeOptions audioNodeOptions;
-
-  const GainOptions({
-    required this.gain,
-    required this.audioNodeOptions,
-  });
-
-  @override
-  int get hashCode => gain.hashCode ^ audioNodeOptions.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is GainOptions &&
-          runtimeType == other.runtimeType &&
-          gain == other.gain &&
-          audioNodeOptions == other.audioNodeOptions;
-}
-
-/// Options for constructing a [`IIRFilterNode`]
-class IIRFilterOptions {
-  /// audio node options
-  final AudioNodeOptions audioNodeOptions;
-
-  /// feedforward coefficients
-  final Float64List feedforward;
-
-  /// feedback coefficients
-  final Float64List feedback;
-
-  const IIRFilterOptions({
-    required this.audioNodeOptions,
-    required this.feedforward,
-    required this.feedback,
-  });
-
-  @override
-  int get hashCode =>
-      audioNodeOptions.hashCode ^ feedforward.hashCode ^ feedback.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is IIRFilterOptions &&
-          runtimeType == other.runtimeType &&
-          audioNodeOptions == other.audioNodeOptions &&
-          feedforward == other.feedforward &&
-          feedback == other.feedback;
-}
-
-/// Options for constructing an [`OscillatorNode`]
-class OscillatorOptions {
-  /// The shape of the periodic waveform
-  final OscillatorType type;
-
-  /// The frequency of the fundamental frequency.
-  final double frequency;
-
-  /// A detuning value (in cents) which will offset the frequency by the given amount.
-  final double detune;
-
-  /// Optional custom waveform, if specified (set `type` to "custom")
-  final PeriodicWave? periodicWave;
-
-  /// channel config options
-  final AudioNodeOptions audioNodeOptions;
-
-  const OscillatorOptions({
-    required this.type,
-    required this.frequency,
-    required this.detune,
-    this.periodicWave,
-    required this.audioNodeOptions,
-  });
-
-  @override
-  int get hashCode =>
-      type.hashCode ^
-      frequency.hashCode ^
-      detune.hashCode ^
-      periodicWave.hashCode ^
-      audioNodeOptions.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is OscillatorOptions &&
-          runtimeType == other.runtimeType &&
-          type == other.type &&
-          frequency == other.frequency &&
-          detune == other.detune &&
-          periodicWave == other.periodicWave &&
-          audioNodeOptions == other.audioNodeOptions;
 }
 
 /// Type of the waveform rendered by an `OscillatorNode`
@@ -1961,169 +1302,9 @@ enum OverSampleType {
   ;
 }
 
-/// Options for constructing a [`PannerNode`]
-class PannerOptions {
-  final PanningModelType panningModel;
-  final DistanceModelType distanceModel;
-  final double positionX;
-  final double positionY;
-  final double positionZ;
-  final double orientationX;
-  final double orientationY;
-  final double orientationZ;
-  final double refDistance;
-  final double maxDistance;
-  final double rolloffFactor;
-  final double coneInnerAngle;
-  final double coneOuterAngle;
-  final double coneOuterGain;
-  final AudioNodeOptions audioNodeOptions;
-
-  const PannerOptions({
-    required this.panningModel,
-    required this.distanceModel,
-    required this.positionX,
-    required this.positionY,
-    required this.positionZ,
-    required this.orientationX,
-    required this.orientationY,
-    required this.orientationZ,
-    required this.refDistance,
-    required this.maxDistance,
-    required this.rolloffFactor,
-    required this.coneInnerAngle,
-    required this.coneOuterAngle,
-    required this.coneOuterGain,
-    required this.audioNodeOptions,
-  });
-
-  @override
-  int get hashCode =>
-      panningModel.hashCode ^
-      distanceModel.hashCode ^
-      positionX.hashCode ^
-      positionY.hashCode ^
-      positionZ.hashCode ^
-      orientationX.hashCode ^
-      orientationY.hashCode ^
-      orientationZ.hashCode ^
-      refDistance.hashCode ^
-      maxDistance.hashCode ^
-      rolloffFactor.hashCode ^
-      coneInnerAngle.hashCode ^
-      coneOuterAngle.hashCode ^
-      coneOuterGain.hashCode ^
-      audioNodeOptions.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is PannerOptions &&
-          runtimeType == other.runtimeType &&
-          panningModel == other.panningModel &&
-          distanceModel == other.distanceModel &&
-          positionX == other.positionX &&
-          positionY == other.positionY &&
-          positionZ == other.positionZ &&
-          orientationX == other.orientationX &&
-          orientationY == other.orientationY &&
-          orientationZ == other.orientationZ &&
-          refDistance == other.refDistance &&
-          maxDistance == other.maxDistance &&
-          rolloffFactor == other.rolloffFactor &&
-          coneInnerAngle == other.coneInnerAngle &&
-          coneOuterAngle == other.coneOuterAngle &&
-          coneOuterGain == other.coneOuterGain &&
-          audioNodeOptions == other.audioNodeOptions;
-}
-
 /// Spatialization algorithm used to position the audio in 3D space
 enum PanningModelType {
   equalPower,
   hrtf,
   ;
-}
-
-/// Options for constructing an [`ScriptProcessorNode`]
-class ScriptProcessorOptions {
-  final BigInt bufferSize;
-  final BigInt numberOfInputChannels;
-  final BigInt numberOfOutputChannels;
-
-  const ScriptProcessorOptions({
-    required this.bufferSize,
-    required this.numberOfInputChannels,
-    required this.numberOfOutputChannels,
-  });
-
-  @override
-  int get hashCode =>
-      bufferSize.hashCode ^
-      numberOfInputChannels.hashCode ^
-      numberOfOutputChannels.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ScriptProcessorOptions &&
-          runtimeType == other.runtimeType &&
-          bufferSize == other.bufferSize &&
-          numberOfInputChannels == other.numberOfInputChannels &&
-          numberOfOutputChannels == other.numberOfOutputChannels;
-}
-
-/// Options for constructing a [`StereoPannerOptions`]
-class StereoPannerOptions {
-  /// initial value for the pan parameter
-  final double pan;
-
-  /// audio node options
-  final AudioNodeOptions audioNodeOptions;
-
-  const StereoPannerOptions({
-    required this.pan,
-    required this.audioNodeOptions,
-  });
-
-  @override
-  int get hashCode => pan.hashCode ^ audioNodeOptions.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is StereoPannerOptions &&
-          runtimeType == other.runtimeType &&
-          pan == other.pan &&
-          audioNodeOptions == other.audioNodeOptions;
-}
-
-/// `WaveShaperNode` options
-class WaveShaperOptions {
-  /// The distortion curve
-  final Float32List? curve;
-
-  /// Oversampling rate - default to `None`
-  final OverSampleType oversample;
-
-  /// audio node options
-  final AudioNodeOptions audioNodeOptions;
-
-  const WaveShaperOptions({
-    this.curve,
-    required this.oversample,
-    required this.audioNodeOptions,
-  });
-
-  @override
-  int get hashCode =>
-      curve.hashCode ^ oversample.hashCode ^ audioNodeOptions.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is WaveShaperOptions &&
-          runtimeType == other.runtimeType &&
-          curve == other.curve &&
-          oversample == other.oversample &&
-          audioNodeOptions == other.audioNodeOptions;
 }

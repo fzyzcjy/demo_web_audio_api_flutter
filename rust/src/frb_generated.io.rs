@@ -262,34 +262,6 @@ pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_decrement_strong_co
 }
 
 #[no_mangle]
-pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelMergerNode(
-    ptr: *const std::ffi::c_void,
-) {
-    MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ChannelMergerNode>>::increment_strong_count(ptr as _);
-}
-
-#[no_mangle]
-pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelMergerNode(
-    ptr: *const std::ffi::c_void,
-) {
-    MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ChannelMergerNode>>::decrement_strong_count(ptr as _);
-}
-
-#[no_mangle]
-pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelSplitterNode(
-    ptr: *const std::ffi::c_void,
-) {
-    MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ChannelSplitterNode>>::increment_strong_count(ptr as _);
-}
-
-#[no_mangle]
-pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerChannelSplitterNode(
-    ptr: *const std::ffi::c_void,
-) {
-    MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ChannelSplitterNode>>::decrement_strong_count(ptr as _);
-}
-
-#[no_mangle]
 pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerConcreteBaseAudioContext(
     ptr: *const std::ffi::c_void,
 ) {
@@ -385,24 +357,6 @@ pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_decrement_strong_co
     ptr: *const std::ffi::c_void,
 ) {
     MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Event>>::decrement_strong_count(ptr as _);
-}
-
-#[no_mangle]
-pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerF(
-    ptr: *const std::ffi::c_void,
-) {
-    MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<F>>::increment_strong_count(
-        ptr as _,
-    );
-}
-
-#[no_mangle]
-pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerF(
-    ptr: *const std::ffi::c_void,
-) {
-    MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<F>>::decrement_strong_count(
-        ptr as _,
-    );
 }
 
 #[no_mangle]
@@ -755,24 +709,6 @@ pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_decrement_strong_co
     ptr: *const std::ffi::c_void,
 ) {
     MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<StereoPannerNode>>::decrement_strong_count(ptr as _);
-}
-
-#[no_mangle]
-pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerT(
-    ptr: *const std::ffi::c_void,
-) {
-    MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<T>>::increment_strong_count(
-        ptr as _,
-    );
-}
-
-#[no_mangle]
-pub extern "C" fn frbgen_demo_web_audio_api_flutter_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerT(
-    ptr: *const std::ffi::c_void,
-) {
-    MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<T>>::decrement_strong_count(
-        ptr as _,
-    );
 }
 
 #[no_mangle]
