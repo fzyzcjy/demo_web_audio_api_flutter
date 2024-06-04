@@ -4,6 +4,7 @@
 // Section: imports
 
 use super::*;
+use crate::api::override_web_audio_api::AudioContextExt;
 use crate::api::simple::*;
 use flutter_rust_bridge::for_generated::byteorder::{NativeEndian, ReadBytesExt, WriteBytesExt};
 use flutter_rust_bridge::for_generated::transform_result_dco;

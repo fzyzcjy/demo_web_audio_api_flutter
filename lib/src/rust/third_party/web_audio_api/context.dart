@@ -34,6 +34,12 @@ class AudioContext extends RustOpaque {
         RustLib.instance.api.rust_arc_decrement_strong_count_AudioContextPtr,
   );
 
+  Future<AudioBuffer> frbOverrideDecodeAudioDataSync(
+          {required String inputPath}) =>
+      RustLib.instance.api
+          .crateApiOverrideWebAudioApiAudioContextFrbOverrideDecodeAudioDataSync(
+              that: this, inputPath: inputPath);
+
   /// This represents the number of seconds of processing latency incurred by
   /// the `AudioContext` passing the audio from the `AudioDestinationNode`
   /// to the audio subsystem.
