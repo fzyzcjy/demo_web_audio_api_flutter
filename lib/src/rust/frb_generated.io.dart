@@ -3,13 +3,6 @@
 
 // ignore_for_file: unused_import, unused_element, unnecessary_import, duplicate_ignore, invalid_use_of_internal_member, annotate_overrides, non_constant_identifier_names, curly_braces_in_flow_control_structures, prefer_const_literals_to_create_immutables, unused_field
 
-import '../web_audio_api.dart';
-import '../web_audio_api/context.dart';
-import '../web_audio_api/media_devices.dart';
-import '../web_audio_api/media_recorder.dart';
-import '../web_audio_api/media_streams.dart';
-import '../web_audio_api/node.dart';
-import '../web_audio_api/worklet.dart';
 import 'api/simple.dart';
 import 'dart:async';
 import 'dart:convert';

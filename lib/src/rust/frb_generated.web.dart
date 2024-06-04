@@ -6,13 +6,6 @@
 // Static analysis wrongly picks the IO variant, thus ignore this
 // ignore_for_file: argument_type_not_assignable
 
-import '../web_audio_api.dart';
-import '../web_audio_api/context.dart';
-import '../web_audio_api/media_devices.dart';
-import '../web_audio_api/media_recorder.dart';
-import '../web_audio_api/media_streams.dart';
-import '../web_audio_api/node.dart';
-import '../web_audio_api/worklet.dart';
 import 'api/simple.dart';
 import 'dart:async';
 import 'dart:convert';
