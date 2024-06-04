@@ -107,7 +107,6 @@ class AudioContext extends RustOpaque {
           .webAudioApiContextAudioContextCreateMediaStreamTrackSource(
               that: this, media: media);
 
-  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
   /// Creates and returns a new `AudioContext` object.
   ///
   /// This will play live audio on the default output device.
@@ -133,8 +132,7 @@ class AudioContext extends RustOpaque {
   /// The `AudioContext` constructor will panic when an invalid `sinkId` is provided in the
   /// `AudioContextOptions`. In a future version, a `try_new` constructor will be introduced that
   /// never panics.
-  static Future<AudioContext> newInstance(
-          {required AudioContextOptions options}) =>
+  factory AudioContext({required AudioContextOptions options}) =>
       RustLib.instance.api.webAudioApiContextAudioContextNew(options: options);
 
   /// The estimation in seconds of audio output latency, i.e., the interval

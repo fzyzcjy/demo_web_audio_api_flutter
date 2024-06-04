@@ -1703,16 +1703,15 @@ let api_media = api_media_decoded.unwrap();
                 } })
 }
 fn wire__web_audio_api__context__AudioContext_new_impl(
-    port_: flutter_rust_bridge::for_generated::MessagePort,
     ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
     rust_vec_len_: i32,
     data_len_: i32,
-) {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec, _, _>(
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartSse {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::SseCodec, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
             debug_name: "AudioContext_new",
-            port: Some(port_),
-            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
         },
         move || {
             let message = unsafe {
@@ -1727,11 +1726,9 @@ fn wire__web_audio_api__context__AudioContext_new_impl(
             let api_options =
                 <web_audio_api::context::AudioContextOptions>::sse_decode(&mut deserializer);
             deserializer.end();
-            move |context| {
-                transform_result_sse((move || {
-                    Result::<_, ()>::Ok(web_audio_api::context::AudioContext::new(api_options))
-                })())
-            }
+            transform_result_sse((move || {
+                Result::<_, ()>::Ok(web_audio_api::context::AudioContext::new(api_options))
+            })())
         },
     )
 }
@@ -6064,7 +6061,6 @@ fn pde_ffi_dispatcher_primary_impl(
 53 => wire__web_audio_api__context__AudioContext_create_media_stream_destination_impl(port, ptr, rust_vec_len, data_len),
 54 => wire__web_audio_api__context__AudioContext_create_media_stream_source_impl(port, ptr, rust_vec_len, data_len),
 55 => wire__web_audio_api__context__AudioContext_create_media_stream_track_source_impl(port, ptr, rust_vec_len, data_len),
-56 => wire__web_audio_api__context__AudioContext_new_impl(port, ptr, rust_vec_len, data_len),
 57 => wire__web_audio_api__context__AudioContext_output_latency_impl(port, ptr, rust_vec_len, data_len),
 58 => wire__web_audio_api__context__AudioContext_render_capacity_impl(port, ptr, rust_vec_len, data_len),
 59 => wire__web_audio_api__context__AudioContext_resume_sync_impl(port, ptr, rust_vec_len, data_len),
@@ -6293,6 +6289,7 @@ fn pde_ffi_dispatcher_sync_impl(
             rust_vec_len,
             data_len,
         ),
+        56 => wire__web_audio_api__context__AudioContext_new_impl(ptr, rust_vec_len, data_len),
         72 => wire__web_audio_api__media_recorder__BlobEvent_get_blob_impl(
             ptr,
             rust_vec_len,

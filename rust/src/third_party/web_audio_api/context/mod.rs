@@ -3,6 +3,9 @@ use web_audio_api::context::AudioContext;
 
 #[frb(external)]
 impl AudioContext {
+    #[frb(sync)]
+    fn new() {}
+
     #[frb(ignore)]
     fn create_media_element_source() {}
 

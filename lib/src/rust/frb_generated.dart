@@ -249,7 +249,7 @@ abstract class RustLibApi extends BaseApi {
       webAudioApiContextAudioContextCreateMediaStreamTrackSource(
           {required AudioContext that, required MediaStreamTrack media});
 
-  Future<AudioContext> webAudioApiContextAudioContextNew(
+  AudioContext webAudioApiContextAudioContextNew(
       {required AudioContextOptions options});
 
   Future<double> webAudioApiContextAudioContextOutputLatency(
@@ -2481,14 +2481,13 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           );
 
   @override
-  Future<AudioContext> webAudioApiContextAudioContextNew(
+  AudioContext webAudioApiContextAudioContextNew(
       {required AudioContextOptions options}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_box_autoadd_audio_context_options(options, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 56, port: port_);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 56)!;
       },
       codec: SseCodec(
         decodeSuccessData:
