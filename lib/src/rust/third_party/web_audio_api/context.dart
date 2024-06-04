@@ -34,8 +34,7 @@ class AudioContext extends RustOpaque {
         RustLib.instance.api.rust_arc_decrement_strong_count_AudioContextPtr,
   );
 
-  Future<AudioBuffer> frbOverrideDecodeAudioDataSync(
-          {required String inputPath}) =>
+  Future<AudioBuffer> decodeAudioDataSync({required String inputPath}) =>
       RustLib.instance.api
           .crateApiOverrideWebAudioApiAudioContextFrbOverrideDecodeAudioDataSync(
               that: this, inputPath: inputPath);
