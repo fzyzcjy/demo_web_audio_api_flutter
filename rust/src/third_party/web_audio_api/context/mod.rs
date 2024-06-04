@@ -1,6 +1,6 @@
 use flutter_rust_bridge::frb;
 use web_audio_api::AudioBuffer;
-use web_audio_api::context::AudioContext;
+use web_audio_api::context::{AudioContext, BaseAudioContext};
 
 #[frb(external)]
 impl AudioContext {
@@ -14,6 +14,6 @@ impl AudioContext {
     fn resume() {}
 
     fn decode_audio_data_sync(&self, input_path: String) -> anyhow::Result<AudioBuffer> {
-        TODO
+        Ok(self.0.decode_audio_data_sync(std::fs::File::open(input_path)?)?)
     }
 }
