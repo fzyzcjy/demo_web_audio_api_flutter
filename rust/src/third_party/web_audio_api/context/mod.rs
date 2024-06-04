@@ -15,3 +15,6 @@ impl AudioContext {
 
 #[frb(non_opaque)]
 pub struct AudioContextOptions;
+
+#[frb(non_opaque)]
+pub struct AudioContextLatencyCategory;
