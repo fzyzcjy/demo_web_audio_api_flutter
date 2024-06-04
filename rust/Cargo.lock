@@ -1030,7 +1030,6 @@ dependencies = [
 name = "rust_lib_demo_web_audio_api_flutter"
 version = "0.1.0"
 dependencies = [
- "anyhow",
  "flutter_rust_bridge",
  "web-audio-api",
 ]
