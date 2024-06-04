@@ -12,3 +12,6 @@ impl AudioContext {
     #[frb(ignore)]
     fn resume() {}
 }
+
+#[frb(non_opaque)]
+pub struct AudioContextOptions;
