@@ -8,6 +8,8 @@ import '../web_audio_api.dart';
 import 'media_streams.dart';
 import 'node.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
+import 'package:freezed_annotation/freezed_annotation.dart' hide protected;
+part 'context.freezed.dart';
 
 // These functions are ignored because they are not marked as `pub`: `address`, `calculate_suspend_frame`, `clear_event_handler`, `connect_listener_to_panner`, `connect`, `context`, `current_time`, `destination_channel_config`, `disconnect`, `ensure_audio_listener_present`, `get`, `id`, `is_valid_sink_id`, `listener`, `lock_control_msg_sender`, `mark_node_dropped`, `max_channel_count`, `new`, `new`, `offline`, `post_message`, `queue_audio_param_connect`, `register`, `resolve_queued_control_msgs`, `sample_rate`, `send_control_msg`, `send_event`, `set_event_handler`, `set_state`, `state`
 // These functions are ignored because they have generic arguments: `run_diagnostics`, `set_oncomplete`, `set_onsinkchange`, `suspend_sync`
@@ -211,28 +213,6 @@ class AudioContext extends RustOpaque {
       );
 }
 
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioContextLatencyCategory>>
-@sealed
-class AudioContextLatencyCategory extends RustOpaque {
-  // Not to be used by end users
-  AudioContextLatencyCategory.frbInternalDcoDecode(List<dynamic> wire)
-      : super.frbInternalDcoDecode(wire, _kStaticData);
-
-  // Not to be used by end users
-  AudioContextLatencyCategory.frbInternalSseDecode(
-      BigInt ptr, int externalSizeOnNative)
-      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
-
-  static final _kStaticData = RustArcStaticData(
-    rustArcIncrementStrongCount: RustLib.instance.api
-        .rust_arc_increment_strong_count_AudioContextLatencyCategory,
-    rustArcDecrementStrongCount: RustLib.instance.api
-        .rust_arc_decrement_strong_count_AudioContextLatencyCategory,
-    rustArcDecrementStrongCountPtr: RustLib.instance.api
-        .rust_arc_decrement_strong_count_AudioContextLatencyCategoryPtr,
-  );
-}
-
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioContextRegistration>>
 @sealed
 class AudioContextRegistration extends RustOpaque {
@@ -418,6 +398,32 @@ class OfflineAudioContext extends RustOpaque {
   Future<void> suspend({required double suspendTime}) =>
       RustLib.instance.api.webAudioApiContextOfflineAudioContextSuspend(
           that: this, suspendTime: suspendTime);
+}
+
+@freezed
+sealed class AudioContextLatencyCategory with _$AudioContextLatencyCategory {
+  const AudioContextLatencyCategory._();
+
+  /// Balance audio output latency and power consumption.
+  const factory AudioContextLatencyCategory.balanced() =
+      AudioContextLatencyCategory_Balanced;
+
+  /// Provide the lowest audio output latency possible without glitching. This is the default.
+  const factory AudioContextLatencyCategory.interactive() =
+      AudioContextLatencyCategory_Interactive;
+
+  /// Prioritize sustained playback without interruption over audio output latency.
+  ///
+  /// Lowest power consumption.
+  const factory AudioContextLatencyCategory.playback() =
+      AudioContextLatencyCategory_Playback;
+
+  /// Specify the number of seconds of latency
+  ///
+  /// This latency is not guaranteed to be applied, it depends on the audio hardware capabilities
+  const factory AudioContextLatencyCategory.custom(
+    double field0,
+  ) = AudioContextLatencyCategory_Custom;
 }
 
 /// Specify the playback configuration for the [`AudioContext`] constructor.

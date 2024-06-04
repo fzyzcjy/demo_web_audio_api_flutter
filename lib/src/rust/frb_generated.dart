@@ -661,15 +661,6 @@ abstract class RustLibApi extends BaseApi {
   CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_AudioContextPtr;
 
   RustArcIncrementStrongCountFnType
-      get rust_arc_increment_strong_count_AudioContextLatencyCategory;
-
-  RustArcDecrementStrongCountFnType
-      get rust_arc_decrement_strong_count_AudioContextLatencyCategory;
-
-  CrossPlatformFinalizerArg
-      get rust_arc_decrement_strong_count_AudioContextLatencyCategoryPtr;
-
-  RustArcIncrementStrongCountFnType
       get rust_arc_increment_strong_count_AudioContextRegistration;
 
   RustArcDecrementStrongCountFnType
@@ -5940,14 +5931,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext;
 
   RustArcIncrementStrongCountFnType
-      get rust_arc_increment_strong_count_AudioContextLatencyCategory => wire
-          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory;
-
-  RustArcDecrementStrongCountFnType
-      get rust_arc_decrement_strong_count_AudioContextLatencyCategory => wire
-          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory;
-
-  RustArcIncrementStrongCountFnType
       get rust_arc_increment_strong_count_AudioContextRegistration => wire
           .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextRegistration;
 
@@ -6237,15 +6220,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return AudioContext.frbInternalDcoDecode(raw as List<dynamic>);
-  }
-
-  @protected
-  AudioContextLatencyCategory
-      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
-          dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return AudioContextLatencyCategory.frbInternalDcoDecode(
-        raw as List<dynamic>);
   }
 
   @protected
@@ -6880,15 +6854,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  AudioContextLatencyCategory
-      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
-          dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return AudioContextLatencyCategory.frbInternalDcoDecode(
-        raw as List<dynamic>);
-  }
-
-  @protected
   AudioContextRegistration
       dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextRegistration(
           dynamic raw) {
@@ -7168,15 +7133,33 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  AudioContextLatencyCategory dco_decode_audio_context_latency_category(
+      dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    switch (raw[0]) {
+      case 0:
+        return AudioContextLatencyCategory_Balanced();
+      case 1:
+        return AudioContextLatencyCategory_Interactive();
+      case 2:
+        return AudioContextLatencyCategory_Playback();
+      case 3:
+        return AudioContextLatencyCategory_Custom(
+          dco_decode_f_64(raw[1]),
+        );
+      default:
+        throw Exception("unreachable");
+    }
+  }
+
+  @protected
   AudioContextOptions dco_decode_audio_context_options(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     final arr = raw as List<dynamic>;
     if (arr.length != 4)
       throw Exception('unexpected arr length: expect 4 but see ${arr.length}');
     return AudioContextOptions(
-      latencyHint:
-          dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
-              arr[0]),
+      latencyHint: dco_decode_audio_context_latency_category(arr[0]),
       sampleRate: dco_decode_opt_box_autoadd_f_32(arr[1]),
       sinkId: dco_decode_String(arr[2]),
       renderSizeHint: dco_decode_audio_context_render_size_category(arr[3]),
@@ -7407,15 +7390,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return AudioContext.frbInternalSseDecode(
-        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
-  }
-
-  @protected
-  AudioContextLatencyCategory
-      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
-          SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return AudioContextLatencyCategory.frbInternalSseDecode(
         sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
   }
 
@@ -8122,15 +8096,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  AudioContextLatencyCategory
-      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
-          SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    return AudioContextLatencyCategory.frbInternalSseDecode(
-        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
-  }
-
-  @protected
   AudioContextRegistration
       sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextRegistration(
           SseDeserializer deserializer) {
@@ -8439,12 +8404,32 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  AudioContextLatencyCategory sse_decode_audio_context_latency_category(
+      SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    var tag_ = sse_decode_i_32(deserializer);
+    switch (tag_) {
+      case 0:
+        return AudioContextLatencyCategory_Balanced();
+      case 1:
+        return AudioContextLatencyCategory_Interactive();
+      case 2:
+        return AudioContextLatencyCategory_Playback();
+      case 3:
+        var var_field0 = sse_decode_f_64(deserializer);
+        return AudioContextLatencyCategory_Custom(var_field0);
+      default:
+        throw UnimplementedError('');
+    }
+  }
+
+  @protected
   AudioContextOptions sse_decode_audio_context_options(
       SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     var var_latencyHint =
-        sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
-            deserializer);
+        sse_decode_audio_context_latency_category(deserializer);
     var var_sampleRate = sse_decode_opt_box_autoadd_f_32(deserializer);
     var var_sinkId = sse_decode_String(deserializer);
     var var_renderSizeHint =
@@ -8703,14 +8688,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContext(
           AudioContext self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(self.frbInternalSseEncode(move: true), serializer);
-  }
-
-  @protected
-  void
-      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
-          AudioContextLatencyCategory self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(self.frbInternalSseEncode(move: true), serializer);
   }
@@ -9341,14 +9318,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
 
   @protected
   void
-      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
-          AudioContextLatencyCategory self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_usize(self.frbInternalSseEncode(move: null), serializer);
-  }
-
-  @protected
-  void
       sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextRegistration(
           AudioContextRegistration self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
@@ -9619,11 +9588,29 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  void sse_encode_audio_context_latency_category(
+      AudioContextLatencyCategory self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    switch (self) {
+      case AudioContextLatencyCategory_Balanced():
+        sse_encode_i_32(0, serializer);
+      case AudioContextLatencyCategory_Interactive():
+        sse_encode_i_32(1, serializer);
+      case AudioContextLatencyCategory_Playback():
+        sse_encode_i_32(2, serializer);
+      case AudioContextLatencyCategory_Custom(field0: final field0):
+        sse_encode_i_32(3, serializer);
+        sse_encode_f_64(field0, serializer);
+      default:
+        throw UnimplementedError('');
+    }
+  }
+
+  @protected
   void sse_encode_audio_context_options(
       AudioContextOptions self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAudioContextLatencyCategory(
-        self.latencyHint, serializer);
+    sse_encode_audio_context_latency_category(self.latencyHint, serializer);
     sse_encode_opt_box_autoadd_f_32(self.sampleRate, serializer);
     sse_encode_String(self.sinkId, serializer);
     sse_encode_audio_context_render_size_category(

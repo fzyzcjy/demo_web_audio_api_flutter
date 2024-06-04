@@ -4829,9 +4829,18 @@ const _: fn() = || {
         let _: usize = AudioBufferOptions.length;
         let _: f32 = AudioBufferOptions.sample_rate;
     }
+    match None::<web_audio_api::context::AudioContextLatencyCategory>.unwrap() {
+        web_audio_api::context::AudioContextLatencyCategory::Balanced => {}
+        web_audio_api::context::AudioContextLatencyCategory::Interactive => {}
+        web_audio_api::context::AudioContextLatencyCategory::Playback => {}
+        web_audio_api::context::AudioContextLatencyCategory::Custom(field0) => {
+            let _: f64 = field0;
+        }
+    }
     {
         let AudioContextOptions = None::<web_audio_api::context::AudioContextOptions>.unwrap();
-        let _: AudioContextLatencyCategory = AudioContextOptions.latency_hint;
+        let _: web_audio_api::context::AudioContextLatencyCategory =
+            AudioContextOptions.latency_hint;
         let _: Option<f32> = AudioContextOptions.sample_rate;
         let _: String = AudioContextOptions.sink_id;
         let _: web_audio_api::context::AudioContextRenderSizeCategory =
@@ -4856,9 +4865,6 @@ flutter_rust_bridge::frb_generated_moi_arc_impl_value!(
 );
 flutter_rust_bridge::frb_generated_moi_arc_impl_value!(
     flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioContext>
-);
-flutter_rust_bridge::frb_generated_moi_arc_impl_value!(
-    flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioContextLatencyCategory>
 );
 flutter_rust_bridge::frb_generated_moi_arc_impl_value!(
     flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioContextRegistration>
@@ -5002,16 +5008,6 @@ impl SseDecode for AudioContext {
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
         let mut inner = <RustOpaqueMoi<
             flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioContext>,
-        >>::sse_decode(deserializer);
-        return flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(inner);
-    }
-}
-
-impl SseDecode for AudioContextLatencyCategory {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut inner = <RustOpaqueMoi<
-            flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioContextLatencyCategory>,
         >>::sse_decode(deserializer);
         return flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(inner);
     }
@@ -5365,18 +5361,6 @@ impl SseDecode
 
 impl SseDecode
     for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioContext>>
-{
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut inner = <usize>::sse_decode(deserializer);
-        return decode_rust_opaque_moi(inner);
-    }
-}
-
-impl SseDecode
-    for RustOpaqueMoi<
-        flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioContextLatencyCategory>,
-    >
 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -5743,10 +5727,36 @@ impl SseDecode for web_audio_api::AudioBufferOptions {
     }
 }
 
+impl SseDecode for web_audio_api::context::AudioContextLatencyCategory {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut tag_ = <i32>::sse_decode(deserializer);
+        match tag_ {
+            0 => {
+                return web_audio_api::context::AudioContextLatencyCategory::Balanced;
+            }
+            1 => {
+                return web_audio_api::context::AudioContextLatencyCategory::Interactive;
+            }
+            2 => {
+                return web_audio_api::context::AudioContextLatencyCategory::Playback;
+            }
+            3 => {
+                let mut var_field0 = <f64>::sse_decode(deserializer);
+                return web_audio_api::context::AudioContextLatencyCategory::Custom(var_field0);
+            }
+            _ => {
+                unimplemented!("");
+            }
+        }
+    }
+}
+
 impl SseDecode for web_audio_api::context::AudioContextOptions {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut var_latencyHint = <AudioContextLatencyCategory>::sse_decode(deserializer);
+        let mut var_latencyHint =
+            <web_audio_api::context::AudioContextLatencyCategory>::sse_decode(deserializer);
         let mut var_sampleRate = <Option<f32>>::sse_decode(deserializer);
         let mut var_sinkId = <String>::sse_decode(deserializer);
         let mut var_renderSizeHint =
@@ -6385,26 +6395,6 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<AudioContext>> for AudioContex
 }
 
 // Codec=Dco (DartCObject based), see doc to use other codecs
-impl flutter_rust_bridge::IntoDart for FrbWrapper<AudioContextLatencyCategory> {
-    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, MoiArc<_>>(self.0)
-            .into_dart()
-    }
-}
-impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
-    for FrbWrapper<AudioContextLatencyCategory>
-{
-}
-
-impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<AudioContextLatencyCategory>>
-    for AudioContextLatencyCategory
-{
-    fn into_into_dart(self) -> FrbWrapper<AudioContextLatencyCategory> {
-        self.into()
-    }
-}
-
-// Codec=Dco (DartCObject based), see doc to use other codecs
 impl flutter_rust_bridge::IntoDart for FrbWrapper<AudioDestinationNode> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
         flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, MoiArc<_>>(self.0)
@@ -6950,6 +6940,43 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<web_audio_api::AudioBufferOpti
     }
 }
 // Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart
+    for FrbWrapper<web_audio_api::context::AudioContextLatencyCategory>
+{
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self.0 {
+            web_audio_api::context::AudioContextLatencyCategory::Balanced => {
+                [0.into_dart()].into_dart()
+            }
+            web_audio_api::context::AudioContextLatencyCategory::Interactive => {
+                [1.into_dart()].into_dart()
+            }
+            web_audio_api::context::AudioContextLatencyCategory::Playback => {
+                [2.into_dart()].into_dart()
+            }
+            web_audio_api::context::AudioContextLatencyCategory::Custom(field0) => {
+                [3.into_dart(), field0.into_into_dart().into_dart()].into_dart()
+            }
+            _ => {
+                unimplemented!("");
+            }
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<web_audio_api::context::AudioContextLatencyCategory>
+{
+}
+impl
+    flutter_rust_bridge::IntoIntoDart<
+        FrbWrapper<web_audio_api::context::AudioContextLatencyCategory>,
+    > for web_audio_api::context::AudioContextLatencyCategory
+{
+    fn into_into_dart(self) -> FrbWrapper<web_audio_api::context::AudioContextLatencyCategory> {
+        self.into()
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
 impl flutter_rust_bridge::IntoDart for FrbWrapper<web_audio_api::context::AudioContextOptions> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
         [
@@ -7256,18 +7283,6 @@ impl SseEncode for AudioContext {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
         <RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioContext>>>::sse_encode(flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, MoiArc<_>>(self), serializer);
-    }
-}
-
-impl SseEncode for AudioContextLatencyCategory {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        <RustOpaqueMoi<
-            flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioContextLatencyCategory>,
-        >>::sse_encode(
-            flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, MoiArc<_>>(self),
-            serializer,
-        );
     }
 }
 
@@ -7582,19 +7597,6 @@ impl SseEncode
 
 impl SseEncode
     for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioContext>>
-{
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        let (ptr, size) = self.sse_encode_raw();
-        <usize>::sse_encode(ptr, serializer);
-        <i32>::sse_encode(size, serializer);
-    }
-}
-
-impl SseEncode
-    for RustOpaqueMoi<
-        flutter_rust_bridge::for_generated::RustAutoOpaqueInner<AudioContextLatencyCategory>,
-    >
 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -7988,10 +7990,37 @@ impl SseEncode for web_audio_api::AudioBufferOptions {
     }
 }
 
+impl SseEncode for web_audio_api::context::AudioContextLatencyCategory {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        match self {
+            web_audio_api::context::AudioContextLatencyCategory::Balanced => {
+                <i32>::sse_encode(0, serializer);
+            }
+            web_audio_api::context::AudioContextLatencyCategory::Interactive => {
+                <i32>::sse_encode(1, serializer);
+            }
+            web_audio_api::context::AudioContextLatencyCategory::Playback => {
+                <i32>::sse_encode(2, serializer);
+            }
+            web_audio_api::context::AudioContextLatencyCategory::Custom(field0) => {
+                <i32>::sse_encode(3, serializer);
+                <f64>::sse_encode(field0, serializer);
+            }
+            _ => {
+                unimplemented!("");
+            }
+        }
+    }
+}
+
 impl SseEncode for web_audio_api::context::AudioContextOptions {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        <AudioContextLatencyCategory>::sse_encode(self.latency_hint, serializer);
+        <web_audio_api::context::AudioContextLatencyCategory>::sse_encode(
+            self.latency_hint,
+            serializer,
+        );
         <Option<f32>>::sse_encode(self.sample_rate, serializer);
         <String>::sse_encode(self.sink_id, serializer);
         <web_audio_api::context::AudioContextRenderSizeCategory>::sse_encode(
