@@ -5,7 +5,7 @@ use web_audio_api::context::AudioContext;
 
 #[ext]
 impl AudioContext {
-    fn decode_audio_data_sync(&self, input_path: String) -> anyhow::Result<AudioBuffer> {
+    fn override_decode_audio_data_sync(&self, input_path: String) -> anyhow::Result<AudioBuffer> {
         TODO
     }
 }
